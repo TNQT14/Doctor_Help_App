@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const Text());
+  runApp(const MyHomePage());
 }
-
-class Text extends StatelessWidget {
-  const Text({Key? key}) : super(key: key);
+class MyHomePage extends StatelessWidget {
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    //test2
-    return MaterialApp();
+    return const Placeholder();
   }
 }
 
+class Test extends StatelessWidget {
+  const Test({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
