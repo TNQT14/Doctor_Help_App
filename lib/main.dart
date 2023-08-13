@@ -1,46 +1,32 @@
+import 'package:doctor_help_app/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'screen/screens.dart';
 
 void main() {
-  runApp(const MyHomePage());
+  runApp(const MyApp());
 }
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        //Test
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a blue toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    return ScreenUtilInit(
+      // ScreenUtilInit để reSize màn hình,
+      // nó sẽ đo theo thông số màn hình trong figma(cái design mình đang code theo)
+      // rồi co giãn để phù hợp với mọi loại thiết bị
+      builder: (context, child) {
+        return MaterialApp(
+          // initialRoute: HomeScreen.routeName,
+          routes: route,
+          debugShowCheckedModeBanner: false,
+          home: child,
+        );
+      },
+      child: HomeScreen(),
+      designSize: Size(375, 812),
     );
   }
 }
-
-class Test extends StatelessWidget {
-  const Test({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
-}
-
