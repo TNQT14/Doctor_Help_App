@@ -54,7 +54,7 @@ Container diseaseCard() {
     ),
     child: ListTile(
       leading: Image.asset(iconGastroenterology, width: 40.w, height: 40.h,),
-      title: Text('Gastroenterology', style: txt16!.copyWith(fontWeight: FontWeight.w600),),
+      title: Text('Gastroenterology', style: txt16w6,),
       subtitle: Padding(
         padding: const EdgeInsets.only(top: 6.0),
         child: Text('10 Doctor', style: txt14w6!.copyWith(fontWeight: FontWeight.w400),),
