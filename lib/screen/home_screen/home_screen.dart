@@ -18,6 +18,7 @@ class HomeScreen extends StatelessWidget {
     return GestureDetector(
       onTap: () => unfocusKeyboard(context),
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
           bottomNavigationBar: BottomNavigationBar(
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
@@ -44,9 +45,8 @@ class HomeScreen extends StatelessWidget {
                     const EdgeInsets.only(top: 35.0, left: 15, right: 15),
                 child: rowIn4(),
               ),
-              searchWidget(),
-              Container(
-                height: 570.h,
+              inputWidget(),
+              Expanded(
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,10 +57,7 @@ class HomeScreen extends StatelessWidget {
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(left: 15.0, top: 22),
-                            child: Text(
-                              'My Appointment',
-                              style: txt18w6
-                            ),
+                            child: textTitle('My Appointment'),
                           ),
                           SizedBox(
                             height: 15.h,
@@ -69,7 +66,7 @@ class HomeScreen extends StatelessWidget {
                             onTap: (){
                               Navigator.pushNamed(context, DoctordetailScreen.routeName);
                             },
-                              child: doctorCard()),
+                              child: doctorCard(context)),
                           SizedBox(
                             height: 20.h,
                           ),
@@ -85,7 +82,7 @@ class HomeScreen extends StatelessWidget {
                                 scrollDirection: Axis.horizontal,
                                 itemCount: 5,
                                 itemBuilder: (context, index) {
-                                  return doctorCard();
+                                  return doctorCard(context);
                                 }),
                           ),
                           listDisease()
@@ -107,10 +104,7 @@ Padding titleLisstNearDoc() {
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          'Nearby Doctor',
-          style: txt18w6,
-        ),
+        textTitle('Nearby Doctor'),
         GestureDetector(
           onTap: () {},
           child: Text(

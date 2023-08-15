@@ -3,7 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../containts/containts.dart';
 
-Container searchWidget() {
+///có thể sử dụng như input/field
+
+Container inputWidget() {
   return Container(
     height: 50.h,
     margin: const EdgeInsets.only(top: 22),
@@ -15,7 +17,11 @@ Container searchWidget() {
           hintText: 'Search',
           hintStyle: txt16w4!.copyWith(color: Colors.grey.shade400),
           contentPadding: EdgeInsets.zero,
-          prefixIcon: Icon(Icons.search),
+          prefixIcon: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: Image.asset(iconSearch, width: 18.w, height: 18.h,),
+          ),
+          prefixIconConstraints: BoxConstraints(),
           // prefixIconColor: Colors.grey.shade400,
           enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(
@@ -28,6 +34,16 @@ Container searchWidget() {
               )
           )
       ),
+    ),
+  );
+}
+
+Padding textTitle(String title) {
+  return Padding(
+    padding: const EdgeInsets.symmetric(vertical: 16.0),
+    child: Text(
+        title,
+        style: txt18w6
     ),
   );
 }
