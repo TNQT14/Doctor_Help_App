@@ -13,8 +13,8 @@ Row rowIn4() {
         child: ListTile(
           contentPadding: EdgeInsets.zero,
           leading: containerImage(image),
-          title: Text('Current Location', style: txt14w6!.copyWith(fontWeight: FontWeight.normal),),
-          subtitle: Text('Enter an address', style: txt16!.copyWith(fontWeight: FontWeight.bold),),
+          title: Text('Current Location', style: txt14w4,),
+          subtitle: Text('Enter an address', style: txt16w6,),
         ),
       ),
       InkWell(onTap: (){},

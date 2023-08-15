@@ -13,7 +13,7 @@ Container searchWidget() {
         fillColor: Colors.white,
           filled: true,
           hintText: 'Search',
-          hintStyle: txt16!.copyWith(color: Colors.grey.shade400),
+          hintStyle: txt16w4!.copyWith(color: Colors.grey.shade400),
           contentPadding: EdgeInsets.zero,
           prefixIcon: Icon(Icons.search),
           // prefixIconColor: Colors.grey.shade400,

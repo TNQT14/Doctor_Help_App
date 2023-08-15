@@ -1,3 +1,4 @@
+import 'package:doctor_help_app/screen/screens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -34,67 +35,67 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
           backgroundColor: colorF9f9fe,
-          body: Container(
-            height: 812.h,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Padding(
-                  padding:
-                      const EdgeInsets.only(top: 35.0, left: 15, right: 15),
-                  child: rowIn4(),
-                ),
-                searchWidget(),
-                Container(
-                  height: 570.h,
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 15.0, top: 22),
-                              child: Text(
-                                'My Appointment',
-                                style: txt18!
-                                    .copyWith(fontWeight: FontWeight.w600),
-                              ),
+          body: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Padding(
+                padding:
+                    const EdgeInsets.only(top: 35.0, left: 15, right: 15),
+                child: rowIn4(),
+              ),
+              searchWidget(),
+              Container(
+                height: 570.h,
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 15.0, top: 22),
+                            child: Text(
+                              'My Appointment',
+                              style: txt18w6
                             ),
-                            SizedBox(
-                              height: 15.h,
-                            ),
-                            doctorCard(),
-                            SizedBox(
-                              height: 20.h,
-                            ),
-                          ],
-                        ),
-                        titleLisstNearDoc(),
-                        Column(
-                          children: [
-                            Container(
-                              margin: EdgeInsets.symmetric(vertical: 15.h),
-                              height: 124.h,
-                              child: ListView.builder(
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: 5,
-                                  itemBuilder: (context, index) {
-                                    return doctorCard();
-                                  }),
-                            ),
-                            listDisease()
-                          ],
-                        )
-                      ],
-                    ),
+                          ),
+                          SizedBox(
+                            height: 15.h,
+                          ),
+                          InkWell(
+                            onTap: (){
+                              Navigator.pushNamed(context, DoctordetailScreen.routeName);
+                            },
+                              child: doctorCard()),
+                          SizedBox(
+                            height: 20.h,
+                          ),
+                        ],
+                      ),
+                      titleLisstNearDoc(),
+                      Column(
+                        children: [
+                          Container(
+                            margin: EdgeInsets.symmetric(vertical: 15.h),
+                            height: 124.h,
+                            child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: 5,
+                                itemBuilder: (context, index) {
+                                  return doctorCard();
+                                }),
+                          ),
+                          listDisease()
+                        ],
+                      )
+                    ],
                   ),
-                )
-              ],
-            ),
+                ),
+              )
+            ],
           )),
     );
   }
@@ -108,7 +109,7 @@ Padding titleLisstNearDoc() {
       children: [
         Text(
           'Nearby Doctor',
-          style: txt18!.copyWith(fontWeight: FontWeight.w600),
+          style: txt18w6,
         ),
         GestureDetector(
           onTap: () {},
