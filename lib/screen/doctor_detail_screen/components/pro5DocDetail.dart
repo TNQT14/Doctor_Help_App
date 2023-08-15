@@ -66,10 +66,7 @@ Column reviewsCard() {
         title: Text('Emma Watson', style: txt16w6,),
         subtitle: Text('Office Workers', style: txt14w4,),
         contentPadding: EdgeInsetsDirectional.zero,
-        leading: ClipRRect(
-          borderRadius: BorderRadius.circular(6),
-          child: Image.asset(imageCale, fit: BoxFit.cover, width: 48.w, height: 48.h,),
-        ),
+        leading: clipRRectAvatar(48, 48),
       ),
       Spacer(),
       Padding(

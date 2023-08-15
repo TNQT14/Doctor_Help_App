@@ -12,7 +12,7 @@ Row rowIn4() {
       Expanded(
         child: ListTile(
           contentPadding: EdgeInsets.zero,
-          leading: containerImage(image),
+          leading: clipRRectAvatar(54, 54),
           title: Text('Current Location', style: txt14w4,),
           subtitle: Text('Enter an address', style: txt16w6!.copyWith(color: Colors.black),),
 

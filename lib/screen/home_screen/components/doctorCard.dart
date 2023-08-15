@@ -14,15 +14,7 @@ Widget doctorCard(BuildContext context) {
           // crossAxisAlignment: CrossAxisAlignment.end,
           mainAxisSize: MainAxisSize.min,
           children: [
-            ClipRRect(
-              child: Image.asset(
-                imageCat,
-                fit: BoxFit.cover,
-                width: 72.w,
-                height: 108.h,
-              ),
-              borderRadius: BorderRadius.circular(8),
-            ),
+            clipRRectAvatar(72, 108),
             const SizedBox(
               width: 10,
             ),
