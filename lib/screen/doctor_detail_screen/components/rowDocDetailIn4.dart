@@ -1,3 +1,4 @@
+import 'package:doctor_help_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -10,10 +11,7 @@ Container rowDocDetailIn4() {
       mainAxisSize: MainAxisSize.min,
       // crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(8),
-          child: Image.asset(imageCat, width: 108.w, height: 162.h, fit: BoxFit.cover,),
-        ),
+        clipRRectAvatar(108, 162),
         const SizedBox(width: 20,),
         Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

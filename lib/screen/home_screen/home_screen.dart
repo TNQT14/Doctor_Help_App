@@ -19,22 +19,22 @@ class HomeScreen extends StatelessWidget {
       onTap: () => unfocusKeyboard(context),
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-          bottomNavigationBar: BottomNavigationBar(
-            items: const <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                icon: Icon(Icons.call),
-                label: 'Calls',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.camera),
-                label: 'Camera',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.chat),
-                label: 'Chats',
-              ),
-            ],
-          ),
+          // bottomNavigationBar: BottomNavigationBar(
+          //   items: const <BottomNavigationBarItem>[
+          //     BottomNavigationBarItem(
+          //       icon: Icon(Icons.call),
+          //       label: 'Calls',
+          //     ),
+          //     BottomNavigationBarItem(
+          //       icon: Icon(Icons.camera),
+          //       label: 'Camera',
+          //     ),
+          //     BottomNavigationBarItem(
+          //       icon: Icon(Icons.chat),
+          //       label: 'Chats',
+          //     ),
+          //   ],
+          // ),
           backgroundColor: colorF9f9fe,
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
