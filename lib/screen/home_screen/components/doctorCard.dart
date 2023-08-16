@@ -9,7 +9,7 @@ Widget doctorCard(BuildContext context) {
   return backgroundDoctorCard(
       context,
       Padding(
-        padding: const EdgeInsets.only(left: 6, top: 5.0, bottom: 5),
+        padding: const EdgeInsets.only(left: 6),
         child: Row(
           // crossAxisAlignment: CrossAxisAlignment.end,
           mainAxisSize: MainAxisSize.min,
@@ -19,7 +19,7 @@ Widget doctorCard(BuildContext context) {
               width: 10,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 12.0.h),
+              padding: EdgeInsets.symmetric(vertical: 16.0.h),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -46,7 +46,7 @@ Widget doctorCard(BuildContext context) {
                 Spacer(),
                 Container(
                     width: 53.w,
-                    margin: EdgeInsets.only(right: 15.w, bottom: 10.h),
+                    margin: EdgeInsets.only(right: 14.w, bottom: 14.h),
                     height: 26.h,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
@@ -72,7 +72,7 @@ Widget doctorCard(BuildContext context) {
 Container backgroundDoctorCard(BuildContext context, Widget child,
     {double? height, double? width, bool margin = false}) {
   return Container(
-    alignment: Alignment.center,
+    // alignment: Alignment.center,
       width: width ?? MediaQuery.of(context).size.width,
       height: height ?? MediaQuery.of(context).size.width,
       margin: margin ? EdgeInsets.only(left: 15.w) : EdgeInsetsDirectional.zero,

@@ -6,4 +6,7 @@ import 'package:flutter/material.dart';
 final Map<String, WidgetBuilder> route ={
   HomeScreen.routeName: (context)=> HomeScreen(),
   DoctordetailScreen.routeName: (context)=> DoctordetailScreen(),
+  AppointmentDateTimeScreen.routeName: (context)=> AppointmentDateTimeScreen(),
+  AppointmentSummaryScreen.routeName: (context)=> AppointmentSummaryScreen(),
+  AppointmentSuccessScreen.routeName: (context)=> AppointmentSuccessScreen(),
 };

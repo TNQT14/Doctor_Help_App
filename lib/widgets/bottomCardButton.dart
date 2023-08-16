@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../containts/containts.dart';
 
-Container bottomCardButton() {
+Container bottomCardButton(String title ,Function()? tap) {
   return Container(
     decoration: BoxDecoration(
         color: Colors.white,
@@ -15,10 +15,11 @@ Container bottomCardButton() {
           ),
         ]
     ),
+    width: double.infinity,
     height: 116.h,
     child: Padding(
       padding: const EdgeInsets.only(top: 16.0, bottom: 50, left: 13, right: 13),
-      child: ElevatedButton(onPressed: (){}, child: Text('Make an appointment', style: txt16w5,),
+      child: ElevatedButton(onPressed: tap, child: Text(title, style: txt16w5,),
         style: ElevatedButton.styleFrom(
             shadowColor: Colors.grey,
             elevation: 5,
