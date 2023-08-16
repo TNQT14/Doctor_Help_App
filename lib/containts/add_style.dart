@@ -1,3 +1,4 @@
+import 'package:doctor_help_app/containts/add_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 //12
@@ -21,3 +22,4 @@ final TextStyle txt18w7 = TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w700
 
 //32
 final TextStyle txt32w7 = TextStyle(fontSize: 32.sp, fontWeight: FontWeight.w700);
+final TextStyle txt32w7AppBar = TextStyle(fontSize: 32.sp, fontWeight: FontWeight.w700, color: colorTitle);
