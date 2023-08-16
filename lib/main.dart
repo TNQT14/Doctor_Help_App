@@ -1,4 +1,5 @@
 import 'package:doctor_help_app/routes.dart';
+import 'package:doctor_help_app/screen/profile_screen/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
           home: child,
         );
       },
-      child: HomeScreen(),
+      child: ProfileScreen(),
       designSize: Size(375, 812),
     );
   }
