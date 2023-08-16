@@ -35,7 +35,7 @@ class HomeScreen extends StatelessWidget {
           //     ),
           //   ],
           // ),
-          backgroundColor: colorF9f9fe,
+          backgroundColor: colorbg,
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,

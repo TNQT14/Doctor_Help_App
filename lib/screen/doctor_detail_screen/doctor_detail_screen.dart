@@ -1,4 +1,5 @@
 import 'package:doctor_help_app/containts/containts.dart';
+import 'package:doctor_help_app/screen/screens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -14,14 +15,8 @@ class DoctordetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
      // resizeToAvoidBottomInset: false,
-      backgroundColor: colorF9f9fe,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: IconButton(onPressed: (){
-          Navigator.pop(context);
-        }, icon: Icon(Icons.arrow_back_ios_new_outlined, color: Colors.black,),),
-      ),
+      backgroundColor: colorbg,
+      appBar: appbarCustom(context),
       body: Stack(
         children: [
           Column(
@@ -38,12 +33,16 @@ class DoctordetailScreen extends StatelessWidget {
             bottom: 0,
             left: 0,
             right: 0,
-            child: bottomCardButton(),
+            child: bottomCardButton('Make an appointment',
+                    (){Navigator.pushNamed(context, AppointmentDateTimeScreen.routeName);}
+            ),
           )
         ],
       ),
     );
   }
+
+
 }
 
 

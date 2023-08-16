@@ -6,6 +6,6 @@ import '../containts/containts.dart';
 ClipRRect clipRRectAvatar(double width, double height) {
   return ClipRRect(
     borderRadius: BorderRadius.circular(6),
-    child: Image.asset(imageCale, fit: BoxFit.cover, width: width.w, height: height.h,),
+    child: Image.asset(imageCat, fit: BoxFit.cover, width: width.w, height: height.h,),
   );
 }
