@@ -48,7 +48,7 @@ Container doctorIn4Card(BuildContext context) {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         ListTile(
-          trailing: ratingStar(),
+          trailing: IconButton(onPressed: (){}, icon: Icon(Icons.chat, color: Colors.blue,),),
           title: Text('Emma Watson', style: txt16w6,),
           subtitle: Text('Office Workers', style: txt14w4,),
           contentPadding: EdgeInsetsDirectional.zero,
