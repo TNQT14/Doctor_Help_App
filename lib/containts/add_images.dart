@@ -25,6 +25,9 @@ const String iconProfile = linkIcons + 'Icon=Profile.png';
 const String iconShield = linkIcons + 'Icon=Shield.png';
 const String iconSearch = linkIcons + 'iconSearch.png';
 
+//lottie
+const String iconCheckSc = linkIcons + 'animation_lldhfo53.json';
+
 //user
 const String imageCat = linkUser + '330px-RedCat_8727.jpg';
 const String imageCale = linkUser + '477265.jpg';

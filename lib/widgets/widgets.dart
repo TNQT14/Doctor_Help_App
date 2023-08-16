@@ -8,3 +8,4 @@ export 'ratingStar.dart';
 export 'clipRRectAvatar.dart';
 export 'appbarCustom.dart';
 export 'iconIn4.dart';
+export 'containerCardDoc.dart';

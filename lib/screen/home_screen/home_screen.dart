@@ -7,6 +7,7 @@ import '../../containts/containts.dart';
 import '../../widgets/widgets.dart';
 import 'components/doctorCard.dart';
 import 'components/rowIn4.dart';
+import 'components/shadowSlideCard.dart';
 import 'listDisease.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -59,20 +60,10 @@ class HomeScreen extends StatelessWidget {
                             padding: const EdgeInsets.only(left: 15.0, top: 22),
                             child: textTitle('My Appointment'),
                           ),
-                          SizedBox(
-                            height: 15.h,
-                          ),
-                          InkWell(
-                            onTap: (){
-                              Navigator.pushNamed(context, DoctordetailScreen.routeName);
-                            },
-                              child: doctorCard(context)),
-                          SizedBox(
-                            height: 20.h,
-                          ),
+                          shadowSlideCard(context),
                         ],
                       ),
-                      titleLisstNearDoc(),
+                      titleListNearDoc(),
                       Column(
                         children: [
                           Container(
@@ -98,7 +89,7 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-Padding titleLisstNearDoc() {
+Padding titleListNearDoc() {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 15.0),
     child: Row(
