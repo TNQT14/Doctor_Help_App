@@ -1,5 +1,7 @@
 import 'package:doctor_help_app/routes.dart';
 import 'package:doctor_help_app/screen/profile_screen/profile_screen.dart';
+import 'package:doctor_help_app/widgets/bottomMenu.dart';
+import 'package:doctor_help_app/widgets/tabBarWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -11,7 +13,6 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -23,10 +24,17 @@ class MyApp extends StatelessWidget {
           // initialRoute: HomeScreen.routeName,
           routes: route,
           debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+            useMaterial3: true,
+          ),
           home: child,
         );
       },
-      child: ChatScreen(),
+      child: Scaffold(
+        body: HomeScreen(),
+        bottomNavigationBar: BottomMenu(),
+      ),
       designSize: Size(375, 812),
     );
   }

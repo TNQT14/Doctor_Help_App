@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../containts/containts.dart';
+import '../../widgets/bottomMenu.dart';
+import '../../widgets/tabBarWidget.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -19,10 +21,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
         appBar: AppBar(
           title: Text('My Profile',
           style: txt32w7AppBar,
-        ),
+          ),
           elevation: 0.0,
           backgroundColor: colorbg,
         ),
+        body:Container(),
+        // bottomNavigationBar: BottomMenu(),
       ),
     );
   }

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../containts/containts.dart';
 
 
-DefaultTabController tabBarWidget({String? title1, String? title2, Widget? tab1, Widget? tab2}) {
+DefaultTabController tabBarWidget(String? title1, String? title2, Widget? tab1,
+Widget? tab2) {
   return DefaultTabController(
     length: 2,
     child: Scaffold(
