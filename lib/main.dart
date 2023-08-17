@@ -31,10 +31,7 @@ class MyApp extends StatelessWidget {
           home: child,
         );
       },
-      child: Scaffold(
-        body: HomeScreen(),
-        bottomNavigationBar: BottomMenu(),
-      ),
+      child:  BottomMenu(),
       designSize: Size(375, 812),
     );
   }
