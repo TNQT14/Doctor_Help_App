@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../containts/containts.dart';
 
-Row ratingStar() {
+Row ratingStar(double rating) {
   return Row(
     mainAxisSize: MainAxisSize.min,
     children: [
@@ -13,7 +13,7 @@ Row ratingStar() {
             color: colorF1c644,
           ),
           Text(
-            '4.5',
+            '$rating',
             style: txt14w6!.copyWith(
                 fontWeight: FontWeight.w400, color: Colors.grey.shade400),
           ),

@@ -1,4 +1,5 @@
 import 'package:doctor_help_app/containts/containts.dart';
+import 'package:doctor_help_app/model/user/doctor_model.dart';
 import 'package:doctor_help_app/screen/screens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,9 +25,9 @@ class DoctordetailScreen extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.only(left: 13, right: 13, top: 16),
-                child: rowDocDetailIn4(),
+                child: rowDocDetailIn4(user1.imageUrl, user1.name, user1.job),
               ),
-              pro5DocDetail(context)
+              pro5DocDetail(context, user1.imageUrl, user1.rating)
             ],
           ),
           Positioned(
@@ -44,14 +45,6 @@ class DoctordetailScreen extends StatelessWidget {
 
 
 }
-
-
-
-String txt = 'From commuter to operational, hobby to heavy duty tasks,'
-    ' Dr. Detail provides expert detailing service and cosmetic care for any motorized vehicle.'
-    '  Whether it’s an exterior hand wash to full cleaning and detailing, exterior polishing and waxing,'
-    ' full interior shampoo & cleaning, addressing the dashboard and door panels, and cleaning glass,'
-    ' inside and out, paint touch-ups, and more, Dr. Detail offers excellence in service.';
 
 
 

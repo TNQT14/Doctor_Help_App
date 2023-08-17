@@ -5,7 +5,10 @@ import '../../../containts/containts.dart';
 import '../../../widgets/widgets.dart';
 import '../../screens.dart';
 
-Container shadowSlideCard(BuildContext context) {
+Container shadowSlideCard(BuildContext context,
+    String image,
+    String name,
+    String job) {
   return Container(
     margin: EdgeInsets.symmetric(horizontal: 13),
     height: 147,
@@ -36,6 +39,9 @@ Container shadowSlideCard(BuildContext context) {
         ),
         Positioned(
             child: containerCardDoc(context,
+                image,
+                name,
+                job,
                 trailing: SizedBox(
                     height: 40.h,
                     width: 40.w,

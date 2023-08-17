@@ -1,3 +1,4 @@
+import 'package:doctor_help_app/model/user/doctor_model.dart';
 import 'package:doctor_help_app/screen/home_screen/components/doctorCard.dart';
 import 'package:doctor_help_app/screen/screens.dart';
 import 'package:doctor_help_app/widgets/widgets.dart';
@@ -34,7 +35,7 @@ class AppointmentDateTimeScreen extends StatelessWidget {
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(right: 16.0),
-                            child: clipRRectAvatar(56, 84),
+                            child: clipRRectAvatar(56, 84, user1.imageUrl),
                           ),
                           Column(
                             mainAxisSize: MainAxisSize.min,
@@ -64,11 +65,15 @@ class AppointmentDateTimeScreen extends StatelessWidget {
                   padding: EdgeInsets.symmetric(vertical: 8.h),
                   child: textTitle('Date & Time'),
                 ),
-                doctorCard(context)
+                doctorCard(context, user1.imageUrl, user1.rating, user1.name,
+                    user1.job)
               ],
             ),
           )),
-          bottomCardButton('Next',() => Navigator.pushNamed(context, AppointmentSummaryScreen.routeName))
+          bottomCardButton(
+              'Next',
+              () => Navigator.pushNamed(
+                  context, AppointmentSummaryScreen.routeName))
         ],
       ),
     );

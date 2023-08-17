@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../containts/containts.dart';
 
-Widget listDisease() {
+Widget listDisease(String name, int index) {
   return Container(
     height: 416.h,
       margin: EdgeInsets.only(top: 10.h),
@@ -29,7 +29,7 @@ Widget listDisease() {
                   itemBuilder: (context, indext){
                     return Padding(
                       padding: const EdgeInsets.only(top: 10.0),
-                      child: diseaseCard(),
+                      child: diseaseCard(name, index),
                     );
                   }),
             ),
@@ -41,7 +41,7 @@ Widget listDisease() {
 
 
 
-Container diseaseCard() {
+Container diseaseCard(String name, int index) {
   return Container(
     alignment: Alignment.center,
     width: 349.w,
@@ -54,10 +54,10 @@ Container diseaseCard() {
     ),
     child: ListTile(
       leading: Image.asset(iconGastroenterology, width: 40.w, height: 40.h,),
-      title: Text('Gastroenterology', style: txt16w6,),
+      title: Text(name??'', style: txt16w6,),
       subtitle: Padding(
         padding: const EdgeInsets.only(top: 6.0),
-        child: Text('10 Doctor', style: txt14w6!.copyWith(fontWeight: FontWeight.w400),),
+        child: Text('$index Doctor', style: txt14w6!.copyWith(fontWeight: FontWeight.w400),),
       ),
     ),
   );

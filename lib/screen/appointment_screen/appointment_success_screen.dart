@@ -1,4 +1,5 @@
 import 'package:doctor_help_app/containts/containts.dart';
+import 'package:doctor_help_app/model/user/doctor_model.dart';
 import 'package:doctor_help_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,7 +20,7 @@ class AppointmentSuccessScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
-                height: 100,
+                  height: 100,
                   width: 100,
                   child: Lottie.asset(iconCheckSc, fit: BoxFit.cover)),
               Padding(
@@ -30,7 +31,8 @@ class AppointmentSuccessScreen extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
               ),
-              containerCardDoc(context, trailing: ratingStar())
+              containerCardDoc(context, user1.imageUrl, user1.name, user1.job,
+                  trailing: ratingStar(user1.rating))
             ],
           ))),
           bottomCardButton('OK', () => Navigator.pop(context))

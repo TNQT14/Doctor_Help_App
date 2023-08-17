@@ -1,9 +1,11 @@
+import 'package:doctor_help_app/model/disease/disease_model.dart';
 import 'package:doctor_help_app/screen/screens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../containts/containts.dart';
+import '../../model/user/doctor_model.dart';
 import '../../widgets/widgets.dart';
 import 'components/doctorCard.dart';
 import 'components/rowIn4.dart';
@@ -19,32 +21,15 @@ class HomeScreen extends StatelessWidget {
     return GestureDetector(
       onTap: () => unfocusKeyboard(context),
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
-          // bottomNavigationBar: BottomNavigationBar(
-          //   items: const <BottomNavigationBarItem>[
-          //     BottomNavigationBarItem(
-          //       icon: Icon(Icons.call),
-          //       label: 'Calls',
-          //     ),
-          //     BottomNavigationBarItem(
-          //       icon: Icon(Icons.camera),
-          //       label: 'Camera',
-          //     ),
-          //     BottomNavigationBarItem(
-          //       icon: Icon(Icons.chat),
-          //       label: 'Chats',
-          //     ),
-          //   ],
-          // ),
+          resizeToAvoidBottomInset: false,
           backgroundColor: colorbg,
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
               Padding(
-                padding:
-                    const EdgeInsets.only(top: 35.0, left: 15, right: 15),
-                child: rowIn4(),
+                padding: const EdgeInsets.only(top: 35.0, left: 15, right: 15),
+                child: rowIn4(user1.imageUrl),
               ),
               inputWidget(),
               Expanded(
@@ -60,7 +45,8 @@ class HomeScreen extends StatelessWidget {
                             padding: const EdgeInsets.only(left: 15.0, top: 22),
                             child: textTitle('My Appointment'),
                           ),
-                          shadowSlideCard(context),
+                          shadowSlideCard(
+                              context, user1.imageUrl, user1.name, user1.job),
                         ],
                       ),
                       titleListNearDoc(),
@@ -73,10 +59,11 @@ class HomeScreen extends StatelessWidget {
                                 scrollDirection: Axis.horizontal,
                                 itemCount: 5,
                                 itemBuilder: (context, index) {
-                                  return doctorCard(context);
+                                  return doctorCard(context, user1.imageUrl,
+                                      user1.rating, user1.name, user1.job);
                                 }),
                           ),
-                          listDisease()
+                          listDisease(sick.nameDisease, sick.persion)
                         ],
                       )
                     ],
