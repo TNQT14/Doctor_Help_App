@@ -32,7 +32,10 @@ class HomeScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 35.0, left: 15, right: 15),
                 child: rowIn4(user1.imageUrl),
               ),
-              inputWidget(),
+              Padding(
+                padding: EdgeInsets.only(left: 15.0.w, right: 15.w,top: 22.h),
+                child: inputWidget('Search',isPrefix: true, image: iconSearch),
+              ),
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(

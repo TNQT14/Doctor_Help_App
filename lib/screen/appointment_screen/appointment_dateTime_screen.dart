@@ -45,12 +45,12 @@ class AppointmentDateTimeScreen extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.only(bottom: 6.0),
                                 child: Text(
-                                  'Emma Scheider',
+                                  user1.name,
                                   style: txt18w7,
                                 ),
                               ),
                               Text(
-                                'Desmatologist',
+                                user1.job,
                                 style: txt14w5!.copyWith(color: Colors.grey),
                               )
                             ],

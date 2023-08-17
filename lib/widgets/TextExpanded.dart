@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import '../containts/containts.dart';
 
 class TextExpanded extends StatefulWidget {
-  const TextExpanded({
+   TextExpanded({
     super.key,
     required this.text
   });
 
-  final String text;
+  String text;
   @override
   State<TextExpanded> createState() => _TextExpandedState();
 }
@@ -22,10 +22,16 @@ class _TextExpandedState extends State<TextExpanded> {
   @override
   void initState() {
     super.initState();
-    if(widget.text.length>150){
-      firstHaft =widget.text.substring(0, 150);
-      secondHaft=widget.text.substring(151, widget.text.length);
+    if(widget.text!=null||widget.text!=''){
+      if(widget.text.length>150){
+        firstHaft =widget.text.substring(0, 150);
+        secondHaft=widget.text.substring(151, widget.text.length);
+      }else{
+        firstHaft=widget.text;
+        secondHaft='';
+      }
     }else{
+      widget.text='';
       firstHaft=widget.text;
       secondHaft='';
     }

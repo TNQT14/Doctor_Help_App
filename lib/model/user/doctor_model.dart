@@ -17,6 +17,8 @@ class DotorModel {
   String description;
   // String fullname;
   String job;
+  String experience;
+  String review;
 
   DotorModel(
       {
@@ -27,14 +29,19 @@ class DotorModel {
       required this.rating,
       required this.description,
       // required this.fullname,
-      required this.job});
+      required this.job,
+        required this.experience,
+        required this.review,});
 }
 
 final DotorModel user1 = DotorModel(
     name: 'Meow Meow',
     imageUrl: imageCat,
-    email: 'email',
+    email: 'Meow@gmail.com',
     phone: 0123456799,
     rating: 3.5,
     description: txt,
-    job: 'Desmatologist');
+    job: 'Desmatologist',
+  experience: '3 years',
+  review: 'i feel like meow meow meow'
+);

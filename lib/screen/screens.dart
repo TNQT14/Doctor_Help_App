@@ -3,3 +3,4 @@ export 'doctor_detail_screen/doctor_detail_screen.dart';
 export 'appointment_screen/appointment_dateTime_screen.dart';
 export 'appointment_screen/appointment_summary_screen.dart';
 export 'appointment_screen/appointment_success_screen.dart';
+export 'chat_screen/chat_screen.dart';

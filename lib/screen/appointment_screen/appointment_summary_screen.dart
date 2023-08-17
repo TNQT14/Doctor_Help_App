@@ -27,9 +27,9 @@ class AppointmentSummaryScreen extends StatelessWidget {
                   textTitle('Consultation Schedule'),
                   cardDateTime(),
                   textTitle('Doctor Information'),
-                  doctorIn4Card(context),
+                  doctorContactCard(context, chat: true,),
                   textTitle('Patient Information'),
-                  doctorIn4Card(context),
+                  doctorContactCard(context),
                   const SizedBox(height: 20,)
                 ],
               ),
@@ -42,25 +42,30 @@ class AppointmentSummaryScreen extends StatelessWidget {
   }
 }
 
-Container doctorIn4Card(BuildContext context) {
+Container doctorContactCard(BuildContext context, {bool chat = false}) {
   return backgroundDoctorCard(context, Padding(
     padding: const EdgeInsets.only(top: 8 ,bottom: 16, left: 16, right: 16),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         ListTile(
-          trailing: IconButton(onPressed: (){}, icon: Icon(Icons.chat, color: Colors.blue,),),
-          title: Text('Emma Watson', style: txt16w6,),
-          subtitle: Text('Office Workers', style: txt14w4,),
+          trailing: chat? GestureDetector(
+            onTap: (){Navigator.pushNamed(context, ChatScreen.routeName);},
+            child: Container(
+              margin: EdgeInsets.only(right: 5.w),
+              width: 20.w, height: 20.h, child: Image.asset(iconChat),),
+          ) : SizedBox(),
+          title: Text(user1.name, style: txt16w6,),
+          subtitle: Text(user1.job, style: txt14w4,),
           contentPadding: EdgeInsetsDirectional.zero,
           leading: clipRRectAvatar(56, 56, user1.imageUrl),
         ),
         Divider(thickness: 1, height: 10,),
         Padding(
           padding: EdgeInsets.only(bottom: 16.0.h, top: 11.h),
-          child: iconIn4(Icons.phone, Colors.blue, 'Phone'),
+          child: iconIn4(Icons.phone, Colors.blue, 'Phone', user1.phone),
         ),
-        iconIn4(Icons.mail, Colors.red, 'Email')
+        iconIn4(Icons.mail, Colors.red, 'Email', user1.email)
       ],
     ),
   ), height: 222.h);
