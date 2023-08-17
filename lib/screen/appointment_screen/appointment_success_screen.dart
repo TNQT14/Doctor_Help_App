@@ -17,23 +17,23 @@ class AppointmentSuccessScreen extends StatelessWidget {
           Expanded(
               child: Center(
                   child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                  height: 100,
-                  width: 100,
-                  child: Lottie.asset(iconCheckSc, fit: BoxFit.cover)),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 80.5.w, vertical: 25),
-                child: Text(
-                  'Appointment Booked',
-                  style: txt32w7!.copyWith(height: 1.5),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              containerCardDoc(context, user1.imageUrl, user1.name, user1.job,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                    SizedBox(
+                      height: 100,
+                      width: 100,
+                      child: Lottie.asset(iconCheckSc, fit: BoxFit.cover)),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 80.5.w, vertical: 25),
+                      child: Text(
+                        'Appointment Booked',
+                        style: txt32w7!.copyWith(height: 1.5),
+                        textAlign: TextAlign.center,
+                        ),
+                      ),
+                    containerCardDoc(context, user1.imageUrl, user1.name, user1.job,
                   trailing: ratingStar(user1.rating))
-            ],
+                  ],
           ))),
           bottomCardButton('OK', () => Navigator.pop(context))
         ],

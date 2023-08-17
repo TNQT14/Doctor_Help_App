@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../containts/containts.dart';
 import '../../model/user/doctor_model.dart';
+import '../../widgets/bottomMenu.dart';
 import '../../widgets/widgets.dart';
 import 'components/doctorCard.dart';
 import 'components/rowIn4.dart';
@@ -71,7 +72,9 @@ class HomeScreen extends StatelessWidget {
                 ),
               )
             ],
-          )),
+          ),
+          // bottomNavigationBar: BottomMenu(),
+      ),
     );
   }
 }
