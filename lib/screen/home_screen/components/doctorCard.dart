@@ -30,12 +30,12 @@ Widget doctorCard(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    name??'Lỗi',
+                    name,
                     style: txt16w6,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 6.0),
-                    child: Text(job??'Lỗi',
+                    child: Text(job,
                         style: txt14w6!.copyWith(
                             fontWeight: FontWeight.w400,
                             color: Colors.grey.shade400)),

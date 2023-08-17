@@ -15,7 +15,7 @@ class DoctordetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     // resizeToAvoidBottomInset: false,
+      // resizeToAvoidBottomInset: false,
       backgroundColor: colorbg,
       appBar: appbarCustom(context),
       body: Stack(
@@ -27,25 +27,21 @@ class DoctordetailScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 13, right: 13, top: 16),
                 child: rowDocDetailIn4(user1.imageUrl, user1.name, user1.job),
               ),
-              pro5DocDetail(context, user1.imageUrl, user1.rating)
+              pro5DocDetail(context, user1.imageUrl, user1.rating,
+                  user1.description, user1.name, user1.job,
+              user1.review)
             ],
           ),
           Positioned(
             bottom: 0,
             left: 0,
             right: 0,
-            child: bottomCardButton('Make an appointment',
-                    (){Navigator.pushNamed(context, AppointmentDateTimeScreen.routeName);}
-            ),
+            child: bottomCardButton('Make an appointment', () {
+              Navigator.pushNamed(context, AppointmentDateTimeScreen.routeName);
+            }),
           )
         ],
       ),
     );
   }
-
-
 }
-
-
-
-

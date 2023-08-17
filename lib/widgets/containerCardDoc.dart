@@ -24,11 +24,11 @@ Container containerCardDoc(
           child: ListTile(
             trailing: trailing ?? SizedBox(),
             title: Text(
-              name??'Lỗi',
+              name,
               style: txt16w6!.copyWith(color: Colors.white),
             ),
             subtitle: Text(
-              job??'Lỗi',
+              job,
               style: txt14w4!.copyWith(color: Colors.white),
             ),
             contentPadding: EdgeInsetsDirectional.zero,
