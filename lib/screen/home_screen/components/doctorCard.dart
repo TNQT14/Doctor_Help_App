@@ -5,7 +5,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../containts/containts.dart';
 import '../../../widgets/widgets.dart';
 
-Widget doctorCard(BuildContext context) {
+Widget doctorCard(
+    BuildContext context,
+    String image,
+    double rating,
+    String name,
+    String job) {
   return backgroundDoctorCard(
       context,
       Padding(
@@ -14,7 +19,7 @@ Widget doctorCard(BuildContext context) {
           // crossAxisAlignment: CrossAxisAlignment.end,
           mainAxisSize: MainAxisSize.min,
           children: [
-            clipRRectAvatar(72, 108),
+            clipRRectAvatar(72, 108, image),
             const SizedBox(
               width: 10,
             ),
@@ -25,18 +30,18 @@ Widget doctorCard(BuildContext context) {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Arus Elim',
+                    name??'Lỗi',
                     style: txt16w6,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 6.0),
-                    child: Text('Hepatologist',
+                    child: Text(job??'Lỗi',
                         style: txt14w6!.copyWith(
                             fontWeight: FontWeight.w400,
                             color: Colors.grey.shade400)),
                   ),
                   Spacer(),
-                  ratingStar(),
+                  ratingStar(rating),
                 ],
               ),
             ),
@@ -72,7 +77,7 @@ Widget doctorCard(BuildContext context) {
 Container backgroundDoctorCard(BuildContext context, Widget child,
     {double? height, double? width, bool margin = false}) {
   return Container(
-    // alignment: Alignment.center,
+      // alignment: Alignment.center,
       width: width ?? MediaQuery.of(context).size.width,
       height: height ?? MediaQuery.of(context).size.width,
       margin: margin ? EdgeInsets.only(left: 15.w) : EdgeInsetsDirectional.zero,

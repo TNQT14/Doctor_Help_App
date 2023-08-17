@@ -13,8 +13,16 @@ import '../containts/containts.dart';
 //   );
 // }
 
-Widget clipRRectAvatar(double width, double height) {
+Widget clipRRectAvatar(double width, double height, String image) {
   return ClipRRect(
       borderRadius: BorderRadius.circular(6),
-      child: Image.asset(imageCat, fit: BoxFit.cover, width: width.w, height: height.h,));
+      child: (image ==null || image =='')?
+      Container(
+        width: width.w,
+        height: height.h,
+        decoration: BoxDecoration(
+          color: Colors.grey.shade300
+        ),
+          child: Icon(Icons.person, color: Colors.black,)):
+      Image.asset(image, fit: BoxFit.cover, width: width.w, height: height.h,));
 }

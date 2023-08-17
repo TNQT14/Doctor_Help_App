@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
           home: child,
         );
       },
-      child: ProfileScreen(),
+      child: HomeScreen(),
       designSize: Size(375, 812),
     );
   }

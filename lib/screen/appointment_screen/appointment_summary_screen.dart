@@ -1,4 +1,5 @@
 import 'package:doctor_help_app/containts/containts.dart';
+import 'package:doctor_help_app/model/user/doctor_model.dart';
 import 'package:doctor_help_app/screen/home_screen/components/doctorCard.dart';
 import 'package:doctor_help_app/screen/screens.dart';
 import 'package:doctor_help_app/widgets/widgets.dart';
@@ -52,14 +53,14 @@ Container doctorIn4Card(BuildContext context) {
           title: Text('Emma Watson', style: txt16w6,),
           subtitle: Text('Office Workers', style: txt14w4,),
           contentPadding: EdgeInsetsDirectional.zero,
-          leading: clipRRectAvatar(56, 56),
+          leading: clipRRectAvatar(56, 56, user1.imageUrl),
         ),
         Divider(thickness: 1, height: 10,),
         Padding(
           padding: EdgeInsets.only(bottom: 16.0.h, top: 11.h),
-          child: iconIn4(Icons.phone, Colors.blue),
+          child: iconIn4(Icons.phone, Colors.blue, 'Phone'),
         ),
-        iconIn4(Icons.mail, Colors.red)
+        iconIn4(Icons.mail, Colors.red, 'Email')
       ],
     ),
   ), height: 222.h);

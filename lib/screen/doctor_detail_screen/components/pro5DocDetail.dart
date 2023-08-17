@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../containts/containts.dart';
+import '../../../model/user/doctor_model.dart';
 import '../../../widgets/widgets.dart';
 import '../../screens.dart';
 
-Expanded pro5DocDetail(BuildContext context) {
+Expanded pro5DocDetail(BuildContext context, String image, double rating) {
   return Expanded(
     child: SingleChildScrollView(
         child: Padding(
@@ -43,7 +44,7 @@ Expanded pro5DocDetail(BuildContext context) {
               ),
               backgroundDoctorCard(context, Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: reviewsCard(),
+                child: reviewsCard(image, rating),
               ),
               height: 117.h),
               SizedBox(height: 130,)
@@ -56,17 +57,17 @@ Expanded pro5DocDetail(BuildContext context) {
 
 
 
-Column reviewsCard() {
+Column reviewsCard(String image, double rating) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     mainAxisSize: MainAxisSize.min,
     children: [
       ListTile(
-        trailing: ratingStar(),
+        trailing: ratingStar(rating),
         title: Text('Emma Watson', style: txt16w6,),
         subtitle: Text('Office Workers', style: txt14w4,),
         contentPadding: EdgeInsetsDirectional.zero,
-        leading: clipRRectAvatar(48, 48),
+        leading: clipRRectAvatar(48, 48, image),
       ),
       Spacer(),
       Padding(
