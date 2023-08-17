@@ -9,4 +9,5 @@ final Map<String, WidgetBuilder> route ={
   AppointmentDateTimeScreen.routeName: (context)=> AppointmentDateTimeScreen(),
   AppointmentSummaryScreen.routeName: (context)=> AppointmentSummaryScreen(),
   AppointmentSuccessScreen.routeName: (context)=> AppointmentSuccessScreen(),
+  ChatScreen.routeName: (context)=> ChatScreen(),
 };
