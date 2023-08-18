@@ -4,6 +4,7 @@ import '../../containts/containts.dart';
 import '../../model/user/doctor_model.dart';
 import '../../widgets/bottomMenu.dart';
 import '../../widgets/tabBarWidget.dart';
+import 'component/optionProfile.dart';
 import 'component/profileCard.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -31,6 +32,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
           child: Column(
             children: <Widget>[
               profileCard(user1),
+              const SizedBox(height: 30),
+              optionProfile(),
             ],
           ),
         ),
