@@ -11,7 +11,7 @@ import '../../widgets/widgets.dart';
 import 'components/doctorCard.dart';
 import 'components/rowIn4.dart';
 import 'components/shadowSlideCard.dart';
-import 'listDisease.dart';
+import 'components/listDisease.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -93,7 +93,7 @@ Padding titleListNearDoc() {
           onTap: () {},
           child: Text(
             'See All',
-            style: TextStyle(fontSize: 17.sp, color: color0D53FC),
+            style: TextStyle(fontSize: 17.sp, color: colorKmain),
           ),
         )
       ],

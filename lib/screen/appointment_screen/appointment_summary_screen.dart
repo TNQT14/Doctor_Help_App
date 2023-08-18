@@ -3,8 +3,10 @@ import 'package:doctor_help_app/model/user/doctor_model.dart';
 import 'package:doctor_help_app/screen/home_screen/components/doctorCard.dart';
 import 'package:doctor_help_app/screen/screens.dart';
 import 'package:doctor_help_app/widgets/widgets.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:line_icons/line_icons.dart';
 
 import 'components/cardDateTime.dart';
 class AppointmentSummaryScreen extends StatelessWidget {
@@ -50,10 +52,11 @@ Container doctorContactCard(BuildContext context, {bool chat = false}) {
       children: [
         ListTile(
           trailing: chat? GestureDetector(
-            onTap: (){Navigator.pushNamed(context, ChatScreen.routeName);},
-            child: Container(
-              margin: EdgeInsets.only(right: 5.w),
-              width: 20.w, height: 20.h, child: Image.asset(iconChat),),
+            onTap: (){ print('ok');},
+            child: Icon(CupertinoIcons.chat_bubble_text, color: Colors.blue,)
+            // Container(
+            //   margin: EdgeInsets.only(right: 5.w),
+            //   width: 20.w, height: 20.h, child: Image.asset(iconChat),),
           ) : SizedBox(),
           title: Text(user1.name, style: txt16w6,),
           subtitle: Text(user1.job, style: txt14w4,),

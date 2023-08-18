@@ -10,3 +10,4 @@ export 'appbarCustom.dart';
 export 'iconIn4.dart';
 export 'containerCardDoc.dart';
 export 'listWithDelete.dart';
+export 'bottomMenu.dart';

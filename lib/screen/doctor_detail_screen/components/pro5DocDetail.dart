@@ -45,7 +45,7 @@ Expanded pro5DocDetail(BuildContext context,
                 onTap: () {},
                 child: Text(
                   'See All',
-                  style: TextStyle(fontSize: 17.sp, color: color0D53FC),
+                  style: TextStyle(fontSize: 17.sp, color: colorKmain),
                 ),
               ),
             ],

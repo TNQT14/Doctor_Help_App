@@ -1,11 +1,9 @@
 import 'package:doctor_help_app/routes.dart';
-import 'package:doctor_help_app/screen/profile_screen/profile_screen.dart';
-import 'package:doctor_help_app/widgets/bottomMenu.dart';
-import 'package:doctor_help_app/widgets/tabBarWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'screen/screens.dart';
+import 'widgets/widgets.dart';
 
 void main() {
   runApp(const MyApp());

@@ -25,12 +25,12 @@ Widget? tab2) {
                   shape: RoundedRectangleBorder(
                       side: BorderSide(
                         width: 1,
-                        color: color0D53FC,
+                        color: colorKmain,
                       ),
                       borderRadius: BorderRadius.circular(8))
               ),
               unselectedLabelColor: Colors.grey.shade500,
-              labelColor: color0D53FC,
+              labelColor: colorKmain,
               tabs: [
                 Tab( icon: Text(title1?? 'chưa set', style: txt14w6,),),
                 Tab(icon: Text(title2?? 'chưa set', style: txt14w6,))

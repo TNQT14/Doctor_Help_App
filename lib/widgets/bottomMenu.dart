@@ -1,6 +1,7 @@
 import 'package:doctor_help_app/routes.dart';
 import 'package:doctor_help_app/screen/home_screen/home_screen.dart';
 import 'package:doctor_help_app/screen/profile_screen/profile_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../containts/containts.dart';
 import 'package:line_icons/line_icons.dart';
@@ -54,7 +55,7 @@ class _BottomMenuState extends State<BottomMenu> {
             ),
             BottomNavigationBarItem(
               label: 'Chat',
-              icon: Icon(Icons.chat),
+              icon: Icon(CupertinoIcons.chat_bubble_text),
             ),
             BottomNavigationBarItem(
               label: 'Appointment',
