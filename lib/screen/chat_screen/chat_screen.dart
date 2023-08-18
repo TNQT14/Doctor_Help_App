@@ -12,7 +12,7 @@ class ChatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      // appBar: AppBar(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -29,6 +29,9 @@ class ChatScreen extends StatelessWidget {
                   child: inputWidget('Search', isPrefix: true, image: iconSearch),
                 ),
                 listMess(user1.name, user1.imageUrl, user1.description),
+                // ElevatedButton(onPressed: (){
+                //   showToastMessage('ok');
+                // }, child: Text('ok'))
               ],
             ),),
           ),
