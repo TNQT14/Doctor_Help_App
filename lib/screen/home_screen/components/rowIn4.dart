@@ -36,7 +36,7 @@ Row rowIn4(String image) {
           ),
           width: 32.w,
           height: 32.h,
-          child: Image.asset(iconNotification, color: color0D53FC,
+          child: Image.asset(iconNotification, color: colorKmain,
             width: 16.w,
             height: 18.h,),
         ),)

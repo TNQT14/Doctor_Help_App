@@ -42,22 +42,23 @@ Container shadowSlideCard(BuildContext context,
                 image,
                 name,
                 job,
-                trailing: SizedBox(
-                    height: 40.h,
-                    width: 40.w,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        minimumSize: Size(40, 40),
-                        backgroundColor: Colors.white
-                      ),
-                        onPressed: () {
-                        Navigator.pushNamed(context, DoctordetailScreen.routeName);
-                        },
-                        child: Icon(
-                          Icons.arrow_forward_ios_outlined,
-                          color: Colors.blue,
-                          size: 16,
-                        )))))
+                trailing: GestureDetector(
+                  onTap: (){
+                    print('object');
+                  },
+                  child: Container(
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(6)
+                    ),
+                    width: 40,
+                    height: 40,
+                    child: Icon(Icons.arrow_forward_ios_rounded, color: colorKmain, size: 18),
+                  ),
+                )
+
+            ))
       ],
     ),
   );

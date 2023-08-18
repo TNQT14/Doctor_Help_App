@@ -15,7 +15,7 @@ Container containerCardDoc(
     width: 349.w,
     height: 131.h,
     decoration: BoxDecoration(
-        color: color0D53FC, borderRadius: BorderRadius.circular(6)),
+        color: colorKmain, borderRadius: BorderRadius.circular(6)),
     child: Column(
       // crossAxisAlignment: CrossAxisAlignment.center,
       children: [

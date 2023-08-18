@@ -1,8 +1,9 @@
+import 'package:doctor_help_app/containts/containts.dart';
 import 'package:flutter/material.dart';
 
 AppBar appbarCustom(BuildContext context, {Text? title}) {
   return AppBar(
-    backgroundColor: Colors.transparent,
+    backgroundColor: colorbg,
     elevation: 0,
     title: title ?? Text(''),
     centerTitle: true,
