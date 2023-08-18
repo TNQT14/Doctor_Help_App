@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../containts/containts.dart';
+import '../../model/user/doctor_model.dart';
 import '../../widgets/bottomMenu.dart';
 import '../../widgets/tabBarWidget.dart';
+import 'component/profileCard.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -25,7 +27,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
           elevation: 0.0,
           backgroundColor: colorbg,
         ),
-        body:Container(),
+        body:Container(
+          child: Column(
+            children: <Widget>[
+              profileCard(user1),
+            ],
+          ),
+        ),
         // bottomNavigationBar: BottomMenu(),
       ),
     );
