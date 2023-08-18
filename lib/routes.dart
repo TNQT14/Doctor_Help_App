@@ -1,3 +1,4 @@
+
 import 'package:doctor_help_app/screen/screens.dart';
 import 'package:flutter/material.dart';
 
@@ -12,4 +13,5 @@ final Map<String, WidgetBuilder> route ={
   ProfileScreen.routeName: (context) => ProfileScreen(),
   ChatScreen.routeName: (context)=> ChatScreen(),
   LoginScreen.routeName: (context)=> LoginScreen(),
+  // PersonalDataScreen.routeName: (context)=> PersonalDataScreen(),
 };
