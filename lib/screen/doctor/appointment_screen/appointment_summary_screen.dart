@@ -6,8 +6,8 @@ import 'package:doctor_help_app/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:line_icons/line_icons.dart';
 
+import 'appointment_success_screen.dart';
 import 'components/cardDateTime.dart';
 class AppointmentSummaryScreen extends StatelessWidget {
   const AppointmentSummaryScreen({Key? key}) : super(key: key);

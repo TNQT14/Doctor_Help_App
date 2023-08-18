@@ -36,7 +36,7 @@ class DotorModel {
 
 final DotorModel user1 = DotorModel(
     name: 'Meow Meow',
-    imageUrl: imageCat,
+    imageUrl: imageCat2,
     email: 'Meow@gmail.com',
     phone: 0123456799,
     rating: 3.5,

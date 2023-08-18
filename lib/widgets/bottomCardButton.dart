@@ -1,3 +1,4 @@
+import 'package:doctor_help_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -5,6 +6,7 @@ import '../containts/containts.dart';
 
 Container bottomCardButton(String title ,Function()? tap) {
   return Container(
+    padding: const EdgeInsets.only(top: 16.0, bottom: 50, left: 13, right: 13),
     decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
@@ -17,17 +19,7 @@ Container bottomCardButton(String title ,Function()? tap) {
     ),
     width: double.infinity,
     height: 116.h,
-    child: Padding(
-      padding: const EdgeInsets.only(top: 16.0, bottom: 50, left: 13, right: 13),
-      child: ElevatedButton(onPressed: tap, child: Text(title, style: txt16w5!.copyWith(color: Colors.white),),
-        style: ElevatedButton.styleFrom(
-            shadowColor: Colors.grey,
-            elevation: 5,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(6)
-            ),
-            backgroundColor: colorKmain
-        ),),
-    ),
+    child: blueElevateButton(tap, title),
   );
 }
+

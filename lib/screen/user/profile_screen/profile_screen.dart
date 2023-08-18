@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../containts/containts.dart';
-import '../../model/user/doctor_model.dart';
-import '../../widgets/bottomMenu.dart';
-import '../../widgets/tabBarWidget.dart';
+import '../../../containts/containts.dart';
+import '../../../model/user/doctor_model.dart';
 import 'component/profileCard.dart';
 
 class ProfileScreen extends StatefulWidget {

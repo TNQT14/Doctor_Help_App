@@ -29,9 +29,6 @@ class ChatScreen extends StatelessWidget {
                   child: inputWidget('Search', isPrefix: true, image: iconSearch),
                 ),
                 listMess(user1.name, user1.imageUrl, user1.description),
-                // ElevatedButton(onPressed: (){
-                //   showToastMessage('ok');
-                // }, child: Text('ok'))
               ],
             ),),
           ),
