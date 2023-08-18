@@ -1,4 +1,5 @@
 import 'package:doctor_help_app/containts/add_color.dart';
+import 'package:doctor_help_app/screen/profile_screen/component/personal_data_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -28,7 +29,7 @@ _title(String title){
   );
 }
 
-Widget optionProfile(){
+Widget optionProfile(BuildContext context){
   return Container(
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,7 +40,9 @@ Widget optionProfile(){
             children: <Widget>[
               _buildOption(const Icon(Icons.person_outline),"Account", () {}),
               _buildOption(const Icon(CupertinoIcons.doc_text),
-                  "Personal Data", () {}),
+                  "Personal Data", ()=>
+                    Navigator.pushNamed(context, PersonalDataScreen.routeName)
+                  ),
             ],
           ),
         ),

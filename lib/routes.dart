@@ -1,3 +1,4 @@
+import 'package:doctor_help_app/screen/profile_screen/component/personal_data_screen.dart';
 import 'package:doctor_help_app/screen/profile_screen/profile_screen.dart';
 import 'package:doctor_help_app/screen/screens.dart';
 import 'package:flutter/material.dart';
@@ -12,4 +13,5 @@ final Map<String, WidgetBuilder> route ={
   AppointmentSuccessScreen.routeName: (context)=> AppointmentSuccessScreen(),
   ProfileScreen.routeName: (context) => ProfileScreen(),
   ChatScreen.routeName: (context)=> ChatScreen(),
+  PersonalDataScreen.routeName: (context)=> PersonalDataScreen(),
 };
