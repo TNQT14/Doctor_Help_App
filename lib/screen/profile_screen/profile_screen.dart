@@ -33,7 +33,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             children: <Widget>[
               profileCard(user1),
               const SizedBox(height: 30),
-              optionProfile(),
+              optionProfile(context),
             ],
           ),
         ),
