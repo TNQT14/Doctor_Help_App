@@ -3,6 +3,8 @@ import 'package:doctor_help_app/screen/user/profile_screen/component/personal_da
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../model/user/doctor_model.dart';
+
 _buildOption(Icon icon, String title, VoidCallback onTap){
   return ListTile(
     leading: icon,
@@ -29,7 +31,7 @@ _title(String title){
   );
 }
 
-Widget optionProfile(BuildContext context){
+Widget optionProfile(BuildContext context, DotorModel user){
   return Container(
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
