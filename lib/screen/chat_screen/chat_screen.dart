@@ -6,8 +6,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../containts/containts.dart';
 
 class ChatScreen extends StatelessWidget {
-  const ChatScreen({Key? key}) : super(key: key);
+  ChatScreen({Key? key}) : super(key: key);
   static String routeName = 'ChatScreen';
+  TextEditingController text = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class ChatScreen extends StatelessWidget {
               children: [
                 Padding(
                   padding: EdgeInsets.only(top: 22.0.h, bottom: 11.h ),
-                  child: inputWidget('Search', isPrefix: true, image: iconSearch),
+                  child: inputWidget('Search', text, isPrefix: true, image: iconSearch),
                 ),
                 listMess(user1.name, user1.imageUrl, user1.description),
               ],

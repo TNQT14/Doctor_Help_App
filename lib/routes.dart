@@ -12,6 +12,6 @@ final Map<String, WidgetBuilder> route ={
   AppointmentSuccessScreen.routeName: (context)=> AppointmentSuccessScreen(),
   ProfileScreen.routeName: (context) => ProfileScreen(),
   ChatScreen.routeName: (context)=> ChatScreen(),
-  LoginScreen.routeName: (context)=> LoginScreen(),
+  LoginRegisterBackground.routeName: (context)=> LoginRegisterBackground(),
   // PersonalDataScreen.routeName: (context)=> PersonalDataScreen(),
 };

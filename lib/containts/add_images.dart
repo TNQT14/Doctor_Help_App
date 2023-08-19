@@ -25,6 +25,10 @@ const String iconProfile = linkIcons + 'Icon=Profile.png';
 const String iconShield = linkIcons + 'Icon=Shield.png';
 const String iconSearch = linkIcons + 'iconSearch.png';
 const String iconChat = linkIcons + 'chat.png';
+const String iconFacebook = linkIcons + 'Facebook.png';
+const String iconKey = linkIcons + 'Form.png';
+const String iconMail = linkIcons + 'FormMail.png';
+const String iconGooglePlus = linkIcons + 'GooglePlus.png';
 
 //lottie
 const String iconCheckSc = linkIcons + 'animation_lldhfo53.json';
