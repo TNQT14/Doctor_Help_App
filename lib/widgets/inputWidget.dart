@@ -11,41 +11,59 @@ import '../containts/containts.dart';
 /// image: link của cái hình để mình nhét vào, nếu không nhét ảnh nào vào thì mặc định là hình con mèo,
 /// hintext: bắt buộc phải nhập, không nhập báo lỗi
 
-SizedBox inputWidget(String hintext, TextEditingController text,
+
+// TextFormField inputWidget(String hintext, TextEditingController text,
+// {bool isPrefix = false,
+// String? image,
+// bool isHideText = false,
+// String? Function(String?)? validator}){
+//   return TextFormField(
+//     controller: text,
+//     validator: validator,
+//     decoration: InputDecoration(
+//       contentPadding: const EdgeInsetsDirectional.symmetric(horizontal: 10),
+//       hintText: hintext,
+//       border: OutlineInputBorder()
+//     ),
+//   );
+// }
+
+TextFormField inputWidget(String hintext, TextEditingController text,
     {bool isPrefix = false,
     String? image,
     bool isHideText = false,
     String? Function(String?)? validator}) {
-  return SizedBox(
-    height: 50.h,
-    // padding: const EdgeInsets.symmetric(horizontal: 15.0),
-    child: TextFormField(
-      controller: text,
-      validator: validator,
-      obscureText: isHideText,
-      decoration: InputDecoration(
-          fillColor: Colors.white,
-          filled: true,
-          hintText: hintext,
-          hintStyle: txt16w4!.copyWith(color: Colors.grey.shade400),
-          contentPadding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 0),
-          prefixIcon: isPrefix
-              ? Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  child: Image.asset(
-                    image ?? imageCat,
-                    width: 18.w,
-                    height: 18.h,
-                    fit: BoxFit.cover,
-                  ),
-                )
-              : const SizedBox(width: 15),
-          prefixIconConstraints: BoxConstraints(),
-          // prefixIconColor: Colors.grey.shade400,
-          enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey.shade300)),
-          focusedBorder:
-              OutlineInputBorder(borderSide: BorderSide(color: Colors.blue))),
+  return TextFormField(
+    controller: text,
+    validator: validator,
+    obscureText: isHideText,
+    decoration: InputDecoration(
+        fillColor: Colors.white,
+        filled: true,
+        hintText: hintext,
+        hintStyle: txt16w4!.copyWith(color: Colors.grey.shade400),
+        contentPadding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10),
+        prefixIcon: isPrefix
+            ? Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: Image.asset(
+                  image ?? imageCat,
+                  width: 18.w,
+                  height: 18.h,
+                  fit: BoxFit.cover,
+                ),
+              )
+            : const SizedBox(width: 15),
+        prefixIconConstraints: BoxConstraints(),
+        // border: OutlineInputBorder()
+
+        ///error
+        focusedErrorBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.red)),
+        errorBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.red)),
+
+        ///focus/ unFocus
+        enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey.shade300),),
+        focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.blue))
     ),
   );
 }

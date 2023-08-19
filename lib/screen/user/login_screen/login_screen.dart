@@ -6,6 +6,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../containts/containts.dart';
 import '../../screens.dart';
 
+GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key? key}) : super(key: key);
 
@@ -17,7 +19,6 @@ class _LoginScreenState extends State<LoginScreen> {
   ValidatedMess validate = ValidatedMess();
 
   TextEditingController email = TextEditingController();
-
   TextEditingController password = TextEditingController();
 
   @override
@@ -38,10 +39,11 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             children: [
               Form(
-                  key: formKey,
+                  key: _formKey,
                   child: Column(
                     children: [
                       inputWidget('Email', email,
+                          validator: (value)=>validate.validatorEmail(value),
                           isPrefix: true, image: iconMail),
                       const SizedBox(
                         height: 16,
@@ -74,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       SizedBox(
                         width: double.infinity,
                         child: blueElevateButton(() {
-                          if(formKey.currentState!.validate()){
+                          if(_formKey.currentState!.validate()){
                             print('object');
                           }
                         }, 'Login'),
@@ -117,6 +119,8 @@ class _LoginScreenState extends State<LoginScreen> {
       ],
     );
   }
+
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
 }
 
 InkWell bindAccount(Widget child, Function()? tap) {
