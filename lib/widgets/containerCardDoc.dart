@@ -39,7 +39,8 @@ Container containerCardDoc(
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(6)),
-                child: clipRRectAvatar(48, 48, image)),
+                child: clipRRectAvatar(48, 48, image)
+              ),
           ),
         ),
         SizedBox(

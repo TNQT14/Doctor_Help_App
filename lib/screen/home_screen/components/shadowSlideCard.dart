@@ -57,7 +57,6 @@ Container shadowSlideCard(BuildContext context,
                     child: Icon(Icons.arrow_forward_ios_rounded, color: colorKmain, size: 18),
                   ),
                 )
-
             ))
       ],
     ),

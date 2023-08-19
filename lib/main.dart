@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
           home: child,
         );
       },
-      child:  LoginRegisterBackground(),
+      child:  BottomMenu(),
       designSize: Size(375, 812),
     );
   }

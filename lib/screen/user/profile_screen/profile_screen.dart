@@ -18,19 +18,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return GestureDetector(
       child: Scaffold(
         backgroundColor: colorbg,
-        appBar: AppBar(
-          title: Text('My Profile',
-          style: txt32w7AppBar,
-          ),
-          elevation: 0.0,
-          backgroundColor: colorbg,
-        ),
+        // appBar: AppBar(
+        //   title: Text('My Profile',
+        //   style: txt32w7AppBar,
+        //   ),
+        //   elevation: 0.0,
+        //   backgroundColor: colorbg,
+        // ),
         body:Container(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(top: 75, left: 24),
+                child: Text('My Profile', style: txt32w7,),
+              ),
               profileCard(user1),
               const SizedBox(height: 30),
-              optionProfile(context),
+              optionProfile(context, user1),
             ],
           ),
         ),

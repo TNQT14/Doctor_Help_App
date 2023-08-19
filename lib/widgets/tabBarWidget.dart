@@ -55,7 +55,7 @@ DefaultTabController tabBarWidget(String? title1, String? title2,
                   ),
               tab2 ??
                   Center(
-                    child: Text('chưa build UI tab2'),
+                    child: const Text('chưa build UI tab2'),
                   )
             ]),
           ),
