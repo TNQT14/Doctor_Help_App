@@ -6,7 +6,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../containts/containts.dart';
 import '../../model/user/doctor_model.dart';
-import '../../widgets/bottomMenu.dart';
 import '../../widgets/widgets.dart';
 import 'components/doctorCard.dart';
 import 'components/rowIn4.dart';
@@ -16,6 +15,7 @@ import 'components/listDisease.dart';
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
   static String routeName = 'HomeScreen';
+  TextEditingController search = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class HomeScreen extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.only(left: 15.0.w, right: 15.w,top: 22.h),
-                child: inputWidget('Search',isPrefix: true, image: iconSearch),
+                child: inputWidget('Search', search,isPrefix: true, image: iconSearch),
               ),
               Expanded(
                 child: SingleChildScrollView(

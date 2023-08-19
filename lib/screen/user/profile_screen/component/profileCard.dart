@@ -1,8 +1,8 @@
 import 'package:doctor_help_app/containts/add_color.dart';
 import 'package:flutter/material.dart';
 
-import '../../../model/user/doctor_model.dart';
-import '../../../widgets/clipRRectAvatar.dart';
+import '../../../../model/user/doctor_model.dart';
+import '../../../../widgets/clipRRectAvatar.dart';
 
 Widget profileCard(
     DotorModel user

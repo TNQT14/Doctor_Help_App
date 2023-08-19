@@ -3,7 +3,7 @@ import 'package:doctor_help_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../containts/containts.dart';
+import '../../../../containts/containts.dart';
 
 Container rowDocDetailIn4(String image, String name, String job) {
   return Container(

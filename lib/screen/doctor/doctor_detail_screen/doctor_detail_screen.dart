@@ -2,9 +2,8 @@ import 'package:doctor_help_app/containts/containts.dart';
 import 'package:doctor_help_app/model/user/doctor_model.dart';
 import 'package:doctor_help_app/screen/screens.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../widgets/widgets.dart';
+import '../../../widgets/widgets.dart';
 import 'components/pro5DocDetail.dart';
 import 'components/rowDocDetailIn4.dart';
 

@@ -46,7 +46,7 @@ Container containerCardDoc(
           height: 6.h,
         ),
         Divider(
-          color: Colors.black,
+          color: Colors.black.withAlpha(150),
           height: 0,
         ),
         // SizedBox(height: 8,),

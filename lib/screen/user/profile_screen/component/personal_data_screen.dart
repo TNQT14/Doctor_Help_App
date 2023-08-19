@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../containts/add_style.dart';
+import '../../../../containts/containts.dart';
 class PersonalDataScreen extends StatefulWidget {
   static String routeName = 'PersonalDataScreen';
 

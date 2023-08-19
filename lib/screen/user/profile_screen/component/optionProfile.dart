@@ -1,5 +1,5 @@
 import 'package:doctor_help_app/containts/add_color.dart';
-import 'package:doctor_help_app/screen/profile_screen/component/personal_data_screen.dart';
+import 'package:doctor_help_app/screen/user/profile_screen/component/personal_data_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

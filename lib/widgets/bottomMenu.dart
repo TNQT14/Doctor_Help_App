@@ -1,14 +1,8 @@
-import 'package:doctor_help_app/routes.dart';
-import 'package:doctor_help_app/screen/home_screen/home_screen.dart';
-import 'package:doctor_help_app/screen/profile_screen/profile_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../containts/containts.dart';
 import 'package:line_icons/line_icons.dart';
-
-import '../screen/appointment_screen/appointment_dateTime_screen.dart';
-import '../screen/chat_screen/chat_screen.dart';
-import '../screen/doctor_detail_screen/doctor_detail_screen.dart';
+import '../screen/screens.dart';
 
 class BottomMenu extends StatefulWidget {
   const BottomMenu({super.key});

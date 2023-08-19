@@ -1,5 +1,7 @@
 import 'package:doctor_help_app/model/user/doctor_model.dart';
+import 'package:doctor_help_app/widgets/show_toast_messes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../containts/containts.dart';
 import 'clipRRectAvatar.dart';
@@ -17,7 +19,8 @@ Expanded listMess(String name, String image, String mess) {
           direction: DismissDirection.endToStart,
           child: cardMess(name, image, mess),
           onDismissed: (direction){
-          print('object');
+           // showToastMessage(context,'Message Deleted');
+            showSnackBar(context, 'Message Deleted');
           },
           secondaryBackground: Container(
             padding: EdgeInsets.symmetric(horizontal: 20),

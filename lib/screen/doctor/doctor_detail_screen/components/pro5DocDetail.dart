@@ -2,10 +2,8 @@ import 'package:doctor_help_app/screen/home_screen/components/doctorCard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../containts/containts.dart';
-import '../../../model/user/doctor_model.dart';
-import '../../../widgets/widgets.dart';
-import '../../screens.dart';
+import '../../../../containts/containts.dart';
+import '../../../../widgets/widgets.dart';
 
 Expanded pro5DocDetail(BuildContext context,
     String image,
