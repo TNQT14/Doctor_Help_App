@@ -1,3 +1,4 @@
+import 'package:doctor_help_app/VM/validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -5,8 +6,17 @@ import '../../../containts/containts.dart';
 import '../../../widgets/widgets.dart';
 import '../login_screen/login_screen.dart';
 
-class RegisterScreen extends StatelessWidget {
-   RegisterScreen({Key? key}) : super(key: key);
+GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+class RegisterScreen extends StatefulWidget {
+  RegisterScreen({Key? key}) : super(key: key);
+
+  @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
+  ValidatedMess validatedMess = ValidatedMess();
 
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
@@ -30,56 +40,74 @@ class RegisterScreen extends StatelessWidget {
           child: Column(
             children: [
               Form(
+                  key: _formKey,
                   child: Column(
-                children: [
-                  inputWidget('Email', email, isPrefix: true, image: iconMail),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 16.0),
-                    child: inputWidget('Password',
-                        password,
-                        isPrefix: true, image: iconKey, isHideText: true),
-                  ),
-                  inputWidget('Confirm Password',
-                      retypepassword,
-                      isPrefix: true, image: iconKey, isHideText: true),
-                  Container(
-                    margin: EdgeInsets.only(top: 32.h),
-                    width: double.infinity,
-                    child: blueElevateButton(() => null, 'Register'),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(top: 56.h, bottom: 24.h),
-                    alignment: Alignment.center,
-                    child: Text(
-                      'Or login using your social media',
-                      style: txt14w4!.copyWith(color: Colors.black),
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      bindAccount(
-                          Padding(
-                            padding: EdgeInsets.symmetric(vertical: 15.h),
-                            child: Image.asset(
-                              iconFacebook,
-                            ),
-                          ),
-                          () => null),
-                      const SizedBox(
-                        width: 24,
+                      inputWidget('Email', email,
+                          isPrefix: true,
+                          image: iconMail,
+                          validator: (value) =>
+                              validatedMess.validatorEmail(value)),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 16.0),
+                        child: inputWidget('Password', password,
+                            isPrefix: true,
+                            image: iconKey,
+                            isHideText: true,
+                            validator: (value) =>
+                                validatedMess.validatorPassword(value)),
                       ),
-                      bindAccount(
-                          Padding(
-                            padding: EdgeInsets.symmetric(vertical: 15.h),
-                            child: Image.asset(iconGooglePlus),
+                      inputWidget('Confirm Password', retypepassword,
+                          isPrefix: true,
+                          image: iconKey,
+                          isHideText: true,
+                          validator: (value) =>
+                              validatedMess.validatorPassword(value)),
+                      Container(
+                        margin: EdgeInsets.only(top: 32.h),
+                        width: double.infinity,
+                        child: blueElevateButton(() {
+                          if (_formKey.currentState!.validate()) {
+                            print('object');
+                          }
+                        }, 'Register'),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(top: 56.h, bottom: 24.h),
+                        alignment: Alignment.center,
+                        child: Text(
+                          'Or login using your social media',
+                          style: txt14w4!.copyWith(color: Colors.black),
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          bindAccount(
+                              Padding(
+                                padding: EdgeInsets.symmetric(vertical: 15.h),
+                                child: Image.asset(
+                                  iconFacebook,
+                                ),
+                              ),
+                              () => null),
+                          const SizedBox(
+                            width: 24,
                           ),
-                          () => null)
+                          bindAccount(
+                              Padding(
+                                padding: EdgeInsets.symmetric(vertical: 15.h),
+                                child: Image.asset(iconGooglePlus),
+                              ),
+                              () => null)
+                        ],
+                      )
                     ],
                   )
                 ],
               )
               )
+                  ))
             ],
           ),
         )
