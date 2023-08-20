@@ -15,6 +15,7 @@ class DotorModel {
   String imageUrl;
   double rating;
   String description;
+  DateTime birthDay;
   // String fullname;
   String job;
   String experience;
@@ -28,6 +29,7 @@ class DotorModel {
       required this.phone,
       required this.rating,
       required this.description,
+        required this.birthDay,
       // required this.fullname,
       required this.job,
         required this.experience,
@@ -39,9 +41,10 @@ final DotorModel user1 = DotorModel(
     imageUrl: imageCat2,
     email: 'Meow@gmail.com',
     phone: 0123456799,
+    birthDay:  DateTime.parse('1969-07-20'),
     rating: 3.5,
     description: txt,
     job: 'Desmatologist',
-  experience: '3 years',
-  review: 'i feel like meow meow meow'
+    experience: '3 years',
+    review: 'i feel like meow meow meow'
 );
