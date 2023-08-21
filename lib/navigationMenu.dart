@@ -1,17 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../containts/containts.dart';
+import 'containts/containts.dart';
 import 'package:line_icons/line_icons.dart';
-import '../screen/screens.dart';
+import 'screen/screens.dart';
 
-class BottomMenu extends StatefulWidget {
-  const BottomMenu({super.key});
+class NavigationMenu extends StatefulWidget {
+  const NavigationMenu({super.key});
 
   @override
-  State<BottomMenu> createState() => _BottomMenuState();
+  State<NavigationMenu> createState() => _NavigationMenu();
 }
 
-class _BottomMenuState extends State<BottomMenu> {
+class _NavigationMenu extends State<NavigationMenu> {
 
   late int _index=0;
   final screens =[
