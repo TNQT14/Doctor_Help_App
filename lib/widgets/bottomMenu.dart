@@ -42,26 +42,51 @@ class _BottomMenuState extends State<BottomMenu> {
               _index = newindex;
             });
           },
-          items: const [
+          items: [
             BottomNavigationBarItem(
               label: 'Home',
-              icon: Icon(LineIcons.home),
+              icon:  Container(
+                  width: 22,
+                  height: 29,
+                  child: Image.asset(
+                      _index==0 ? iconSelectHome: iconHome)
+              ),
             ),
             BottomNavigationBarItem(
               label: 'Chat',
-              icon: Icon(CupertinoIcons.chat_bubble_text),
+              icon:  Container(
+                  width: 22,
+                  height: 29,
+                  child: Image.asset(
+                      _index==1 ? iconSelectedChat: iconChat)
+              ),
             ),
             BottomNavigationBarItem(
               label: 'Appointment',
-              icon: Icon(Icons.list_alt_outlined),
+              icon: Container(
+                  width: 22,
+                  height: 29,
+                  child: Image.asset(
+                      _index==2 ? iconSelectedList: iconList)
+              ),
             ),
             BottomNavigationBarItem(
               label: 'Favorite',
-              icon: Icon(Icons.favorite_outline),
+              icon: Container(
+                  width: 22,
+                  height: 29,
+                  child: Image.asset(
+                      _index==3 ? iconSelectedHeart: iconHeart)
+              ),
             ),
             BottomNavigationBarItem(
               label: 'Profile',
-              icon: Icon(Icons.person_outline_outlined),
+              icon: Container(
+                  width: 22,
+                  height: 29,
+                  child: Image.asset(
+                      _index==4 ? iconSelectedProfile: iconProfileNav)
+              ),
             ),
           ],
         ),
