@@ -50,7 +50,7 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
                   const Text("Name"),
                   inputWidget(user1.name, name),
                   const Text("Date of Birth"),
-                  inputWidget("${DateFormat('yyyy-MM-dd').format(user1.birthDay)}", name),
+                  inputWidget("${DateFormat('yyyy-MM-dd').format(user1.birthDay)}", name, isPrefix: true, image: iconSchedule),
                   const Text("Phone"),
                   inputWidget("${user1.phone}", name),
                   const Text("Address"),
