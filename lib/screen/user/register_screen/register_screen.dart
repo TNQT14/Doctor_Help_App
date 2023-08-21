@@ -36,9 +36,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ),
         ),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 13),
-          child: Column(
-            children: [
+            padding: EdgeInsets.symmetric(horizontal: 13),
+            child: Column(children: [
               Form(
                   key: _formKey,
                   child: Column(
@@ -103,14 +102,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ],
                       )
                     ],
-                  )
-                ],
-              )
-              )
                   ))
-            ],
-          ),
-        )
+            ]))
       ],
     );
   }
