@@ -27,6 +27,7 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
     return Scaffold(
       backgroundColor: colorbg,
       appBar: AppBar(
+        backgroundColor: colorbg,
         title: Center(
           child: Text("Personal Data",
             style: txt16w6,),
@@ -43,20 +44,27 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
               Center(
                 child: BackGroundEditAvatCard(context, user1.imageUrl),
               ),
-          Form(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text("Name"),
-                  inputWidget(user1.name, name),
-                  const Text("Date of Birth"),
-                  inputWidget("${DateFormat('yyyy-MM-dd').format(user1.birthDay)}", name, isPrefix: true, image: iconSchedule),
-                  const Text("Phone"),
-                  inputWidget("${user1.phone}", name),
-                  const Text("Address"),
-                  inputWidget("${user1.experience}", name),
-                ],
-              )
+          Padding(
+            padding: const EdgeInsets.all(13.0),
+            child: Form(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Name",
+                        style: txt16w4),
+                    inputWidget(user1.name, name),
+                    Text("Date of Birth",
+                      style: txt16w4),
+                    inputWidget("${DateFormat('yyyy-MM-dd').format(user1.birthDay)}", name, isPrefix: true, image: iconSchedule),
+                    Text("Phone",
+                      style: txt16w4),
+                    inputWidget("${user1.phone}", name),
+                    Text("Address",
+                      style: txt16w4,),
+                    inputWidget("${user1.experience}", name),
+                  ],
+                )
+            ),
           ),
         ],
       ),
