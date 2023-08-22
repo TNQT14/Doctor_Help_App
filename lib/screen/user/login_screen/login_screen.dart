@@ -80,11 +80,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         width: double.infinity,
                         child: blueElevateButton(() {
                           if(_formKey.currentState!.validate()){
-<<<<<<< HEAD
                             AuthService().loginService(email.text, password.text);
-=======
                             Navigator.pushNamed(context, NavigationMenu.routeName);
->>>>>>> main
                           }
                         }, 'Login'),
                       ),

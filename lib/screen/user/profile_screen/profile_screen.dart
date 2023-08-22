@@ -35,17 +35,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 padding: EdgeInsets.only(top: 75, left: 24),
                 child: Text('My Profile', style: txt32w7,),
               ),
-<<<<<<< HEAD
               profileCard(user1, (){
                 showDialog(context: context, builder: (context){
                   return alertDialog(context);
                 });
-              }),
-=======
-              profileCard(context, user1),
->>>>>>> main
+              }, context),
               const SizedBox(height: 30),
-              optionProfile(context, user1),
+           optionProfile(context, user1),
             ],
           ),
         ),
