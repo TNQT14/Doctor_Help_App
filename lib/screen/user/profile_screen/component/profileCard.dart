@@ -6,8 +6,9 @@ import '../../../../model/user/doctor_model.dart';
 import '../../../../widgets/clipRRectAvatar.dart';
 
 Widget profileCard(
+    DotorModel user,
+    Function()? ontap,
     BuildContext context,
-    DotorModel user
     ){
   return Card(
     child: Container(
@@ -41,7 +42,7 @@ Widget profileCard(
               ],
             ),
           ),
-          IconButton(onPressed: ()=>Navigator.pop(context),
+          IconButton(onPressed: ontap,
               icon: Icon(Icons.logout))
         ],
       )

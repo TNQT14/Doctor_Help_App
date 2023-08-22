@@ -33,7 +33,7 @@ class HomeScreen extends StatelessWidget {
                 child: rowIn4(user1.imageUrl),
               ),
               Padding(
-                padding: EdgeInsets.only(left: 15.0.w, right: 15.w,top: 22.h),
+                padding: EdgeInsets.only(left: 15.0.w, right: 15.w,top: 22.h, bottom: 11),
                 child: inputWidget('Search', search,isPrefix: true, image: iconSearch),
               ),
               Expanded(
@@ -46,7 +46,7 @@ class HomeScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(left: 15.0, top: 22),
+                            padding: const EdgeInsets.only(left: 15.0, top: 11),
                             child: textTitle('My Appointment'),
                           ),
                           shadowSlideCard(

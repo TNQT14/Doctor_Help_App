@@ -53,10 +53,11 @@ Container doctorContactCard(BuildContext context, {bool chat = false}) {
         ListTile(
           trailing: chat? GestureDetector(
             onTap: (){ print('ok');},
-            child: Icon(CupertinoIcons.chat_bubble_text, color: Colors.blue,)
-            // Container(
-            //   margin: EdgeInsets.only(right: 5.w),
-            //   width: 20.w, height: 20.h, child: Image.asset(iconChat),),
+            child:
+            //Icon(CupertinoIcons.chat_bubble_text, color: Colors.blue,)
+            Container(
+              margin: EdgeInsets.only(right: 5.w),
+              width: 25.w, height: 25.h, child: Image.asset(iconChat, color: colorKmain,),),
           ) : SizedBox(),
           title: Text(user1.name, style: txt16w6,),
           subtitle: Text(user1.job, style: txt14w4,),

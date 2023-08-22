@@ -4,7 +4,6 @@ import 'package:doctor_help_app/screen/screens.dart';
 import 'package:doctor_help_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lottie/lottie.dart';
 
 class AppointmentSuccessScreen extends StatelessWidget {
   const AppointmentSuccessScreen({Key? key}) : super(key: key);
@@ -23,7 +22,8 @@ class AppointmentSuccessScreen extends StatelessWidget {
                     SizedBox(
                       height: 100,
                       width: 100,
-                      child: Lottie.asset(iconCheckSc, fit: BoxFit.cover)),
+                      // child: Lottie.asset(iconCheckSc, fit: BoxFit.cover)
+                    ),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 80.5.w, vertical: 25),
                       child: Text(

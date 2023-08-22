@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import '../../../../containts/add_images.dart';
 import '../../../../model/user/doctor_model.dart';
 
-_buildOption(String image, String title, VoidCallback onTap){
+_buildOption(String image, String title, Function()? onTap){
   return ListTile(
     leading: Container(
       width: 22,

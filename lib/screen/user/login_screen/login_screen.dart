@@ -1,3 +1,4 @@
+import 'package:doctor_help_app/VM/service/auth_service.dart';
 import 'package:doctor_help_app/VM/validator.dart';
 import 'package:doctor_help_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -79,6 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         width: double.infinity,
                         child: blueElevateButton(() {
                           if(_formKey.currentState!.validate()){
+                            AuthService().loginService(email.text, password.text);
                             Navigator.pushNamed(context, NavigationMenu.routeName);
                           }
                         }, 'Login'),
