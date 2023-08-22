@@ -1,3 +1,4 @@
+import 'package:doctor_help_app/screen/doctor/appointment_screen/appointment_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'containts/containts.dart';
@@ -6,6 +7,7 @@ import 'screen/screens.dart';
 
 class NavigationMenu extends StatefulWidget {
   const NavigationMenu({super.key});
+  static String routeName = 'NavigationMenu';
 
   @override
   State<NavigationMenu> createState() => _NavigationMenu();
@@ -17,7 +19,7 @@ class _NavigationMenu extends State<NavigationMenu> {
   final screens =[
     HomeScreen(),
     ChatScreen(),
-    AppointmentDateTimeScreen(),
+    AppointmentScreen(),
     DoctordetailScreen(),
     ProfileScreen(),
   ];

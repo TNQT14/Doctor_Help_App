@@ -34,7 +34,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 padding: EdgeInsets.only(top: 75, left: 24),
                 child: Text('My Profile', style: txt32w7,),
               ),
-              profileCard(user1),
+              profileCard(context, user1),
               const SizedBox(height: 30),
               optionProfile(context, user1),
             ],

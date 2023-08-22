@@ -1,10 +1,12 @@
 import 'package:doctor_help_app/containts/add_color.dart';
+import 'package:doctor_help_app/screen/screens.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../model/user/doctor_model.dart';
 import '../../../../widgets/clipRRectAvatar.dart';
 
 Widget profileCard(
+    BuildContext context,
     DotorModel user
     ){
   return Card(
@@ -39,7 +41,9 @@ Widget profileCard(
               ],
             ),
           ),
-          IconButton(onPressed: (){},
+          IconButton(onPressed: ()=>Navigator.pushReplacementNamed(
+              context, LoginRegisterBackground.routeName
+          ),
               icon: Icon(Icons.logout))
         ],
       )
