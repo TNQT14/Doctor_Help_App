@@ -32,7 +32,7 @@ const String iconProfile = linkIcons + 'Icon=Profile.png';
 
 //navigationMenu
 const String iconHome = linkIcons + 'Icon=Home.png';
-const String iconChat = linkIcons + 'chat.png';
+const String iconChat = linkIcons + 'iconChat.png';
 const String iconList = linkIcons + 'List.png';
 const String iconHeart = linkIcons + 'Heart.png';
 const String iconProfileNav = linkIcons + 'profile.png';
