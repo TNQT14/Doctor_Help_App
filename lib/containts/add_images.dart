@@ -40,3 +40,8 @@ const String imageCale = linkUser + '477265.jpg';
 const String imageCale2 = linkUser + 'c27e4728fb971284150bb0b6c6889ffb.jpg';
 const String imageCat2 = linkUser + 'pexels-nishant-aneja-2361952.jpg';
 
+//onboarding
+const String imageOnb1 = linkUser + 'onb_pic1.png';
+const String imageOnb2 = linkUser + 'onb_pic2.png';
+const String imageOnb3 = linkUser + 'onb_pic3.png';
+

@@ -1,4 +1,5 @@
 import 'package:doctor_help_app/routes.dart';
+import 'package:doctor_help_app/screen/onboarding_screen/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
           home: child,
         );
       },
-      child:  BottomMenu(),
+      child: OnboardingScreens(),
       designSize: Size(375, 812),
     );
   }
