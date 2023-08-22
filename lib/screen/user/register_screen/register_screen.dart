@@ -1,3 +1,4 @@
+import 'package:doctor_help_app/VM/service/auth_service.dart';
 import 'package:doctor_help_app/VM/validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,6 +10,8 @@ import '../login_screen/login_screen.dart';
 GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
 class RegisterScreen extends StatefulWidget {
+  static String routeName = 'RegisterScreen';
+
   RegisterScreen({Key? key}) : super(key: key);
 
   @override
@@ -67,7 +70,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         width: double.infinity,
                         child: blueElevateButton(() {
                           if (_formKey.currentState!.validate()) {
-                            print('object');
+                            AuthService().regieterService(email.text, password.text, retypepassword.text);
                           }
                         }, 'Register'),
                       ),
@@ -102,7 +105,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ],
                       )
                     ],
-                  ))
+                  )),
             ]))
       ],
     );

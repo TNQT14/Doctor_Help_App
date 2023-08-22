@@ -1,11 +1,14 @@
 import 'package:doctor_help_app/containts/add_color.dart';
+import 'package:doctor_help_app/screen/screens.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../model/user/doctor_model.dart';
 import '../../../../widgets/clipRRectAvatar.dart';
 
 Widget profileCard(
-    DotorModel user
+    DotorModel user,
+    Function()? ontap,
+    BuildContext context,
     ){
   return Card(
     child: Container(
@@ -39,7 +42,7 @@ Widget profileCard(
               ],
             ),
           ),
-          IconButton(onPressed: (){},
+          IconButton(onPressed: ontap,
               icon: Icon(Icons.logout))
         ],
       )

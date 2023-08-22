@@ -21,15 +21,28 @@ const String iconInfoCircle = linkIcons + 'Icon=InfoCircle.png';
 const String iconInfoSquare = linkIcons + 'Icon=InfoSquare.png';
 const String iconNotification = linkIcons + 'Icon=Notification.png';
 const String iconPaper = linkIcons + 'Icon=Paper.png';
-const String iconProfile = linkIcons + 'Icon=Profile.png';
 const String iconShield = linkIcons + 'Icon=Shield.png';
 const String iconSearch = linkIcons + 'iconSearch.png';
-const String iconChat = linkIcons + 'chat.png';
 const String iconFacebook = linkIcons + 'Facebook.png';
 const String iconKey = linkIcons + 'FormKey.png';
 const String iconMail = linkIcons + 'FormMail.png';
 const String iconGooglePlus = linkIcons + 'GooglePlus.png';
 const String iconSchedule = linkIcons + 'FormSchedule.png';
+const String iconProfile = linkIcons + 'Icon=Profile.png';
+
+//navigationMenu
+const String iconHome = linkIcons + 'Icon=Home.png';
+const String iconChat = linkIcons + 'chat.png';
+const String iconList = linkIcons + 'list.png';
+// const String iconChat = linkIcons + 'iconChat.png';
+const String iconHeart = linkIcons + 'Heart.png';
+const String iconProfileNav = linkIcons + 'profile.png';
+
+const String iconSelectHome = linkIcons + 'Icon=selectHome.png';
+const String iconSelectedChat = linkIcons + 'Icon=selectedChat.png';
+const String iconSelectedHeart = linkIcons + 'Icon=selectedHeart.png';
+const String iconSelectedList = linkIcons + 'Icon=selectedList.png';
+const String iconSelectedProfile = linkIcons + 'Icon=selectedProfile.png';
 
 //lottie
 const String iconCheckSc = linkIcons + 'animation_lldhfo53.json';

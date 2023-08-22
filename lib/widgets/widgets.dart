@@ -10,6 +10,6 @@ export 'appbarCustom.dart';
 export 'iconIn4.dart';
 export 'containerCardDoc.dart';
 export 'listWithDelete.dart';
-export 'bottomMenu.dart';
+export '../navigationMenu.dart';
 export 'show_toast_messes.dart';
 export 'bluteElevateButton.dart';

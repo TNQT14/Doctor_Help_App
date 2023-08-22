@@ -1,3 +1,4 @@
+import 'package:doctor_help_app/VM/service/auth_service.dart';
 import 'package:flutter/material.dart';
 import '../../../containts/containts.dart';
 import '../../../model/user/doctor_model.dart';
@@ -34,9 +35,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 padding: EdgeInsets.only(top: 75, left: 24),
                 child: Text('My Profile', style: txt32w7,),
               ),
-              profileCard(user1),
+              profileCard(user1, (){
+                showDialog(context: context, builder: (context){
+                  return alertDialog(context);
+                });
+              }, context),
               const SizedBox(height: 30),
-              optionProfile(context, user1),
+           optionProfile(context, user1),
             ],
           ),
         ),
@@ -44,4 +49,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
     );
   }
+}
+
+AlertDialog alertDialog(BuildContext context) {
+  return AlertDialog(
+    surfaceTintColor: Colors.white,
+    backgroundColor: Colors.white,
+    title: Text('Warning'),
+    content: Text('Bạn có chắc muốn đăng xuất tài khoản?', style: txt16w4,),
+    actions: [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          TextButton(onPressed: ()=>Navigator.pop(context), child: Text('Cancel', style: txt16w4,)),
+          TextButton(onPressed: ()=>  AuthService().logoutService(context), child: Text('Logout', style: txt16w4!.copyWith(color: Colors.red),)),
+        ],
+      )
+    ],
+  );
 }

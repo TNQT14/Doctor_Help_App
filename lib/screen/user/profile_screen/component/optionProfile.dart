@@ -3,11 +3,16 @@ import 'package:doctor_help_app/screen/user/profile_screen/component/personal_da
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../containts/add_images.dart';
 import '../../../../model/user/doctor_model.dart';
 
-_buildOption(Icon icon, String title, VoidCallback onTap){
+_buildOption(String image, String title, Function()? onTap){
   return ListTile(
-    leading: icon,
+    leading: Container(
+      width: 22,
+        height: 22,
+        child: Image.asset(image)
+    ),
     title: Text(
       title,
       style: const TextStyle(
@@ -40,8 +45,8 @@ Widget optionProfile(BuildContext context, DotorModel user){
         Container(
           child: Column(
             children: <Widget>[
-              _buildOption(const Icon(Icons.person_outline),"Account", () {}),
-              _buildOption(const Icon(CupertinoIcons.doc_text),
+              _buildOption(iconProfile ,"Account", () {}),
+              _buildOption(iconPaper,
                   "Personal Data", ()=>
                     Navigator.pushNamed(context, PersonalDataScreen.routeName)
                   ),
@@ -52,13 +57,13 @@ Widget optionProfile(BuildContext context, DotorModel user){
         Container(
           child: Column(
             children: <Widget>[
-              _buildOption(const Icon(CupertinoIcons.bell),
+              _buildOption(iconNotification,
                   "Notification", () {}),
-              _buildOption(const Icon(CupertinoIcons.checkmark_shield),
+              _buildOption(iconShield,
                   "Security", () {}),
-              _buildOption(const Icon(CupertinoIcons.exclamationmark_circle),
+              _buildOption(iconInfoCircle,
                   "Help", () {}),
-              _buildOption(const Icon(CupertinoIcons.info_circle),
+              _buildOption(iconInfoSquare,
                   "About", () {}),
             ],
           ),
