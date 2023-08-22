@@ -8,7 +8,7 @@ import '../../../containts/containts.dart';
 
 class AppointmentDateTimeScreen extends StatelessWidget {
   const AppointmentDateTimeScreen({Key? key}) : super(key: key);
-  static String routeName = 'AppointmentScreen';
+  static String routeName = 'AppointmentDateTimeScreen';
 
   @override
   Widget build(BuildContext context) {

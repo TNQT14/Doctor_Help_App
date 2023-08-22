@@ -77,7 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         width: double.infinity,
                         child: blueElevateButton(() {
                           if(_formKey.currentState!.validate()){
-                            print('object');
+                            Navigator.pushNamed(context, NavigationMenu.routeName);
                           }
                         }, 'Login'),
                       ),
@@ -99,7 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   iconFacebook,
                                 ),
                               ),
-                              () => null),
+                              () => Navigator.pushNamed(context, NavigationMenu.routeName)),
                           const SizedBox(
                             width: 24,
                           ),
@@ -108,7 +108,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 padding: EdgeInsets.symmetric(vertical: 15.h),
                                 child: Image.asset(iconGooglePlus),
                               ),
-                              () => null)
+                              () => Navigator.pushNamed(context, NavigationMenu.routeName))
                         ],
                       )
                     ],
