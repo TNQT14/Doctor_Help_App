@@ -44,7 +44,7 @@ Container shadowSlideCard(BuildContext context,
                 job,
                 trailing: GestureDetector(
                   onTap: (){
-                    print('object');
+                    Navigator.pushNamed(context, AppointmentSummaryScreen.routeName);
                   },
                   child: Container(
                     alignment: Alignment.center,
@@ -62,3 +62,66 @@ Container shadowSlideCard(BuildContext context,
     ),
   );
 }
+
+Container shadowSlideCardActive(BuildContext context,
+    String image,
+    String name,
+    String job) {
+  return Container(
+      margin: EdgeInsets.symmetric(horizontal: 13),
+      height: 147,
+      width: MediaQuery.of(context).size.width,
+      child:containerCardDoc(context,
+                image,
+                name,
+                job,
+                trailing: GestureDetector(
+                  onTap: (){
+                    Navigator.pushNamed(context, AppointmentSummaryScreen.routeName);
+                  },
+                  child: Container(
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(6)
+                    ),
+                    width: 40,
+                    height: 40,
+                    child: Icon(Icons.arrow_forward_ios_rounded, color: colorKmain, size: 18),
+                  ),
+                )
+      )
+  );
+}
+
+Widget shadowSlideCardHistory(BuildContext context,
+    String image,
+    String name,
+    String job) {
+  return Container(
+      margin: EdgeInsets.symmetric(horizontal: 13),
+      height: 147,
+      width: MediaQuery.of(context).size.width,
+      child:containerCardDocHistory(context,
+          image,
+          name,
+          job,
+          trailing: GestureDetector(
+            onTap: (){
+              Navigator.pushNamed(context, AppointmentSummaryScreen.routeName);
+            },
+            child: Container(
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(6)
+              ),
+              width: 40,
+              height: 40,
+              child: Icon(Icons.arrow_forward_ios_rounded, color: colorKmain, size: 18),
+            ),
+          )
+      )
+  );
+}
+

@@ -34,7 +34,11 @@ class MyApp extends StatelessWidget {
           home: child,
         );
       },
+<<<<<<< HEAD
       child:  AuthGate(),
+=======
+      child:  LoginRegisterBackground(),
+>>>>>>> main
       designSize: Size(375, 812),
     );
   }

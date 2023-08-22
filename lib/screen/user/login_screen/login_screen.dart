@@ -10,6 +10,8 @@ import '../../screens.dart';
 GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
 class LoginScreen extends StatefulWidget {
+  static String routeName = 'LoginScreen';
+
   LoginScreen({Key? key}) : super(key: key);
 
   @override
@@ -78,7 +80,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         width: double.infinity,
                         child: blueElevateButton(() {
                           if(_formKey.currentState!.validate()){
+<<<<<<< HEAD
                             AuthService().loginService(email.text, password.text);
+=======
+                            Navigator.pushNamed(context, NavigationMenu.routeName);
+>>>>>>> main
                           }
                         }, 'Login'),
                       ),
@@ -100,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   iconFacebook,
                                 ),
                               ),
-                              () => null),
+                              () => Navigator.pushNamed(context, NavigationMenu.routeName)),
                           const SizedBox(
                             width: 24,
                           ),
@@ -109,7 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 padding: EdgeInsets.symmetric(vertical: 15.h),
                                 child: Image.asset(iconGooglePlus),
                               ),
-                              () => null)
+                              () => Navigator.pushNamed(context, NavigationMenu.routeName))
                         ],
                       )
                     ],

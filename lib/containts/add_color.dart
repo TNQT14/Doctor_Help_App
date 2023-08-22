@@ -10,3 +10,4 @@ const Color colorUnSelectedBottomMenu = Color(0xff96B5FF);
 const Color colorBgDelete = Color(0xffE8505B);
 const Color colorProfileCard = Color(0xffEBF1F9);
 const Color colorCardTitle = Color(0xffAAAAAA);
+const Color colorCardTitleWhite = Color(0xffFFFFFF);
