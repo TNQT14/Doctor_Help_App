@@ -41,9 +41,7 @@ Widget profileCard(
               ],
             ),
           ),
-          IconButton(onPressed: ()=>Navigator.pushReplacementNamed(
-              context, LoginRegisterBackground.routeName
-          ),
+          IconButton(onPressed: ()=>Navigator.pop(context),
               icon: Icon(Icons.logout))
         ],
       )
