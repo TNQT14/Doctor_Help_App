@@ -9,6 +9,8 @@ import '../../screens.dart';
 GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
 class LoginScreen extends StatefulWidget {
+  static String routeName = 'LoginScreen';
+
   LoginScreen({Key? key}) : super(key: key);
 
   @override

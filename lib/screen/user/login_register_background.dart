@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../../widgets/widgets.dart';
 
 class LoginRegisterBackground extends StatelessWidget {
+  final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
   LoginRegisterBackground({
     super.key,
   });
@@ -20,8 +21,8 @@ class LoginRegisterBackground extends StatelessWidget {
             padding: const EdgeInsets.only(top: 44.0),
             child: tabBarWidget('Login', 'Register',
                 tab1: LoginScreen(),
-            tab2: RegisterScreen()),
-          ),
+            tab2: RegisterScreen(),
+          )),
         ));
   }
 }
