@@ -1,3 +1,4 @@
+import 'package:doctor_help_app/bloc/wrap_provider.dart';
 import 'package:doctor_help_app/firebase_options.dart';
 import 'package:doctor_help_app/routes.dart';
 import 'package:doctor_help_app/screen/user/auth_gate.dart';
@@ -11,11 +12,12 @@ import 'widgets/widgets.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(const MyApp());
+  runApp(const WrapProvider(child:  MyApp()));
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(

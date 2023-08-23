@@ -11,7 +11,7 @@ class AuthGate extends StatelessWidget {
     return StreamBuilder(
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot){
-        if(snapshot.hasData){
+        if(snapshot.hasData) {
           return NavigationMenu();
         }
         else{
