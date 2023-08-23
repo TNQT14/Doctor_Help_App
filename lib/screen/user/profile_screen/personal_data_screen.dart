@@ -2,12 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../containts/containts.dart';
-import '../../../../model/user/doctor_model.dart';
-import '../../../../widgets/clipRRectAvatar.dart';
-import '../../../../widgets/input_textField.dart';
-import '../../../home_screen/components/shadowSlideCard.dart';
-import 'backgroundEditAvataCard.dart';
+import '../../../containts/containts.dart';
+import '../../../model/user/doctor_model.dart';
+import '../../../widgets/clipRRectAvatar.dart';
+import '../../../widgets/input_textField.dart';
+import '../../home_screen/components/shadowSlideCard.dart';
+import 'component/backgroundEditAvataCard.dart';
 class PersonalDataScreen extends StatefulWidget {
   static String routeName = 'PersonalDataScreen';
 
