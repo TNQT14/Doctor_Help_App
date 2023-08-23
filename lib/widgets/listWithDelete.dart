@@ -73,3 +73,34 @@ InkWell cardMess(BuildContext context, String name, String image, String text) {
     ),
   );
 }
+
+Expanded listNotification(String name, String image, String mess) {
+  return Expanded(child:
+  ListView.separated(
+      separatorBuilder: (context, index)=>Divider(height: 0, color: Colors.grey,),
+      padding: EdgeInsetsDirectional.zero,
+      itemCount: 10,
+      itemBuilder: (context, index){
+        return Dismissible(key: UniqueKey(),
+          direction: DismissDirection.endToStart,
+          child: cardMess(context, name, image, mess),
+          onDismissed: (direction){
+            // showToastMessage(context,'Message Deleted');
+            showSnackBar(context, 'Notification Deleted');
+          },
+          secondaryBackground: Container(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            alignment: Alignment.centerRight,
+            color: colorBgDelete,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(Icons.delete_outline, color: Colors.white, size: 25,),
+                Text('Delete', style: txt16w4!.copyWith(color: Colors.white),)
+              ],
+            ),
+          ),
+          background: Container(),
+        );
+      }));
+}

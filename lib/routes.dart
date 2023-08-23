@@ -3,7 +3,8 @@ import 'package:doctor_help_app/screen/doctor/appointment_screen/appointment_scr
 import 'package:doctor_help_app/screen/doctor/give_screen/give_screen.dart';
 import 'package:doctor_help_app/screen/screens.dart';
 import 'package:doctor_help_app/screen/user/login_screen/login_screen.dart';
-import 'package:doctor_help_app/screen/user/profile_screen/component/personal_data_screen.dart';
+import 'package:doctor_help_app/screen/user/notification_screen/notification_screen.dart';
+import 'package:doctor_help_app/screen/user/profile_screen/personal_data_screen.dart';
 import 'package:doctor_help_app/screen/user/register_screen/register_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -32,4 +33,6 @@ final Map<String, WidgetBuilder> route ={
 
   NavigationMenu.routeName: (context)=> NavigationMenu(),
   GiveReviewScreen.routeName: (context)=> GiveReviewScreen(),
+
+  NotificationScreen.routeName: (context)=> NotificationScreen(),
 };

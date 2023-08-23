@@ -1,5 +1,6 @@
 import 'package:doctor_help_app/containts/add_color.dart';
-import 'package:doctor_help_app/screen/user/profile_screen/component/personal_data_screen.dart';
+import 'package:doctor_help_app/screen/user/notification_screen/notification_screen.dart';
+import 'package:doctor_help_app/screen/user/profile_screen/personal_data_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -58,7 +59,8 @@ Widget optionProfile(BuildContext context, DotorModel user){
           child: Column(
             children: <Widget>[
               _buildOption(iconNotification,
-                  "Notification", () {}),
+                  "Notification", () =>Navigator.pushNamed(context,
+                      NotificationScreen.routeName)),
               _buildOption(iconShield,
                   "Security", () {}),
               _buildOption(iconInfoCircle,
