@@ -89,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             if(_formKey.currentState!.validate()){
                               // AuthService().loginService(email.text, password.text);
                               // Navigator.pushNamed(context, NavigationMenu.routeName);
-                              widget._userCubit.loginCubit(email.text, password.text);
+                              widget._userCubit.loginCubit(context, email.text, password.text);
                             }
                           }, 'Login'),
                         );
