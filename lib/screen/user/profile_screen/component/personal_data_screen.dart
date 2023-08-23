@@ -42,7 +42,7 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: <Widget>[
               Center(
-                child: BackGroundEditAvatCard(context, user1.imageUrl),
+                child: BackGroundEditAvatCard(context, user1.imageUrl, true),
               ),
           Padding(
             padding: const EdgeInsets.all(13.0),

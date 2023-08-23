@@ -1,5 +1,6 @@
 import 'package:doctor_help_app/containts/containts.dart';
 import 'package:doctor_help_app/model/user/doctor_model.dart';
+import 'package:doctor_help_app/screen/doctor/give_screen/give_screen.dart';
 import 'package:doctor_help_app/screen/home_screen/components/doctorCard.dart';
 import 'package:doctor_help_app/screen/screens.dart';
 import 'package:doctor_help_app/widgets/widgets.dart';
@@ -62,6 +63,7 @@ Container doctorContactCard(BuildContext context, {bool chat = false}) {
           subtitle: Text(user1.job, style: txt14w4,),
           contentPadding: EdgeInsetsDirectional.zero,
           leading: clipRRectAvatar(56, 56, user1.imageUrl),
+          onTap: ()=>Navigator.pushNamed(context, GiveReviewScreen.routeName),
         ),
         Divider(thickness: 1, height: 10,),
         Padding(

@@ -1,6 +1,6 @@
-
 import 'package:doctor_help_app/navigationMenu.dart';
 import 'package:doctor_help_app/screen/doctor/appointment_screen/appointment_screen.dart';
+import 'package:doctor_help_app/screen/doctor/give_screen/give_screen.dart';
 import 'package:doctor_help_app/screen/screens.dart';
 import 'package:doctor_help_app/screen/user/login_screen/login_screen.dart';
 import 'package:doctor_help_app/screen/user/profile_screen/component/personal_data_screen.dart';
@@ -30,4 +30,5 @@ final Map<String, WidgetBuilder> route ={
   PersonalDataScreen.routeName: (context)=> PersonalDataScreen(),
 
   NavigationMenu.routeName: (context)=> NavigationMenu(),
+  GiveReviewScreen.routeName: (context)=> GiveReviewScreen(),
 };
