@@ -6,7 +6,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../widgets/containerCardDoc.dart';
 
 Container BackGroundEditAvatCard(BuildContext context,
-    String image
+    String image,
+    bool isEdit,
     ) {
   return Container(
     // margin: EdgeInsets.symmetric(horizontal: 13),
@@ -31,6 +32,7 @@ Container BackGroundEditAvatCard(BuildContext context,
             alignment: Alignment.bottomRight,
             children: [
               clipRRectAvatar(121, 121, image),
+              isEdit == true ?
               Stack(
                 alignment: Alignment.bottomLeft,
                 children: [
@@ -46,7 +48,7 @@ Container BackGroundEditAvatCard(BuildContext context,
                     child: Icon(CupertinoIcons.pencil_slash),
                   ),
                 ],
-              ),
+              ) : SizedBox(),
             ],
           ),
         ),
