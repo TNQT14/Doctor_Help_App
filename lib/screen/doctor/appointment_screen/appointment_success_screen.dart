@@ -36,7 +36,7 @@ class AppointmentSuccessScreen extends StatelessWidget {
                   trailing: ratingStar(user1.rating))
                   ],
           ))),
-          bottomCardButton('OK', () => Navigator.pushNamed(context, HomeScreen.routeName))
+          bottomCardButton('OK', () => Navigator.pushNamed(context, NavigationMenu.routeName))
         ],
       ),
     );

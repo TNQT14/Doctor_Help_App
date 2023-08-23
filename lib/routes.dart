@@ -21,6 +21,7 @@ final Map<String, WidgetBuilder> route ={
   AppointmentSuccessScreen.routeName: (context)=> AppointmentSuccessScreen(),
   AppointmentScreen.routeName: (context)=> AppointmentScreen(),
 
+  ListChatScreen.routeName: (context)=> ListChatScreen(),
   ChatScreen.routeName: (context)=> ChatScreen(),
 
   HomeScreen.routeName: (context)=> HomeScreen(),
@@ -30,4 +31,5 @@ final Map<String, WidgetBuilder> route ={
   PersonalDataScreen.routeName: (context)=> PersonalDataScreen(),
 
   NavigationMenu.routeName: (context)=> NavigationMenu(),
+
 };

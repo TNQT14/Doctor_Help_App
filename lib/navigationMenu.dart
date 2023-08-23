@@ -18,7 +18,7 @@ class _NavigationMenu extends State<NavigationMenu> {
   late int _index=0;
   final screens =[
     HomeScreen(),
-    ChatScreen(),
+    ListChatScreen(),
     AppointmentScreen(),
     DoctordetailScreen(),
     ProfileScreen(),
