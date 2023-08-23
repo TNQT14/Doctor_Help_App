@@ -53,7 +53,7 @@ Container doctorContactCard(BuildContext context, {bool chat = false}) {
       children: [
         ListTile(
           trailing: chat? GestureDetector(
-            onTap: (){ print('ok');},
+            onTap: ()=> Navigator.pushNamed(context, ChatScreen.routeName),
             child:
             //Icon(CupertinoIcons.chat_bubble_text, color: Colors.blue,)
             Container(

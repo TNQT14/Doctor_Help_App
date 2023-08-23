@@ -1,4 +1,5 @@
 import 'package:doctor_help_app/model/user/doctor_model.dart';
+import 'package:doctor_help_app/screen/screens.dart';
 import 'package:doctor_help_app/widgets/show_toast_messes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,7 +18,7 @@ Expanded listMess(String name, String image, String mess) {
       itemBuilder: (context, index){
         return Dismissible(key: UniqueKey(),
           direction: DismissDirection.endToStart,
-          child: cardMess(name, image, mess),
+          child: cardMess(context, name, image, mess),
           onDismissed: (direction){
            // showToastMessage(context,'Message Deleted');
             showSnackBar(context, 'Message Deleted');
@@ -43,29 +44,32 @@ Expanded listMess(String name, String image, String mess) {
 // String text = 'Hello, can i help you?';
 // List <int> ten = List<int>.generate(10, (index) => index);
 
-Padding cardMess(String name, String image, String text) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(vertical: 16.5),
-    child: Row(
-      children: [
-        clipRRectAvatar(48, 48, image),
-        SizedBox(width: 15,),
-        Expanded(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(bottom: 8.0),
-                child: Text(name, style: txt16w6,),
-              ),
-              Text((text.length>23)? '${ text.substring(0, 25)}...' : text, style: txt14w4,)
-            ],
+InkWell cardMess(BuildContext context, String name, String image, String text) {
+  return InkWell(
+    onTap: ()=>Navigator.pushNamed(context, ChatScreen.routeName),
+    child: Padding(
+      padding: const EdgeInsets.symmetric(vertical: 16.5),
+      child: Row(
+        children: [
+          clipRRectAvatar(48, 48, image),
+          SizedBox(width: 15,),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 8.0),
+                  child: Text(name, style: txt16w6,),
+                ),
+                Text((text.length>23)? '${ text.substring(0, 25)}...' : text, style: txt14w4,)
+              ],
+            ),
           ),
-        ),
-        Padding(padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Text('12:54 PM', style: txt12w5!.copyWith(color: Colors.grey)),)
-      ],
+          Padding(padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Text('12:54 PM', style: txt12w5!.copyWith(color: Colors.grey)),)
+        ],
+      ),
     ),
   );
 }

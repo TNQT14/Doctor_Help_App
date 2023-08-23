@@ -44,7 +44,7 @@ Container shadowSlideCard(BuildContext context,
                 job,
                 trailing: GestureDetector(
                   onTap: (){
-                    Navigator.pushNamed(context, AppointmentSummaryScreen.routeName);
+                    Navigator.pushNamed(context, DoctordetailScreen.routeName);
                   },
                   child: Container(
                     alignment: Alignment.center,
