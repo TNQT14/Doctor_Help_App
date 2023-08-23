@@ -27,7 +27,7 @@ class ChatScreen extends StatelessWidget {
               children: [
                 Padding(
                   padding: EdgeInsets.only(top: 22.0.h, bottom: 11.h ),
-                  child: inputWidget('Search', text, isPrefix: true, image: iconSearch),
+                  child: InputTextField(hintext: 'Search', text:  text, isPrefix: true, image: iconSearch),
                 ),
                 listMess(user1.name, user1.imageUrl, user1.description),
               ],

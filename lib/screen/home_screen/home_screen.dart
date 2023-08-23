@@ -34,7 +34,7 @@ class HomeScreen extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.only(left: 15.0.w, right: 15.w,top: 22.h, bottom: 11),
-                child: inputWidget('Search', search,isPrefix: true, image: iconSearch),
+                child: InputTextField(hintext: 'Search', text: search,isPrefix: true, image: iconSearch),
               ),
               Expanded(
                 child: SingleChildScrollView(

@@ -45,21 +45,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   key: _formKey,
                   child: Column(
                     children: [
-                      inputWidget('Email', email,
+                      InputTextField(hintext: 'Email', text: email,
                           isPrefix: true,
                           image: iconMail,
                           validator: (value) =>
                               validatedMess.validatorEmail(value)),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 16.0),
-                        child: inputWidget('Password', password,
+                        child: InputTextField(hintext: 'Password', text: password,
                             isPrefix: true,
                             image: iconKey,
                             isHideText: true,
                             validator: (value) =>
                                 validatedMess.validatorPassword(value)),
                       ),
-                      inputWidget('Confirm Password', retypepassword,
+                      InputTextField(hintext: 'Confirm Password', text: retypepassword,
                           isPrefix: true,
                           image: iconKey,
                           isHideText: true,

@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 import '../../../../containts/containts.dart';
 import '../../../../model/user/doctor_model.dart';
 import '../../../../widgets/clipRRectAvatar.dart';
-import '../../../../widgets/inputWidget.dart';
+import '../../../../widgets/input_textField.dart';
 import '../../../home_screen/components/shadowSlideCard.dart';
 import 'backgroundEditAvataCard.dart';
 class PersonalDataScreen extends StatefulWidget {
@@ -52,16 +52,16 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
                   children: [
                     Text("Name",
                         style: txt16w4),
-                    inputWidget(user1.name, name),
+                    InputTextField(hintext: user1.name, text: name),
                     Text("Date of Birth",
                       style: txt16w4),
-                    inputWidget("${DateFormat('yyyy-MM-dd').format(user1.birthDay)}", name, isPrefix: true, image: iconSchedule),
+                    InputTextField(hintext: "${DateFormat('yyyy-MM-dd').format(user1.birthDay)}", text: name, isPrefix: true, image: iconSchedule),
                     Text("Phone",
                       style: txt16w4),
-                    inputWidget("${user1.phone}", name),
+                    InputTextField(hintext: "${user1.phone}", text: name),
                     Text("Address",
                       style: txt16w4,),
-                    inputWidget("${user1.experience}", name),
+                    InputTextField(hintext: "${user1.experience}", text: name),
                   ],
                 )
             ),

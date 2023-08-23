@@ -1,7 +1,9 @@
 import 'package:doctor_help_app/VM/service/auth_service.dart';
 import 'package:doctor_help_app/VM/validator.dart';
+import 'package:doctor_help_app/bloc/user/user_bloc_cubit.dart';
 import 'package:doctor_help_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../containts/containts.dart';
@@ -16,6 +18,7 @@ class LoginScreen extends StatefulWidget {
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
+  UserBlocCubit _userCubit = UserBlocCubit();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
@@ -45,15 +48,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   key: _formKey,
                   child: Column(
                     children: [
-                      inputWidget('Email', email,
+                      InputTextField(hintext: 'Email', text: email,
                           validator: (value)=>validate.validatorEmail(value),
                           isPrefix: true, image: iconMail),
                       const SizedBox(
                         height: 16,
                       ),
-                      inputWidget(
-                        'Password',
-                        password,
+                      InputTextField(
+                       hintext: 'Password',
+                        text: password,
                         isPrefix: true,
                         image: iconKey,
                         isHideText: true,
@@ -76,15 +79,21 @@ class _LoginScreenState extends State<LoginScreen> {
                           ],
                         ),
                       ),
-                      SizedBox(
-                        width: double.infinity,
-                        child: blueElevateButton(() {
-                          if(_formKey.currentState!.validate()){
-                            AuthService().loginService(email.text, password.text);
-                            Navigator.pushNamed(context, NavigationMenu.routeName);
-                          }
-                        }, 'Login'),
-                      ),
+                      BlocBuilder<UserBlocCubit, UserBlocState>(builder: (context, state){
+                        if(state is LoginLoading && state.isLoading==true){
+                          return Center(child: CircularProgressIndicator(),);
+                        }
+                        return SizedBox(
+                          width: double.infinity,
+                          child: blueElevateButton(() {
+                            if(_formKey.currentState!.validate()){
+                              // AuthService().loginService(email.text, password.text);
+                              // Navigator.pushNamed(context, NavigationMenu.routeName);
+                              widget._userCubit.loginCubit(email.text, password.text);
+                            }
+                          }, 'Login'),
+                        );
+                      }),
                       Container(
                         margin: EdgeInsets.only(top: 56.h, bottom: 24.h),
                         alignment: Alignment.center,
@@ -103,7 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   iconFacebook,
                                 ),
                               ),
-                              () => Navigator.pushNamed(context, NavigationMenu.routeName)),
+                                  () => Navigator.pushNamed(context, NavigationMenu.routeName)),
                           const SizedBox(
                             width: 24,
                           ),
@@ -112,7 +121,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 padding: EdgeInsets.symmetric(vertical: 15.h),
                                 child: Image.asset(iconGooglePlus),
                               ),
-                              () => Navigator.pushNamed(context, NavigationMenu.routeName))
+                                  () => Navigator.pushNamed(context, NavigationMenu.routeName))
                         ],
                       )
                     ],

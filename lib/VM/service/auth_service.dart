@@ -10,10 +10,12 @@ class AuthService {
     try {
       UserCredential userCredential = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
-      showFlutterToastMessage('Đăng nhập thành công');
+      // showFlutterToastMessage('Đăng nhập thành công');
+     // print('userCredential: $userCredential');
       return userCredential;
     } on FirebaseAuthException catch (e) {
       showFlutterToastMessage(e.toString());
+      print('Error login: $e');
       rethrow;
     }
   }
@@ -25,6 +27,7 @@ class AuthService {
       if(retypePassword==password){
         UserCredential userCredential = await _auth.createUserWithEmailAndPassword(email: email, password: password);
         showFlutterToastMessage('Tạo tài khoản thành công');
+
         return userCredential;
       }
       else{
@@ -33,6 +36,7 @@ class AuthService {
       }
     } on FirebaseAuthException catch (e){
       showFlutterToastMessage(e.toString());
+      print('Error register: $e');
       return null;
     }
   }
@@ -40,9 +44,11 @@ class AuthService {
 Future logoutService(BuildContext context) async{
     try{
       await _auth.signOut();
+      showFlutterToastMessage('Đăng xuất thành công');
       Navigator.pop(context);
     } on FirebaseAuthException catch(e){
       showFlutterToastMessage(e.toString());
+      print('Error logout: $e');
       return null;
     }
 }
