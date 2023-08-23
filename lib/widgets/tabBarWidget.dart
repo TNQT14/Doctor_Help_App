@@ -46,6 +46,7 @@ DefaultTabController tabBarWidget(String? title1, String? title2,
             ],
           ),
         ),
+        SizedBox(height: 16),
         Expanded(
           child: Container(
             child: TabBarView(children: [

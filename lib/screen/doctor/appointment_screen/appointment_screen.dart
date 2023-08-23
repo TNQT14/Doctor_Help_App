@@ -24,7 +24,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
     return GestureDetector(
       child: Scaffold(
         backgroundColor: colorbg,
-        body: Container(
+        body: GestureDetector(
           child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,12 +33,13 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
               padding: EdgeInsets.only(top: 75, left: 24),
               child: Text('My Appointment', style: txt32w7,),
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 44.0),
-              child: tabBarWidget('Active', 'History',
-                  tab1: shadowSlideCardHistory(context, user1.imageUrl, user1.name, user1.job),
-                  tab2: shadowSlideCardActive(context, user1.imageUrl, user1.name, user1.job)
-              ),
+            SizedBox(height: 8,),
+            Container(
+              height: 200,
+              child:tabBarWidget('Active', 'History',
+                tab1: shadowSlideCardActive(context, user1.imageUrl, user1.name, user1.job),
+                tab2: shadowSlideCardHistory(context, user1.imageUrl, user1.name, user1.job),
+              )
             ),
           ],
         ),
