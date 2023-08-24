@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../containts/containts.dart';
-import '../screen/user/notification_screen/notification_screen.dart';
+import '../screen/profile_screen/notification_screen/notification_screen.dart';
 import 'clipRRectAvatar.dart';
 
 ///name: phải truyền vào dưới dạng list

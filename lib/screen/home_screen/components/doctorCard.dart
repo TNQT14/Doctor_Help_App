@@ -40,7 +40,7 @@ Widget doctorCard(
                             fontWeight: FontWeight.w400,
                             color: Colors.grey.shade400)),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   ratingStar(rating),
                 ],
               ),

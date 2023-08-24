@@ -13,3 +13,6 @@ const Color colorCardTitle = Color(0xffAAAAAA);
 const Color colorActiveIndicator = Color(0xff6B97FF);
 const Color colorInactiveIndicator = Color(0xffDBE5FF);
 const Color colorCardTitleWhite = Color(0xffFFFFFF);
+const Color colorOnlineStatus = Color(0xff53A1FD);
+const Color colorOfflineStatus = Color(0xffDEDEDE);
+const Color colorOfflineTile = Color(0xff8D8D8D);
