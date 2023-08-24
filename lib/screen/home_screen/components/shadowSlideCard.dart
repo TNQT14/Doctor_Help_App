@@ -88,7 +88,8 @@ Container shadowSlideCardActive(BuildContext context,
                     ),
                     width: 40,
                     height: 40,
-                    child: Icon(Icons.arrow_forward_ios_rounded, color: colorKmain, size: 18),
+                    child: Icon(Icons.arrow_forward_ios_rounded,
+                        color: colorKmain, size: 18),
                   ),
                 )
       )
@@ -119,7 +120,8 @@ Widget shadowSlideCardHistory(BuildContext context,
               ),
               width: 40,
               height: 40,
-              child: Icon(Icons.arrow_forward_ios_rounded, color: colorKmain, size: 18),
+              child: Icon(Icons.arrow_forward_ios_rounded,
+                  color: colorKmain, size: 18),
             ),
           )
       )

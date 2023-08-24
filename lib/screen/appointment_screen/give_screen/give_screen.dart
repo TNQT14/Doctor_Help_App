@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../containts/add_style.dart';
 import '../../../model/user/doctor_model.dart';
-import '../../user/profile_screen/component/backgroundEditAvataCard.dart';
+import '../../profile_screen/component/backgroundEditAvataCard.dart';
 
 class GiveReviewScreen extends StatefulWidget {
   const GiveReviewScreen({super.key});

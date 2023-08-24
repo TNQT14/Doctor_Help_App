@@ -1,11 +1,11 @@
 import 'package:doctor_help_app/containts/add_color.dart';
-import 'package:doctor_help_app/screen/user/notification_screen/notification_screen.dart';
-import 'package:doctor_help_app/screen/user/profile_screen/personal_data_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../containts/add_images.dart';
 import '../../../../model/user/doctor_model.dart';
+import '../notification_screen/notification_screen.dart';
+import '../personal_data_screen.dart';
 
 _buildOption(String image, String title, Function()? onTap){
   return ListTile(
