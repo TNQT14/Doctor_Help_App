@@ -1,10 +1,13 @@
 import 'package:doctor_help_app/containts/add_color.dart';
 import 'package:doctor_help_app/containts/add_images.dart';
 import 'package:doctor_help_app/screen/home_screen/home_screen.dart';
+import 'package:doctor_help_app/screen/screens.dart';
 import 'package:doctor_help_app/widgets/bluteElevateButton.dart';
 import 'package:flutter/material.dart';
 
 class OnboardingScreens extends StatefulWidget {
+  static String routeName = 'OnboardingScreens';
+
   const OnboardingScreens({super.key});
 
   @override
@@ -15,7 +18,6 @@ class _OnboardingScreensState extends State<OnboardingScreens> {
   final int numPage = 3;
   final PageController _pageController = PageController(initialPage: 0);
   var _page = 0;
-  static String routeName = 'HomeScreen';
 
   Widget _buildPage(String image, String title, String content) {
     return Column(
@@ -134,7 +136,8 @@ class _OnboardingScreensState extends State<OnboardingScreens> {
                     onTap: () {
                       _page != numPage - 1 ? _pageController.nextPage(
                           duration: const Duration(milliseconds: 500),
-                          curve: Curves.easeIn) : Navigator.pushNamed(context, HomeScreen.routeName);
+                          curve: Curves.easeIn) : Navigator.pushNamed(context,
+                          LoginRegisterBackground.routeName);
                     },
                     child: Container(
                       decoration: const BoxDecoration(
@@ -163,7 +166,7 @@ class _OnboardingScreensState extends State<OnboardingScreens> {
                 child: _page != numPage - 1 ? Center(
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, HomeScreen.routeName);
+                      Navigator.pushNamed(context, LoginRegisterBackground.routeName);
                     },
                     child: Container(
                       decoration: const BoxDecoration(

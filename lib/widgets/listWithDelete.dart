@@ -84,7 +84,6 @@ Expanded listNotification(String name, String image, String mess) {
       itemBuilder: (context, index){
         return Dismissible(key: UniqueKey(),
           direction: DismissDirection.endToStart,
-          child: cardNotification(context, name, image, mess),
           onDismissed: (direction){
             // showToastMessage(context,'Message Deleted');
             showSnackBar(context, 'Notification Deleted');
@@ -102,19 +101,19 @@ Expanded listNotification(String name, String image, String mess) {
             ),
           ),
           background: Container(),
+          child: cardNotification(context, name, mess),
         );
       }));
 }
 
-InkWell cardNotification(BuildContext context, String name, String image, String text) {
+InkWell cardNotification(BuildContext context, String name, String text) {
   return InkWell(
     onTap: ()=>Navigator.pushNamed(context, NotificationScreen.routeName),
     child: Padding(
       padding: const EdgeInsets.symmetric(vertical: 16.5),
       child: Row(
         children: [
-          clipRRectAvatar(48, 48, image),
-          SizedBox(width: 15,),
+          const SizedBox(width: 15),
           Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
