@@ -22,7 +22,7 @@ class UserBlocCubit extends Cubit<UserBlocState> {
       if(login!=null && login.user!=null){
         emit(LoginSuccess(userCredential: login));
         showFlutterToastMessage('Đăng nhập thành công');
-        // Navigator.pushNamed(context, NavigationMenu.routeName);
+        Navigator.pushNamed(context, NavigationMenu.routeName);
       }
     }catch(e){
       emit(LoginLoading(isLoading: false));

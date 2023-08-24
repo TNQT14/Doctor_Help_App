@@ -1,6 +1,9 @@
 import 'package:doctor_help_app/navigationMenu.dart';
-import 'package:doctor_help_app/screen/doctor/appointment_screen/appointment_screen.dart';
-import 'package:doctor_help_app/screen/doctor/give_screen/give_screen.dart';
+import 'package:doctor_help_app/screen/appointment_screen/appointment_dateTime_screen.dart';
+import 'package:doctor_help_app/screen/appointment_screen/appointment_screen.dart';
+import 'package:doctor_help_app/screen/appointment_screen/appointment_success_screen.dart';
+import 'package:doctor_help_app/screen/appointment_screen/appointment_summary_screen.dart';
+import 'package:doctor_help_app/screen/appointment_screen/give_screen/give_screen.dart';
 import 'package:doctor_help_app/screen/onboarding_screen/onboarding_screen.dart';
 import 'package:doctor_help_app/screen/screens.dart';
 import 'package:doctor_help_app/screen/user/login_screen/login_screen.dart';

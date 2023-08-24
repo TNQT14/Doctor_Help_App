@@ -6,9 +6,7 @@ import '../../../model/user/doctor_model.dart';
 
 import '../../../containts/add_style.dart';
 import '../../../widgets/tabBarWidget.dart';
-import '../../home_screen/components/shadowSlideCard.dart';
-import '../../user/login_screen/login_screen.dart';
-import '../../user/register_screen/register_screen.dart';
+import '../home_screen/components/shadowSlideCard.dart';
 
 class AppointmentScreen extends StatefulWidget {
   const AppointmentScreen({super.key});

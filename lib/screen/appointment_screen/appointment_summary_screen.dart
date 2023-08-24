@@ -1,6 +1,5 @@
 import 'package:doctor_help_app/containts/containts.dart';
 import 'package:doctor_help_app/model/user/doctor_model.dart';
-import 'package:doctor_help_app/screen/doctor/give_screen/give_screen.dart';
 import 'package:doctor_help_app/screen/home_screen/components/doctorCard.dart';
 import 'package:doctor_help_app/screen/screens.dart';
 import 'package:doctor_help_app/widgets/widgets.dart';
@@ -10,6 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'appointment_success_screen.dart';
 import 'components/cardDateTime.dart';
+import 'give_screen/give_screen.dart';
 class AppointmentSummaryScreen extends StatelessWidget {
   const AppointmentSummaryScreen({Key? key}) : super(key: key);
   static String routeName = 'AppointmentSummaryScreen';
