@@ -12,7 +12,7 @@ import 'clipRRectAvatar.dart';
 
 Expanded listMess(String name, String image, String mess) {
   return Expanded(child:
-  ListView.separated(
+    ListView.separated(
       separatorBuilder: (context, index)=>Divider(height: 0, color: Colors.grey,),
       padding: EdgeInsetsDirectional.zero,
       itemCount: 10,
