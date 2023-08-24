@@ -16,3 +16,4 @@ const Color colorCardTitleWhite = Color(0xffFFFFFF);
 const Color colorOnlineStatus = Color(0xff53A1FD);
 const Color colorOfflineStatus = Color(0xffDEDEDE);
 const Color colorOfflineTile = Color(0xff8D8D8D);
+const Color colorSelectedOption = Color(0xffDEDEDE);
