@@ -1,6 +1,7 @@
 import 'package:doctor_help_app/navigationMenu.dart';
 import 'package:doctor_help_app/screen/doctor/appointment_screen/appointment_screen.dart';
 import 'package:doctor_help_app/screen/doctor/give_screen/give_screen.dart';
+import 'package:doctor_help_app/screen/onboarding_screen/onboarding_screen.dart';
 import 'package:doctor_help_app/screen/screens.dart';
 import 'package:doctor_help_app/screen/user/login_screen/login_screen.dart';
 import 'package:doctor_help_app/screen/user/notification_screen/notification_screen.dart';
@@ -13,6 +14,7 @@ import 'model/user/doctor_model.dart';
 // nơi chưa route (kiểu như dường dẫn đến các màn hình)
 
 final Map<String, WidgetBuilder> route ={
+  OnboardingScreens.routeName: (context)=> OnboardingScreens(),
   LoginRegisterBackground.routeName: (context)=> LoginRegisterBackground(),
   LoginScreen.routeName: (context)=>LoginScreen(),
   RegisterScreen.routeName: (context)=>RegisterScreen(),

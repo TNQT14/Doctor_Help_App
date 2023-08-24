@@ -32,7 +32,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Padding(
-                padding: EdgeInsets.only(top: 75, left: 24),
+                padding: const EdgeInsets.only(top: 75, left: 24),
                 child: Text('My Profile', style: txt32w7,),
               ),
               profileCard(user1, (){
@@ -55,8 +55,8 @@ AlertDialog alertDialog(BuildContext context) {
   return AlertDialog(
     surfaceTintColor: Colors.white,
     backgroundColor: Colors.white,
-    title: Text('Warning'),
-    content: Text('Bạn có chắc muốn đăng xuất tài khoản?', style: txt16w4,),
+    title: const Text('Warning'),
+    content: Text('Log out of your account?', style: txt16w4,),
     actions: [
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
