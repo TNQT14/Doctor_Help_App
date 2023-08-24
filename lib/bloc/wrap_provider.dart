@@ -10,6 +10,6 @@ class WrapProvider extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(providers: [
       BlocProvider<UserBlocCubit>(create: (BuildContext context)=> UserBlocCubit()),
-    ], child: child);
+      ], child: child);
   }
 }
