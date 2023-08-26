@@ -20,7 +20,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => unfocusKeyboard(context),
+      onTap: () => unfocusKeyboard(),
       child: Scaffold(
           resizeToAvoidBottomInset: false,
           backgroundColor: colorbg,
