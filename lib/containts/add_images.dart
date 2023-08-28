@@ -58,3 +58,6 @@ const String imageOnb1 = '${linkUser}onb_pic1.png';
 const String imageOnb2 = '${linkUser}onb_pic2.png';
 const String imageOnb3 = '${linkUser}onb_pic3.png';
 
+
+//svg
+const String iconButtonNotification = '${linkIcons}Notifications.svg';

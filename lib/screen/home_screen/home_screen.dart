@@ -29,11 +29,11 @@ class HomeScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: EdgeInsets.only(left: 15.w, right: 15.w, top: 20.h, bottom: 22.h),
+                  padding: EdgeInsets.only(left: 15.w, right: 15.w, top: 20.h, bottom: 20.h),
                   child: rowIn4(user1.imageUrl),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: 15.0.w, right: 15.w),
+                  padding: EdgeInsets.only(left: 15.0.w, right: 15.w, bottom: 8.h),
                   child: InputTextField(hintext: 'Search', text: search,isPrefix: true, image: iconSearch),
                 ),
                 Expanded(
@@ -46,7 +46,7 @@ class HomeScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: EdgeInsets.only(left: 15.0.w, top: 11.h),
+                              padding: EdgeInsets.only(left: 15.0.w),
                               child: textTitle('My Appointment'),
                             ),
                             shadowSlideCard(
@@ -54,22 +54,18 @@ class HomeScreen extends StatelessWidget {
                           ],
                         ),
                         titleListNearDoc(),
-                        Column(
-                          children: [
-                            Container(
-                              margin: EdgeInsets.symmetric(vertical: 15.h),
-                              height: 124.h,
-                              child: ListView.builder(
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: 5,
-                                  itemBuilder: (context, index) {
-                                    return doctorCard(context, user1.imageUrl,
-                                        user1.rating, user1.name, user1.job);
-                                  }),
-                            ),
-                            listDisease(sick.nameDisease, sick.persion)
-                          ],
-                        )
+                        Container(
+                          height: 124.h,
+                          child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: 5,
+                              itemBuilder: (context, index) {
+                                return doctorCard(context, user1.imageUrl,
+                                    user1.rating, user1.name, user1.job);
+                              }),
+                        ),
+                        SizedBox(height: 16.h,),
+                        listDisease(sick.nameDisease, sick.persion)
                       ],
                     ),
                   ),

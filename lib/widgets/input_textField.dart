@@ -109,10 +109,10 @@ class _InputTextFieldState extends State<InputTextField> {
           filled: true,
           hintText: widget.hintext,
           hintStyle: txt16w4!.copyWith(color: Colors.grey.shade400),
-          contentPadding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10),
+          contentPadding: EdgeInsets.symmetric(horizontal: 10.w),
           prefixIcon: widget.isPrefix
               ? Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  padding: EdgeInsets.symmetric(horizontal: 10.0.w),
                   child: Image.asset(
                     (widget.image == null || widget.image == '')
                         ? imageCat
