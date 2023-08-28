@@ -17,11 +17,13 @@ Container containerCardDoc(
     height: 131.h,
     decoration: BoxDecoration(
         color: colorKmain, borderRadius: BorderRadius.circular(6)),
-    child: Column(
+    child:
+    Column(
+      mainAxisSize: MainAxisSize.min,
       // crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          padding: EdgeInsets.symmetric(horizontal: 16.0.w),
           child: ListTile(
             trailing: trailing ?? SizedBox(),
             title: Text(
@@ -34,8 +36,8 @@ Container containerCardDoc(
             ),
             contentPadding: EdgeInsetsDirectional.zero,
             leading: Container(
-                width: 50,
-                height: 50,
+                width: 50.w,
+                height: 50.h,
                 padding: EdgeInsets.all(2),
                 decoration: BoxDecoration(
                     color: Colors.white,
@@ -44,22 +46,19 @@ Container containerCardDoc(
               ),
           ),
         ),
-        SizedBox(
-          height: 6.h,
-        ),
         Divider(
           color: Colors.black.withAlpha(150),
           height: 0,
         ),
         // SizedBox(height: 8,),
-        TextButton(
-            onPressed: () {
-              Navigator.pushNamed(context, AppointmentDateTimeScreen.routeName);
-            },
-            child: Text(
-              'Date and Time',
-              style: txt14w6!.copyWith(color: Colors.white),
-            ))
+        // TextButton(
+        //     onPressed: () {
+        //       Navigator.pushNamed(context, AppointmentDateTimeScreen.routeName);
+        //     },
+        //     child: Text(
+        //       'Date and Time',
+        //       style: txt14w6!.copyWith(color: Colors.white),
+        //     ))
       ],
     ),
   );
