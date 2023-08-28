@@ -67,6 +67,8 @@ Container shadowSlideCard(BuildContext context,
   );
 }
 
+
+
 Container shadowSlideCardActive(BuildContext context,
     String image,
     String name,

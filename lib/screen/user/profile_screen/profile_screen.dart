@@ -1,5 +1,6 @@
 import 'package:doctor_help_app/VM/service/auth_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../containts/containts.dart';
 import '../../../model/user/doctor_model.dart';
 import 'component/optionProfile.dart';
@@ -16,37 +17,35 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      child: Scaffold(
-        backgroundColor: colorbg,
-        // appBar: AppBar(
-        //   title: Text('My Profile',
-        //   style: txt32w7AppBar,
-        //   ),
-        //   elevation: 0.0,
-        //   backgroundColor: colorbg,
-        // ),
-        body:Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(top: 75, left: 24),
-                child: Text('My Profile', style: txt32w7,),
-              ),
-              profileCard(user1, (){
-                showDialog(context: context, builder: (context){
-                  return alertDialog(context);
-                });
-              }, context),
-              const SizedBox(height: 30),
-           optionProfile(context, user1),
-            ],
-          ),
+    return Scaffold(
+      backgroundColor: colorbg,
+      // appBar: AppBar(
+      //   title: Text('My Profile',
+      //   style: txt32w7AppBar,
+      //   ),
+      //   elevation: 0.0,
+      //   backgroundColor: colorbg,
+      // ),
+      body:SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(top: 75.h, left: 24.w),
+              child: Text('My Profile', style: txt32w7,),
+            ),
+            profileCard(user1, (){
+              showDialog(context: context, builder: (context){
+                return alertDialog(context);
+              });
+            }, context),
+            SizedBox(height: 16.h),
+            optionProfile(context, user1),
+          ],
         ),
-        // bottomNavigationBar: BottomMenu(),
       ),
+      // bottomNavigationBar: BottomMenu(),
     );
   }
 }

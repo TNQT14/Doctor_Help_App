@@ -24,56 +24,58 @@ class HomeScreen extends StatelessWidget {
       child: Scaffold(
           resizeToAvoidBottomInset: false,
           backgroundColor: colorbg,
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 35.0, left: 15, right: 15),
-                child: rowIn4(user1.imageUrl),
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: 15.0.w, right: 15.w,top: 22.h, bottom: 11),
-                child: InputTextField(hintext: 'Search', text: search,isPrefix: true, image: iconSearch),
-              ),
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 15.0, top: 11),
-                            child: textTitle('My Appointment'),
-                          ),
-                          shadowSlideCard(
-                              context, user1.imageUrl, user1.name, user1.job),
-                        ],
-                      ),
-                      titleListNearDoc(),
-                      Column(
-                        children: [
-                          Container(
-                            margin: EdgeInsets.symmetric(vertical: 15.h),
-                            height: 124.h,
-                            child: ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                itemCount: 5,
-                                itemBuilder: (context, index) {
-                                  return doctorCard(context, user1.imageUrl,
-                                      user1.rating, user1.name, user1.job);
-                                }),
-                          ),
-                          listDisease(sick.nameDisease, sick.persion)
-                        ],
-                      )
-                    ],
-                  ),
+          body: SafeArea(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(left: 15.w, right: 15.w, top: 20.h, bottom: 22.h),
+                  child: rowIn4(user1.imageUrl),
                 ),
-              )
-            ],
+                Padding(
+                  padding: EdgeInsets.only(left: 15.0.w, right: 15.w),
+                  child: InputTextField(hintext: 'Search', text: search,isPrefix: true, image: iconSearch),
+                ),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(left: 15.0.w, top: 11.h),
+                              child: textTitle('My Appointment'),
+                            ),
+                            shadowSlideCard(
+                                context, user1.imageUrl, user1.name, user1.job),
+                          ],
+                        ),
+                        titleListNearDoc(),
+                        Column(
+                          children: [
+                            Container(
+                              margin: EdgeInsets.symmetric(vertical: 15.h),
+                              height: 124.h,
+                              child: ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: 5,
+                                  itemBuilder: (context, index) {
+                                    return doctorCard(context, user1.imageUrl,
+                                        user1.rating, user1.name, user1.job);
+                                  }),
+                            ),
+                            listDisease(sick.nameDisease, sick.persion)
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
           // bottomNavigationBar: BottomMenu(),
       ),
@@ -83,7 +85,7 @@ class HomeScreen extends StatelessWidget {
 
 Padding titleListNearDoc() {
   return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 15.0),
+    padding: EdgeInsets.symmetric(horizontal: 15.0.w),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [

@@ -14,14 +14,14 @@ Widget doctorCard(
   return backgroundDoctorCard(
       context,
       Padding(
-        padding: const EdgeInsets.only(left: 6),
+        padding: EdgeInsets.only(left: 6.w),
         child: Row(
           // crossAxisAlignment: CrossAxisAlignment.end,
           mainAxisSize: MainAxisSize.min,
           children: [
             clipRRectAvatar(72, 108, image),
-            const SizedBox(
-              width: 10,
+            SizedBox(
+              width: 10.w,
             ),
             Padding(
               padding: EdgeInsets.symmetric(vertical: 16.0.h),
@@ -34,7 +34,7 @@ Widget doctorCard(
                     style: txt16w6,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 6.0),
+                    padding: EdgeInsets.only(top: 6.0.h),
                     child: Text(job,
                         style: txt14w6!.copyWith(
                             fontWeight: FontWeight.w400,

@@ -6,9 +6,6 @@ import 'package:doctor_help_app/screen/appointment_screen/appointment_summary_sc
 import 'package:doctor_help_app/screen/appointment_screen/give_screen/give_screen.dart';
 import 'package:doctor_help_app/screen/doctor/favorite_screen.dart';
 import 'package:doctor_help_app/screen/onboarding_screen/onboarding_screen.dart';
-import 'package:doctor_help_app/screen/profile_screen/notification_screen/notification_screen.dart';
-import 'package:doctor_help_app/screen/profile_screen/personal_data_screen.dart';
-import 'package:doctor_help_app/screen/profile_screen/profile_screen.dart';
 import 'package:doctor_help_app/screen/screens.dart';
 import 'package:doctor_help_app/screen/user/login_screen/login_screen.dart';
 import 'package:doctor_help_app/screen/user/register_screen/register_screen.dart';

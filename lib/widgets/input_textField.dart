@@ -155,9 +155,9 @@ class _InputTextFieldState extends State<InputTextField> {
   }
 }
 
-Padding textTitle(String title) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(vertical: 16.0),
+Widget textTitle(String title, {bool isPadding = true}) {
+  return isPadding? Padding(
+    padding: EdgeInsets.symmetric(vertical: 16.0.h),
     child: Text(title, style: txt18w6),
-  );
+  ): Text(title, style: txt18w6);
 }
