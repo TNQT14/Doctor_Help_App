@@ -4,6 +4,7 @@ import 'package:doctor_help_app/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'components/appbar_chat.dart';
 
@@ -23,7 +24,8 @@ class ChatScreen extends StatelessWidget {
             child: Container(),
           )),
           Container(
-            height: 90,
+            height: 90.h,
+            width: MediaQuery.of(context).size.width,
             padding: EdgeInsets.only(top: 8.h),
             decoration: BoxDecoration(
                 color: Colors.white,
@@ -37,15 +39,20 @@ class ChatScreen extends StatelessWidget {
             ),
             alignment: Alignment.topCenter,
             child: Row(
-              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                IconButton(onPressed: (){}, icon: Icon(Icons.file_copy_rounded, color: Colors.grey,)),
-                Container(
+                InkWell(
+                  onTap: (){},
+                  child: SvgPicture.asset(iconFile),
+                ),
+                SizedBox(
                   width: 248.w,
-                  margin: EdgeInsets.symmetric(horizontal: 16.0.w),
                   child: InputTextField(text: mess, hintext: 'Type Message'),
                 ),
-                IconButton(onPressed: (){}, icon: Icon(CupertinoIcons.mic, color:Colors.grey,)),
+                InkWell(
+                  onTap: (){},
+                  child: SvgPicture.asset(iconMic),
+                ),
               ],
             ),
           )

@@ -46,6 +46,7 @@ dependencies:
   equatable: ^2.0.5
   cloud_firestore: ^4.8.5
   flutter_svg: ^2.0.7
+  card_swiper: ^3.0.1
 
 dev_dependencies:
   flutter_test:
