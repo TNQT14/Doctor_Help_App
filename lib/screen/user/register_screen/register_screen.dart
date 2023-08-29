@@ -1,3 +1,4 @@
+import 'package:doctor_help_app/VM/responsitory/user_responsitory.dart';
 import 'package:doctor_help_app/VM/service/auth_service.dart';
 import 'package:doctor_help_app/VM/validator.dart';
 import 'package:flutter/material.dart';
@@ -70,6 +71,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         width: double.infinity,
                         child: blueElevateButton(() {
                           if (_formKey.currentState!.validate()) {
+                           // UserResponsitory().createUserFirestore(email.text, password.text);
                             AuthService().regieterService(email.text, password.text, retypepassword.text);
                           }
                         }, 'Register'),

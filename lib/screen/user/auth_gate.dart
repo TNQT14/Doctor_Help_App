@@ -19,7 +19,7 @@ class AuthGate extends StatelessWidget {
           return NavigationMenu();
         }
         else{
-          return OnboardingScreens();
+          return LoginRegisterBackground();
         }
       },
     );

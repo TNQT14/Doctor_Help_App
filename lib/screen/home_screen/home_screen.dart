@@ -81,9 +81,9 @@ class HomeScreen extends StatelessWidget {
                                   ));
                             },
                             itemCount: listdoc.length,
-                            itemWidth: 349.w,
+                            itemWidth: double.infinity,
                             itemHeight: 131.0.h,
-                            layout: SwiperLayout.STACK,
+                            layout: SwiperLayout.TINDER,
                           )
                           // shadowSlideCard(
                           //     context, user1.imageUrl, user1.name, user1.job),

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doctor_help_app/containts/containts.dart';
 import 'package:doctor_help_app/model/user/doctor_model.dart';
 import 'package:doctor_help_app/widgets/widgets.dart';
@@ -8,10 +9,18 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'components/appbar_chat.dart';
 
-class ChatScreen extends StatelessWidget {
+class ChatScreen extends StatefulWidget {
   ChatScreen({Key? key}) : super(key: key);
   static String routeName = 'ChatScreen';
+
+  @override
+  State<ChatScreen> createState() => _ChatScreenState();
+}
+
+class _ChatScreenState extends State<ChatScreen> {
   TextEditingController mess = TextEditingController();
+
+  CollectionReference chats = FirebaseFirestore.instance.collection('chats');
 
   @override
   Widget build(BuildContext context) {
@@ -60,8 +69,6 @@ class ChatScreen extends StatelessWidget {
       ),
     );
   }
-
-
 }
 
 
