@@ -32,7 +32,8 @@ class DoctordetailScreen extends StatelessWidget {
                   ),
                   pro5DocDetail(context, user1.imageUrl, user1.rating,
                       user1.description, user1.name, user1.job,
-                  user1.review)
+                  user1.review),
+                  const SizedBox(height: 15)
                 ],
               ),
             ),

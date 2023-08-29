@@ -21,7 +21,7 @@ Row rowIn4(String image) {
         ),
       ),
       InkWell(onTap: (){},
-        child: SvgPicture.asset(iconButtonNotification,fit: BoxFit.cover,),)
+        child: SvgPicture.asset(iconButtonNotification),)
     ],
   );
 }
