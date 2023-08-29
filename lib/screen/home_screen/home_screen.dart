@@ -103,7 +103,7 @@ class HomeScreen extends StatelessWidget {
                       SizedBox(
                         height: 16.h,
                       ),
-                      listDisease(sick.nameDisease, sick.persion)
+                      listDisease()
                     ],
                   ),
                 ),

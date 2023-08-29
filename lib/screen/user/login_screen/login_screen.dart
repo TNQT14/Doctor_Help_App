@@ -1,10 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:doctor_help_app/VM/responsitory/user_responsitory.dart';
 import 'package:doctor_help_app/VM/service/auth_service.dart';
 import 'package:doctor_help_app/VM/validator.dart';
 import 'package:doctor_help_app/bloc/user/user_bloc_cubit.dart';
 import 'package:doctor_help_app/widgets/widgets.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
