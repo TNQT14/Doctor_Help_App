@@ -62,10 +62,16 @@ class AppointmentSummaryScreen extends StatelessWidget {
               ),
             ),
           )),
-          bottomCardButton(
-              bottomTitle ?? nonTitle,
-              () => Navigator.pushNamed(
-                  context, AppointmentSuccessScreen.routeName))
+          bottomTitle == "Give Your Reviews"
+              ? bottomCardButton(
+            bottomTitle ?? nonTitle,
+                () => Navigator.pushNamed(context, GiveReviewScreen.routeName),
+          )
+              : bottomCardButton(
+            bottomTitle ?? nonTitle,
+                () => Navigator.pushNamed(context, AppointmentSuccessScreen.routeName),
+          )
+
         ],
       ),
     );
@@ -82,42 +88,42 @@ Container doctorContactCard(BuildContext context, String image, String name, Str
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                clipRRectAvatar(56, 56, image),
-                SizedBox(
-                  width: 16.w,
-                ),
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                     name,
-                      style: txt16w6,
-                    ),
-                    Text(
-                      job,
-                      style: txt14w4,
-                    )
-                  ],
-                ),
-                Spacer(),
-                chat
-                    ? GestureDetector(
-                        onTap: () {},
-                        child: SizedBox(
-                          width: 25.w,
-                          height: 25.h,
-                          child: Image.asset(
-                            iconChat,
-                            color: colorKmain,
-                          ),
-                        ),
-                      )
-                    : SizedBox()
-              ],
-            ),
+            // Row(
+            //   mainAxisSize: MainAxisSize.min,
+            //   children: [
+            //     clipRRectAvatar(56, 56, image),
+            //     SizedBox(
+            //       width: 16.w,
+            //     ),
+            //     Column(
+            //       mainAxisSize: MainAxisSize.min,
+            //       children: [
+            //         Text(
+            //          name,
+            //           style: txt16w6,
+            //         ),
+            //         Text(
+            //           job,
+            //           style: txt14w4,
+            //         )
+            //       ],
+            //     ),
+            //     Spacer(),
+            //     chat
+            //         ? GestureDetector(
+            //             onTap: () {},
+            //             child: SizedBox(
+            //               width: 25.w,
+            //               height: 25.h,
+            //               child: Image.asset(
+            //                 iconChat,
+            //                 color: colorKmain,
+            //               ),
+            //             ),
+            //           )
+            //         : SizedBox()
+            //   ],
+            // ),
             ListTile(
               trailing: chat? GestureDetector(
                 onTap: ()=> Navigator.pushNamed(context, ChatScreen.routeName),
