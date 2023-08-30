@@ -84,7 +84,7 @@ Container shadowSlideCardActive(BuildContext context,
                 job,
                 trailing: GestureDetector(
                   onTap: (){
-                    Navigator.pushNamed(context, AppointmentSummaryScreen.routeName);
+                    Navigator.pushNamed(context, AppointmentSummaryScreen.routeNameDetail);
                   },
                   child: Container(
                     alignment: Alignment.center,
@@ -116,7 +116,7 @@ Widget shadowSlideCardHistory(BuildContext context,
           job,
           trailing: GestureDetector(
             onTap: (){
-              Navigator.pushNamed(context, AppointmentSummaryScreen.routeName);
+              Navigator.pushNamed(context, AppointmentSummaryScreen.routeNameDetail);
             },
             child: Container(
               alignment: Alignment.center,
