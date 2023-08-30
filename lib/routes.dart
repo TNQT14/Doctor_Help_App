@@ -30,7 +30,10 @@ final Map<String, WidgetBuilder> route ={
 
   //Appointment Screen
   AppointmentDateTimeScreen.routeName: (context)=> AppointmentDateTimeScreen(),
-  AppointmentSummaryScreen.routeName: (context)=> AppointmentSummaryScreen(),
+  AppointmentSummaryScreen.routeNameSummary: (context)=> AppointmentSummaryScreen(appBarTitle: 'Summary',
+    bottomTitle: 'Make my appointment',),
+  AppointmentSummaryScreen.routeNameDetail: (context)=> AppointmentSummaryScreen(appBarTitle: 'Detail',
+    bottomTitle: 'Give Your Reviews',),
   AppointmentSuccessScreen.routeName: (context)=> AppointmentSuccessScreen(),
   AppointmentScreen.routeName: (context)=> AppointmentScreen(),
   GiveReviewScreen.routeName: (context)=> GiveReviewScreen(),

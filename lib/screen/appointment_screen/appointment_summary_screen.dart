@@ -12,15 +12,25 @@ import 'components/cardDateTime.dart';
 import 'give_screen/give_screen.dart';
 
 class AppointmentSummaryScreen extends StatelessWidget {
-  const AppointmentSummaryScreen({Key? key}) : super(key: key);
-  static String routeName = 'AppointmentSummaryScreen';
+  String? appBarTitle;
+  String? bottomTitle;
+  AppointmentSummaryScreen({Key? key,
+    required String appBarTitle,
+    required String bottomTitle}): super(key: key){
+    this.appBarTitle = appBarTitle;
+    this.bottomTitle = bottomTitle;
+  }
+  static String routeNameSummary = 'AppointmentSummaryScreen';
+  static String routeNameDetail = 'AppointmentDetailScreen';
+
 
   @override
   Widget build(BuildContext context) {
+    String nonTitle = "Thiếu param";
     return Scaffold(
       appBar: appbarCustom(context,
           title: Text(
-            'Summary',
+            appBarTitle ?? nonTitle,
             style: txt16w6!.copyWith(color: Colors.black),
           )),
       body: Column(
@@ -52,10 +62,16 @@ class AppointmentSummaryScreen extends StatelessWidget {
               ),
             ),
           )),
-          bottomCardButton(
-              'Make my appointment',
-              () => Navigator.pushNamed(
-                  context, AppointmentSuccessScreen.routeName))
+          bottomTitle == "Give Your Reviews"
+              ? bottomCardButton(
+            bottomTitle ?? nonTitle,
+                () => Navigator.pushNamed(context, GiveReviewScreen.routeName),
+          )
+              : bottomCardButton(
+            bottomTitle ?? nonTitle,
+                () => Navigator.pushNamed(context, AppointmentSuccessScreen.routeName),
+          )
+
         ],
       ),
     );
@@ -72,57 +88,57 @@ Container doctorContactCard(BuildContext context, String image, String name, Str
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                clipRRectAvatar(56, 56, image),
-                SizedBox(
-                  width: 16.w,
-                ),
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                     name,
-                      style: txt16w6,
-                    ),
-                    Text(
-                      job,
-                      style: txt14w4,
-                    )
-                  ],
-                ),
-                Spacer(),
-                chat
-                    ? GestureDetector(
-                        onTap: () {},
-                        child: SizedBox(
-                          width: 25.w,
-                          height: 25.h,
-                          child: Image.asset(
-                            iconChat,
-                            color: colorKmain,
-                          ),
-                        ),
-                      )
-                    : SizedBox()
-              ],
-            ),
-            // ListTile(
-            //   trailing: chat? GestureDetector(
-            //     onTap: ()=> Navigator.pushNamed(context, ChatScreen.routeName),
-            //     child:
-            //     //Icon(CupertinoIcons.chat_bubble_text, color: Colors.blue,)
-            //     Container(
-            //       margin: EdgeInsets.only(right: 5.w),
-            //       width: 25.w, height: 25.h, child: Image.asset(iconChat, color: colorKmain,),),
-            //   ) : SizedBox(),
-            //   title: Text(user1.name, style: txt16w6,),
-            //   subtitle: Text(user1.job, style: txt14w4,),
-            //   contentPadding: EdgeInsetsDirectional.zero,
-            //   leading: clipRRectAvatar(56, 56, user1.imageUrl),
-            //   onTap: ()=>Navigator.pushNamed(context, GiveReviewScreen.routeName),
+            // Row(
+            //   mainAxisSize: MainAxisSize.min,
+            //   children: [
+            //     clipRRectAvatar(56, 56, image),
+            //     SizedBox(
+            //       width: 16.w,
+            //     ),
+            //     Column(
+            //       mainAxisSize: MainAxisSize.min,
+            //       children: [
+            //         Text(
+            //          name,
+            //           style: txt16w6,
+            //         ),
+            //         Text(
+            //           job,
+            //           style: txt14w4,
+            //         )
+            //       ],
+            //     ),
+            //     Spacer(),
+            //     chat
+            //         ? GestureDetector(
+            //             onTap: () {},
+            //             child: SizedBox(
+            //               width: 25.w,
+            //               height: 25.h,
+            //               child: Image.asset(
+            //                 iconChat,
+            //                 color: colorKmain,
+            //               ),
+            //             ),
+            //           )
+            //         : SizedBox()
+            //   ],
             // ),
+            ListTile(
+              trailing: chat? GestureDetector(
+                onTap: ()=> Navigator.pushNamed(context, ChatScreen.routeName),
+                child:
+                //Icon(CupertinoIcons.chat_bubble_text, color: Colors.blue,)
+                Container(
+                  margin: EdgeInsets.only(right: 5.w),
+                  width: 25.w, height: 25.h, child: Image.asset(iconChat, color: colorKmain,),),
+              ) : SizedBox(),
+              title: Text(user1.name, style: txt16w6,),
+              subtitle: Text(user1.job, style: txt14w4,),
+              contentPadding: EdgeInsetsDirectional.zero,
+              leading: clipRRectAvatar(56, 56, user1.imageUrl),
+              onTap: ()=>Navigator.pushNamed(context, GiveReviewScreen.routeName),
+            ),
             Divider(
               thickness: 1,
               height: 0,

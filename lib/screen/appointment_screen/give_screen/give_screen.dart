@@ -41,7 +41,7 @@ class _GiveReviewScreenState extends State<GiveReviewScreen> {
             ),
         ),
       ),
-      bottomNavigationBar: bottomCardButton('Give Your Reiviews', () {}),
+      bottomNavigationBar: bottomCardButton('Give Your Reviews', () {}),
       );
   }
 }
