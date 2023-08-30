@@ -11,13 +11,13 @@ Container shadowSlideCard(BuildContext context,
     String name,
     String job) {
   return Container(
-    margin: EdgeInsets.symmetric(horizontal: 13),
-    height: 147,
+    margin: EdgeInsets.symmetric(horizontal: 13.w),
+    height: 147.h,
     width: MediaQuery.of(context).size.width,
     child: Stack(
       children: [
         Positioned(
-          bottom: 0,
+          top: 20.h,
           left: 30.w,
           child: Container(
             width: 293.w,
@@ -28,7 +28,7 @@ Container shadowSlideCard(BuildContext context,
           ),
         ),
         Positioned(
-          bottom: 10.h,
+          top: 12.h,
           left: 11.w,
           child: Container(
             width: 329.w,
@@ -39,7 +39,9 @@ Container shadowSlideCard(BuildContext context,
           ),
         ),
         Positioned(
-            child: containerCardDoc(context,
+          top: 0,
+            child:
+            containerCardDoc(context,
                 image,
                 name,
                 job,
@@ -53,26 +55,30 @@ Container shadowSlideCard(BuildContext context,
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(6)
                     ),
-                    width: 40,
-                    height: 40,
+                    width: 40.w,
+                    height: 40.h,
                     child: Icon(Icons.arrow_forward_ios_rounded, color: colorKmain, size: 18),
                   ),
                 )
-            ))
+            )
+        )
       ],
     ),
   );
 }
+
+
 
 Container shadowSlideCardActive(BuildContext context,
     String image,
     String name,
     String job) {
   return Container(
-      margin: EdgeInsets.symmetric(horizontal: 13),
-      height: 147,
+      margin: EdgeInsets.symmetric(horizontal: 13.w),
+      height: 131.h,
       width: MediaQuery.of(context).size.width,
-      child:containerCardDoc(context,
+      child:
+      containerCardDoc(context,
                 image,
                 name,
                 job,
@@ -86,8 +92,8 @@ Container shadowSlideCardActive(BuildContext context,
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(6)
                     ),
-                    width: 40,
-                    height: 40,
+                    width: 40.h,
+                    height: 40.h,
                     child: Icon(Icons.arrow_forward_ios_rounded,
                         color: colorKmain, size: 18),
                   ),
@@ -102,7 +108,7 @@ Widget shadowSlideCardHistory(BuildContext context,
     String job) {
   return Container(
       margin: EdgeInsets.symmetric(horizontal: 13),
-      height: 147,
+      height: 131.h,
       width: MediaQuery.of(context).size.width,
       child:containerCardDocHistory(context,
           image,
@@ -118,8 +124,8 @@ Widget shadowSlideCardHistory(BuildContext context,
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(6)
               ),
-              width: 40,
-              height: 40,
+              width: 40.w,
+              height: 40.h,
               child: Icon(Icons.arrow_forward_ios_rounded,
                   color: colorKmain, size: 18),
             ),

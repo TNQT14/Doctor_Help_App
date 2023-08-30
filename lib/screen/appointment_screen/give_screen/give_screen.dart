@@ -8,7 +8,7 @@ import '../../../widgets/bottomCardButton.dart';
 import '../../../widgets/btnOption.dart';
 import '../../../widgets/input_textField.dart';
 import '../../../widgets/ratingBarWidget.dart';
-import '../../profile_screen/component/backgroundEditAvataCard.dart';
+import '../../user/profile_screen/component/backgroundEditAvataCard.dart';
 
 class GiveReviewScreen extends StatefulWidget {
   const GiveReviewScreen({super.key});

@@ -33,7 +33,7 @@ class LoginRegisterBackground extends StatelessWidget {
                         children: [
                           Container(
                             height: 36.h,
-                            width: 170.w,
+                            width: 195.w,
                             margin: EdgeInsets.only(left: 20.w, top: 12.h),
                             child: TabBar(
                               dividerColor:Colors.transparent,

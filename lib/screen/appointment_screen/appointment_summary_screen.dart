@@ -10,6 +10,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'appointment_success_screen.dart';
 import 'components/cardDateTime.dart';
 import 'give_screen/give_screen.dart';
+
 class AppointmentSummaryScreen extends StatelessWidget {
   const AppointmentSummaryScreen({Key? key}) : super(key: key);
   static String routeName = 'AppointmentSummaryScreen';
@@ -17,11 +18,16 @@ class AppointmentSummaryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appbarCustom(context, title: Text('Summary', style: txt16w6!.copyWith(color: Colors.black),)),
+      appBar: appbarCustom(context,
+          title: Text(
+            'Summary',
+            style: txt16w6!.copyWith(color: Colors.black),
+          )),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Expanded(child: Padding(
+          Expanded(
+              child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 13),
             child: SingleChildScrollView(
               child: Column(
@@ -30,49 +36,101 @@ class AppointmentSummaryScreen extends StatelessWidget {
                   textTitle('Consultation Schedule'),
                   cardDateTime(),
                   textTitle('Doctor Information'),
-                  doctorContactCard(context, chat: true,),
+                  doctorContactCard(
+                    context,
+                    user1.imageUrl,
+                    user1.name,
+                    user1.job,
+                    chat: true,
+                  ),
                   textTitle('Patient Information'),
-                  doctorContactCard(context),
-                  const SizedBox(height: 20,)
+                  doctorContactCard(context, user1.imageUrl,  user1.name,  user1.job),
+                  const SizedBox(
+                    height: 20,
+                  )
                 ],
               ),
             ),
           )),
-          bottomCardButton('Make my appointment', () => Navigator.pushNamed(context, AppointmentSuccessScreen.routeName))
+          bottomCardButton(
+              'Make my appointment',
+              () => Navigator.pushNamed(
+                  context, AppointmentSuccessScreen.routeName))
         ],
       ),
     );
   }
 }
 
-Container doctorContactCard(BuildContext context, {bool chat = false}) {
-  return backgroundDoctorCard(context, Padding(
-    padding: const EdgeInsets.only(top: 8 ,bottom: 16, left: 16, right: 16),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        ListTile(
-          trailing: chat? GestureDetector(
-            onTap: ()=> Navigator.pushNamed(context, ChatScreen.routeName),
-            child:
-            //Icon(CupertinoIcons.chat_bubble_text, color: Colors.blue,)
-            Container(
-              margin: EdgeInsets.only(right: 5.w),
-              width: 25.w, height: 25.h, child: Image.asset(iconChat, color: colorKmain,),),
-          ) : SizedBox(),
-          title: Text(user1.name, style: txt16w6,),
-          subtitle: Text(user1.job, style: txt14w4,),
-          contentPadding: EdgeInsetsDirectional.zero,
-          leading: clipRRectAvatar(56, 56, user1.imageUrl),
-          onTap: ()=>Navigator.pushNamed(context, GiveReviewScreen.routeName),
+Container doctorContactCard(BuildContext context, String image, String name, String job,
+    {bool chat = false}) {
+  return backgroundDoctorCard(
+      context,
+      Padding(
+        padding: EdgeInsets.only(left: 16.w, right: 16.w),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                clipRRectAvatar(56, 56, image),
+                SizedBox(
+                  width: 16.w,
+                ),
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                     name,
+                      style: txt16w6,
+                    ),
+                    Text(
+                      job,
+                      style: txt14w4,
+                    )
+                  ],
+                ),
+                Spacer(),
+                chat
+                    ? GestureDetector(
+                        onTap: () {},
+                        child: SizedBox(
+                          width: 25.w,
+                          height: 25.h,
+                          child: Image.asset(
+                            iconChat,
+                            color: colorKmain,
+                          ),
+                        ),
+                      )
+                    : SizedBox()
+              ],
+            ),
+            // ListTile(
+            //   trailing: chat? GestureDetector(
+            //     onTap: ()=> Navigator.pushNamed(context, ChatScreen.routeName),
+            //     child:
+            //     //Icon(CupertinoIcons.chat_bubble_text, color: Colors.blue,)
+            //     Container(
+            //       margin: EdgeInsets.only(right: 5.w),
+            //       width: 25.w, height: 25.h, child: Image.asset(iconChat, color: colorKmain,),),
+            //   ) : SizedBox(),
+            //   title: Text(user1.name, style: txt16w6,),
+            //   subtitle: Text(user1.job, style: txt14w4,),
+            //   contentPadding: EdgeInsetsDirectional.zero,
+            //   leading: clipRRectAvatar(56, 56, user1.imageUrl),
+            //   onTap: ()=>Navigator.pushNamed(context, GiveReviewScreen.routeName),
+            // ),
+            Divider(
+              thickness: 1,
+              height: 0,
+            ),
+            iconIn4(Icons.phone, Colors.blue, 'Phone', user1.phone),
+            iconIn4(Icons.mail, Colors.red, 'Email', user1.email)
+          ],
         ),
-        Divider(thickness: 1, height: 10,),
-        Padding(
-          padding: EdgeInsets.only(bottom: 16.0.h, top: 11.h),
-          child: iconIn4(Icons.phone, Colors.blue, 'Phone', user1.phone),
-        ),
-        iconIn4(Icons.mail, Colors.red, 'Email', user1.email)
-      ],
-    ),
-  ), height: 222.h);
+      ),
+      height: 222.h);
 }

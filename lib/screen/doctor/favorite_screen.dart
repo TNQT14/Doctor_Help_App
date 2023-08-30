@@ -27,7 +27,7 @@ class _FavoriteScreen extends State<FavoriteScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.only(top: 75, left: 24),
+                padding: EdgeInsets.only(top: 75.h, left: 24.w),
                 child: Text('My Doctor', style: txt32w7,),
               ),
               Expanded(

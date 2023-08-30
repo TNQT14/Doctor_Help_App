@@ -5,23 +5,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../containts/containts.dart';
 import '../../../../widgets/widgets.dart';
 
-Expanded pro5DocDetail(BuildContext context,
-    String image,
-    double rating,
-    String description,
-    String name,
-    String job,
-    String review) {
+Expanded pro5DocDetail(BuildContext context, String image, double rating,
+    String description, String name, String job, String review) {
   return Expanded(
     child: SingleChildScrollView(
         child: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 13.0),
+      padding: EdgeInsets.symmetric(horizontal: 13.0.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          textTitle('Profile Doctor'),
+          SizedBox(height: 8.h,),
+          textTitle('Profile Doctor', isPadding: false),
           Padding(
-            padding: const EdgeInsets.only(bottom: 8),
+            padding: EdgeInsets.only(bottom: 8.h),
             child: TextExpanded(
               text: description,
             ),
@@ -51,13 +47,11 @@ Expanded pro5DocDetail(BuildContext context,
           backgroundDoctorCard(
               context,
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                padding:
+                    EdgeInsets.only(left: 16.0.w, right: 16.w, bottom: 5.h),
                 child: reviewsCard(image, rating, name, job, review),
               ),
               height: 117.h),
-          SizedBox(
-            height: 130,
-          )
         ],
       ),
     )),
@@ -67,27 +61,44 @@ Expanded pro5DocDetail(BuildContext context,
 Column reviewsCard(
     String image, double rating, String name, String job, String review) {
   return Column(
+    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
     crossAxisAlignment: CrossAxisAlignment.start,
     mainAxisSize: MainAxisSize.min,
     children: [
-      ListTile(
-        trailing: ratingStar(rating),
-        title: Text(
-          name ?? '',
-          style: txt16w6,
-        ),
-        subtitle: Text(
-          job ?? '',
-          style: txt14w4,
-        ),
-        contentPadding: EdgeInsetsDirectional.zero,
-        leading: clipRRectAvatar(48, 48, image),
+      Row(
+        children: [
+          clipRRectAvatar(48, 48, image),
+          SizedBox(width: 9.w,),
+          Column(
+            children: [
+              Text(
+                name ?? '',
+                style: txt16w6,
+              ),
+              Text(
+                job ?? '',
+                style: txt14w4,
+              ),
+            ],
+          ),
+          Spacer(),
+          ratingStar(rating)
+        ],
       ),
-      Spacer(),
-      Padding(
-        padding: const EdgeInsets.only(bottom: 16.0),
-        child: Text(review ?? ''),
-      ),
+      // ListTile(
+      //   trailing: ratingStar(rating),
+      //   title: Text(
+      //     name ?? '',
+      //     style: txt16w6,
+      //   ),
+      //   subtitle: Text(
+      //     job ?? '',
+      //     style: txt14w4,
+      //   ),
+      //   contentPadding: EdgeInsetsDirectional.zero,
+      //   leading: clipRRectAvatar(48, 48, image),
+      // ),
+      Text(review ?? '')
     ],
   );
 }

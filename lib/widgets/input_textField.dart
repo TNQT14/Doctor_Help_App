@@ -109,10 +109,10 @@ class _InputTextFieldState extends State<InputTextField> {
           filled: true,
           hintText: widget.hintext,
           hintStyle: txt16w4!.copyWith(color: Colors.grey.shade400),
-          contentPadding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10),
+          contentPadding: EdgeInsets.symmetric(horizontal: 10.w),
           prefixIcon: widget.isPrefix
               ? Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  padding: EdgeInsets.symmetric(horizontal: 10.0.w),
                   child: Image.asset(
                     (widget.image == null || widget.image == '')
                         ? imageCat
@@ -155,9 +155,9 @@ class _InputTextFieldState extends State<InputTextField> {
   }
 }
 
-Padding textTitle(String title) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(vertical: 16.0),
+Widget textTitle(String title, {bool isPadding = true}) {
+  return isPadding? Padding(
+    padding: EdgeInsets.symmetric(vertical: 16.0.h),
     child: Text(title, style: txt18w6),
-  );
+  ): Text(title, style: txt18w6);
 }
