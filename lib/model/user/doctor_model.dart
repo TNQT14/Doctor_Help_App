@@ -48,3 +48,55 @@ final DotorModel user1 = DotorModel(
     experience: '3 years',
     review: 'i feel like meow meow meow'
 );
+
+//List
+final List<DotorModel> listdoc =[
+  DotorModel(
+      name: 'Meow 1',
+      imageUrl: imageCat2,
+      email: 'Meow@gmail.com',
+      phone: 0123456799,
+      birthDay:  DateTime.parse('1969-07-20'),
+      rating: 3.5,
+      description: txt,
+      job: 'kêu meow meow',
+      experience: '3 years',
+      review: 'i feel like meow meow meow'
+  ),
+  DotorModel(
+      name: 'Meow 2',
+      imageUrl: imageCat2,
+      email: 'Meow@gmail.com',
+      phone: 0123456799,
+      birthDay:  DateTime.parse('1969-07-20'),
+      rating: 3.5,
+      description: txt,
+      job: 'just meow meow like meo1',
+      experience: '3 years',
+      review: 'i feel like meow meow meow'
+  ),
+  DotorModel(
+      name: 'Meow Cale',
+      imageUrl: imageCale,
+      email: 'Meow@gmail.com',
+      phone: 0123456799,
+      birthDay:  DateTime.parse('1969-07-20'),
+      rating: 3.5,
+      description: txt,
+      job: 'đẹp trai',
+      experience: '3 years',
+      review: 'i feel like meow meow meow'
+  ),
+  DotorModel(
+      name: 'Meow Cale cưng vcl',
+      imageUrl: imageCale2,
+      email: 'Meow@gmail.com',
+      phone: 0123456799,
+      birthDay:  DateTime.parse('1969-07-20'),
+      rating: 3.5,
+      description: txt,
+      job: 'trai đẹp',
+      experience: '3 years',
+      review: 'i feel like meow meow meow'
+  )
+];

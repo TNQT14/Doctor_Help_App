@@ -70,6 +70,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         width: double.infinity,
                         child: blueElevateButton(() {
                           if (_formKey.currentState!.validate()) {
+                           // UserResponsitory().createUserFirestore(email.text, password.text);
                             AuthService().regieterService(email.text, password.text, retypepassword.text);
                           }
                         }, 'Register'),

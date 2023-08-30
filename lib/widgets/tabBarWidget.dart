@@ -12,7 +12,7 @@ DefaultTabController tabBarWidget(String? title1, String? title2,
       children: [
         Container(
           height: 36.h,
-          width: 170.w,
+          width: 180.w,
           margin: EdgeInsets.only(left: 20),
           child: TabBar(
             dividerColor:Colors.transparent,

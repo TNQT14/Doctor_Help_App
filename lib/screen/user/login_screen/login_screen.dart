@@ -48,19 +48,22 @@ class _LoginScreenState extends State<LoginScreen> {
                   key: _formKey,
                   child: Column(
                     children: [
-                      InputTextField(hintext: 'Email', text: email,
-                          validator: (value)=>validate.validatorEmail(value),
-                          isPrefix: true, image: iconMail),
+                      InputTextField(
+                          hintext: 'Email',
+                          text: email,
+                          validator: (value) => validate.validatorEmail(value),
+                          isPrefix: true,
+                          image: iconMail),
                       const SizedBox(
                         height: 16,
                       ),
                       InputTextField(
-                       hintext: 'Password',
+                        hintext: 'Password',
                         text: password,
                         isPrefix: true,
                         image: iconKey,
                         isHideText: true,
-                        validator: (value)=>validate.validatorPassword(value),
+                        validator: (value) => validate.validatorPassword(value),
                       ),
                       Padding(
                         padding: EdgeInsets.only(top: 16.h, bottom: 32.h),
@@ -79,17 +82,21 @@ class _LoginScreenState extends State<LoginScreen> {
                           ],
                         ),
                       ),
-                      BlocBuilder<UserBlocCubit, UserBlocState>(builder: (context, state){
-                        if(state is LoginLoading && state.isLoading==true){
-                          return Center(child: CircularProgressIndicator(),);
+                      BlocBuilder<UserBlocCubit, UserBlocState>(
+                          builder: (context, state) {
+                        if (state is LoginLoading && state.isLoading == true) {
+                          return Center(
+                            child: CircularProgressIndicator(),
+                          );
                         }
                         return SizedBox(
                           width: double.infinity,
                           child: blueElevateButton(() {
-                            if(_formKey.currentState!.validate()){
+                            if (_formKey.currentState!.validate()) {
                               // AuthService().loginService(email.text, password.text);
                               // Navigator.pushNamed(context, NavigationMenu.routeName);
-                              widget._userCubit.loginCubit(context, email.text, password.text);
+                             widget._userCubit.loginCubit(context, email.text, password.text);
+                            //  UserResponsitory().createUserFirestore(email.text, password.text);
                             }
                           }, 'Login'),
                         );
@@ -112,7 +119,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                   iconFacebook,
                                 ),
                               ),
-                                  () => Navigator.pushNamed(context, NavigationMenu.routeName)),
+                              () => Navigator.pushNamed(
+                                  context, NavigationMenu.routeName)),
                           const SizedBox(
                             width: 24,
                           ),
@@ -121,7 +129,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 padding: EdgeInsets.symmetric(vertical: 15.h),
                                 child: Image.asset(iconGooglePlus),
                               ),
-                                  () => Navigator.pushNamed(context, NavigationMenu.routeName))
+                              () => Navigator.pushNamed(
+                                  context, NavigationMenu.routeName))
                         ],
                       )
                     ],

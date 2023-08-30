@@ -1,3 +1,4 @@
+import 'package:card_swiper/card_swiper.dart';
 import 'package:doctor_help_app/model/disease/disease_model.dart';
 import 'package:doctor_help_app/screen/screens.dart';
 import 'package:flutter/material.dart';
@@ -20,21 +21,27 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => unfocusKeyboard(context),
+      onTap: () => unfocusKeyboard(),
       child: Scaffold(
-          resizeToAvoidBottomInset: false,
-          backgroundColor: colorbg,
-          body: Column(
+        resizeToAvoidBottomInset: false,
+        backgroundColor: colorbg,
+        body: SafeArea(
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 35.0, left: 15, right: 15),
+                padding: EdgeInsets.only(
+                    left: 15.w, right: 15.w, top: 20.h, bottom: 20.h),
                 child: rowIn4(user1.imageUrl),
               ),
               Padding(
-                padding: EdgeInsets.only(left: 15.0.w, right: 15.w,top: 22.h, bottom: 11),
-                child: InputTextField(hintext: 'Search', text: search,isPrefix: true, image: iconSearch),
+                padding:
+                    EdgeInsets.only(left: 15.0.w, right: 15.w, bottom: 8.h),
+                child: InputTextField(
+                    hintext: 'Search',
+                    text: search,
+                    isPrefix: true,
+                    image: iconSearch),
               ),
               Expanded(
                 child: SingleChildScrollView(
@@ -46,37 +53,65 @@ class HomeScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(left: 15.0, top: 11),
+                            padding: EdgeInsets.only(left: 15.0.w),
                             child: textTitle('My Appointment'),
                           ),
-                          shadowSlideCard(
-                              context, user1.imageUrl, user1.name, user1.job),
+                          Swiper(
+                            itemBuilder: (BuildContext context, int index) {
+                              return containerCardDoc(context, listdoc[index].imageUrl,
+                                  listdoc[index].name, listdoc[index].job,
+                                  trailing: GestureDetector(
+                                    onTap: () {
+                                      Navigator.pushNamed(context,
+                                          DoctordetailScreen.routeName);
+                                    },
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                          BorderRadius.circular(6)),
+                                      width: 40.w,
+                                      height: 40.h,
+                                      child: Icon(
+                                          Icons.arrow_forward_ios_rounded,
+                                          color: colorKmain,
+                                          size: 18),
+                                    ),
+                                  ));
+                            },
+                            itemCount: listdoc.length,
+                            itemWidth: double.infinity,
+                            itemHeight: 131.0.h,
+                            layout: SwiperLayout.TINDER,
+                          )
+                          // shadowSlideCard(
+                          //     context, user1.imageUrl, user1.name, user1.job),
                         ],
                       ),
                       titleListNearDoc(),
-                      Column(
-                        children: [
-                          Container(
-                            margin: EdgeInsets.symmetric(vertical: 15.h),
-                            height: 124.h,
-                            child: ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                itemCount: 5,
-                                itemBuilder: (context, index) {
-                                  return doctorCard(context, user1.imageUrl,
-                                      user1.rating, user1.name, user1.job);
-                                }),
-                          ),
-                          listDisease(sick.nameDisease, sick.persion)
-                        ],
-                      )
+                      Container(
+                        height: 124.h,
+                        child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: 5,
+                            itemBuilder: (context, index) {
+                              return doctorCard(context, user1.imageUrl,
+                                  user1.rating, user1.name, user1.job);
+                            }),
+                      ),
+                      SizedBox(
+                        height: 16.h,
+                      ),
+                      listDisease()
                     ],
                   ),
                 ),
               )
             ],
           ),
-          // bottomNavigationBar: BottomMenu(),
+        ),
+        // bottomNavigationBar: BottomMenu(),
       ),
     );
   }
@@ -84,7 +119,7 @@ class HomeScreen extends StatelessWidget {
 
 Padding titleListNearDoc() {
   return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 15.0),
+    padding: EdgeInsets.symmetric(horizontal: 15.0.w),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [

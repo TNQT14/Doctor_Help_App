@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../containts/containts.dart';
-import '../screen/profile_screen/notification_screen/notification_screen.dart';
 import 'clipRRectAvatar.dart';
 
 ///name: phải truyền vào dưới dạng list
@@ -49,25 +48,28 @@ InkWell cardMess(BuildContext context, String name, String image, String text) {
   return InkWell(
     onTap: ()=>Navigator.pushNamed(context, ChatScreen.routeName),
     child: Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16.5),
+      padding: EdgeInsets.symmetric(vertical: 16.h),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          clipRRectAvatar(48, 48, image),
-          SizedBox(width: 15,),
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 8.0),
-                  child: Text(name, style: txt16w6,),
-                ),
-                Text((text.length>23)? '${ text.substring(0, 25)}...' : text, style: txt14w4,)
-              ],
-            ),
+          Row(
+            children: [
+              clipRRectAvatar(48, 48, image),
+              SizedBox(width: 15,),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: Text(name, style: txt16w6,),
+                  ),
+                  Text((text.length>23)? '${ text.substring(0, 15)}...' : text, style: txt14w4,)
+                ],
+              ),
+            ],
           ),
-          Padding(padding: const EdgeInsets.symmetric(horizontal: 16),
+          Padding(padding: EdgeInsets.symmetric(horizontal: 16.w),
             child: Text('12:54 PM', style: txt12w5!.copyWith(color: Colors.grey)),)
         ],
       ),

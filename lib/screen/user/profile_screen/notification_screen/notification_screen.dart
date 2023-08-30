@@ -1,9 +1,9 @@
 import 'package:doctor_help_app/containts/containts.dart';
 import 'package:flutter/material.dart';
+import 'package:doctor_help_app/screen/screens.dart';
 
-import '../../../model/user/doctor_model.dart';
-import '../../../widgets/listWithDelete.dart';
-import '../../chat_screen/components/appbar_chat.dart';
+import '../../../../model/user/doctor_model.dart';
+import '../../../../widgets/widgets.dart';
 
 class NotificationScreen extends StatefulWidget {
   const NotificationScreen({super.key});

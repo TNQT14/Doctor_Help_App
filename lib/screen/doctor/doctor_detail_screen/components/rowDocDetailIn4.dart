@@ -13,21 +13,19 @@ Container rowDocDetailIn4(String image, String name, String job) {
       // crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         clipRRectAvatar(108, 162, image),
-        const SizedBox(width: 20,),
+        SizedBox(width: 20.w,),
         Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: 6.0),
-              child: Text(name??'', style: txt18w7),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(name??'', style: txt18w7),
+                Text(job??'', style: txt14w6!.copyWith(fontWeight: FontWeight.w500),),
+              ],
             ),
-            Text(job??'', style: txt14w6!.copyWith(fontWeight: FontWeight.w500),),
-            Spacer(),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 15.0),
-              child: iconIn4(Icons.star, Colors.yellow, 'Rating', user1.rating, rates: 5400, index: true),
-            ),
+            iconIn4(Icons.star, Colors.yellow, 'Rating', user1.rating, rates: 5400, index: true),
             iconIn4(Icons.work, Colors.blue, 'Experience', user1.experience)
           ],
         )

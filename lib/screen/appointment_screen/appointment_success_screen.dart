@@ -25,10 +25,10 @@ class AppointmentSuccessScreen extends StatelessWidget {
                       // child: Lottie.asset(iconCheckSc, fit: BoxFit.cover)
                     ),
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 80.5.w, vertical: 25),
+                      padding: EdgeInsets.symmetric(horizontal: 80.5.w, vertical: 25.h),
                       child: Text(
                         'Appointment Booked',
-                        style: txt32w7!.copyWith(height: 1.5),
+                        style: txt32w7!.copyWith(height: 1.5.h),
                         textAlign: TextAlign.center,
                         ),
                       ),

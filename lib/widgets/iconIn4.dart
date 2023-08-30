@@ -11,7 +11,7 @@ Row iconIn4(IconData iconData, Color color, title, var in4, {bool index = false,
       Container(
         height: 36.h,
         width: 36.w,
-        margin:const EdgeInsets.only(right: 10),
+        margin: EdgeInsets.only(right: 10.w),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(6),

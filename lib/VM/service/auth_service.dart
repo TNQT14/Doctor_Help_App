@@ -1,15 +1,21 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doctor_help_app/widgets/widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _fireStore = FirebaseFirestore.instance;
 
   //login
   Future<UserCredential> loginService(String email, String password) async {
     try {
       UserCredential userCredential = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
+      await _fireStore.collection('User').doc(userCredential.user!.uid).set({
+        'userID':userCredential.user!.uid,
+        'email': email,
+      }, SetOptions(merge: true));
       // showFlutterToastMessage('Đăng nhập thành công');
      // print('userCredential: $userCredential');
       return userCredential;
@@ -26,6 +32,10 @@ class AuthService {
     try{
       if(retypePassword==password){
         UserCredential userCredential = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+        await _fireStore.collection('User').doc(userCredential.user!.uid).set({
+          'userID':userCredential.user!.uid,
+          'email': email,
+        });
         showFlutterToastMessage('Tạo tài khoản thành công');
 
         return userCredential;
@@ -40,6 +50,8 @@ class AuthService {
       return null;
     }
   }
+
+
 //log out
 Future logoutService(BuildContext context) async{
     try{

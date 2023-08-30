@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../containts/containts.dart';
 import '../../../widgets/widgets.dart';
@@ -20,26 +21,7 @@ Row rowIn4(String image) {
         ),
       ),
       InkWell(onTap: (){},
-        child: Container(
-          // margin: EdgeInsets.symmetric(horizontal: 15),
-          padding: EdgeInsets.all(4),
-          decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(8),
-              boxShadow: [
-                BoxShadow(
-                    color: Colors.grey.shade200,
-                    blurRadius: 5,
-                    spreadRadius: 3
-                )
-              ]
-          ),
-          width: 32.w,
-          height: 32.h,
-          child: Image.asset(iconNotification, color: colorKmain,
-            width: 16.w,
-            height: 18.h,),
-        ),)
+        child: SvgPicture.asset(iconButtonNotification),)
     ],
   );
 }
