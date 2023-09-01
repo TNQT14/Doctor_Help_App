@@ -6,7 +6,7 @@ import '../../../../model/user/doctor_model.dart';
 import '../../../../widgets/clipRRectAvatar.dart';
 
 Widget profileCard(
-    DotorModel user,
+    DoctorModel user,
     Function()? ontap,
     BuildContext context,
     ){
