@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:doctor_help_app/containts/add_images.dart';
 
 import 'package:doctor_help_app/screen/screens.dart';
@@ -34,6 +36,37 @@ class DoctorModel {
       required this.job,
         required this.experience,
         required this.review,});
+
+  factory DoctorModel.fromJson(Map<String, dynamic> json){
+  return DoctorModel(
+  name: json['name'] as String,
+  imageUrl: json['imageUrl'] as String,
+  email: json['email'] as String,
+  phone: json['phone'] as int,
+  rating: json['rating'] as double,
+  description: json['description'] as String,
+  birthDay: json['birthDay'] as DateTime,
+  job: json['job'] as String,
+  experience: json['experience'] as String,
+  review: json['review'] as String);
+  }
+
+  Map<String, dynamic> toJson(){
+    return {
+      'name': name,
+      'imageUrl': imageUrl,
+      'email': email,
+      'phone': phone,
+      'rating': rating,
+      'description': description,
+      'birthDay': birthDay,
+      'job': job,
+      'experience': experience,
+      'review': review,
+    };
+  }
+
+
 }
 
 final DoctorModel user1 = DoctorModel(
@@ -48,6 +81,7 @@ final DoctorModel user1 = DoctorModel(
     experience: '3 years',
     review: 'i feel like meow meow meow'
 );
+
 
 //List
 final List<DoctorModel> listdoc =[
@@ -100,3 +134,5 @@ final List<DoctorModel> listdoc =[
       review: 'i feel like meow meow meow'
   )
 ];
+
+
