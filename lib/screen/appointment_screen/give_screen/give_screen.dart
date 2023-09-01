@@ -48,7 +48,7 @@ class _GiveReviewScreenState extends State<GiveReviewScreen> {
 
 Widget ratingReview(
     BuildContext context,
-    DotorModel doctor,
+    DoctorModel doctor,
     TextEditingController placholder,
     ){
   return Container(
@@ -95,7 +95,7 @@ Widget ratingReview(
   );
 }
 
-Widget personalDoctor(DotorModel doctor){
+Widget personalDoctor(DoctorModel doctor){
   return Container(
     child: Column(
       children: <Widget>[

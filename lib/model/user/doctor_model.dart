@@ -8,7 +8,7 @@ String txt = 'From commuter to operational, hobby to heavy duty tasks,'
     ' full interior shampoo & cleaning, addressing the dashboard and door panels, and cleaning glass,'
     ' inside and out, paint touch-ups, and more, Dr. Detail offers excellence in service.';
 
-class DotorModel {
+class DoctorModel {
   String name;
   String email;
   int phone;
@@ -21,7 +21,7 @@ class DotorModel {
   String experience;
   String review;
 
-  DotorModel(
+  DoctorModel(
       {
         required this.name,
       required this.imageUrl,
@@ -36,7 +36,7 @@ class DotorModel {
         required this.review,});
 }
 
-final DotorModel user1 = DotorModel(
+final DoctorModel user1 = DoctorModel(
     name: 'Meow Meow',
     imageUrl: imageCat2,
     email: 'Meow@gmail.com',
@@ -50,8 +50,8 @@ final DotorModel user1 = DotorModel(
 );
 
 //List
-final List<DotorModel> listdoc =[
-  DotorModel(
+final List<DoctorModel> listdoc =[
+  DoctorModel(
       name: 'Meow 1',
       imageUrl: imageCat2,
       email: 'Meow@gmail.com',
@@ -63,7 +63,7 @@ final List<DotorModel> listdoc =[
       experience: '3 years',
       review: 'i feel like meow meow meow'
   ),
-  DotorModel(
+  DoctorModel(
       name: 'Meow 2',
       imageUrl: imageCat2,
       email: 'Meow@gmail.com',
@@ -75,7 +75,7 @@ final List<DotorModel> listdoc =[
       experience: '3 years',
       review: 'i feel like meow meow meow'
   ),
-  DotorModel(
+  DoctorModel(
       name: 'Meow Cale',
       imageUrl: imageCale,
       email: 'Meow@gmail.com',
@@ -87,7 +87,7 @@ final List<DotorModel> listdoc =[
       experience: '3 years',
       review: 'i feel like meow meow meow'
   ),
-  DotorModel(
+  DoctorModel(
       name: 'Meow Cale cưng vcl',
       imageUrl: imageCale2,
       email: 'Meow@gmail.com',
