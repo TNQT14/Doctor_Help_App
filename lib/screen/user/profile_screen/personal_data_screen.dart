@@ -56,7 +56,7 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
                 text("Date of Birth"),
                 InputTextField(
                     hintext:
-                        "${DateFormat('yyyy-MM-dd').format(user1.birthDay)}",
+                        "${DateFormat('yyyy-MM-dd').format(user1.birthDay.toDate())}",
                     text: name,
                     isPrefix: true,
                     image: iconSchedule),

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doctor_help_app/containts/add_images.dart';
 
 import 'package:doctor_help_app/screen/screens.dart';
@@ -17,7 +18,7 @@ class DoctorModel {
   String imageUrl;
   double rating;
   String description;
-  DateTime birthDay;
+  Timestamp birthDay;
   // String fullname;
   String job;
   String experience;
@@ -45,7 +46,8 @@ class DoctorModel {
   phone: json['phone'] as int,
   rating: json['rating'] as double,
   description: json['description'] as String,
-  birthDay: json['birthDay'] as DateTime,
+  birthDay: json['birthDay'] as Timestamp,
+      // birthDay: json['birthDay'] as DateTime,
   job: json['job'] as String,
   experience: json['experience'] as String,
   review: json['review'] as String);
@@ -71,10 +73,11 @@ class DoctorModel {
 
 final DoctorModel user1 = DoctorModel(
     name: 'Meow Meow',
-    imageUrl: imageCat2,
+    imageUrl: networdImage,
     email: 'Meow@gmail.com',
     phone: 0123456799,
-    birthDay:  DateTime.parse('1969-07-20'),
+    // birthDay:  DateTime.parse('1969-07-20'),
+    birthDay: Timestamp.now(),
     rating: 3.5,
     description: txt,
     job: 'Desmatologist',
@@ -87,10 +90,11 @@ final DoctorModel user1 = DoctorModel(
 final List<DoctorModel> listdoc =[
   DoctorModel(
       name: 'Meow 1',
-      imageUrl: imageCat2,
+      imageUrl: networdImage,
       email: 'Meow@gmail.com',
       phone: 0123456799,
-      birthDay:  DateTime.parse('1969-07-20'),
+      // birthDay:  DateTime.parse('1969-07-20'),
+      birthDay: Timestamp.now(),
       rating: 3.5,
       description: txt,
       job: 'kêu meow meow',
@@ -99,10 +103,11 @@ final List<DoctorModel> listdoc =[
   ),
   DoctorModel(
       name: 'Meow 2',
-      imageUrl: imageCat2,
+      imageUrl: networdImage,
       email: 'Meow@gmail.com',
       phone: 0123456799,
-      birthDay:  DateTime.parse('1969-07-20'),
+      // birthDay:  DateTime.parse('1969-07-20'),
+      birthDay: Timestamp.now(),
       rating: 3.5,
       description: txt,
       job: 'just meow meow like meo1',
@@ -111,10 +116,11 @@ final List<DoctorModel> listdoc =[
   ),
   DoctorModel(
       name: 'Meow Cale',
-      imageUrl: imageCale,
+      imageUrl: networdImage,
       email: 'Meow@gmail.com',
       phone: 0123456799,
-      birthDay:  DateTime.parse('1969-07-20'),
+      // birthDay:  DateTime.parse('1969-07-20'),
+      birthDay: Timestamp.now(),
       rating: 3.5,
       description: txt,
       job: 'đẹp trai',
@@ -123,10 +129,11 @@ final List<DoctorModel> listdoc =[
   ),
   DoctorModel(
       name: 'Meow Cale cưng vcl',
-      imageUrl: imageCale2,
+      imageUrl: networdImage,
       email: 'Meow@gmail.com',
       phone: 0123456799,
-      birthDay:  DateTime.parse('1969-07-20'),
+      // birthDay:  DateTime.parse('1969-07-20'),
+      birthDay: Timestamp.now(),
       rating: 3.5,
       description: txt,
       job: 'trai đẹp',
@@ -134,5 +141,7 @@ final List<DoctorModel> listdoc =[
       review: 'i feel like meow meow meow'
   )
 ];
+
+const networdImage = 'https://mamul.am/images/pics/221221/the-funniest-cat-mem-u104587-1.jpg';
 
 

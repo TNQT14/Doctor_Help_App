@@ -1,3 +1,4 @@
+import 'package:doctor_help_app/bloc/doctor/doctor_cubit.dart';
 import 'package:doctor_help_app/bloc/user/user_bloc_cubit.dart';
 import 'package:doctor_help_app/model/user/doctor_model.dart';
 import 'package:doctor_help_app/widgets/widgets.dart';
@@ -19,7 +20,7 @@ class _ListChatScreenState extends State<ListChatScreen> {
   TextEditingController text = TextEditingController();
   @override
   void initState() {
-    BlocProvider.of<UserBlocCubit>(context).getUserData();
+    BlocProvider.of<DoctorCubit>(context).getListDataDoctor();
     super.initState();
   }
 
@@ -27,9 +28,9 @@ class _ListChatScreenState extends State<ListChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       // appBar: AppBar(),
-      body: BlocBuilder<UserBlocCubit, UserBlocState>(
+      body: BlocBuilder<DoctorCubit, DoctorState>(
         builder: (context, state) {
-          if (state is UserSuccess) {
+          if (state is DoctorSuccess) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -73,7 +74,8 @@ class _ListChatScreenState extends State<ListChatScreen> {
 }
 
 // Expanded buildExpanded(UserSuccess state) {
-//   return Expanded(
+//   return
+//   Expanded(
 //       child: ListView.separated(
 //           separatorBuilder: (context, index) => Divider(
 //             height: 0,

@@ -59,7 +59,10 @@ Container diseaseCard(String name, int index, String icon) {
     Row(
       children: [
         Container(
-          child: clipRRectAvatar(40, 40, icon),
+          child: ClipRRect(
+              borderRadius: BorderRadius.circular(6),
+              child: Image.asset(icon, fit: BoxFit.cover, width: 40.w, height: 40.h,)),
+          // child: clipRRectAvatar(40, 40, icon),
           padding: EdgeInsets.all(2),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(6),
