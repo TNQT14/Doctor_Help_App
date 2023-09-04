@@ -37,7 +37,7 @@ _title(String title){
   );
 }
 
-Widget optionProfile(BuildContext context, DotorModel user){
+Widget optionProfile(BuildContext context, DoctorModel user){
   return Container(
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,

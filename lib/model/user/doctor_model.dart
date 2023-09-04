@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:doctor_help_app/containts/add_images.dart';
 
 import 'package:doctor_help_app/screen/screens.dart';
@@ -8,7 +10,7 @@ String txt = 'From commuter to operational, hobby to heavy duty tasks,'
     ' full interior shampoo & cleaning, addressing the dashboard and door panels, and cleaning glass,'
     ' inside and out, paint touch-ups, and more, Dr. Detail offers excellence in service.';
 
-class DotorModel {
+class DoctorModel {
   String name;
   String email;
   int phone;
@@ -21,7 +23,7 @@ class DotorModel {
   String experience;
   String review;
 
-  DotorModel(
+  DoctorModel(
       {
         required this.name,
       required this.imageUrl,
@@ -34,9 +36,40 @@ class DotorModel {
       required this.job,
         required this.experience,
         required this.review,});
+
+  factory DoctorModel.fromJson(Map<String, dynamic> json){
+  return DoctorModel(
+  name: json['name'] as String,
+  imageUrl: json['imageUrl'] as String,
+  email: json['email'] as String,
+  phone: json['phone'] as int,
+  rating: json['rating'] as double,
+  description: json['description'] as String,
+  birthDay: json['birthDay'] as DateTime,
+  job: json['job'] as String,
+  experience: json['experience'] as String,
+  review: json['review'] as String);
+  }
+
+  Map<String, dynamic> toJson(){
+    return {
+      'name': name,
+      'imageUrl': imageUrl,
+      'email': email,
+      'phone': phone,
+      'rating': rating,
+      'description': description,
+      'birthDay': birthDay,
+      'job': job,
+      'experience': experience,
+      'review': review,
+    };
+  }
+
+
 }
 
-final DotorModel user1 = DotorModel(
+final DoctorModel user1 = DoctorModel(
     name: 'Meow Meow',
     imageUrl: imageCat2,
     email: 'Meow@gmail.com',
@@ -49,9 +82,10 @@ final DotorModel user1 = DotorModel(
     review: 'i feel like meow meow meow'
 );
 
+
 //List
-final List<DotorModel> listdoc =[
-  DotorModel(
+final List<DoctorModel> listdoc =[
+  DoctorModel(
       name: 'Meow 1',
       imageUrl: imageCat2,
       email: 'Meow@gmail.com',
@@ -63,7 +97,7 @@ final List<DotorModel> listdoc =[
       experience: '3 years',
       review: 'i feel like meow meow meow'
   ),
-  DotorModel(
+  DoctorModel(
       name: 'Meow 2',
       imageUrl: imageCat2,
       email: 'Meow@gmail.com',
@@ -75,7 +109,7 @@ final List<DotorModel> listdoc =[
       experience: '3 years',
       review: 'i feel like meow meow meow'
   ),
-  DotorModel(
+  DoctorModel(
       name: 'Meow Cale',
       imageUrl: imageCale,
       email: 'Meow@gmail.com',
@@ -87,7 +121,7 @@ final List<DotorModel> listdoc =[
       experience: '3 years',
       review: 'i feel like meow meow meow'
   ),
-  DotorModel(
+  DoctorModel(
       name: 'Meow Cale cưng vcl',
       imageUrl: imageCale2,
       email: 'Meow@gmail.com',
@@ -100,3 +134,5 @@ final List<DotorModel> listdoc =[
       review: 'i feel like meow meow meow'
   )
 ];
+
+

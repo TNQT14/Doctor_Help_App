@@ -39,7 +39,7 @@ class AppointmentDateTimeScreen extends StatelessWidget {
             bottomCardButton(
                 'Next',
                 () => Navigator.pushNamed(
-                    context, AppointmentSummaryScreen.routeName))
+                    context, AppointmentSummaryScreen.routeNameDetail))
           ],
         ),
       ),
