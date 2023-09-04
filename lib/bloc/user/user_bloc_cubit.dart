@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:doctor_help_app/VM/service/auth_service.dart';
+import 'package:doctor_help_app/model/user/user_model.dart';
 import 'package:doctor_help_app/widgets/widgets.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';

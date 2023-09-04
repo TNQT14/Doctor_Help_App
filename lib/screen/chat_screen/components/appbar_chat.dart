@@ -8,7 +8,7 @@ Container appBarChat(BuildContext context, String image, String name) {
   return Container(
     padding: EdgeInsets.only(bottom: 5.h,),
     alignment: Alignment.bottomCenter,
-    height: 100.h,
+    // height: 100.h,
     decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
