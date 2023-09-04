@@ -1,5 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:doctor_help_app/VM/service/auth_service.dart';
+import 'package:doctor_help_app/VM/service/user_responsitory.dart';
+import 'package:doctor_help_app/model/user/user_model.dart';
 import 'package:doctor_help_app/widgets/widgets.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -13,6 +15,7 @@ part 'user_bloc_state.dart';
 class UserBlocCubit extends Cubit<UserBlocState> {
   UserBlocCubit() : super(UserBlocInitial());
   AuthService _authService = AuthService();
+  UserResponsitory _userResponsitory = UserResponsitory();
 
   Future loginCubit(BuildContext context, String email, String password) async{
     try{
@@ -27,6 +30,21 @@ class UserBlocCubit extends Cubit<UserBlocState> {
     }catch(e){
       emit(LoginLoading(isLoading: false));
       print('loginCubit: $e');
+    }
+  }
+
+  Future getUserData ()async{
+
+    try{
+      emit(UserLoading());
+      final listUser = await _userResponsitory.getListUser();
+      emit(UserLoading(isLoading: false));
+      if(listUser!=null){
+        emit(UserSuccess(listUser: listUser));
+      }
+    }catch(e){
+      emit(UserLoading(isLoading: false));
+      print(e);
     }
   }
 }
