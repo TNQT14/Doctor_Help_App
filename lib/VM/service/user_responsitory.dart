@@ -35,11 +35,16 @@ class UserResponsitory{
   }
 
   Future <UserModel?> getUserDetail() async{
+    UserModel userModel;
     try{
       String uid = _auth.currentUser!.uid;
-      // });
-    } catch (e){
-      print(e);
+      userModel = await _store.collection('User').doc(uid).get().then((value) {
+        return UserModel.fromJson(value.data()!);
+      });
+      // print(userModel);
+      return userModel;
+    } catch(e){
+      throw Exception(e.toString());
     }
 
   }

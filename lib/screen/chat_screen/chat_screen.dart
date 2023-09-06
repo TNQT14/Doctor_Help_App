@@ -77,8 +77,8 @@ class _ChatScreenState extends State<ChatScreen> {
                   child: InputTextField(text: mess, hintext: 'Type Message'),
                 ),
                 InkWell(
-                  onTap: (){
-                    UserResponsitory().getUserDetail();
+                  onTap: () async{
+                    var test = await UserResponsitory().getUserDetail();
                     // print(test);
                   },
                   child: SvgPicture.asset(iconMic),
