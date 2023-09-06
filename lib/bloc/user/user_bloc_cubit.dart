@@ -19,6 +19,7 @@ class UserBlocCubit extends Cubit<UserBlocState> {
   AuthService _authService = AuthService();
   UserResponsitory _userResponsitory = UserResponsitory();
   List<UserModel> userLogin = [];
+  UserModel? userModel;
 
 
 
@@ -29,7 +30,7 @@ class UserBlocCubit extends Cubit<UserBlocState> {
       emit(LoginLoading(isLoading: false));
       if(login!=null && login.user!=null){
         emit(LoginSuccess(userCredential: login));
-        await getUserData();
+        await getUserListData();
         showFlutterToastMessage('Đăng nhập thành công');
 
         Navigator.pushNamed(context, NavigationMenu.routeName);
@@ -40,15 +41,30 @@ class UserBlocCubit extends Cubit<UserBlocState> {
     }
   }
 
-  Future getUserData ()async{
+  Future getUserListData ()async{
 
     try{
-      emit(UserLoading());
+      emit(ListUserLoading());
       final listUser = await _userResponsitory.getListUser();
-      emit(UserLoading(isLoading: false));
+      emit(ListUserLoading(isLoading: false));
       if(listUser!=null){
         userLogin = listUser;
-        emit(UserSuccess(listUser: listUser));
+        emit(ListUserSuccess(listUser: listUser));
+      }
+    }catch(e){
+      emit(ListUserLoading(isLoading: false));
+      print(e);
+    }
+  }
+
+  Future getUserDataDetail ()async{
+    try{
+      emit(UserLoading());
+      final user = await _userResponsitory.getUserDetail();
+      userModel = user;
+      emit(UserLoading(isLoading: false));
+      if(user!=null){
+        emit(UserSuccess(user: user));
       }
     }catch(e){
       emit(UserLoading(isLoading: false));

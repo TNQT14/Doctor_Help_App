@@ -31,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     BlocProvider.of<DoctorCubit>(context).getListDataDoctor();
-    UserBlocCubit.get(context).getUserData();
+    UserBlocCubit.get(context).getUserDataDetail();
     super.initState();
   }
 
@@ -53,9 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     return Padding(
                       padding: EdgeInsets.only(
                           left: 15.w, right: 15.w, top: 20.h, bottom: 20.h),
-                      child: rowIn4(state.listUser.isNotEmpty
-                          ? state.listUser[0].imageUrl ?? imagePersion
-                          : imagePersion),
+                      child: rowIn4(state.user.imageUrl??imagePersion),
                     );
                   }
                   return Center(
