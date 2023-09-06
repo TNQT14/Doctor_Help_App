@@ -78,7 +78,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 ),
                 InkWell(
                   onTap: (){
-                    var test = DoctorFirestoreService().getListDoctor();
+                    UserResponsitory().getUserDetail();
                     // print(test);
                   },
                   child: SvgPicture.asset(iconMic),

@@ -34,7 +34,15 @@ class UserResponsitory{
     }
   }
 
+  Future <UserModel?> getUserDetail() async{
+    try{
+      String uid = _auth.currentUser!.uid;
+      // });
+    } catch (e){
+      print(e);
+    }
 
+  }
 
 
 }

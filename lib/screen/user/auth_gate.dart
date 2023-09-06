@@ -1,3 +1,4 @@
+import 'package:doctor_help_app/bloc/user/user_bloc_cubit.dart';
 import 'package:doctor_help_app/containts/containts.dart';
 import 'package:doctor_help_app/model/user/user_model.dart';
 import 'package:doctor_help_app/screen/screens.dart';
@@ -12,9 +13,11 @@ class AuthGate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return StreamBuilder(
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot){
+
         if(snapshot.hasData) {
           return NavigationMenu();
         }

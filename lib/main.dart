@@ -1,3 +1,4 @@
+import 'package:doctor_help_app/bloc/user/user_bloc_cubit.dart';
 import 'package:doctor_help_app/bloc/wrap_provider.dart';
 import 'package:doctor_help_app/firebase_options.dart';
 import 'package:doctor_help_app/routes.dart';
@@ -12,6 +13,7 @@ import 'widgets/widgets.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   runApp(const WrapProvider(child:  MyApp()));
 }
 

@@ -6,6 +6,7 @@ import 'package:doctor_help_app/widgets/widgets.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 
 import '../../widgets/show_toast_messes.dart';
@@ -13,9 +14,13 @@ import '../../widgets/show_toast_messes.dart';
 part 'user_bloc_state.dart';
 
 class UserBlocCubit extends Cubit<UserBlocState> {
+  static UserBlocCubit get(context) => BlocProvider.of(context);
   UserBlocCubit() : super(UserBlocInitial());
   AuthService _authService = AuthService();
   UserResponsitory _userResponsitory = UserResponsitory();
+  List<UserModel> userLogin = [];
+
+
 
   Future loginCubit(BuildContext context, String email, String password) async{
     try{
@@ -24,7 +29,9 @@ class UserBlocCubit extends Cubit<UserBlocState> {
       emit(LoginLoading(isLoading: false));
       if(login!=null && login.user!=null){
         emit(LoginSuccess(userCredential: login));
+        await getUserData();
         showFlutterToastMessage('Đăng nhập thành công');
+
         Navigator.pushNamed(context, NavigationMenu.routeName);
       }
     }catch(e){
@@ -40,6 +47,7 @@ class UserBlocCubit extends Cubit<UserBlocState> {
       final listUser = await _userResponsitory.getListUser();
       emit(UserLoading(isLoading: false));
       if(listUser!=null){
+        userLogin = listUser;
         emit(UserSuccess(listUser: listUser));
       }
     }catch(e){
