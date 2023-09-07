@@ -72,7 +72,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             Spacer(),
                             GestureDetector(
                               onTap: () {
-                                print('object');
+                                  // UserResponsitory().createUserFirestore(email.text, password.text);
+                                  AuthService().forgotPassword(email.text);
+                                  print("ádf");
                               },
                               child: Text(
                                 'Forgot your password?',
