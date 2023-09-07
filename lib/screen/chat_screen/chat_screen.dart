@@ -15,113 +15,150 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'components/appbar_chat.dart';
 
 class ChatScreen extends StatefulWidget {
-  ChatScreen({Key? key, required this.name, required this.imageUrl}) : super(key: key);
+  ChatScreen(
+      {Key? key,
+      required this.name,
+      required this.imageUrl,
+      required this.receiverID})
+      : super(key: key);
   static String routeName = 'ChatScreen';
 
   @override
   State<ChatScreen> createState() => _ChatScreenState();
   String name;
   String imageUrl;
+  String receiverID;
 }
 
 class _ChatScreenState extends State<ChatScreen> {
   TextEditingController mess = TextEditingController();
+  final UserResponsitory _userResponsitory = UserResponsitory();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  void sendMess() async {
+    if (mess.text.isNotEmpty) {
+      await _userResponsitory.sendMess(widget.receiverID, mess.text);
+      mess.clear();
+    }
+  }
 
   CollectionReference chats = FirebaseFirestore.instance.collection('chats');
   @override
   void initState() {
-   BlocProvider.of<DoctorCubit>(context).getListDataDoctor();
+    BlocProvider.of<DoctorCubit>(context).getListDataDoctor();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: ()=>unfocusKeyboard(),
+      onTap: () => unfocusKeyboard(),
       child: Scaffold(
         backgroundColor: colorbg,
         body: SafeArea(
           child: BlocBuilder<DoctorCubit, DoctorState>(
-  builder: (context, state) {
-    if(state is DoctorSuccess){
-      return Column(
-        children: [
-          appBarChat(context, widget.imageUrl, widget.name),
-          Expanded(child: SingleChildScrollView(
-            child: Container(),
-          )),
-          Container(
-            height: 90.h,
-            width: MediaQuery.of(context).size.width,
-            padding: EdgeInsets.only(top: 8.h),
-            decoration: BoxDecoration(
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(
-                      color: Colors.grey.shade300,
-                      blurRadius: 10,
-                      spreadRadius: 2
-                  )
-                ]
-            ),
-            alignment: Alignment.topCenter,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                InkWell(
-                  onTap: (){},
-                  child: SvgPicture.asset(iconFile),
-                ),
-                SizedBox(
-                  width: 248.w,
-                  child: InputTextField(text: mess, hintext: 'Type Message'),
-                ),
-                InkWell(
-                  onTap: () async{
-                    var test = await UserResponsitory().getUserDetail();
-                    // print(test);
-                  },
-                  child: SvgPicture.asset(iconMic),
-                ),
-              ],
-            ),
-          )
-        ],
-      );
-    }
-    return Center(child:  CircularProgressIndicator(),);
-  },
-),
+            builder: (context, state) {
+              if (state is DoctorSuccess) {
+                return Column(
+                  children: [
+                    appBarChat(context, widget.imageUrl, widget.name),
+                    Expanded(
+                        child: SingleChildScrollView(
+                      child: _messagesList(),
+                    )),
+                    Container(
+                      height: 90.h,
+                      width: MediaQuery.of(context).size.width,
+                      padding: EdgeInsets.only(top: 8.h),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey.shade300,
+                                blurRadius: 10,
+                                spreadRadius: 2)
+                          ]),
+                      alignment: Alignment.topCenter,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          InkWell(
+                            onTap: () {},
+                            child: SvgPicture.asset(iconFile),
+                          ),
+                          SizedBox(
+                            width: 248.w,
+                            child: InputTextField(
+                                text: mess, hintext: 'Type Message'),
+                          ),
+                          InkWell(
+                            onTap: () async {
+                              var test =
+                                  await UserResponsitory().getUserDetail();
+                              // print(test);
+                            },
+                            child: SvgPicture.asset(iconMic),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                );
+              }
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            },
+          ),
         ),
+      ),
+    );
+  }
+
+  Widget _messagesList(){
+    return Container();
+  }
+
+  Widget _messagesItem(DocumentSnapshot snapshot){
+    Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
+    var alignment = (data['senderID'] == _auth.currentUser!.uid)? Alignment.centerRight: Alignment.centerLeft;
+    return Container(
+      alignment: alignment,
+      child: Column(
+        children: [
+          Text('data'),
+          Text('data'),
+        ],
       ),
     );
   }
 }
 
-Widget MessageUI(){
+
+Widget MessageUI() {
   return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance.collection('User').snapshots(),
-      builder: (context, snapshot){
-        if(snapshot.hasError){
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
           return Text('Error');
         }
-        if(snapshot.hasError){
+        if (snapshot.hasError) {
           return Text('Loading...');
         }
         return ListView(
-          children: snapshot.data!.docs.map<Widget>((doc)=>_buildItemDoc(doc)).toList(),
+          children: snapshot.data!.docs
+              .map<Widget>((doc) => _buildItemDoc(doc))
+              .toList(),
         );
       });
 }
 
-_buildItemDoc(DocumentSnapshot doc){
+_buildItemDoc(DocumentSnapshot doc) {
   Map<String, dynamic> data = doc.data()! as Map<String, dynamic>;
-  if(FirebaseAuth.instance.currentUser!.email != data['email']){
+  if (FirebaseAuth.instance.currentUser!.email != data['email']) {
     return ListTile(
       title: data['email'],
-      onTap: (){},
+      onTap: () {},
     );
   }
 }
-
-

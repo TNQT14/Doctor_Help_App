@@ -27,7 +27,7 @@ final Map<String, WidgetBuilder> route ={
 
   //Chat Screen
   ListChatScreen.routeName: (context)=> ListChatScreen(),
-  ChatScreen.routeName: (context)=> ChatScreen(name: '', imageUrl: imageCat,),
+  ChatScreen.routeName: (context)=> ChatScreen(name: '', imageUrl: imageCat, receiverID: '',),
 
   //Appointment Screen
   AppointmentDateTimeScreen.routeName: (context)=> AppointmentDateTimeScreen(),

@@ -31,7 +31,8 @@ Expanded listMess(DoctorSuccess state) {
                     MaterialPageRoute(
                         builder: (context) =>
                             ChatScreen(name: state.listDoctor[index].name,
-                            imageUrl: state.listDoctor[index].imageUrl,)),
+                            imageUrl: state.listDoctor[index].imageUrl,
+                            receiverID: state.listDoctor[index].uidDoctor,)),
                   );
                 },
                 child: cardMess(
