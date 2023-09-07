@@ -11,8 +11,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart';
 
 import 'components/appbar_chat.dart';
+
+final GlobalKey _key = GlobalKey();
 
 class ChatScreen extends StatefulWidget {
   ChatScreen(
@@ -62,10 +65,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 return Column(
                   children: [
                     appBarChat(context, widget.imageUrl, widget.name),
-                    Expanded(
-                        child: SingleChildScrollView(
-                      child: _messagesList(),
-                    )),
+                    Expanded(child: Container()),
                     Container(
                       height: 90.h,
                       width: MediaQuery.of(context).size.width,
@@ -79,27 +79,31 @@ class _ChatScreenState extends State<ChatScreen> {
                                 spreadRadius: 2)
                           ]),
                       alignment: Alignment.topCenter,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          InkWell(
-                            onTap: () {},
-                            child: SvgPicture.asset(iconFile),
-                          ),
-                          SizedBox(
-                            width: 248.w,
-                            child: InputTextField(
-                                text: mess, hintext: 'Type Message'),
-                          ),
-                          InkWell(
-                            onTap: () async {
-                              var test =
-                                  await UserResponsitory().getUserDetail();
-                              // print(test);
-                            },
-                            child: SvgPicture.asset(iconMic),
-                          ),
-                        ],
+                      child: Form(
+                        key: _key,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            InkWell(
+                              onTap: () {},
+                              child: SvgPicture.asset(iconFile),
+                            ),
+                            SizedBox(
+                              width: 248.w,
+                              child: InputTextField(
+                                  text: mess, hintext: 'Type Message'),
+                            ),
+                            InkWell(
+                              onTap: sendMess,
+                              // onTap: (){
+                              //   var test = _userResponsitory.getMessage(
+                              //       widget.receiverID, _auth.currentUser!.uid);
+                              //   print(test);
+                              // },
+                              child: SvgPicture.asset(iconMic),
+                            ),
+                          ],
+                        ),
                       ),
                     )
                   ],
@@ -115,50 +119,117 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
-  Widget _messagesList(){
-    return Container();
-  }
+  // Widget _messagesList() {
+  //   return StreamBuilder(
+  //     stream: _userResponsitory.getMessage(
+  //         widget.receiverID, _auth.currentUser!.uid),
+  //     builder: (context, snapshot) {
+  //       if (snapshot.hasError) {
+  //         return Text('Error: ${snapshot.error}');
+  //       }
+  //       if (snapshot.connectionState == ConnectionState.waiting) {
+  //         return Center(
+  //           child: CircularProgressIndicator(),
+  //         );
+  //       }
+  //       // return Container(
+  //       //   child: Column(
+  //       //     children:[
+  //       //       Text(snapshot.data!.docs.map((e) => e).toString())
+  //       //     ]
+  //       //   ),
+  //       // );
+  //       return ListView(
+  //         reverse: true,
+  //         children: snapshot.data!.docs
+  //             .map((data) => _messagesItem(data))
+  //             .toList()
+  //            ,
+  //       );
+  //     },
+  //   );
+  // }
 
-  Widget _messagesItem(DocumentSnapshot snapshot){
-    Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
-    var alignment = (data['senderID'] == _auth.currentUser!.uid)? Alignment.centerRight: Alignment.centerLeft;
-    return Container(
-      alignment: alignment,
-      child: Column(
-        children: [
-          Text('data'),
-          Text('data'),
-        ],
-      ),
-    );
-  }
+  // Widget _messagesItem(DocumentSnapshot snapshot) {
+  //   Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
+  //   print('test: ${_auth.currentUser!.uid}');
+  //   var alignment = (data['senderID'] == _auth.currentUser!.uid)
+  //       ? Alignment.centerRight
+  //       : Alignment.centerLeft;
+  //   // print(formatDatetime((data['timestamp'] as Timestamp)).toString());
+  //   return Container(
+  //     padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 10.w),
+  //     alignment: alignment,
+  //     child: Column(
+  //       mainAxisAlignment: MainAxisAlignment.end,
+  //       children: [
+  //         // Text('data')
+  //         Container(
+  //           child: Text(
+  //             data['message'],
+  //             style: txt16w4!.copyWith(color: Colors.white),
+  //           ),
+  //           padding: EdgeInsets.all(10),
+  //           decoration: BoxDecoration(
+  //               color: colorOnlineStatus,
+  //               borderRadius: BorderRadius.circular(12)),
+  //         ),
+  //         Text(
+  //           '${formatDatetime((data['timestamp'] as Timestamp))}',
+  //           style: txt12w4!.copyWith(color: Colors.grey),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 }
 
+// int sortListByDateAndPrice(
+//     DateTime timeFirst, DateTime timeSecond, int firstPrice, int secondPrice) {
+//   int result = timeFirst.compareTo(timeSecond);
+//   if (result != 0) {
+//     return result;
+//   } else {
+//     return firstPrice.compareTo(secondPrice);
+//   }
+// }
 
-Widget MessageUI() {
-  return StreamBuilder<QuerySnapshot>(
-      stream: FirebaseFirestore.instance.collection('User').snapshots(),
-      builder: (context, snapshot) {
-        if (snapshot.hasError) {
-          return Text('Error');
-        }
-        if (snapshot.hasError) {
-          return Text('Loading...');
-        }
-        return ListView(
-          children: snapshot.data!.docs
-              .map<Widget>((doc) => _buildItemDoc(doc))
-              .toList(),
-        );
-      });
-}
+// listOutbound.sort((a, b) => sortListByDateAndPrice(
+// b.getArrivalDate,
+// a.getArrivalDate,
+// (a.priceAdult! + a.totalFeeTaxAdt!),
+// (b.priceAdult! + b.totalFeeTaxAdt!),
+// ));
 
-_buildItemDoc(DocumentSnapshot doc) {
-  Map<String, dynamic> data = doc.data()! as Map<String, dynamic>;
-  if (FirebaseAuth.instance.currentUser!.email != data['email']) {
-    return ListTile(
-      title: data['email'],
-      onTap: () {},
-    );
-  }
-}
+// formatDatetime(Timestamp time) {
+//   var d12 = DateFormat('hh:mm a').format(time.toDate());
+//   return d12;
+// }
+//
+// Widget MessageUI() {
+//   return StreamBuilder<QuerySnapshot>(
+//       stream: FirebaseFirestore.instance.collection('User').snapshots(),
+//       builder: (context, snapshot) {
+//         if (snapshot.hasError) {
+//           return Text('Error');
+//         }
+//         if (snapshot.hasError) {
+//           return Text('Loading...');
+//         }
+//         return ListView(
+//           children: snapshot.data!.docs
+//               .map<Widget>((doc) => _buildItemDoc(doc))
+//               .toList(),
+//         );
+//       });
+// }
+//
+// _buildItemDoc(DocumentSnapshot doc) {
+//   Map<String, dynamic> data = doc.data()! as Map<String, dynamic>;
+//   if (FirebaseAuth.instance.currentUser!.email != data['email']) {
+//     return ListTile(
+//       title: data['email'],
+//       onTap: () {},
+//     );
+//   }
+// }

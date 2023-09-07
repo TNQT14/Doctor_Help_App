@@ -48,6 +48,12 @@ class UserResponsitory {
     }
   }
 
+
+
+
+
+  //send and get mess
+
   Future<void> sendMess(String receiverID, String mess) async {
     final String _userUid = _auth.currentUser!.uid;
     final String _userEmail = _auth.currentUser!.email.toString();
@@ -60,7 +66,7 @@ class UserResponsitory {
         senderEmail: _userEmail,
         senderID: _userUid);
 
-    List<String> ids = [_userEmail, receiverID];
+    List<String> ids = [_userUid, receiverID];
     ids.sort();
     String chatroomID = ids.join('_');
 
