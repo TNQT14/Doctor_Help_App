@@ -64,4 +64,17 @@ class AuthService {
       return null;
     }
   }
+
+  //forgot password
+  Future<UserCredential?> forgotPassword(String email) async{
+    try{
+      _auth.sendPasswordResetEmail(email: email);
+    }on FirebaseAuthException catch(e){
+      showFlutterToastMessage(e.toString());
+      print('Error login: $e');
+      rethrow;
+    }
+  }
+
+//change password
 }
