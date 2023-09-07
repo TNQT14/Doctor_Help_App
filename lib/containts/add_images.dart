@@ -63,3 +63,7 @@ const String imageOnb3 = '${linkUser}onb_pic3.png';
 const String iconButtonNotification = '${linkIcons}Notifications.svg';
 const String iconFile = '${linkIcons}file.svg';
 const String iconMic = '${linkIcons}btn_voice_essage.svg';
+
+// network
+
+const String imagePersion = 'https://static.thenounproject.com/png/5960329-200.png';

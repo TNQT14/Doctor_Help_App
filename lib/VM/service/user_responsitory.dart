@@ -9,14 +9,14 @@ class UserResponsitory{
   final FirebaseFirestore _store = FirebaseFirestore.instance;
 
   Future<List<UserModel>?> getListUser() async{
-    List<UserModel> listUsser = [];
+    List<UserModel> listUser = [];
     try{
       final getData = await _store.collection('User').get();
       getData.docs.forEach((element) {
-        return listUsser.add(UserModel.fromJson(element.data()));
+        return listUser.add(UserModel.fromJson(element.data()));
       });
       // print(await listUsser);
-      return listUsser;
+      return listUser;
       // _store.collection('User').get()
       //     .then((value) {
       //       // return value.docs.map((e) => UserModel.fromSnapshot(e)).toList();
@@ -28,10 +28,25 @@ class UserResponsitory{
       if(kDebugMode){
         print('Failed with error ${e.code}: ${e.message}');
       }
-      return listUsser;
+      return listUser;
     } catch(e){
       throw Exception(e.toString());
     }
+  }
+
+  Future <UserModel?> getUserDetail() async{
+    UserModel userModel;
+    try{
+      String uid = _auth.currentUser!.uid;
+      userModel = await _store.collection('User').doc(uid).get().then((value) {
+        return UserModel.fromJson(value.data()!);
+      });
+      // print(userModel);
+      return userModel;
+    } catch(e){
+      throw Exception(e.toString());
+    }
+
   }
 
 

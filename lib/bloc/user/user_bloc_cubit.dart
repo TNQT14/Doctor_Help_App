@@ -6,6 +6,7 @@ import 'package:doctor_help_app/widgets/widgets.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 
 import '../../widgets/show_toast_messes.dart';
@@ -13,9 +14,14 @@ import '../../widgets/show_toast_messes.dart';
 part 'user_bloc_state.dart';
 
 class UserBlocCubit extends Cubit<UserBlocState> {
+  static UserBlocCubit get(context) => BlocProvider.of(context);
   UserBlocCubit() : super(UserBlocInitial());
   AuthService _authService = AuthService();
   UserResponsitory _userResponsitory = UserResponsitory();
+  List<UserModel> userLogin = [];
+  UserModel? userModel;
+
+
 
   Future loginCubit(BuildContext context, String email, String password) async{
     try{
@@ -24,7 +30,9 @@ class UserBlocCubit extends Cubit<UserBlocState> {
       emit(LoginLoading(isLoading: false));
       if(login!=null && login.user!=null){
         emit(LoginSuccess(userCredential: login));
+        await getUserListData();
         showFlutterToastMessage('Đăng nhập thành công');
+
         Navigator.pushNamed(context, NavigationMenu.routeName);
       }
     }catch(e){
@@ -33,14 +41,30 @@ class UserBlocCubit extends Cubit<UserBlocState> {
     }
   }
 
-  Future getUserData ()async{
+  Future getUserListData ()async{
 
     try{
-      emit(UserLoading());
+      emit(ListUserLoading());
       final listUser = await _userResponsitory.getListUser();
-      emit(UserLoading(isLoading: false));
+      emit(ListUserLoading(isLoading: false));
       if(listUser!=null){
-        emit(UserSuccess(listUser: listUser));
+        userLogin = listUser;
+        emit(ListUserSuccess(listUser: listUser));
+      }
+    }catch(e){
+      emit(ListUserLoading(isLoading: false));
+      print(e);
+    }
+  }
+
+  Future getUserDataDetail ()async{
+    try{
+      emit(UserLoading());
+      final user = await _userResponsitory.getUserDetail();
+      userModel = user;
+      emit(UserLoading(isLoading: false));
+      if(user!=null){
+        emit(UserSuccess(user: user));
       }
     }catch(e){
       emit(UserLoading(isLoading: false));

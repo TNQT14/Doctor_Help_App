@@ -48,7 +48,29 @@ class RegisterError extends UserBlocState {
   List<Object?> get props => throw UnimplementedError();
 }
 
-//Get user data
+//Get list user data
+
+class ListUserError extends UserBlocState {
+  @override
+  List<Object?> get props => throw UnimplementedError();
+}
+
+class ListUserLoading extends UserBlocState {
+  bool isLoading;
+  ListUserLoading({this.isLoading = true});
+  @override
+  List<Object?> get props => [isLoading];
+}
+
+class ListUserSuccess extends UserBlocState {
+  List<UserModel> listUser;
+  ListUserSuccess({required this.listUser});
+  @override
+  List<Object?> get props => [listUser];
+}
+
+
+//Get detail user data
 
 class UserError extends UserBlocState {
   @override
@@ -57,14 +79,14 @@ class UserError extends UserBlocState {
 
 class UserLoading extends UserBlocState {
   bool isLoading;
-  UserLoading({this.isLoading = true});
+ UserLoading({this.isLoading = true});
   @override
   List<Object?> get props => [isLoading];
 }
 
 class UserSuccess extends UserBlocState {
-  List<UserModel> listUser;
-  UserSuccess({required this.listUser});
+  UserModel user;
+  UserSuccess({required this.user});
   @override
-  List<Object?> get props => [listUser];
+  List<Object?> get props => [user];
 }

@@ -1,3 +1,4 @@
+import 'package:doctor_help_app/containts/add_images.dart';
 import 'package:doctor_help_app/navigationMenu.dart';
 import 'package:doctor_help_app/screen/appointment_screen/appointment_dateTime_screen.dart';
 import 'package:doctor_help_app/screen/appointment_screen/appointment_screen.dart';
@@ -26,7 +27,7 @@ final Map<String, WidgetBuilder> route ={
 
   //Chat Screen
   ListChatScreen.routeName: (context)=> ListChatScreen(),
-  ChatScreen.routeName: (context)=> ChatScreen(),
+  ChatScreen.routeName: (context)=> ChatScreen(name: '', imageUrl: imageCat,),
 
   //Appointment Screen
   AppointmentDateTimeScreen.routeName: (context)=> AppointmentDateTimeScreen(),
