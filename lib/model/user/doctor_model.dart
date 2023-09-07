@@ -23,6 +23,7 @@ class DoctorModel {
   String job;
   String experience;
   String review;
+  String uidDoctor;
 
   DoctorModel(
       {
@@ -36,7 +37,8 @@ class DoctorModel {
       // required this.fullname,
       required this.job,
         required this.experience,
-        required this.review,});
+        required this.review,
+      required this.uidDoctor});
 
   factory DoctorModel.fromJson(Map<String, dynamic> json){
   return DoctorModel(
@@ -50,7 +52,8 @@ class DoctorModel {
       // birthDay: json['birthDay'] as DateTime,
   job: json['job'] as String,
   experience: json['experience'] as String,
-  review: json['review'] as String);
+  review: json['review'] as String,
+    uidDoctor: json['uidDoctor'] as String,);
   }
 
   Map<String, dynamic> toJson(){
@@ -82,7 +85,8 @@ final DoctorModel user1 = DoctorModel(
     description: txt,
     job: 'Desmatologist',
     experience: '3 years',
-    review: 'i feel like meow meow meow'
+    review: 'i feel like meow meow meow',
+    uidDoctor: 'test'
 );
 
 
@@ -99,7 +103,8 @@ final List<DoctorModel> listdoc =[
       description: txt,
       job: 'kêu meow meow',
       experience: '3 years',
-      review: 'i feel like meow meow meow'
+      review: 'i feel like meow meow meow',
+      uidDoctor: 'test'
   ),
   DoctorModel(
       name: 'Meow 2',
@@ -112,7 +117,8 @@ final List<DoctorModel> listdoc =[
       description: txt,
       job: 'just meow meow like meo1',
       experience: '3 years',
-      review: 'i feel like meow meow meow'
+      review: 'i feel like meow meow meow',
+      uidDoctor: 'test'
   ),
   DoctorModel(
       name: 'Meow Cale',
@@ -125,7 +131,8 @@ final List<DoctorModel> listdoc =[
       description: txt,
       job: 'đẹp trai',
       experience: '3 years',
-      review: 'i feel like meow meow meow'
+      review: 'i feel like meow meow meow',
+      uidDoctor: 'test'
   ),
   DoctorModel(
       name: 'Meow Cale cưng vcl',
@@ -138,7 +145,8 @@ final List<DoctorModel> listdoc =[
       description: txt,
       job: 'trai đẹp',
       experience: '3 years',
-      review: 'i feel like meow meow meow'
+      review: 'i feel like meow meow meow',
+      uidDoctor: 'test'
   )
 ];
 

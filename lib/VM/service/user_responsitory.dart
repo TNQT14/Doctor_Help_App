@@ -49,5 +49,7 @@ class UserResponsitory{
 
   }
 
+  Future sendMess() async{}
 
+  Future getMess() async{}
 }
