@@ -1,13 +1,13 @@
 import 'package:doctor_help_app/bloc/doctor/doctor_cubit.dart';
-import 'package:doctor_help_app/bloc/user/user_bloc_cubit.dart';
-import 'package:doctor_help_app/model/user/doctor_model.dart';
-import 'package:doctor_help_app/model/user/user_model.dart';
+import 'package:doctor_help_app/screen/chat_screen/test.dart';
 import 'package:doctor_help_app/screen/screens.dart';
 import 'package:doctor_help_app/widgets/show_toast_messes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_chat_core/flutter_firebase_chat_core.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+
+import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import '../containts/containts.dart';
 import 'clipRRectAvatar.dart';
 
@@ -28,13 +28,15 @@ Expanded listMess(DoctorSuccess state) {
               direction: DismissDirection.endToStart,
               child: InkWell(
                 onTap: () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //       builder: (context) =>
-                  //           ChatScreen(room: room)
-                  //   ),
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            ChatScreen(imageUrl: state.listDoctor[index].imageUrl,
+                            receiverID: state.listDoctor[index].uidDoctor,
+                            name: state.listDoctor[index].name,)
+                    ),
+                  );
                 },
                 child: cardMess(
                     context,
@@ -42,6 +44,32 @@ Expanded listMess(DoctorSuccess state) {
                     state.listDoctor[index].imageUrl ?? imagePersion,
                     state.listDoctor[index].description),
               ),
+              // child: StreamBuilder<List<types.Room>>(
+              //   stream:  FirebaseChatCore.instance.rooms(),
+              //   builder: (context, snapshot){
+              //     final room = snapshot.data![index];
+              //     if(snapshot.hasData){
+              //       return
+              //         InkWell(
+              //           onTap: (){
+              //             // Navigator.of(context).push(
+              //             //   MaterialPageRoute(
+              //             //     builder: (context) => ChatScreenTest(
+              //             //       room: room,
+              //             //     ),
+              //             //   ),
+              //             // );
+              //           },
+              //           child: cardMess(
+              //               context,
+              //               state.listDoctor[index].name ?? 'Lỗi',
+              //               state.listDoctor[index].imageUrl ?? imagePersion,
+              //               state.listDoctor[index].description),
+              //         );
+              //     }
+              //     return CircularProgressIndicator();
+              //   },
+              // ),
               onDismissed: (direction) {
                 // showToastMessage(context,'Message Deleted');
                 showSnackBar(context, 'Message Deleted');
