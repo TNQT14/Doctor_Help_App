@@ -1,9 +1,11 @@
 import 'package:doctor_help_app/bloc/doctor/doctor_cubit.dart';
 import 'package:doctor_help_app/bloc/user/user_bloc_cubit.dart';
 import 'package:doctor_help_app/model/user/doctor_model.dart';
+import 'package:doctor_help_app/model/user/user_model.dart';
 import 'package:doctor_help_app/screen/screens.dart';
 import 'package:doctor_help_app/widgets/show_toast_messes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase_chat_core/flutter_firebase_chat_core.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../containts/containts.dart';
@@ -26,14 +28,13 @@ Expanded listMess(DoctorSuccess state) {
               direction: DismissDirection.endToStart,
               child: InkWell(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            ChatScreen(name: state.listDoctor[index].name,
-                            imageUrl: state.listDoctor[index].imageUrl,
-                            receiverID: state.listDoctor[index].uidDoctor,)),
-                  );
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //       builder: (context) =>
+                  //           ChatScreen(room: room)
+                  //   ),
+                  // );
                 },
                 child: cardMess(
                     context,
@@ -67,7 +68,22 @@ Expanded listMess(DoctorSuccess state) {
               background: Container(),
             );
           }));
+
 }
+
+// void _handlePressed(UserModel otherUser, BuildContext context) async {
+//   final navigator = Navigator.of(context);
+//   final room = await FirebaseChatCore.instance.createRoom(otherUser);
+//
+//   navigator.pop();
+//   await navigator.push(
+//     MaterialPageRoute(
+//       builder: (context) => ChatScreen(
+//         room: room,
+//       ),
+//     ),
+//   );
+// }
 
 // String text = 'Hello, can i help you?';
 // List <int> ten = List<int>.generate(10, (index) => index);
