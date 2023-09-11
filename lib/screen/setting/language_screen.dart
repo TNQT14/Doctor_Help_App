@@ -6,14 +6,28 @@ import 'package:get/get.dart';
 
 import '../../VM/service/local/LocalizationService.dart';
 
-class LanguageScreen extends StatelessWidget {
+class lanlguage{
+  String name;
+  String local;
+  lanlguage({required this.name, required this.local});
+}
+
+class LanguageScreen extends StatefulWidget {
   const LanguageScreen({Key? key}) : super(key: key);
   static String routeName = 'LanguageScreen';
 
   @override
+  State<LanguageScreen> createState() => _LanguageScreenState();
+}
+
+class _LanguageScreenState extends State<LanguageScreen> {
+  @override
   Widget build(BuildContext context) {
-    List<String> _listLanguage = ['Vietnamese', 'English'];
-    String _selectedLang = LocalizationService.locale!.languageCode;
+    List<lanlguage> _listLanguage = [];
+    LocalizationService.langs.forEach((key, value) {
+      _listLanguage.add(lanlguage(name: value, local: key));
+    });
+    // String _selectedLang = LocalizationService.locale!.languageCode;
 
     return Scaffold(
       appBar: AppBar(),
@@ -29,11 +43,13 @@ class LanguageScreen extends StatelessWidget {
                 itemBuilder: (context, indext) {
                 return InkWell(
                   onTap: (){
-                    // print(_selectedLang);
+                    setState(() {
+                      // LocalizationService.changeLocale(_listLanguage[indext].local);
+                    });
                   },
                     child: Padding(
                       padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 2.w),
-                      child: Text(_listLanguage[indext], style: txt16w4,),
+                      child: Text(_listLanguage[indext].name, style: txt16w4,),
                     ));
                 })),
           ],

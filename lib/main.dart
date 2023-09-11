@@ -30,9 +30,9 @@ class MyApp extends StatelessWidget {
       // rồi co giãn để phù hợp với mọi loại thiết bị
       builder: (context, child) {
         return GetMaterialApp(
-          locale: LocalizationService.locale,
-          fallbackLocale: LocalizationService.fallbackLocale,
-          translations: LocalizationService(),
+          // locale: LocalizationService.locale,
+          // fallbackLocale: LocalizationService.fallbackLocale,
+          // translations: LocalizationService(),
           // initialRoute: HomeScreen.routeName,
           routes: route,
           debugShowCheckedModeBanner: false,
