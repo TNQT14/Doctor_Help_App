@@ -39,11 +39,11 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => unfocusKeyboard(),
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        backgroundColor: colorbg,
-        body: SafeArea(
-          child: Column(
+      child: SafeArea(
+        child: Scaffold(
+          resizeToAvoidBottomInset: false,
+          backgroundColor: colorbg,
+          body: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               //get user detail data
@@ -173,8 +173,8 @@ class _HomeScreenState extends State<HomeScreen> {
               )
             ],
           ),
+          // bottomNavigationBar: BottomMenu(),
         ),
-        // bottomNavigationBar: BottomMenu(),
       ),
     );
   }

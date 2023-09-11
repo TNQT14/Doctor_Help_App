@@ -56,4 +56,5 @@ final Map<String, WidgetBuilder> route = {
 
   //Navigation
   NavigationMenu.routeName: (context) => NavigationMenu(),
+  LanguageScreen.routeName: (context) => LanguageScreen(),
 };

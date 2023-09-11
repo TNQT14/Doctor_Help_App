@@ -16,32 +16,30 @@ class AppointmentDateTimeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: colorbg,
       appBar: appbarCustom(context),
-      body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-                child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 14.0.w),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  doctorDateTimeAppointmentCard(context),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 8.h),
-                    child: textTitle('Date & Time'),
-                  ),
-                  Center(
-                    child: Text('Appointment schedule'),
-                  )
-                ],
-              ),
-            )),
-            bottomCardButton(
-                'Next',
-                () => Navigator.pushNamed(
-                    context, AppointmentSummaryScreen.routeNameDetail))
-          ],
-        ),
+      body: Column(
+        children: [
+          Expanded(
+              child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 14.0.w),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                doctorDateTimeAppointmentCard(context),
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 8.h),
+                  child: textTitle('Date & Time'),
+                ),
+                Center(
+                  child: Text('Appointment schedule'),
+                )
+              ],
+            ),
+          )),
+          bottomCardButton(
+              'Next',
+              () => Navigator.pushNamed(
+                  context, AppointmentSummaryScreen.routeNameDetail))
+        ],
       ),
     );
   }

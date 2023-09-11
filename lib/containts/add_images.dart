@@ -29,6 +29,7 @@ const String iconMail = '${linkIcons}FormMail.png';
 const String iconGooglePlus = '${linkIcons}GooglePlus.png';
 const String iconSchedule = '${linkIcons}FormSchedule.png';
 const String iconProfile = '${linkIcons}Icon=Profile.png';
+const String iconGlobal = '${linkIcons}globe.png';
 
 //navigationMenu
 const String iconHome = '${linkIcons}Icon=Home.png';

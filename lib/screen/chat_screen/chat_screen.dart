@@ -78,68 +78,66 @@ class _ChatScreenState extends State<ChatScreen> {
     return GestureDetector(
       onTap: () => unfocusKeyboard(),
       child: Scaffold(
-        body: SafeArea(
-          child: BlocBuilder<DoctorCubit, DoctorState>(
-            builder: (context, state) {
-              if (state is DoctorSuccess) {
-                return Column(
-                  children: [
-                    appBarChat(context, widget.imageUrl, widget.name),
-                    // Expanded(child: _messagesList()),
-                    Expanded(
-                        child: Chat(
-                            messages: _messages,
-                            onSendPressed: _handleSendPressed,
-                            onAttachmentPressed: (){},
-                            user: _user)),
-                    // Container(
-                    //   height: 90.h,
-                    //   width: MediaQuery.of(context).size.width,
-                    //   padding: EdgeInsets.only(top: 8.h),
-                    //   decoration: BoxDecoration(
-                    //       color: Colors.white,
-                    //       boxShadow: [
-                    //         BoxShadow(
-                    //             color: Colors.grey.shade300,
-                    //             blurRadius: 10,
-                    //             spreadRadius: 2)
-                    //       ]),
-                    //   alignment: Alignment.topCenter,
-                    //   child: Form(
-                    //     key: _key,
-                    //     child: Row(
-                    //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    //       children: [
-                    //         InkWell(
-                    //           onTap: () {},
-                    //           child: SvgPicture.asset(iconFile),
-                    //         ),
-                    //         SizedBox(
-                    //           width: 248.w,
-                    //           child: InputTextField(
-                    //               text: mess, hintext: 'Type Message'),
-                    //         ),
-                    //         InkWell(
-                    //           onTap: sendMess,
-                    //           // onTap: (){
-                    //           //   var test = _userResponsitory.getMessage(
-                    //           //       widget.receiverID, _auth.currentUser!.uid);
-                    //           //   print(test);
-                    //           // },
-                    //           child: SvgPicture.asset(iconMic),
-                    //         ),
-                    //       ],
-                    //     ),
-                    //   ),
-                    // )
-                  ],
-                );
-              }
-              return Center(
-                child: CircularProgressIndicator(),
+        body: BlocBuilder<DoctorCubit, DoctorState>(
+          builder: (context, state) {
+            if (state is DoctorSuccess) {
+              return Column(
+                children: [
+                  appBarChat(context, widget.imageUrl, widget.name),
+                  // Expanded(child: _messagesList()),
+                  Expanded(
+                      child: Chat(
+                          messages: _messages,
+                          onSendPressed: _handleSendPressed,
+                          onAttachmentPressed: (){},
+                          user: _user)),
+                  // Container(
+                  //   height: 90.h,
+                  //   width: MediaQuery.of(context).size.width,
+                  //   padding: EdgeInsets.only(top: 8.h),
+                  //   decoration: BoxDecoration(
+                  //       color: Colors.white,
+                  //       boxShadow: [
+                  //         BoxShadow(
+                  //             color: Colors.grey.shade300,
+                  //             blurRadius: 10,
+                  //             spreadRadius: 2)
+                  //       ]),
+                  //   alignment: Alignment.topCenter,
+                  //   child: Form(
+                  //     key: _key,
+                  //     child: Row(
+                  //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  //       children: [
+                  //         InkWell(
+                  //           onTap: () {},
+                  //           child: SvgPicture.asset(iconFile),
+                  //         ),
+                  //         SizedBox(
+                  //           width: 248.w,
+                  //           child: InputTextField(
+                  //               text: mess, hintext: 'Type Message'),
+                  //         ),
+                  //         InkWell(
+                  //           onTap: sendMess,
+                  //           // onTap: (){
+                  //           //   var test = _userResponsitory.getMessage(
+                  //           //       widget.receiverID, _auth.currentUser!.uid);
+                  //           //   print(test);
+                  //           // },
+                  //           child: SvgPicture.asset(iconMic),
+                  //         ),
+                  //       ],
+                  //     ),
+                  //   ),
+                  // )
+                ],
               );
-            },
-          ),
+            }
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          },
         ),
       ),
     );
@@ -227,7 +225,7 @@ class _ChatScreenState extends State<ChatScreen> {
 // (b.priceAdult! + b.totalFeeTaxAdt!),
 // ));
 
-formatDatetime(Timestamp time) {
+formatDatetime(var time) {
   var d12 = DateFormat('hh:mm a').format(time.toDate());
   return d12;
 }
