@@ -67,3 +67,4 @@ const String iconMic = '${linkIcons}btn_voice_essage.svg';
 // network
 
 const String imagePersion = 'https://static.thenounproject.com/png/5960329-200.png';
+const String imageForgot = '${linkUser}reset.jpg';

@@ -8,11 +8,10 @@ import 'package:doctor_help_app/screen/appointment_screen/give_screen/give_scree
 import 'package:doctor_help_app/screen/doctor/favorite_screen.dart';
 import 'package:doctor_help_app/screen/onboarding_screen/onboarding_screen.dart';
 import 'package:doctor_help_app/screen/screens.dart';
+import 'package:doctor_help_app/screen/user/forgot_password_screen/forgot_password_screen.dart';
 import 'package:doctor_help_app/screen/user/login_screen/login_screen.dart';
 import 'package:doctor_help_app/screen/user/register_screen/register_screen.dart';
 import 'package:flutter/material.dart';
-
-import 'model/user/doctor_model.dart';
 
 // nơi chưa route (kiểu như dường dẫn đến các màn hình)
 
@@ -50,4 +49,7 @@ final Map<String, WidgetBuilder> route ={
 
   //Navigation
   NavigationMenu.routeName: (context)=> NavigationMenu(),
+
+  //Forgot
+  Forgotpasswordscreen.routeName: (context)=> Forgotpasswordscreen(),
 };
