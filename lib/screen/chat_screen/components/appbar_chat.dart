@@ -1,3 +1,4 @@
+import 'package:doctor_help_app/screen/chat_screen/test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -5,23 +6,21 @@ import '../../../containts/containts.dart';
 import '../../../widgets/widgets.dart';
 
 Container appBarChat(BuildContext context, String image, String name) {
+  String roomID = 'test';
   return Container(
-    padding: EdgeInsets.only(bottom: 5.h,),
+    padding: EdgeInsets.only(
+      bottom: 5.h,
+    ),
     alignment: Alignment.bottomCenter,
     // height: 100.h,
-    decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-              color: Colors.grey.shade300,
-              blurRadius: 10,
-              spreadRadius: 3
-          )
-        ]
-    ),
+    decoration: BoxDecoration(color: Colors.white, boxShadow: [
+      BoxShadow(color: Colors.grey.shade300, blurRadius: 10, spreadRadius: 3)
+    ]),
     child: Row(
       children: [
-        IconButton(onPressed: ()=>Navigator.pop(context), icon: Icon(Icons.arrow_back_ios_new_outlined)),
+        IconButton(
+            onPressed: () => Navigator.pop(context),
+            icon: Icon(Icons.arrow_back_ios_new_outlined)),
         Padding(
           padding: EdgeInsets.only(left: 5.0.w, right: 16.w),
           child: clipRRectAvatar(36, 36, image),
@@ -30,13 +29,51 @@ Container appBarChat(BuildContext context, String image, String name) {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(name, style: txt16w5,),
-            Text('Online', style: txt12w4!.copyWith(color: Colors.grey),)
+            Text(
+              name,
+              style: txt16w5,
+            ),
+            Text(
+              'Online',
+              style: txt12w4!.copyWith(color: Colors.grey),
+            )
           ],
         ),
         Spacer(),
-        IconButton(onPressed: (){}, icon: Icon(Icons.phone_rounded, color: Colors.grey,)),
-        IconButton(onPressed: (){}, icon: Icon(Icons.more_vert, color: Colors.grey,))
+        // StreamBuilder<List<types.Room>>(
+        //   stream: FirebaseChatCore.instance.rooms(),
+        //     builder: (context, snapshot){
+        //     final room = snapshot.data!;
+        //     if(snapshot.hasData){
+        //       return IconButton(
+        //           onPressed: () {
+        //             Navigator.of(context).push(
+        //               MaterialPageRoute(
+        //                 builder: (context) => ChatScreenTest(
+        //                   room: room,
+        //                 ),
+        //               ),
+        //             );
+        //           },
+        //           icon: Icon(
+        //             Icons.phone_rounded,
+        //             color: Colors.grey,
+        //           ));
+        //     }
+        //     return CircularProgressIndicator();
+        //     },
+        IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.phone_rounded,
+                  color: Colors.grey,
+                )),
+        IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.more_vert,
+              color: Colors.grey,
+            ))
       ],
     ),
   );

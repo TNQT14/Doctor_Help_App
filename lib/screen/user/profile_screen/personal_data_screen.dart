@@ -1,5 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:doctor_help_app/bloc/user/user_bloc_cubit.dart';
+import 'package:doctor_help_app/screen/chat_screen/chat_screen.dart';
+import 'package:doctor_help_app/widgets/unfocusKeyboard.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
@@ -23,52 +28,76 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
   TextEditingController retypepassword = TextEditingController();
 
   @override
+  void initState() {
+    UserBlocCubit.get(context).getUserDataDetail();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: colorbg,
-      appBar: AppBar(
-        backgroundColor: colorbg,
-        title: Center(
-          child: Text(
+    return GestureDetector(
+      onTap: ()=> unfocusKeyboard(),
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: colorbg,
+          centerTitle: true,
+          title: Text(
             "Personal Data",
             style: txt16w6,
           ),
+          actions: [
+            TextButton(onPressed: () {}, child: const Text("Save")),
+          ],
         ),
-        actions: [
-          TextButton(onPressed: () {}, child: const Text("Save")),
-        ],
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: <Widget>[
-          Center(
-            child: BackGroundEditAvatCard(context, user1.imageUrl, true),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 13.0.w),
-            child: Form(
-                child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                text("Name"),
-                InputTextField(hintext: user1.name, text: name),
-                text("Date of Birth"),
-                InputTextField(
-                    hintext:
-                        "${DateFormat('yyyy-MM-dd').format(user1.birthDay.toDate())}",
-                    text: name,
-                    isPrefix: true,
-                    image: iconSchedule),
-                text("Phone"),
-                InputTextField(hintext: "${user1.phone}", text: name),
-                text("Address"),
-                InputTextField(hintext: "${user1.experience}", text: name),
-              ],
-            )),
-          ),
-        ],
-      ),
+        body: LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints viewportConstraints){
+            return SingleChildScrollView(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  minHeight: viewportConstraints.maxHeight
+                ),
+                child: BlocBuilder<UserBlocCubit, UserBlocState>(builder: (context, state) {
+                  if(state is UserSuccess){
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: <Widget>[
+                        Center(
+                          child: BackGroundEditAvatCard(context, state.user.imageUrl??imagePersion, true),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 13.0.w),
+                          child: Form(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  text("Name"),
+                                  InputTextField(hintext: state.user.name??"No data", text: name),
+                                  text("Date of Birth"),
+                                  InputTextField(
+                                      hintext:
+                                      "${formatDatetime(state.user.birthday ?? Timestamp.now())}",
+                                      text: name,
+                                      isPrefix: true,
+                                      image: iconSchedule),
+                                  text("Phone"),
+                                  InputTextField(hintext: "${state.user.phone?? 'xxx-xxxx-xxxx'}", text: name),
+                                  text("Address"),
+                                  InputTextField(hintext: state.user.address??"No data", text: name),
+                                ],
+                              )),
+                        ),
+                        const SizedBox(height: 15,)
+                      ],
+                    );
+                  }
+                  return Center( child:  CircularProgressIndicator(),);
+                })
+                ),
+              );
+          },
+        ),
+      )
     );
   }
 }
