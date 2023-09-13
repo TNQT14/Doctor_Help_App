@@ -24,6 +24,9 @@ class PersonalDataScreen extends StatefulWidget {
 
 class _PersonalDataScreenState extends State<PersonalDataScreen> {
   TextEditingController name = TextEditingController();
+  TextEditingController birthday = TextEditingController();
+  TextEditingController phone = TextEditingController();
+  TextEditingController address = TextEditingController();
   TextEditingController password = TextEditingController();
   TextEditingController retypepassword = TextEditingController();
 
@@ -46,7 +49,9 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
             style: txt16w6,
           ),
           actions: [
-            TextButton(onPressed: () {}, child: const Text("Save")),
+            TextButton(onPressed: () {
+
+            }, child: const Text("Save")),
           ],
         ),
         body: LayoutBuilder(
@@ -58,6 +63,7 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
                 ),
                 child: BlocBuilder<UserBlocCubit, UserBlocState>(builder: (context, state) {
                   if(state is UserSuccess){
+                    print(state.user.phone);
                     return Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.end,
@@ -77,13 +83,13 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
                                   InputTextField(
                                       hintext:
                                       "${formatDatetime(state.user.birthday ?? Timestamp.now())}",
-                                      text: name,
+                                      text: birthday,
                                       isPrefix: true,
                                       image: iconSchedule),
                                   text("Phone"),
-                                  InputTextField(hintext: "${state.user.phone?? 'xxx-xxxx-xxxx'}", text: name),
+                                  InputTextField(hintext: "${"0${state.user.phone}"?? 'xxx-xxxx-xxxx'}", text: phone),
                                   text("Address"),
-                                  InputTextField(hintext: state.user.address??"No data", text: name),
+                                  InputTextField(hintext: state.user.address??"No data", text: address),
                                 ],
                               )),
                         ),

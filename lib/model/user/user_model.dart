@@ -47,7 +47,7 @@ class UserModel extends Equatable {
         email: json['email'],
         name: json['name'],
         imageUrl: json['imageUrl'],
-        phone: json['phone'],
+        phone: int.parse(json['phone']),
         address: json['address'],
         birthday: json['birthday']);
   }
