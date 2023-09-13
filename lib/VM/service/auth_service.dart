@@ -1,7 +1,12 @@
+import 'dart:convert';
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doctor_help_app/widgets/widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:mailer/mailer.dart';
+import 'package:mailer/smtp_server/gmail.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -68,13 +73,78 @@ class AuthService {
   //forgot password
   Future<UserCredential?> forgotPassword(String email) async{
     try{
-      _auth.sendPasswordResetEmail(email: email);
+      // _auth.sendPasswordResetEmail(email: email);
+      final newPassword = generateRandomPassword();
+
+      sendNewPasswordByEmail(email, newPassword);
+
+      _auth.currentUser!.updatePassword(newPassword);
+
+      // await updateUserPasswordInFirestore(email, newPassword);
+      // Gửi email đặt lại mật khẩu từ Firebase
+      // await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      // print('Email đặt lại mật khẩu đã được gửi thành công.');
+      //
+      // // Tạo mật khẩu mới ngẫu nhiên
+      // final newPassword = generateRandomPassword();
+      //
+      // // Gửi mật khẩu mới qua email
+      // await sendNewPasswordByEmail(email, newPassword);
     }on FirebaseAuthException catch(e){
       showFlutterToastMessage(e.toString());
       print('Error login: $e');
       rethrow;
     }
   }
+  String generateRandomPassword() {
+    final random = Random.secure();
+    const charset = "0123456789";
 
+    return List.generate(8, (_) => charset[random.nextInt(charset.length)])
+        .join();
+  }
+
+  Future<void> sendNewPasswordByEmail(String email, String newPassword) async {
+    final smtpServer = gmail('tnquangthai2002@gmail.com', 'agaozdyswcmuqfxu');
+
+    // Tạo một email
+    final message = Message()
+      ..from = Address('tnquangthai2002@gmail.com', 'Doctor Help App')
+      ..recipients.add(email)
+      ..subject = 'Mật khẩu mới'
+      ..text = 'Mật khẩu mới của bạn là: $newPassword';
+
+    try {
+      final sendReport = await send(message, smtpServer);
+      print('Email đã được gửi đi: $sendReport');
+    } catch (e) {
+      print('Lỗi khi gửi email: $e');
+      throw e;
+    }
+  }
+
+  Future<void> updateUserPasswordInFirestore(String email, String newPassword) async {
+
+    try {
+      final user = _auth.currentUser;
+      await user?.updatePassword(newPassword);
+      // Tìm người dùng dựa trên email
+      final querySnapshot = await _fireStore
+          .collection('User')
+          .where('email', isEqualTo: email)
+          .get();
+
+
+      if (querySnapshot.docs.isNotEmpty) {
+        print('Cập nhật thành công: $email');
+      } else {
+        print('Không tìm thấy người dùng với email: $email');
+      }
+    } catch (e) {
+      print('Lỗi khi cập nhật mật khẩu trong Firestore: $e');
+      throw e;
+    }
+  }
 //change password
+
 }

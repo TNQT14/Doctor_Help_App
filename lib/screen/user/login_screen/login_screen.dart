@@ -8,6 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../containts/containts.dart';
 import '../../screens.dart';
+import '../forgot_password_screen/forgot_password_screen.dart';
 
 GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -73,7 +74,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             GestureDetector(
                               onTap: () {
                                   // UserResponsitory().createUserFirestore(email.text, password.text);
-                                  AuthService().forgotPassword(email.text);
+                                  // AuthService().forgotPassword(email.text);
+                                  Navigator.pushNamed(context, Forgotpasswordscreen.routeName);
                                   print("ádf");
                               },
                               child: Text(
