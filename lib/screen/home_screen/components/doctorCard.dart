@@ -14,9 +14,9 @@ Widget doctorCard(
   return backgroundDoctorCard(
       context,
       Padding(
-        padding: EdgeInsets.only(left: 6.w, right: 14.w),
+        padding: EdgeInsets.only(left: 16.w, right: 14.w),
         child: Row(
-          // crossAxisAlignment: CrossAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.end,
           mainAxisSize: MainAxisSize.min,
           children: [
             clipRRectAvatar(72, 108, image),
@@ -24,14 +24,19 @@ Widget doctorCard(
               width: 10.w,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0.h),
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    name,
-                    style: txt16w6,
+                  SizedBox(
+                    width: 150,
+                    child: Text(
+                      name,
+                      style: txt16w6,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    ),
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: 6.0.h),
@@ -45,10 +50,10 @@ Widget doctorCard(
                 ],
               ),
             ),
-            Spacer(),
+            const Spacer(),
             Column(
               children: [
-                Spacer(),
+                const Spacer(),
                 InkWell(
                   onTap: (){print('object');},
                   child: Container(
@@ -57,7 +62,7 @@ Widget doctorCard(
                     width: 53.w,
                     height: 26.h,
                     decoration: BoxDecoration(
-                      color: Color(0xff53A1FD),
+                      color: const Color(0xff53A1FD),
                       borderRadius: BorderRadius.circular(6)
                     ),
                     child: Text('Status', style: txt12w4!.copyWith(color: Colors.white),),
