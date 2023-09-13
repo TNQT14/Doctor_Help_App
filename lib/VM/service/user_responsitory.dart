@@ -46,11 +46,35 @@ class UserResponsitory {
     } catch (e) {
       throw Exception(e.toString());
     }
+
   }
-
-
-
-
+  Future<UserModel?> updateUserDetail(
+      String name,
+      String birthday,
+      String phone,
+      String address,
+      ) async{
+    UserModel userModel = UserModel(
+      name: name,
+      birthday: birthday,
+      phone: int.parse(phone),
+      address: address,
+    );
+    try{
+      String uid = _auth.currentUser!.uid;
+      await _store.collection('User').doc(uid).update(
+        {
+          'name': userModel.name,
+          'birthday': userModel.birthday,
+          'phone': phone,
+          'address': userModel.address,
+        }
+      );
+      return userModel;
+    } catch(e){
+      throw Exception(e.toString());
+    }
+  }
 
   //send and get mess
 
