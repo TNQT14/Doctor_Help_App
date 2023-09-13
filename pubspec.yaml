@@ -54,8 +54,10 @@ dependencies:
   firebase_storage: ^11.2.6
   image_picker: ^1.0.4
   path_provider: ^2.1.1
-  uuid: ^4.0.0
+#  uuid: ^4.0.0
   get: ^4.6.5
+  shared_preferences: ^2.2.1
+  nb_utils: ^6.0.3
 
 dev_dependencies:
   flutter_test:

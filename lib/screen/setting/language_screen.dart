@@ -24,9 +24,9 @@ class _LanguageScreenState extends State<LanguageScreen> {
   @override
   Widget build(BuildContext context) {
     List<lanlguage> _listLanguage = [];
-    LocalizationService.langs.forEach((key, value) {
-      _listLanguage.add(lanlguage(name: value, local: key));
-    });
+    // LocalizationService.langs.forEach((key, value) {
+    //   _listLanguage.add(lanlguage(name: value, local: key));
+    // });
     // String _selectedLang = LocalizationService.locale!.languageCode;
 
     return Scaffold(
