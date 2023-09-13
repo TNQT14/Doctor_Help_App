@@ -58,7 +58,6 @@ final Map<String, WidgetBuilder> route = {
 
   //Forgot
   Forgotpasswordscreen.routeName: (context)=> Forgotpasswordscreen(),
-};
   NavigationMenu.routeName: (context) => NavigationMenu(),
   LanguageScreen.routeName: (context) => LanguageScreen(),
 };

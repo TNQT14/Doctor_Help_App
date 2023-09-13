@@ -38,9 +38,13 @@ Container containerCardDoc(
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          name,
-                          style: txt14w4!.copyWith(color: Colors.white),
+                        Container(
+                          width: 150,
+                          child: Text(
+                            name,
+                            style: txt14w4!.copyWith(color: Colors.white),
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
                         Text(
                           job,

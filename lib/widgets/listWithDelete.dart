@@ -139,14 +139,22 @@ Padding cardMess(
               children: [
                 Padding(
                   padding: const EdgeInsets.only(bottom: 8.0),
-                  child: Text(
-                    name,
-                    style: txt16w6,
+                  child: Container(
+                    width: 200,
+                    child: Text(
+                      name,
+                      style: txt16w6,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
                 ),
-                Text(
-                  (text.length > 23) ? '${text.substring(0, 15)}...' : text,
-                  style: txt14w4,
+                Container(
+                  width: 200,
+                  child: Text(
+                    text,
+                    style: txt14w4,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 )
               ],
             ),

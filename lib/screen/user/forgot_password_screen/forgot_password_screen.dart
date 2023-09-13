@@ -8,6 +8,7 @@ import '../../../VM/service/auth_service.dart';
 import '../../../VM/validator.dart';
 import '../../../widgets/bluteElevateButton.dart';
 import '../../../widgets/input_textField.dart';
+import '../../../widgets/unfocusKeyboard.dart';
 
 GlobalKey<FormState> _forgotFormKey = GlobalKey<FormState>();
 
@@ -19,6 +20,7 @@ class Forgotpasswordscreen extends StatefulWidget {
   State<Forgotpasswordscreen> createState() => _ForgotpasswordscreenState();
   UserBlocCubit _userBlocCubit = UserBlocCubit();
 }
+
 
 class _ForgotpasswordscreenState extends State<Forgotpasswordscreen> {
   ValidatedMess validate = ValidatedMess();
@@ -32,48 +34,51 @@ class _ForgotpasswordscreenState extends State<Forgotpasswordscreen> {
         centerTitle: false,
         title: Text("Forgot password", style: txt18w7,),
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 13),
-            child: Form(
-              key: _forgotFormKey,
-              child: Column(
-                children: [
-                  Container(child: Image.asset(imageForgot)),
-                  InputTextField(
-                      hintext: 'Email',
-                      text: email,
-                      validator: (value) => validate.validatorEmail(value),
-                      isPrefix: true,
-                      image: iconMail
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 15.h),
-                    child: BlocBuilder<UserBlocCubit, UserBlocState>(
-                        builder: (context, state){
-                          if(state is LoginLoading && state.isLoading == true){
-                            return Center(
-                              child: CircularProgressIndicator(),
+      body: GestureDetector(
+        onTap: () => unfocusKeyboard(),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 13),
+              child: Form(
+                key: _forgotFormKey,
+                child: Column(
+                  children: [
+                    Container(child: Image.asset(imageForgot)),
+                    InputTextField(
+                        hintext: 'Email',
+                        text: email,
+                        validator: (value) => validate.validatorEmail(value),
+                        isPrefix: true,
+                        image: iconMail
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 15.h),
+                      child: BlocBuilder<UserBlocCubit, UserBlocState>(
+                          builder: (context, state){
+                            if(state is LoginLoading && state.isLoading == true){
+                              return Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            }
+                            return SizedBox(
+                              width: double.infinity,
+                              child: blueElevateButton(() {
+                                if (_forgotFormKey.currentState!.validate()) {
+                                  AuthService().forgotPassword(email.text);
+                                  Navigator.pop(context);//  UserResponsitory().createUserFirestore(email.text, password.text);
+                                }
+                              }, 'Reset Password'),
                             );
                           }
-                          return SizedBox(
-                            width: double.infinity,
-                            child: blueElevateButton(() {
-                              if (_forgotFormKey.currentState!.validate()) {
-                                AuthService().forgotPassword(email.text);
-                                Navigator.pop(context);//  UserResponsitory().createUserFirestore(email.text, password.text);
-                              }
-                            }, 'Reset Password'),
-                          );
-                        }
-                    ),
-                  )
-                ],
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       )
     );
   }

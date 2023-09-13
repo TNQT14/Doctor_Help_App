@@ -29,9 +29,13 @@ Container appBarChat(BuildContext context, String image, String name) {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(
-              name,
-              style: txt16w5,
+            Container(
+              width: 175,
+              child: Text(
+                name,
+                style: txt16w5,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
             Text(
               'Online',
