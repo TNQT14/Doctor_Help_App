@@ -8,11 +8,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
+import '../../../VM/service/user_responsitory.dart';
+import '../../../VM/validator.dart';
 import '../../../containts/containts.dart';
 import '../../../model/user/doctor_model.dart';
 import '../../../widgets/clipRRectAvatar.dart';
 import '../../../widgets/input_textField.dart';
 import 'component/backgroundEditAvataCard.dart';
+
+GlobalKey<FormState> _formDataKey = GlobalKey<FormState>();
 
 class PersonalDataScreen extends StatefulWidget {
   static String routeName = 'PersonalDataScreen';
@@ -38,6 +42,7 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
 
   @override
   Widget build(BuildContext context) {
+    ValidatedMess validate = ValidatedMess();
     return GestureDetector(
       onTap: ()=> unfocusKeyboard(),
       child: Scaffold(
@@ -49,9 +54,42 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
             style: txt16w6,
           ),
           actions: [
-            TextButton(onPressed: () {
+            // TextButton(onPressed: () {
+            //   UserResponsitory().updateUserDetail(name.text, birthday.text, phone.text, address.text);
+            // }, child: const Text("Save")),
+            BlocBuilder<UserBlocCubit, UserBlocState>(
+                builder: (context, state){
+                  if(state is FilledFormLoading && state.isFilling == false) {
+                    return SizedBox(
+                         child:  TextButton(onPressed: () {
+                              UserResponsitory().updateUserDetail(name.text, birthday.text, phone.text, address.text);
+                           }, child: const Text("Save", style: TextStyle(color: Colors.grey),)),
+                       ) ;
+                  }
+                  return SizedBox(
+                         child:  TextButton(onPressed: () {
+                           UserResponsitory().updateUserDetail(name.text, birthday.text, phone.text, address.text);
+                         }, child: const Text("Save")),
+                       )
 
-            }, child: const Text("Save")),
+                  // if(state is FilledFormError)
+                  //   return Center(
+                  //     child: CircularProgressIndicator(),
+                  //   );
+                  // return
+                  // validate.validationForm(name.text, phone.text, birthday.text, address.text) ?
+                  //  SizedBox(
+                  //   child:  TextButton(onPressed: () {
+                  //        UserResponsitory().updateUserDetail(name.text, birthday.text, phone.text, address.text);
+                  //     }, child: const Text("Save")),
+                  // ) :SizedBox(
+                  //   child:  TextButton(onPressed: () {
+                  //     UserResponsitory().updateUserDetail(name.text, birthday.text, phone.text, address.text);
+                  //   }, child: const Text("Save", style: TextStyle(color: Colors.grey),)),
+                  // )
+                  ;
+                }
+            )
           ],
         ),
         body: LayoutBuilder(
@@ -64,6 +102,7 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
                 child: BlocBuilder<UserBlocCubit, UserBlocState>(builder: (context, state) {
                   if(state is UserSuccess){
                     print(state.user.phone);
+                    // DateTime? dateTime = state.user.birthday;
                     return Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.end,
@@ -74,15 +113,21 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 13.0.w),
                           child: Form(
+                            key: _formDataKey,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   text("Name"),
-                                  InputTextField(hintext: state.user.name??"No data", text: name),
+                                  InputTextField(
+                                    hintext: state.user.name ??"No data",
+                                    text: name,
+                                    isPrefix: true,
+                                    validator: (value) => validate.vadilationName(value),
+                                  ),
                                   text("Date of Birth"),
                                   InputTextField(
                                       hintext:
-                                      "${formatDatetime(state.user.birthday ?? Timestamp.now())}",
+                                      "${state.user.birthday?? Timestamp.now()}",
                                       text: birthday,
                                       isPrefix: true,
                                       image: iconSchedule),
@@ -106,6 +151,7 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
       )
     );
   }
+  GlobalKey<FormState> formDataKey = GlobalKey<FormState>();
 }
 
 Padding text(String title) {
