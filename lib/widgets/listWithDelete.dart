@@ -1,11 +1,13 @@
 import 'package:doctor_help_app/bloc/doctor/doctor_cubit.dart';
-import 'package:doctor_help_app/bloc/user/user_bloc_cubit.dart';
-import 'package:doctor_help_app/model/user/doctor_model.dart';
+import 'package:doctor_help_app/screen/chat_screen/test.dart';
 import 'package:doctor_help_app/screen/screens.dart';
 import 'package:doctor_help_app/widgets/show_toast_messes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase_chat_core/flutter_firebase_chat_core.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+
+import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import '../containts/containts.dart';
 import 'clipRRectAvatar.dart';
 
@@ -30,8 +32,10 @@ Expanded listMess(DoctorSuccess state) {
                     context,
                     MaterialPageRoute(
                         builder: (context) =>
-                            ChatScreen(name: state.listDoctor[index].name,
-                            imageUrl: state.listDoctor[index].imageUrl,)),
+                            ChatScreen(imageUrl: state.listDoctor[index].imageUrl,
+                            receiverID: state.listDoctor[index].uidDoctor,
+                            name: state.listDoctor[index].name,)
+                    ),
                   );
                 },
                 child: cardMess(
@@ -40,6 +44,32 @@ Expanded listMess(DoctorSuccess state) {
                     state.listDoctor[index].imageUrl ?? imagePersion,
                     state.listDoctor[index].description),
               ),
+              // child: StreamBuilder<List<types.Room>>(
+              //   stream:  FirebaseChatCore.instance.rooms(),
+              //   builder: (context, snapshot){
+              //     final room = snapshot.data![index];
+              //     if(snapshot.hasData){
+              //       return
+              //         InkWell(
+              //           onTap: (){
+              //             // Navigator.of(context).push(
+              //             //   MaterialPageRoute(
+              //             //     builder: (context) => ChatScreenTest(
+              //             //       room: room,
+              //             //     ),
+              //             //   ),
+              //             // );
+              //           },
+              //           child: cardMess(
+              //               context,
+              //               state.listDoctor[index].name ?? 'Lỗi',
+              //               state.listDoctor[index].imageUrl ?? imagePersion,
+              //               state.listDoctor[index].description),
+              //         );
+              //     }
+              //     return CircularProgressIndicator();
+              //   },
+              // ),
               onDismissed: (direction) {
                 // showToastMessage(context,'Message Deleted');
                 showSnackBar(context, 'Message Deleted');
@@ -66,7 +96,22 @@ Expanded listMess(DoctorSuccess state) {
               background: Container(),
             );
           }));
+
 }
+
+// void _handlePressed(UserModel otherUser, BuildContext context) async {
+//   final navigator = Navigator.of(context);
+//   final room = await FirebaseChatCore.instance.createRoom(otherUser);
+//
+//   navigator.pop();
+//   await navigator.push(
+//     MaterialPageRoute(
+//       builder: (context) => ChatScreen(
+//         room: room,
+//       ),
+//     ),
+//   );
+// }
 
 // String text = 'Hello, can i help you?';
 // List <int> ten = List<int>.generate(10, (index) => index);

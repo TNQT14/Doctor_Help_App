@@ -15,41 +15,50 @@ import 'package:flutter/material.dart';
 
 // nơi chưa route (kiểu như dường dẫn đến các màn hình)
 
-final Map<String, WidgetBuilder> route ={
-  OnboardingScreens.routeName: (context)=> OnboardingScreens(),
-  LoginRegisterBackground.routeName: (context)=> LoginRegisterBackground(),
-  LoginScreen.routeName: (context)=>LoginScreen(),
-  RegisterScreen.routeName: (context)=>RegisterScreen(),
+final Map<String, WidgetBuilder> route = {
+  OnboardingScreens.routeName: (context) => OnboardingScreens(),
+  LoginRegisterBackground.routeName: (context) => LoginRegisterBackground(),
+  LoginScreen.routeName: (context) => LoginScreen(),
+  RegisterScreen.routeName: (context) => RegisterScreen(),
 
   //Home Screen
-  HomeScreen.routeName: (context)=> HomeScreen(),
+  HomeScreen.routeName: (context) => HomeScreen(),
 
   //Chat Screen
-  ListChatScreen.routeName: (context)=> ListChatScreen(),
-  ChatScreen.routeName: (context)=> ChatScreen(name: '', imageUrl: imageCat,),
+  ListChatScreen.routeName: (context) => ListChatScreen(),
+  ChatScreen.routeName: (context)=> ChatScreen(imageUrl: '', name: '', receiverID: '',),
 
   //Appointment Screen
-  AppointmentDateTimeScreen.routeName: (context)=> AppointmentDateTimeScreen(),
-  AppointmentSummaryScreen.routeNameSummary: (context)=> AppointmentSummaryScreen(appBarTitle: 'Summary',
-    bottomTitle: 'Make my appointment',),
-  AppointmentSummaryScreen.routeNameDetail: (context)=> AppointmentSummaryScreen(appBarTitle: 'Detail',
-    bottomTitle: 'Give Your Reviews',),
-  AppointmentSuccessScreen.routeName: (context)=> AppointmentSuccessScreen(),
-  AppointmentScreen.routeName: (context)=> AppointmentScreen(),
-  GiveReviewScreen.routeName: (context)=> GiveReviewScreen(),
+  AppointmentDateTimeScreen.routeName: (context) => AppointmentDateTimeScreen(),
+  AppointmentSummaryScreen.routeNameSummary: (context) =>
+      AppointmentSummaryScreen(
+        appBarTitle: 'Summary',
+        bottomTitle: 'Make my appointment',
+      ),
+  AppointmentSummaryScreen.routeNameDetail: (context) =>
+      AppointmentSummaryScreen(
+        appBarTitle: 'Detail',
+        bottomTitle: 'Give Your Reviews',
+      ),
+  AppointmentSuccessScreen.routeName: (context) => AppointmentSuccessScreen(),
+  AppointmentScreen.routeName: (context) => AppointmentScreen(),
+  GiveReviewScreen.routeName: (context) => GiveReviewScreen(),
 
   //Favorite Screen
-  FavoriteScreen.routeName: (context)=> FavoriteScreen(),
-  DoctordetailScreen.routeName: (context)=> DoctordetailScreen(),
+  FavoriteScreen.routeName: (context) => FavoriteScreen(),
+  DoctordetailScreen.routeName: (context) => DoctordetailScreen(),
 
   //Profile Screen
   ProfileScreen.routeName: (context) => ProfileScreen(),
-  PersonalDataScreen.routeName: (context)=> PersonalDataScreen(),
-  NotificationScreen.routeName: (context)=> NotificationScreen(),
+  PersonalDataScreen.routeName: (context) => PersonalDataScreen(),
+  NotificationScreen.routeName: (context) => NotificationScreen(),
 
   //Navigation
   NavigationMenu.routeName: (context)=> NavigationMenu(),
 
   //Forgot
   Forgotpasswordscreen.routeName: (context)=> Forgotpasswordscreen(),
+};
+  NavigationMenu.routeName: (context) => NavigationMenu(),
+  LanguageScreen.routeName: (context) => LanguageScreen(),
 };

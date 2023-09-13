@@ -1,16 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:doctor_help_app/model/user/message_model.dart';
 import 'package:doctor_help_app/model/user/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 
-class UserResponsitory{
-  
+class UserResponsitory {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _store = FirebaseFirestore.instance;
 
-  Future<List<UserModel>?> getListUser() async{
+  Future<List<UserModel>?> getListUser() async {
     List<UserModel> listUser = [];
-    try{
+    try {
       final getData = await _store.collection('User').get();
       getData.docs.forEach((element) {
         return listUser.add(UserModel.fromJson(element.data()));
@@ -24,30 +24,68 @@ class UserResponsitory{
       // _store.collection('User').snapshots().map((event) {
       //   return event.docs.map((e) => UserModelDemo.fromSnapshot(e)).toList();
       // });
-    } on FirebaseAuthException catch(e){
-      if(kDebugMode){
+    } on FirebaseAuthException catch (e) {
+      if (kDebugMode) {
         print('Failed with error ${e.code}: ${e.message}');
       }
       return listUser;
-    } catch(e){
+    } catch (e) {
       throw Exception(e.toString());
     }
   }
 
-  Future <UserModel?> getUserDetail() async{
+  Future<UserModel?> getUserDetail() async {
     UserModel userModel;
-    try{
+    try {
       String uid = _auth.currentUser!.uid;
       userModel = await _store.collection('User').doc(uid).get().then((value) {
         return UserModel.fromJson(value.data()!);
       });
       // print(userModel);
       return userModel;
-    } catch(e){
+    } catch (e) {
       throw Exception(e.toString());
     }
-
   }
 
 
+
+
+
+  //send and get mess
+
+  Future<void> sendMess(String receiverID, String mess) async {
+    final String _userUid = _auth.currentUser!.uid;
+    final String _userEmail = _auth.currentUser!.email.toString();
+    final Timestamp timestamp = Timestamp.now();
+
+    MessageModel newMessage = MessageModel(
+        timestamp: timestamp,
+        message: mess,
+        receiverID: receiverID,
+        senderEmail: _userEmail,
+        senderID: _userUid);
+
+    List<String> ids = [_userUid, receiverID];
+    ids.sort();
+    String chatroomID = ids.join('_');
+
+    await _store
+        .collection('chat_rooms')
+        .doc(chatroomID)
+        .collection('Messages')
+        .add(newMessage.toJson());
+  }
+
+  Stream<QuerySnapshot> getMessage(String userID, String orderUserID) {
+    List<String> ids = [userID, orderUserID];
+    ids.sort();
+    String chatroomID = ids.join('_');
+    return _store
+        .collection('chat_rooms')
+        .doc(chatroomID)
+        .collection('Messages')
+        .orderBy('timestamp', descending: false)
+        .snapshots();
+  }
 }

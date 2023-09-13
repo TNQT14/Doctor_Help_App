@@ -19,29 +19,27 @@ class DoctordetailScreen extends StatelessWidget {
       // resizeToAvoidBottomInset: false,
       backgroundColor: colorbg,
       appBar: appbarCustom(context),
-      body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: 13.w, right: 13.w, top: 16.h, bottom: 8.h),
-                    child: rowDocDetailIn4(user1.imageUrl, user1.name, user1.job),
-                  ),
-                  pro5DocDetail(context, user1.imageUrl, user1.rating,
-                      user1.description, user1.name, user1.job,
-                  user1.review),
-                  const SizedBox(height: 15)
-                ],
-              ),
+      body: Column(
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(left: 13.w, right: 13.w, top: 16.h, bottom: 8.h),
+                  child: rowDocDetailIn4(user1.imageUrl, user1.name, user1.job),
+                ),
+                pro5DocDetail(context, user1.imageUrl, user1.rating,
+                    user1.description, user1.name, user1.job,
+                user1.review),
+                const SizedBox(height: 15)
+              ],
             ),
-            bottomCardButton('Make an appointment', () {
-              Navigator.pushNamed(context, AppointmentDateTimeScreen.routeName);
-            })
-          ],
-        ),
+          ),
+          bottomCardButton('Make an appointment', () {
+            Navigator.pushNamed(context, AppointmentDateTimeScreen.routeName);
+          })
+        ],
       ),
     );
   }

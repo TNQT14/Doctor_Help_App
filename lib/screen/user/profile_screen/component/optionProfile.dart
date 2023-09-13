@@ -1,6 +1,9 @@
 import 'package:doctor_help_app/containts/add_color.dart';
+import 'package:doctor_help_app/containts/containts.dart';
+import 'package:doctor_help_app/screen/screens.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../containts/add_images.dart';
 import '../../../../model/user/doctor_model.dart';
@@ -16,9 +19,7 @@ _buildOption(String image, String title, Function()? onTap){
     ),
     title: Text(
       title,
-      style: const TextStyle(
-          fontSize: 16
-      ),
+      style: txt16w4
     ),
     onTap: onTap,
   );
@@ -26,13 +27,9 @@ _buildOption(String image, String title, Function()? onTap){
 
 _title(String title){
   return Padding(
-    padding: const EdgeInsets.fromLTRB(13, 8, 13, 8),
+    padding: EdgeInsets.symmetric(horizontal: 13.w, vertical: 8.h),
     child: Text(title,
-            style: const TextStyle(
-                fontSize: 18,
-                color: colorTitle,
-              fontWeight: FontWeight.bold,
-    ) ,
+            style: txt18w6,
     ),
   );
 }
@@ -63,6 +60,8 @@ Widget optionProfile(BuildContext context, DoctorModel user){
                       NotificationScreen.routeName)),
               _buildOption(iconShield,
                   "Security", () {}),
+              _buildOption(iconGlobal,
+                  "Language", () =>Navigator.pushNamed(context, LanguageScreen.routeName)),
               _buildOption(iconInfoCircle,
                   "Help", () {}),
               _buildOption(iconInfoSquare,
