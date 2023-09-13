@@ -74,17 +74,17 @@ class AuthService {
   Future<UserCredential?> forgotPassword(String email) async{
     try{
       // _auth.sendPasswordResetEmail(email: email);
-      final newPassword = generateRandomPassword();
-
-      sendNewPasswordByEmail(email, newPassword);
-
-      _auth.currentUser!.updatePassword(newPassword);
+      // final newPassword = generateRandomPassword();
+      //
+      // sendNewPasswordByEmail(email, newPassword);
+      //
+      // _auth.currentUser!.updatePassword(newPassword);
 
       // await updateUserPasswordInFirestore(email, newPassword);
       // Gửi email đặt lại mật khẩu từ Firebase
-      // await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
-      // print('Email đặt lại mật khẩu đã được gửi thành công.');
-      //
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      print('Email đặt lại mật khẩu đã được gửi thành công.');
+
       // // Tạo mật khẩu mới ngẫu nhiên
       // final newPassword = generateRandomPassword();
       //
@@ -106,8 +106,6 @@ class AuthService {
 
   Future<void> sendNewPasswordByEmail(String email, String newPassword) async {
     final smtpServer = gmail('tnquangthai2002@gmail.com', 'agaozdyswcmuqfxu');
-
-    // Tạo một email
     final message = Message()
       ..from = Address('tnquangthai2002@gmail.com', 'Doctor Help App')
       ..recipients.add(email)
@@ -128,7 +126,6 @@ class AuthService {
     try {
       final user = _auth.currentUser;
       await user?.updatePassword(newPassword);
-      // Tìm người dùng dựa trên email
       final querySnapshot = await _fireStore
           .collection('User')
           .where('email', isEqualTo: email)
@@ -136,6 +133,7 @@ class AuthService {
 
 
       if (querySnapshot.docs.isNotEmpty) {
+
         print('Cập nhật thành công: $email');
       } else {
         print('Không tìm thấy người dùng với email: $email');
