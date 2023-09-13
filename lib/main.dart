@@ -25,14 +25,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      // ScreenUtilInit để reSize màn hình,
-      // nó sẽ đo theo thông số màn hình trong figma(cái design mình đang code theo)
-      // rồi co giãn để phù hợp với mọi loại thiết bị
       builder: (context, child) {
         return GetMaterialApp(
-          // locale: LocalizationService.locale,
-          // fallbackLocale: LocalizationService.fallbackLocale,
-          // translations: LocalizationService(),
+          locale: LocalizationService.locale,
+          fallbackLocale: LocalizationService.fallbackLocale,
+          // translations: Messages(language: language),
           // initialRoute: HomeScreen.routeName,
           routes: route,
           debugShowCheckedModeBanner: false,
