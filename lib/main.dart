@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       builder: (context, child) {
         return GetMaterialApp(
-          locale: LocalizationService.locale,
+          // locale: LocalizationService.locale,
           fallbackLocale: LocalizationService.fallbackLocale,
           // translations: Messages(language: language),
           // initialRoute: HomeScreen.routeName,
