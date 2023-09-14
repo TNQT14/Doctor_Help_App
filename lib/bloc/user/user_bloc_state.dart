@@ -92,28 +92,3 @@ class UserSuccess extends UserBlocState {
 }
 
 //Fill Form
-class FilledFormSucess extends UserBlocState {
-  String name;
-  String birthday;
-  String phone;
-  String address;
-  FilledFormSucess({required this.name,
-    required this.birthday,
-    required this.phone,
-    required this.address,
-  });
-  @override
-  List<Object?> get props => [name, birthday,phone, address];
-}
-
-class FilledFormLoading extends UserBlocState {
-  bool isFilling;
-  FilledFormLoading({this.isFilling=true});
-  @override
-  List<Object?> get props => [isFilling];
-}
-
-class FilledFormError extends UserBlocState {
-  @override
-  List<Object?> get props => throw UnimplementedError();
-}

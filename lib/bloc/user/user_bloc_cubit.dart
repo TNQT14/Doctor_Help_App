@@ -72,24 +72,5 @@ class UserBlocCubit extends Cubit<UserBlocState> {
     }
   }
 
-  Future filledForm(BuildContext context,String name,String birthday,String phone,String address) async {
-    try {
-      emit(FilledFormLoading());
-      final filled = await _userResponsitory.updateUserDetail(
-          name, birthday, phone, address);
-      emit(FilledFormLoading(isFilling: false));
-      if (filled != null &&
-          filled.name != null &&
-          filled.phone != null &&
-          filled.address != null) {
-        emit(FilledFormSucess(
-            name: name, birthday: birthday, phone: phone, address: address));
-        showFlutterToastMessage('Cập nhập thành công');
-      }
-    }catch(e)
-    {
-      emit(FilledFormLoading(isFilling: false));
-      print(e);
-    }
-  }
+
 }
