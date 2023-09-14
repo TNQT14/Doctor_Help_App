@@ -8,6 +8,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 import '../../../VM/service/user_responsitory.dart';
+import '../../../VM/service/user_responsitory.dart';
+import '../../../VM/service/user_responsitory.dart';
 import '../../../VM/validator.dart';
 import '../../../containts/containts.dart';
 import '../../../widgets/input_textField.dart';
@@ -21,6 +23,7 @@ class PersonalDataScreen extends StatefulWidget {
   PersonalDataScreen({Key? key}) : super(key: key);
   @override
   State<PersonalDataScreen> createState() => _PersonalDataScreenState();
+  UserResponsitory _userResponsitory = UserResponsitory();
 }
 
 class _PersonalDataScreenState extends State<PersonalDataScreen> {
@@ -80,30 +83,31 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
                           birthday.text.isNotEmpty &&
                           phone.text.isNotEmpty &&
                           address.text.isNotEmpty;
-
-                      return SizedBox(
-                        child: TextButton(
-                          onPressed: isFormFilled
-                              ? () {
-                            UserResponsitory().updateUserDetail(
-                              name.text,
-                              birthday.text,
-                              phone.text,
-                              address.text,
-                            );
-                          }
-                              : null,
-                          child: Text(
-                            "Save",
-                            style: TextStyle(
-                              color: isFormFilled
-                                  ? Colors.blue
-                                  : Colors.grey,
+                        return SizedBox(
+                          child: TextButton(
+                            onPressed: isFormFilled
+                                ? () {
+                              widget._userResponsitory.updateUserDetail(
+                                name.text,
+                                birthday.text,
+                                phone.text,
+                                address.text,
+                              );
+                            }
+                                : null,
+                            child: Text(
+                              "Save",
+                              style: TextStyle(
+                                color: isFormFilled
+                                    ? Colors.blue
+                                    : Colors.grey,
+                              ),
                             ),
                           ),
-                        ),
-                      );
-                    }
+                        );
+                      }
+
+
                     return Center(
                       child: CircularProgressIndicator(),
                     );

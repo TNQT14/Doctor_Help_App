@@ -102,6 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
                              widget._userCubit.loginCubit(context, email.text, password.text);
                             //  UserResponsitory().createUserFirestore(email.text, password.text);
                             }
+                            // widget._userCubit.loginCubit(context, email.text, password.text);
                           }, 'Login'),
                         );
                       }),
