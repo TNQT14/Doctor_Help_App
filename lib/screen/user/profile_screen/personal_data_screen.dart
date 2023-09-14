@@ -1,18 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:doctor_help_app/bloc/fillForm/fillForm_bloc_cubit.dart';
 import 'package:doctor_help_app/bloc/user/user_bloc_cubit.dart';
-import 'package:doctor_help_app/screen/chat_screen/chat_screen.dart';
 import 'package:doctor_help_app/widgets/unfocusKeyboard.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intl/intl.dart';
-
+import 'package:get/get_connect/http/src/utils/utils.dart';
 import '../../../VM/service/user_responsitory.dart';
 import '../../../VM/validator.dart';
 import '../../../containts/containts.dart';
-import '../../../model/user/doctor_model.dart';
-import '../../../widgets/clipRRectAvatar.dart';
 import '../../../widgets/input_textField.dart';
 import 'component/backgroundEditAvataCard.dart';
 
@@ -37,12 +34,31 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
   @override
   void initState() {
     UserBlocCubit.get(context).getUserDataDetail();
+    FillFormBlocCubit.get(context).filledForm(context, name.text, birthday.text,
+        phone.text,address.text);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     ValidatedMess validate = ValidatedMess();
+    // if(name.text.isNotEmpty && birthday.text.isNotEmpty && phone.text.isNotEmpty&& address.text.isNotEmpty )
+      if(name.text.isEmpty || birthday.text.isEmpty || phone.text.isEmpty|| address.text.isEmpty )
+      {
+        print('Form rỗng');
+        print("Tên ${name.text.length}");
+        print("birthday ${birthday.text.length}");
+        print("phone ${phone.text.length}");
+        print("address ${address.text.length}");
+      }
+    else {
+      print('Form không rỗng');
+      print("Tên ${name.text}");
+      print("birthday ${birthday.text}");
+      print("phone ${phone.text}");
+      print("address ${address.text}");
+    }
+
     return GestureDetector(
       onTap: ()=> unfocusKeyboard(),
       child: Scaffold(
@@ -54,42 +70,47 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
             style: txt16w6,
           ),
           actions: [
-            // TextButton(onPressed: () {
-            //   UserResponsitory().updateUserDetail(name.text, birthday.text, phone.text, address.text);
-            // }, child: const Text("Save")),
-            BlocBuilder<UserBlocCubit, UserBlocState>(
-                builder: (context, state){
-                  if(state is FilledFormLoading && state.isFilling == false) {
-                    return SizedBox(
-                         child:  TextButton(onPressed: () {
-                              UserResponsitory().updateUserDetail(name.text, birthday.text, phone.text, address.text);
-                           }, child: const Text("Save", style: TextStyle(color: Colors.grey),)),
-                       ) ;
-                  }
-                  return SizedBox(
-                         child:  TextButton(onPressed: () {
-                           UserResponsitory().updateUserDetail(name.text, birthday.text, phone.text, address.text);
-                         }, child: const Text("Save")),
-                       )
+            BlocBuilder<FillFormBlocCubit, FillFormBlocState>(
+              builder: (context, stateFillForm) {
+                return BlocBuilder<UserBlocCubit, UserBlocState>(
+                  builder: (context, stateUser) {
+                    if (stateUser is UserSuccess) {
+                      final isFormFilled =
+                          name.text.isNotEmpty &&
+                          birthday.text.isNotEmpty &&
+                          phone.text.isNotEmpty &&
+                          address.text.isNotEmpty;
 
-                  // if(state is FilledFormError)
-                  //   return Center(
-                  //     child: CircularProgressIndicator(),
-                  //   );
-                  // return
-                  // validate.validationForm(name.text, phone.text, birthday.text, address.text) ?
-                  //  SizedBox(
-                  //   child:  TextButton(onPressed: () {
-                  //        UserResponsitory().updateUserDetail(name.text, birthday.text, phone.text, address.text);
-                  //     }, child: const Text("Save")),
-                  // ) :SizedBox(
-                  //   child:  TextButton(onPressed: () {
-                  //     UserResponsitory().updateUserDetail(name.text, birthday.text, phone.text, address.text);
-                  //   }, child: const Text("Save", style: TextStyle(color: Colors.grey),)),
-                  // )
-                  ;
-                }
-            )
+                      return SizedBox(
+                        child: TextButton(
+                          onPressed: isFormFilled
+                              ? () {
+                            UserResponsitory().updateUserDetail(
+                              name.text,
+                              birthday.text,
+                              phone.text,
+                              address.text,
+                            );
+                          }
+                              : null,
+                          child: Text(
+                            "Save",
+                            style: TextStyle(
+                              color: isFormFilled
+                                  ? Colors.blue
+                                  : Colors.grey,
+                            ),
+                          ),
+                        ),
+                      );
+                    }
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  },
+                );
+              },
+            ),
           ],
         ),
         body: LayoutBuilder(
@@ -99,51 +120,63 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
                 constraints: BoxConstraints(
                   minHeight: viewportConstraints.maxHeight
                 ),
-                child: BlocBuilder<UserBlocCubit, UserBlocState>(builder: (context, state) {
-                  if(state is UserSuccess){
-                    print(state.user.phone);
-                    // DateTime? dateTime = state.user.birthday;
-                    return Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: <Widget>[
-                        Center(
-                          child: BackGroundEditAvatCard(context, state.user.imageUrl??imagePersion, true),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 13.0.w),
-                          child: Form(
-                            key: _formDataKey,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  text("Name"),
-                                  InputTextField(
-                                    hintext: state.user.name ??"No data",
-                                    text: name,
-                                    isPrefix: true,
-                                    validator: (value) => validate.vadilationName(value),
-                                  ),
-                                  text("Date of Birth"),
-                                  InputTextField(
-                                      hintext:
-                                      "${state.user.birthday?? Timestamp.now()}",
-                                      text: birthday,
-                                      isPrefix: true,
-                                      image: iconSchedule),
-                                  text("Phone"),
-                                  InputTextField(hintext: "${"0${state.user.phone}"?? 'xxx-xxxx-xxxx'}", text: phone),
-                                  text("Address"),
-                                  InputTextField(hintext: state.user.address??"No data", text: address),
-                                ],
-                              )),
-                        ),
-                        const SizedBox(height: 15,)
-                      ],
-                    );
-                  }
-                  return Center( child:  CircularProgressIndicator(),);
-                })
+                child:  BlocBuilder<FillFormBlocCubit, FillFormBlocState>(
+                    builder: (context, stateFillForm){
+                      return BlocBuilder<UserBlocCubit, UserBlocState>(builder: (context, stateUser) {
+                        if(stateUser is UserSuccess){
+                          // print(state.user.phone);
+                          // DateTime? dateTime = state.user.birthday;
+                          return Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: <Widget>[
+                              Center(
+                                child: BackGroundEditAvatCard(context, stateUser.user.imageUrl??imagePersion, true),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 13.0.w),
+                                child: Form(
+                                    key: _formDataKey,
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        text("Name"),
+                                        InputTextField(
+                                          hintext: stateUser.user.name ??"No data",
+                                          text: name,
+                                          // isPrefix: true,
+                                          validator: (value) => validate.vadilationName(value),
+                                        ),
+                                        text("Date of Birth"),
+                                        InputTextField(
+                                          hintext:
+                                          "${stateUser.user.birthday?? Timestamp.now()}",
+                                          text: birthday,
+                                          isPrefix: true,
+                                          image: iconSchedule,
+                                          validator: (value) => validate.vadilationBirthday(value),
+                                        ),
+                                        text("Phone"),
+                                        InputTextField(hintext: "${"0${stateUser.user.phone}"?? 'xxx-xxxx-xxxx'}",
+                                          text: phone,
+                                          validator: (value) => validate.vadilationPhone(value),
+                                        ),
+                                        text("Address"),
+                                        InputTextField(hintext: stateUser.user.address??"No data",
+                                          text: address,
+                                          validator: (value) => validate.vadilationAddress(value),
+                                        ),
+                                      ],
+                                    )),
+                              ),
+                              const SizedBox(height: 15,)
+                            ],
+                          );
+                        }
+                        return Center( child:  CircularProgressIndicator(),);
+                      });
+                    }
+                )
                 ),
               );
           },

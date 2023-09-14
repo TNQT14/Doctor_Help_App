@@ -64,10 +64,10 @@ class UserResponsitory {
       String uid = _auth.currentUser!.uid;
       await _store.collection('User').doc(uid).update(
         {
-          'name': userModel.name,
-          'birthday': userModel.birthday,
+          'name': name,
+          'birthday': birthday,
           'phone': phone,
-          'address': userModel.address,
+          'address': address,
         }
       );
       return userModel;

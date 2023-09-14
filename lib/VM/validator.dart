@@ -84,14 +84,4 @@ class ValidatedMess{
       return null;
   }
 
-  bool validationForm(String? name, String? phone, String? birthday, String? address){
-    if(vadilationName(name)==false ||
-        vadilationPhone(phone) == false ||
-        vadilationBirthday(birthday)==false ||
-        vadilationAddress(address)==false)
-      return false;
-    else
-    return true;
-  }
-
 }
