@@ -65,6 +65,7 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
     return GestureDetector(
       onTap: ()=> unfocusKeyboard(),
       child: Scaffold(
+        backgroundColor: colorbg,
         appBar: AppBar(
           backgroundColor: colorbg,
           centerTitle: true,

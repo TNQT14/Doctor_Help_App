@@ -11,6 +11,7 @@ class AboutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: colorbg,
         resizeToAvoidBottomInset: true,
         appBar: AppBar(
           backgroundColor: colorbg,
@@ -34,17 +35,17 @@ class AboutScreen extends StatelessWidget {
                     style: txt18w6,
                   ),
                   Text("1.2.2",
-                    style: txt18w6,
+                    style: txt16w4,
                   ),
                 ],
               ),
               SizedBox(height: 20,),
               Text("Doctor help app là sản phẩm của dự án cuối khóa Devera. Bảo lưu mọi quyền.",
-                style: txt18w4,
+                style: txt16w4,
               ),
               SizedBox(height: 20,),
               Text("Doctor help app dành cho Android là dự án tích hợp bằng phần mềm mở. Được thiết kế hỗ trợ kết nối giữa người dân và bác sĩ nhằm mục đích tư vấn sức khỏe, và đặt lịch khám trực tuyến.",
-                style: txt18w4,
+                style: txt16w4,
               ),
 
 
