@@ -17,9 +17,13 @@ final TextStyle txt16w6 = TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600
 final TextStyle txt16w7 = TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w700);
 
 //18
+final TextStyle txt18w3 = TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w300);
+final TextStyle txt18w4 = TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w400);
+final TextStyle txt18w5 = TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w500);
 final TextStyle txt18w6 = TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w600);
 final TextStyle txt18w7 = TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w700);
 
 //32
+final TextStyle txt32w3 = TextStyle(fontSize: 32.sp, fontWeight: FontWeight.w300);
 final TextStyle txt32w7 = TextStyle(fontSize: 32.sp, fontWeight: FontWeight.w700);
 final TextStyle txt32w7AppBar = TextStyle(fontSize: 32.sp, fontWeight: FontWeight.w700, color: colorTitle);
