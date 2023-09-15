@@ -1,5 +1,6 @@
 import 'package:doctor_help_app/containts/add_color.dart';
 import 'package:doctor_help_app/containts/containts.dart';
+import 'package:doctor_help_app/screen/profile_screen/about_screen/about_screen.dart';
 import 'package:doctor_help_app/screen/screens.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../containts/add_images.dart';
 import '../../../../model/user/doctor_model.dart';
 import '../notification_screen/notification_screen.dart';
-import '../personal_data_screen.dart';
+import '../personal_data_screen/personal_data_screen.dart';
 
 _buildOption(String image, String title, Function()? onTap){
   return ListTile(
@@ -65,7 +66,7 @@ Widget optionProfile(BuildContext context, DoctorModel user){
               _buildOption(iconInfoCircle,
                   "Help", () {}),
               _buildOption(iconInfoSquare,
-                  "About", () {}),
+                  "About", () =>Navigator.pushNamed(context, AboutScreen.routeName)),
             ],
           ),
         ),

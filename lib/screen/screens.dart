@@ -4,6 +4,6 @@ export 'chat_screen/list_chat_screen.dart';
 export 'user/login_register_background.dart';
 export 'chat_screen/chat_screen.dart';
 export 'profile_screen/profile_screen.dart';
-export 'profile_screen/personal_data_screen.dart';
+export 'profile_screen/personal_data_screen/personal_data_screen.dart';
 export 'profile_screen/notification_screen/notification_screen.dart';
 export 'setting/language_screen.dart';

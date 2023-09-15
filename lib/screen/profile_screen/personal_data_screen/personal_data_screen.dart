@@ -7,13 +7,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
-import '../../../VM/service/user_responsitory.dart';
-import '../../../VM/service/user_responsitory.dart';
-import '../../../VM/service/user_responsitory.dart';
-import '../../../VM/validator.dart';
-import '../../../containts/containts.dart';
-import '../../../widgets/input_textField.dart';
-import 'component/backgroundEditAvataCard.dart';
+import '../../../../VM/service/user_responsitory.dart';
+import '../../../../VM/service/user_responsitory.dart';
+import '../../../../VM/service/user_responsitory.dart';
+import '../../../../VM/validator.dart';
+import '../../../../containts/containts.dart';
+import '../../../../widgets/input_textField.dart';
+import '../component/backgroundEditAvataCard.dart';
 
 GlobalKey<FormState> _formDataKey = GlobalKey<FormState>();
 
