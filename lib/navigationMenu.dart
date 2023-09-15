@@ -1,5 +1,6 @@
 import 'package:doctor_help_app/screen/appointment_screen/appointment_screen.dart';
 import 'package:doctor_help_app/screen/doctor/favorite_screen.dart';
+import 'package:doctor_help_app/screen/profile_screen/profile_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'containts/containts.dart';
