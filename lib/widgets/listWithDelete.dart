@@ -9,6 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import '../containts/containts.dart';
+import '../screen/profile_screen/notification_screen/notification_screen.dart';
 import 'clipRRectAvatar.dart';
 
 ///name: phải truyền vào dưới dạng list
