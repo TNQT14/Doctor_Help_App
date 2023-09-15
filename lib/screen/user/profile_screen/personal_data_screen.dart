@@ -87,28 +87,66 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
                           child: TextButton(
                             onPressed: isFormFilled
                                 ? () {
-                              widget._userResponsitory.updateUserDetail(
-                                name.text,
-                                birthday.text,
-                                phone.text,
-                                address.text,
-                              );
+                              if (_formDataKey.currentState!.validate()) {
+                                widget._userResponsitory.updateUserDetail(
+                                  name.text,
+                                  birthday.text,
+                                  phone.text,
+                                  address.text,
+                                );
+                                showDialog(
+                                    context: context,
+                                    builder: (context){
+                                     return AlertDialog(
+                                        title: Text("Thành công"),
+                                        content: Text("Thông tin của bạn đã được cập nhật trên hệ thống"),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                              Navigator.pop(context);
+                                            },
+                                            child: Text("OK"),
+                                          ),
+                                        ],
+                                      );
+                                    }
+                                );
+                                  // Navigator.pop(context);
+                              } else {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      title: const Text("Lỗi"),
+                                      content: const Text("Vui lòng điền đúng thông tin"),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: Text("OK"),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              }
                             }
                                 : null,
                             child: Text(
                               "Save",
                               style: TextStyle(
-                                color: isFormFilled
-                                    ? Colors.blue
-                                    : Colors.grey,
+                                color: isFormFilled ? Colors.blue : Colors.grey,
                               ),
                             ),
                           ),
                         );
-                      }
+
+                    }
 
 
-                    return Center(
+                    return const Center(
                       child: CircularProgressIndicator(),
                     );
                   },
@@ -149,7 +187,8 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
                                           hintext: stateUser.user.name ??"No data",
                                           text: name,
                                           // isPrefix: true,
-                                          validator: (value) => validate.vadilationName(value),
+                                          validator: (value)
+                                          => validate.vadilationName(value),
                                         ),
                                         text("Date of Birth"),
                                         InputTextField(
@@ -158,17 +197,21 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
                                           text: birthday,
                                           isPrefix: true,
                                           image: iconSchedule,
-                                          validator: (value) => validate.vadilationBirthday(value),
+                                          validator: (value) =>
+                                              validate.vadilationBirthday(value),
                                         ),
                                         text("Phone"),
-                                        InputTextField(hintext: "${"0${stateUser.user.phone}"?? 'xxx-xxxx-xxxx'}",
+                                        InputTextField(
+                                          hintext: "${"0${stateUser.user.phone}"?? 'xxx-xxxx-xxxx'}",
                                           text: phone,
-                                          validator: (value) => validate.vadilationPhone(value),
+                                          validator: (value) =>
+                                              validate.vadilationPhone(value),
                                         ),
                                         text("Address"),
                                         InputTextField(hintext: stateUser.user.address??"No data",
                                           text: address,
-                                          validator: (value) => validate.vadilationAddress(value),
+                                          validator: (value) =>
+                                              validate.vadilationAddress(value),
                                         ),
                                       ],
                                     )),
