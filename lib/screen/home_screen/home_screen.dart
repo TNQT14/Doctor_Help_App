@@ -47,20 +47,21 @@ class _HomeScreenState extends State<HomeScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               //get user detail data
-              BlocBuilder<UserBlocCubit, UserBlocState>(
-                builder: (context, state) {
-                  if (state is UserSuccess) {
-                    return Padding(
-                      padding: EdgeInsets.only(
-                          left: 15.w, right: 15.w, top: 20.h, bottom: 20.h),
-                      child: rowIn4(state.user.imageUrl??imagePersion),
-                    );
-                  }
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                },
-              ),
+              // BlocBuilder<UserBlocCubit, UserBlocState>(
+              //   builder: (context, state) {
+              //     if (state is UserSuccess) {
+              //       return Padding(
+              //         padding: EdgeInsets.only(
+              //             left: 15.w, right: 15.w, top: 20.h, bottom: 20.h),
+              //         child: rowIn4(state.user.imageUrl??imagePersion),
+              //       );
+              //     }
+              //     return Center(
+              //       child: CircularProgressIndicator(),
+              //     );
+              //   },
+              // ),
+              
               Padding(
                 padding:
                     EdgeInsets.only(left: 15.0.w, right: 15.w, bottom: 8.h),
@@ -91,6 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+                                       //My Appointment
                               Padding(
                                 padding: EdgeInsets.only(left: 15.0.w),
                                 child: textTitle('My Appointment'),
@@ -137,6 +139,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               //     context, user1.imageUrl, user1.name, user1.job),
                             ],
                           ),
+
+                          //Nearby Doctor
                           titleListNearDoc(),
                           if (isLoading)
                             Center(

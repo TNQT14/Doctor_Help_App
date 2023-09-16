@@ -82,7 +82,7 @@ Padding doctorDateTimeAppointmentCard(BuildContext context) {
           ],
         ),
       ),
-      height: 100.h,
+      // height: 100.h,
     ),
   );
 }
