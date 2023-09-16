@@ -1,6 +1,7 @@
 import 'package:doctor_help_app/containts/add_color.dart';
 import 'package:doctor_help_app/containts/containts.dart';
 import 'package:doctor_help_app/screen/profile_screen/about_screen/about_screen.dart';
+import 'package:doctor_help_app/screen/profile_screen/security_screen/security_screen.dart';
 import 'package:doctor_help_app/screen/screens.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -60,7 +61,7 @@ Widget optionProfile(BuildContext context, DoctorModel user){
                   "Notification", () =>Navigator.pushNamed(context,
                       NotificationScreen.routeName)),
               _buildOption(iconShield,
-                  "Security", () {}),
+                  "Security", () => Navigator.pushNamed(context, SecurityScreen.routeName)),
               _buildOption(iconGlobal,
                   "Language", () =>Navigator.pushNamed(context, LanguageScreen.routeName)),
               _buildOption(iconInfoCircle,
