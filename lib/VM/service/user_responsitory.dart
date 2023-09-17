@@ -15,7 +15,7 @@ class UserResponsitory {
       getData.docs.forEach((element) {
         return listUser.add(UserModel.fromJson(element.data()));
       });
-      // print(await listUsser);
+      print( listUser);
       return listUser;
       // _store.collection('User').get()
       //     .then((value) {
@@ -41,7 +41,7 @@ class UserResponsitory {
       userModel = await _store.collection('User').doc(uid).get().then((value) {
         return UserModel.fromJson(value.data()!);
       });
-      // print(userModel);
+      print(userModel);
       return userModel;
     } catch (e) {
       throw Exception(e.toString());
@@ -59,6 +59,8 @@ class UserResponsitory {
       birthday: birthday,
       phone: int.parse(phone),
       address: address,
+      email: '',
+      imageUrl: '',
     );
     try{
       String uid = _auth.currentUser!.uid;
@@ -70,6 +72,7 @@ class UserResponsitory {
           'address': address,
         }
       );
+      // print(userModel);
       return userModel;
     } catch(e){
       throw Exception(e.toString());

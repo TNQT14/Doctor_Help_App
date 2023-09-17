@@ -11,6 +11,7 @@ import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
+import 'package:nb_utils/nb_utils.dart';
 import 'components/appbar_chat.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 
@@ -78,66 +79,68 @@ class _ChatScreenState extends State<ChatScreen> {
     return GestureDetector(
       onTap: () => unfocusKeyboard(),
       child: Scaffold(
-        body: BlocBuilder<DoctorCubit, DoctorState>(
-          builder: (context, state) {
-            if (state is DoctorSuccess) {
-              return Column(
-                children: [
-                  appBarChat(context, widget.imageUrl, widget.name),
-                  // Expanded(child: _messagesList()),
-                  Expanded(
-                      child: Chat(
-                          messages: _messages,
-                          onSendPressed: _handleSendPressed,
-                          onAttachmentPressed: (){},
-                          user: _user)),
-                  // Container(
-                  //   height: 90.h,
-                  //   width: MediaQuery.of(context).size.width,
-                  //   padding: EdgeInsets.only(top: 8.h),
-                  //   decoration: BoxDecoration(
-                  //       color: Colors.white,
-                  //       boxShadow: [
-                  //         BoxShadow(
-                  //             color: Colors.grey.shade300,
-                  //             blurRadius: 10,
-                  //             spreadRadius: 2)
-                  //       ]),
-                  //   alignment: Alignment.topCenter,
-                  //   child: Form(
-                  //     key: _key,
-                  //     child: Row(
-                  //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  //       children: [
-                  //         InkWell(
-                  //           onTap: () {},
-                  //           child: SvgPicture.asset(iconFile),
-                  //         ),
-                  //         SizedBox(
-                  //           width: 248.w,
-                  //           child: InputTextField(
-                  //               text: mess, hintext: 'Type Message'),
-                  //         ),
-                  //         InkWell(
-                  //           onTap: sendMess,
-                  //           // onTap: (){
-                  //           //   var test = _userResponsitory.getMessage(
-                  //           //       widget.receiverID, _auth.currentUser!.uid);
-                  //           //   print(test);
-                  //           // },
-                  //           child: SvgPicture.asset(iconMic),
-                  //         ),
-                  //       ],
-                  //     ),
-                  //   ),
-                  // )
-                ],
+        body: SafeArea(
+          child: BlocBuilder<DoctorCubit, DoctorState>(
+            builder: (context, state) {
+              if (state is DoctorSuccess) {
+                return Column(
+                  children: [
+                    appBarChat(context, widget.imageUrl, widget.name),
+                    // Expanded(child: _messagesList()),
+                    Expanded(
+                        child: Chat(
+                            messages: _messages,
+                            onSendPressed: _handleSendPressed,
+                            onAttachmentPressed: (){},
+                            user: _user)),
+                    // Container(
+                    //   height: 90.h,
+                    //   width: MediaQuery.of(context).size.width,
+                    //   padding: EdgeInsets.only(top: 8.h),
+                    //   decoration: BoxDecoration(
+                    //       color: Colors.white,
+                    //       boxShadow: [
+                    //         BoxShadow(
+                    //             color: Colors.grey.shade300,
+                    //             blurRadius: 10,
+                    //             spreadRadius: 2)
+                    //       ]),
+                    //   alignment: Alignment.topCenter,
+                    //   child: Form(
+                    //     key: _key,
+                    //     child: Row(
+                    //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    //       children: [
+                    //         InkWell(
+                    //           onTap: () {},
+                    //           child: SvgPicture.asset(iconFile),
+                    //         ),
+                    //         SizedBox(
+                    //           width: 248.w,
+                    //           child: InputTextField(
+                    //               text: mess, hintext: 'Type Message'),
+                    //         ),
+                    //         InkWell(
+                    //           onTap: sendMess,
+                    //           // onTap: (){
+                    //           //   var test = _userResponsitory.getMessage(
+                    //           //       widget.receiverID, _auth.currentUser!.uid);
+                    //           //   print(test);
+                    //           // },
+                    //           child: SvgPicture.asset(iconMic),
+                    //         ),
+                    //       ],
+                    //     ),
+                    //   ),
+                    // )
+                  ],
+                );
+              }
+              return Center(
+                child: CircularProgressIndicator(),
               );
-            }
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          },
+            },
+          ),
         ),
       ),
     );

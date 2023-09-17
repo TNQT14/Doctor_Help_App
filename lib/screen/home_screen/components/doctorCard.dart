@@ -1,3 +1,6 @@
+import 'package:doctor_help_app/VM/service/user_responsitory.dart';
+import 'package:doctor_help_app/data/data_source/doctor_firestore_service.dart';
+import 'package:doctor_help_app/data/reponsitories/doctor_repository.dart';
 import 'package:doctor_help_app/screen/screens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,48 +17,50 @@ Widget doctorCard(
   return backgroundDoctorCard(
       context,
       Padding(
-        padding: EdgeInsets.only(left: 16.w, right: 14.w),
+        padding: EdgeInsets.only(left: 6.w, top: 8.h, bottom: 8.h, right: 16.w),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             clipRRectAvatar(72, 108, image),
             SizedBox(
               width: 10.w,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    width: 150,
-                    child: Text(
-                      name,
-                      style: txt16w6,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                    ),
+
+            //in4
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: 150,
+                  child: Text(
+                    name,
+                    style: txt16w6,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 6.0.h),
-                    child: Text(job,
-                        style: txt14w6!.copyWith(
-                            fontWeight: FontWeight.w400,
-                            color: Colors.grey.shade400)),
-                  ),
-                  const Spacer(),
-                  ratingStar(rating),
-                ],
-              ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 6.0.h),
+                  child: Text(job,
+                      style: txt14w6!.copyWith(
+                          fontWeight: FontWeight.w400,
+                          color: Colors.grey.shade400)),
+                ),
+                const Spacer(),
+                ratingStar(rating),
+              ],
             ),
+
+                        //status
             const Spacer(),
             Column(
               children: [
                 const Spacer(),
                 InkWell(
-                  onTap: (){print('object');},
+                  onTap: (){
+                    UserResponsitory().getListUser();
+                  },
                   child: Container(
                     alignment: Alignment.center,
                     margin: EdgeInsets.only(bottom: 14.h),
@@ -74,16 +79,19 @@ Widget doctorCard(
         ),
       ),
       width: 319.w,
-      height: 124.h,
+      // height: 124.h,
       margin: true);
 }
 
 Container backgroundDoctorCard(BuildContext context, Widget child,
-    {double? height, double? width, bool margin = false}) {
+    {
+      // double? height,
+     double? width,
+      bool margin = false}) {
   return Container(
       // alignment: Alignment.center,
       width: width ?? MediaQuery.of(context).size.width,
-      height: height ?? MediaQuery.of(context).size.width,
+      // height: height ?? MediaQuery.of(context).size.height,
       margin: margin ? EdgeInsets.only(left: 15.w) : EdgeInsetsDirectional.zero,
       decoration: BoxDecoration(
           color: Colors.white,

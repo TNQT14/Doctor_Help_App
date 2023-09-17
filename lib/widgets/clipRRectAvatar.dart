@@ -24,7 +24,7 @@ Widget clipRRectAvatar(double width, double height, String image) {
           color: Colors.grey.shade300
         ),
           child: Icon(Icons.person, color: Colors.black,)):
-      Image.network(image, fit: BoxFit.cover, width: width.w, height: height.h,
+      Image.network(image, fit: BoxFit.fill, width: width.w, height: height.h,
           errorBuilder: (context, error, stackTrace) {
             return Icon(Icons.error);
           },));

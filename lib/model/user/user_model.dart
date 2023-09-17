@@ -14,12 +14,12 @@ class UserModel extends Equatable {
 
   UserModel({
     // required this.password,
-    this.email,
-    this.name,
-    this.imageUrl,
-    this.phone,
-    this.address,
-    this.birthday,
+    this.email ='',
+    this.name = '',
+    this.imageUrl = '',
+    this.phone = 00000000,
+    this.address = '',
+    this.birthday = '',
   });
 
   UserModel copyWith({

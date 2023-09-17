@@ -44,14 +44,17 @@ Expanded pro5DocDetail(BuildContext context, String image, double rating,
               ),
             ],
           ),
+
+          //reviews
           backgroundDoctorCard(
               context,
               Padding(
                 padding:
-                    EdgeInsets.only(left: 16.0.w, right: 16.w, bottom: 5.h),
+                    EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
                 child: reviewsCard(image, rating, name, job, review),
               ),
-              height: 117.h),
+              // height: 117.h
+              ),
         ],
       ),
     )),
@@ -61,43 +64,33 @@ Expanded pro5DocDetail(BuildContext context, String image, double rating,
 Column reviewsCard(
     String image, double rating, String name, String job, String review) {
   return Column(
-    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
     crossAxisAlignment: CrossAxisAlignment.start,
     mainAxisSize: MainAxisSize.min,
     children: [
-      Row(
-        children: [
-          clipRRectAvatar(48, 48, image),
-          SizedBox(width: 9.w,),
-          Column(
-            children: [
-              Text(
-                name ?? '',
-                style: txt16w6,
-              ),
-              Text(
-                job ?? '',
-                style: txt14w4,
-              ),
-            ],
-          ),
-          Spacer(),
-          ratingStar(rating)
-        ],
+      //in4
+      Padding(
+        padding: EdgeInsets.only(bottom: 16.h),
+        child: Row(
+          children: [
+            clipRRectAvatar(48, 48, image),
+            SizedBox(width: 9.w,),
+            Column(
+              children: [
+                Text(
+                  name ?? '',
+                  style: txt16w6,
+                ),
+                Text(
+                  job ?? '',
+                  style: txt14w4,
+                ),
+              ],
+            ),
+            Spacer(),
+            ratingStar(rating)
+          ],
+        ),
       ),
-      // ListTile(
-      //   trailing: ratingStar(rating),
-      //   title: Text(
-      //     name ?? '',
-      //     style: txt16w6,
-      //   ),
-      //   subtitle: Text(
-      //     job ?? '',
-      //     style: txt14w4,
-      //   ),
-      //   contentPadding: EdgeInsetsDirectional.zero,
-      //   leading: clipRRectAvatar(48, 48, image),
-      // ),
       Text(review ?? '')
     ],
   );

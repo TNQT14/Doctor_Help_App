@@ -8,8 +8,26 @@ import '../../../containts/containts.dart';
 import 'appointment_summary_screen.dart';
 
 class AppointmentDateTimeScreen extends StatelessWidget {
-  const AppointmentDateTimeScreen({Key? key}) : super(key: key);
+  AppointmentDateTimeScreen(
+      {Key? key,
+        required this.doctorModel
+      // required this.doc_job,
+      // required this.doc_name,
+      // required this.doc_image,
+      // required this.doc_rate,
+      // required this.doc_phone,
+      // required this.doc_email
+      })
+      : super(key: key);
   static String routeName = 'AppointmentDateTimeScreen';
+  DoctorModel doctorModel;
+  //
+  // String doc_name;
+  // String doc_job;
+  // String doc_image;
+  // String doc_email;
+  // var doc_phone;
+  // var doc_rate;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +42,10 @@ class AppointmentDateTimeScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                doctorDateTimeAppointmentCard(context),
+                doctorDateTimeAppointmentCard(context,
+                    name: doctorModel.name ?? 'Không có dữ liệu',
+                    job: doctorModel.job ?? 'Không có dữ liệu',
+                    image_doc: doctorModel.imageUrl ?? imagePersion),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 8.h),
                   child: textTitle('Date & Time'),
@@ -37,29 +58,37 @@ class AppointmentDateTimeScreen extends StatelessWidget {
           )),
           bottomCardButton(
               'Next',
-              () => Navigator.pushNamed(
-                  context, AppointmentSummaryScreen.routeNameDetail))
+              () => {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AppointmentSummaryScreen(
+                                appBarTitle: "Summary",
+                                bottomTitle: 'Make my appointment',
+                            doctorModel: doctorModel,
+                              )),
+                    )
+                  })
         ],
       ),
     );
   }
 }
 
-
 //card thông tin doctor
-Padding doctorDateTimeAppointmentCard(BuildContext context) {
+Padding doctorDateTimeAppointmentCard(BuildContext context,
+    {required String name, required String job, required String image_doc}) {
   return Padding(
     padding: const EdgeInsets.only(top: 8.0),
     child: backgroundDoctorCard(
       context,
       Padding(
-        padding: const EdgeInsets.symmetric(
-            horizontal: 8.0, vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8),
         child: Row(
           children: [
             Padding(
               padding: const EdgeInsets.only(right: 16.0),
-              child: clipRRectAvatar(56, 84, user1.imageUrl),
+              child: clipRRectAvatar(56, 84, image_doc),
             ),
             Column(
               mainAxisSize: MainAxisSize.min,
@@ -69,12 +98,12 @@ Padding doctorDateTimeAppointmentCard(BuildContext context) {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 6.0),
                   child: Text(
-                    user1.name,
+                    name,
                     style: txt18w7,
                   ),
                 ),
                 Text(
-                  user1.job,
+                  job,
                   style: txt14w5!.copyWith(color: Colors.grey),
                 )
               ],
@@ -82,7 +111,7 @@ Padding doctorDateTimeAppointmentCard(BuildContext context) {
           ],
         ),
       ),
-      height: 100.h,
+      // height: 100.h,
     ),
   );
 }

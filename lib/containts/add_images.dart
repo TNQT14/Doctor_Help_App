@@ -64,6 +64,7 @@ const String imageOnb3 = '${linkUser}onb_pic3.png';
 const String iconButtonNotification = '${linkIcons}Notifications.svg';
 const String iconFile = '${linkIcons}file.svg';
 const String iconMic = '${linkIcons}btn_voice_essage.svg';
+const String iconSuccess = '${linkIcons}success.svg';
 
 // network
 
