@@ -141,7 +141,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 color: colorKmain,
                                                 size: 18),
                                           ),
-                                        ));
+                                        ),
+                                    doctorModel: listDoctor[index]);
                                   },
                                   itemCount: listDoctor.length,
                                   itemWidth: double.infinity,

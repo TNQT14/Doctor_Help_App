@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../containts/containts.dart';
+import '../model/user/doctor_model.dart';
 import '../screen/appointment_screen/appointment_dateTime_screen.dart';
 import '../screen/screens.dart';
 import 'clipRRectAvatar.dart';
 
 Container containerCardDoc(
     BuildContext context, String image, String name, String job,
-    {Widget? trailing}) {
+    {Widget? trailing,
+     DoctorModel? doctorModel
+    }) {
   return Container(
     width: 349.w,
     height: 131.h,
@@ -64,13 +67,13 @@ Container containerCardDoc(
           ),
           InkWell(
             onTap: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //       builder: (context) => AppointmentDateTimeScreen(
-              //             doctorModel: ,
-              //           )),
-              // );
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => AppointmentDateTimeScreen(
+                          doctorModel: doctorModel?? userNull,
+                        )),
+              );
             },
             // Navigator.pushNamed(context, AppointmentDateTimeScreen.routeName),
             child: Text('Date and Time',

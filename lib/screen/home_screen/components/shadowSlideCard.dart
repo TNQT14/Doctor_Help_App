@@ -1,3 +1,4 @@
+import 'package:doctor_help_app/model/user/doctor_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -6,10 +7,8 @@ import '../../../widgets/widgets.dart';
 import '../../appointment_screen/appointment_summary_screen.dart';
 import '../../screens.dart';
 
-Container shadowSlideCard(BuildContext context,
-    String image,
-    String name,
-    String job) {
+Container shadowSlideCard(
+    BuildContext context, String image, String name, String job,) {
   return Container(
     margin: EdgeInsets.symmetric(horizontal: 13.w),
     height: 147.h,
@@ -39,99 +38,72 @@ Container shadowSlideCard(BuildContext context,
           ),
         ),
         Positioned(
-          top: 0,
-            child:
-            containerCardDoc(context,
-                image,
-                name,
-                job,
+            top: 0,
+            child: containerCardDoc(context, image, name, job,
                 trailing: GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     Navigator.pushNamed(context, DoctordetailScreen.routeName);
                   },
                   child: Container(
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(6)
-                    ),
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(6)),
                     width: 40.w,
                     height: 40.h,
-                    child: Icon(Icons.arrow_forward_ios_rounded, color: colorKmain, size: 18),
+                    child: Icon(Icons.arrow_forward_ios_rounded,
+                        color: colorKmain, size: 18),
                   ),
-                )
-            )
-        )
+                )))
       ],
     ),
   );
 }
 
-
-
-Container shadowSlideCardActive(BuildContext context,
-    String image,
-    String name,
-    String job
-    ) {
+Container shadowSlideCardActive(
+    BuildContext context, String image, String name, String job) {
   return Container(
       margin: EdgeInsets.symmetric(horizontal: 13.w),
       height: 131.h,
       width: MediaQuery.of(context).size.width,
-      child:
-      containerCardDoc(context,
-                image,
-                name,
-                job,
-                trailing: GestureDetector(
-                  onTap: (){
-                    Navigator.pushNamed(context, AppointmentSummaryScreen.routeNameDetail);
-                  },
-                  child: Container(
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(6)
-                    ),
-                    width: 40.h,
-                    height: 40.h,
-                    child: Icon(Icons.arrow_forward_ios_rounded,
-                        color: colorKmain, size: 18),
-                  ),
-                )
-      )
-  );
-}
-
-Widget shadowSlideCardHistory(BuildContext context,
-    String image,
-    String name,
-    String job) {
-  return Container(
-      margin: EdgeInsets.symmetric(horizontal: 13),
-      height: 131.h,
-      width: MediaQuery.of(context).size.width,
-      child:containerCardDocHistory(context,
-          image,
-          name,
-          job,
+      child: containerCardDoc(context, image, name, job,
           trailing: GestureDetector(
-            onTap: (){
-              Navigator.pushNamed(context, AppointmentSummaryScreen.routeNameDetail);
+            onTap: () {
+              Navigator.pushNamed(
+                  context, AppointmentSummaryScreen.routeNameDetail);
             },
             child: Container(
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(6)
-              ),
+                  color: Colors.white, borderRadius: BorderRadius.circular(6)),
+              width: 40.h,
+              height: 40.h,
+              child: Icon(Icons.arrow_forward_ios_rounded,
+                  color: colorKmain, size: 18),
+            ),
+          )));
+}
+
+Widget shadowSlideCardHistory(
+    BuildContext context, String image, String name, String job) {
+  return Container(
+      margin: EdgeInsets.symmetric(horizontal: 13),
+      height: 131.h,
+      width: MediaQuery.of(context).size.width,
+      child: containerCardDocHistory(context, image, name, job,
+          trailing: GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(
+                  context, AppointmentSummaryScreen.routeNameDetail);
+            },
+            child: Container(
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(6)),
               width: 40.w,
               height: 40.h,
               child: Icon(Icons.arrow_forward_ios_rounded,
                   color: colorKmain, size: 18),
             ),
-          )
-      )
-  );
+          )));
 }
-
