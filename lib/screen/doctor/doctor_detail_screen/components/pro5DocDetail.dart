@@ -1,3 +1,4 @@
+import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:doctor_help_app/screen/home_screen/components/doctorCard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,14 +24,19 @@ Expanded pro5DocDetail(BuildContext context, String image, double rating,
             ),
           ),
           textTitle('Schedule'),
-          Container(
-              width: double.infinity,
-              height: 117.h,
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(color: Colors.grey.shade300)),
-              child: Container()),
+          DatePicker(
+            DateTime.now(),
+            initialSelectedDate: DateTime.now(),
+            selectionColor: Colors.white,
+            selectedTextColor: colorKmain,
+            onDateChange: (date) {
+              // New date selected
+              // setState(() {
+              //   _selectedValue = date;
+              // });
+            },
+            height: 90,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

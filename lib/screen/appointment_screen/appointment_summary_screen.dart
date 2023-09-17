@@ -56,6 +56,7 @@ class AppointmentSummaryScreen extends StatelessWidget {
                     job: doctorModel.job,
                     phone: doctorModel.phone,
                     email: doctorModel.email,
+                    receiverID: doctorModel.uidDoctor,
                     chat: true,
                   ),
                   textTitle('Patient Information'),
@@ -102,7 +103,9 @@ Container doctorContactCard(
       required String name,
       required String job,
       required var phone,
-      required String email
+      required String email,
+      String? receiverID,
+     //  required DoctorModel doctorModel,
     }) {
   return backgroundDoctorCard(
     context,
@@ -116,7 +119,7 @@ Container doctorContactCard(
             children: [
               Row(
                 children: [
-                  clipRRectAvatar(56, 56, image),
+                  clipRRectAvatar(56, 56, image?? imagePersion),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -133,15 +136,24 @@ Container doctorContactCard(
                 ],
               ),
               chat
-                  ? Container(
-                      margin: EdgeInsets.only(right: 5.w),
-                      width: 25.w,
-                      height: 25.h,
-                      child: Image.asset(
-                        iconChat,
-                        color: colorKmain,
+                  ? GestureDetector(
+                onTap: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ChatScreen(name: name, imageUrl:image, receiverID: receiverID?? 'Lỗi')),
+                  );
+                },
+                    child: Container(
+                        margin: EdgeInsets.only(right: 5.w),
+                        width: 25.w,
+                        height: 25.h,
+                        child: Image.asset(
+                          iconChat,
+                          color: colorKmain,
+                        ),
                       ),
-                    )
+                  )
                   : SizedBox()
             ],
           ),
