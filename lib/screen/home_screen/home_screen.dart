@@ -119,10 +119,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                               MaterialPageRoute(
                                                   builder: (context) =>
                                                       DoctordetailScreen(
-                                                        doc_detail: listDoctor[index].description,
-                                                        doc_name: listDoctor[index].name,
-                                                        doc_job: listDoctor[index].job,
-                                                        doc_imageUrl: listDoctor[index].imageUrl,
+                                                        docDetail: listDoctor[index],
+                                                        // doc_detail: listDoctor[index].description,
+                                                        // doc_name: listDoctor[index].name,
+                                                        // doc_job: listDoctor[index].job,
+                                                        // doc_imageUrl: listDoctor[index].imageUrl,
                                                       )),
                                             );
                                             // print( listDoctor[index].imageUrl);

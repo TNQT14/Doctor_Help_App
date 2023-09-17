@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doctor_help_app/containts/add_images.dart';
+import 'package:doctor_help_app/model/user/doctor_model.dart';
 import 'package:doctor_help_app/navigationMenu.dart';
 import 'package:doctor_help_app/screen/appointment_screen/appointment_dateTime_screen.dart';
 import 'package:doctor_help_app/screen/appointment_screen/appointment_screen.dart';
@@ -31,45 +33,50 @@ final Map<String, WidgetBuilder> route = {
 
   //Chat Screen
   ListChatScreen.routeName: (context) => ListChatScreen(),
-  ChatScreen.routeName: (context)=> ChatScreen(imageUrl: '', name: '', receiverID: '',),
+  ChatScreen.routeName: (context) => ChatScreen(
+        imageUrl: '',
+        name: '',
+        receiverID: '',
+      ),
 
   //Appointment Screen
-  AppointmentDateTimeScreen.routeName: (context) => AppointmentDateTimeScreen(doc_name: '', doc_job: '', doc_image: '',),
+  // AppointmentDateTimeScreen.routeName: (context) => AppointmentDateTimeScreen(doc_name: '', doc_job: '', doc_image: '', doc_rate: null, doc_phone: '', doc_email: ''),
   AppointmentSummaryScreen.routeNameSummary: (context) =>
       AppointmentSummaryScreen(
         appBarTitle: 'Summary',
         bottomTitle: 'Make my appointment',
+        doctorModel: userNull,
       ),
   AppointmentSummaryScreen.routeNameDetail: (context) =>
       AppointmentSummaryScreen(
         appBarTitle: 'Detail',
         bottomTitle: 'Give Your Reviews',
+        doctorModel: userNull,
       ),
-  AppointmentSuccessScreen.routeName: (context) => AppointmentSuccessScreen(),
+  AppointmentSuccessScreen.routeName: (context) => AppointmentSuccessScreen(
+    doctorModel: userNull,
+  ),
   AppointmentScreen.routeName: (context) => AppointmentScreen(),
   GiveReviewScreen.routeName: (context) => GiveReviewScreen(),
 
   //Favorite Screen
   FavoriteScreen.routeName: (context) => FavoriteScreen(),
   DoctordetailScreen.routeName: (context) => DoctordetailScreen(
-    doc_detail: '',
-    doc_imageUrl: '',
-    doc_job: '',
-    doc_name: '',
-  ),
+        docDetail: userNull,
+      ),
 
   //Profile Screen
   ProfileScreen.routeName: (context) => ProfileScreen(),
   PersonalDataScreen.routeName: (context) => PersonalDataScreen(),
   NotificationScreen.routeName: (context) => NotificationScreen(),
-  AboutScreen.routeName: (context)=>AboutScreen(),
-  SecurityScreen.routeName: (context)=>const SecurityScreen(),
+  AboutScreen.routeName: (context) => AboutScreen(),
+  SecurityScreen.routeName: (context) => const SecurityScreen(),
 
   //Navigation
-  NavigationMenu.routeName: (context)=> NavigationMenu(),
+  NavigationMenu.routeName: (context) => NavigationMenu(),
 
   //Forgot
-  Forgotpasswordscreen.routeName: (context)=> Forgotpasswordscreen(),
+  Forgotpasswordscreen.routeName: (context) => Forgotpasswordscreen(),
   NavigationMenu.routeName: (context) => NavigationMenu(),
   LanguageScreen.routeName: (context) => LanguageScreen(),
 };

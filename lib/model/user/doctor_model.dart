@@ -26,37 +26,37 @@ class DoctorModel {
   String uidDoctor;
 
   DoctorModel(
-      {
-        required this.name,
+      {required this.name,
       required this.imageUrl,
       required this.email,
       required this.phone,
       required this.rating,
       required this.description,
-        required this.birthDay,
+      required this.birthDay,
       // required this.fullname,
       required this.job,
-        required this.experience,
-        required this.review,
+      required this.experience,
+      required this.review,
       required this.uidDoctor});
 
-  factory DoctorModel.fromJson(Map<String, dynamic> json){
-  return DoctorModel(
-  name: json['name'] as String,
-  imageUrl: json['imageUrl'] as String,
-  email: json['email'] as String,
-  phone: json['phone'] as int,
-  rating: json['rating'] as double,
-  description: json['description'] as String,
-  birthDay: json['birthDay'] as Timestamp,
+  factory DoctorModel.fromJson(Map<String, dynamic> json) {
+    return DoctorModel(
+      name: json['name'] as String,
+      imageUrl: json['imageUrl'] as String,
+      email: json['email'] as String,
+      phone: json['phone'] as int,
+      rating: json['rating'] as double,
+      description: json['description'] as String,
+      birthDay: json['birthDay'] as Timestamp,
       // birthDay: json['birthDay'] as DateTime,
-  job: json['job'] as String,
-  experience: json['experience'] as String,
-  review: json['review'] as String,
-    uidDoctor: json['uidDoctor'] as String,);
+      job: json['job'] as String,
+      experience: json['experience'] as String,
+      review: json['review'] as String,
+      uidDoctor: json['uidDoctor'] as String,
+    );
   }
 
-  Map<String, dynamic> toJson(){
+  Map<String, dynamic> toJson() {
     return {
       'name': name,
       'imageUrl': imageUrl,
@@ -70,9 +70,20 @@ class DoctorModel {
       'review': review,
     };
   }
-
-
 }
+
+final DoctorModel userNull = DoctorModel(
+    name: 'name',
+    imageUrl: 'imageUrl',
+    email: 'email',
+    phone: 00000000000,
+    rating: 0.0,
+    description: 'description',
+    birthDay: Timestamp.now(),
+    job: 'job',
+    experience: 'experience',
+    review: 'review',
+    uidDoctor: 'uidDoctor');
 
 final DoctorModel user1 = DoctorModel(
     name: 'Meow Meow',
@@ -86,12 +97,10 @@ final DoctorModel user1 = DoctorModel(
     job: 'Desmatologist',
     experience: '3 years',
     review: 'i feel like meow meow meow',
-    uidDoctor: 'test'
-);
-
+    uidDoctor: 'test');
 
 //List
-final List<DoctorModel> listdoc =[
+final List<DoctorModel> listdoc = [
   DoctorModel(
       name: 'Meow 1',
       imageUrl: networdImage,
@@ -104,8 +113,7 @@ final List<DoctorModel> listdoc =[
       job: 'kêu meow meow',
       experience: '3 years',
       review: 'i feel like meow meow meow',
-      uidDoctor: 'test'
-  ),
+      uidDoctor: 'test'),
   DoctorModel(
       name: 'Meow 2',
       imageUrl: networdImage,
@@ -118,8 +126,7 @@ final List<DoctorModel> listdoc =[
       job: 'just meow meow like meo1',
       experience: '3 years',
       review: 'i feel like meow meow meow',
-      uidDoctor: 'test'
-  ),
+      uidDoctor: 'test'),
   DoctorModel(
       name: 'Meow Cale',
       imageUrl: networdImage,
@@ -132,8 +139,7 @@ final List<DoctorModel> listdoc =[
       job: 'đẹp trai',
       experience: '3 years',
       review: 'i feel like meow meow meow',
-      uidDoctor: 'test'
-  ),
+      uidDoctor: 'test'),
   DoctorModel(
       name: 'Meow Cale cưng vcl',
       imageUrl: networdImage,
@@ -146,10 +152,8 @@ final List<DoctorModel> listdoc =[
       job: 'trai đẹp',
       experience: '3 years',
       review: 'i feel like meow meow meow',
-      uidDoctor: 'test'
-  )
+      uidDoctor: 'test')
 ];
 
-const networdImage = 'https://mamul.am/images/pics/221221/the-funniest-cat-mem-u104587-1.jpg';
-
-
+const networdImage =
+    'https://mamul.am/images/pics/221221/the-funniest-cat-mem-u104587-1.jpg';

@@ -12,17 +12,16 @@ import 'components/rowDocDetailIn4.dart';
 class DoctordetailScreen extends StatelessWidget {
   DoctordetailScreen(
       {Key? key,
-      required this.doc_detail,
-      required this.doc_job,
-      required this.doc_name,
-      required this.doc_imageUrl})
+        required this.docDetail
+      // required this.doc_detail,
+      // required this.doc_job,
+      // required this.doc_name,
+      // required this.doc_imageUrl
+      })
       : super(key: key);
   static String routeName = 'DoctordetailScreen';
 
-  String? doc_name;
-  String? doc_imageUrl;
-  String? doc_job;
-  String? doc_detail;
+  DoctorModel docDetail;
 
   @override
   Widget build(BuildContext context) {
@@ -41,25 +40,31 @@ class DoctordetailScreen extends StatelessWidget {
                   padding: EdgeInsets.only(
                       left: 13.w, right: 13.w, top: 16.h, bottom: 8.h),
                   child: rowDocDetailIn4(
-                      doc_imageUrl ?? imagePersion,
-                      doc_name ?? 'Không có dữ liệu',
-                      doc_job ?? 'Không có dữ liệu'),
+                      docDetail.imageUrl ?? imagePersion,
+                      docDetail.name ?? 'Không có dữ liệu',
+                      docDetail.job ?? 'Không có dữ liệu'
+                  ),
                 ),
                 //body
                 pro5DocDetail(context, user1.imageUrl, user1.rating,
-                    doc_detail??'Không có dữ liệu', user1.name, user1.job, user1.review),
+                    docDetail.description??'Không có dữ liệu', user1.name, user1.job, user1.review),
                 const SizedBox(height: 15)
               ],
             ),
           ),
           bottomCardButton('Make an appointment', () {
+            print('object');
             // Navigator.pushNamed(context, AppointmentDateTimeScreen.routeName);
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) =>  AppointmentDateTimeScreen(
-                doc_job: doc_job,
-                doc_name: doc_name,
-                doc_image: doc_imageUrl ,
+                doctorModel: docDetail,
+                // doc_job: docDetail.job??'Không có dữ liệu',
+                // doc_name: docDetail.name??'Không có dữ liệu',
+                // doc_image: docDetail.imageUrl??imagePersion,
+                // doc_rate: docDetail.rating ,
+                // doc_phone: docDetail.email,
+                // doc_email: docDetail.imageUrl,
               )),
             );
           })

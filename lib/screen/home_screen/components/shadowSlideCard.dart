@@ -72,7 +72,8 @@ Container shadowSlideCard(BuildContext context,
 Container shadowSlideCardActive(BuildContext context,
     String image,
     String name,
-    String job) {
+    String job
+    ) {
   return Container(
       margin: EdgeInsets.symmetric(horizontal: 13.w),
       height: 131.h,

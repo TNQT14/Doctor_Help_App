@@ -9,13 +9,25 @@ import 'appointment_summary_screen.dart';
 
 class AppointmentDateTimeScreen extends StatelessWidget {
   AppointmentDateTimeScreen(
-      {Key? key, required this.doc_job, required this.doc_name, required this.doc_image})
+      {Key? key,
+        required this.doctorModel
+      // required this.doc_job,
+      // required this.doc_name,
+      // required this.doc_image,
+      // required this.doc_rate,
+      // required this.doc_phone,
+      // required this.doc_email
+      })
       : super(key: key);
   static String routeName = 'AppointmentDateTimeScreen';
-
-  String? doc_name;
-  String? doc_job;
-  String? doc_image;
+  DoctorModel doctorModel;
+  //
+  // String doc_name;
+  // String doc_job;
+  // String doc_image;
+  // String doc_email;
+  // var doc_phone;
+  // var doc_rate;
 
   @override
   Widget build(BuildContext context) {
@@ -31,9 +43,9 @@ class AppointmentDateTimeScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 doctorDateTimeAppointmentCard(context,
-                    name: doc_name ?? 'Không có dữ liệu',
-                    job: doc_job ?? 'Không có dữ liệu',
-                image_doc: doc_image?? imagePersion),
+                    name: doctorModel.name ?? 'Không có dữ liệu',
+                    job: doctorModel.job ?? 'Không có dữ liệu',
+                    image_doc: doctorModel.imageUrl ?? imagePersion),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 8.h),
                   child: textTitle('Date & Time'),
@@ -46,8 +58,17 @@ class AppointmentDateTimeScreen extends StatelessWidget {
           )),
           bottomCardButton(
               'Next',
-              () => Navigator.pushNamed(
-                  context, AppointmentSummaryScreen.routeNameDetail))
+              () => {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AppointmentSummaryScreen(
+                                appBarTitle: "Summary",
+                                bottomTitle: 'Make my appointment',
+                            doctorModel: doctorModel,
+                              )),
+                    )
+                  })
         ],
       ),
     );

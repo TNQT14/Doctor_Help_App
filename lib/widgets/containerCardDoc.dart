@@ -64,15 +64,13 @@ Container containerCardDoc(
           ),
           InkWell(
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => AppointmentDateTimeScreen(
-                          doc_job: job,
-                          doc_name: name,
-                          doc_image: image,
-                        )),
-              );
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //       builder: (context) => AppointmentDateTimeScreen(
+              //             doctorModel: ,
+              //           )),
+              // );
             },
             // Navigator.pushNamed(context, AppointmentDateTimeScreen.routeName),
             child: Text('Date and Time',
