@@ -11,6 +11,7 @@ import 'package:doctor_help_app/screen/profile_screen/about_screen/about_screen.
 import 'package:doctor_help_app/screen/profile_screen/notification_screen/notification_screen.dart';
 import 'package:doctor_help_app/screen/profile_screen/personal_data_screen/personal_data_screen.dart';
 import 'package:doctor_help_app/screen/profile_screen/profile_screen.dart';
+import 'package:doctor_help_app/screen/profile_screen/security_screen/security_screen.dart';
 import 'package:doctor_help_app/screen/screens.dart';
 import 'package:doctor_help_app/screen/user/forgot_password_screen/forgot_password_screen.dart';
 import 'package:doctor_help_app/screen/user/login_screen/login_screen.dart';
@@ -62,6 +63,7 @@ final Map<String, WidgetBuilder> route = {
   PersonalDataScreen.routeName: (context) => PersonalDataScreen(),
   NotificationScreen.routeName: (context) => NotificationScreen(),
   AboutScreen.routeName: (context)=>AboutScreen(),
+  SecurityScreen.routeName: (context)=>const SecurityScreen(),
 
   //Navigation
   NavigationMenu.routeName: (context)=> NavigationMenu(),
