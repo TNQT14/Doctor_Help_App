@@ -6,6 +6,7 @@ import 'package:doctor_help_app/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 import 'appointment_success_screen.dart';
 import 'components/cardDateTime.dart';
@@ -90,6 +91,25 @@ Container doctorContactCard(BuildContext context, String image, String name, Str
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    clipRRectAvatar(56, 56, user1.imageUrl),
+                    Column(
+                      children: [
+                        Text(user1.name, style: txt16w6,),
+                        Text(user1.job, style: txt14w4,)
+                      ],
+                    ).paddingOnly(left: 15.w),
+                  ],
+                ),
+                chat? Container(
+                  margin: EdgeInsets.only(right: 5.w),
+                  width: 25.w, height: 25.h, child: Image.asset(iconChat, color: colorKmain,),): SizedBox()
+              ],
+            ),
             // ListTile(
             //   trailing: chat? GestureDetector(
             //     onTap: ()=> Navigator.pushNamed(context, ChatScreen.routeName),
@@ -108,7 +128,7 @@ Container doctorContactCard(BuildContext context, String image, String name, Str
             Divider(
               thickness: 1,
               height: 0,
-            ),
+            ).paddingSymmetric(vertical: 15.h),
             iconIn4(Icons.phone, Colors.blue, 'Phone', user1.phone),
             iconIn4(Icons.mail, Colors.red, 'Email', user1.email)
           ],

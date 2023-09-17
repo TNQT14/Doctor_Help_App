@@ -1,3 +1,6 @@
+import 'package:doctor_help_app/VM/service/user_responsitory.dart';
+import 'package:doctor_help_app/data/data_source/doctor_firestore_service.dart';
+import 'package:doctor_help_app/data/reponsitories/doctor_repository.dart';
 import 'package:doctor_help_app/screen/screens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -55,7 +58,9 @@ Widget doctorCard(
               children: [
                 const Spacer(),
                 InkWell(
-                  onTap: (){print('object');},
+                  onTap: (){
+                    UserResponsitory().getListUser();
+                  },
                   child: Container(
                     alignment: Alignment.center,
                     margin: EdgeInsets.only(bottom: 14.h),

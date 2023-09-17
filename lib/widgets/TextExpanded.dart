@@ -45,7 +45,7 @@ class _TextExpandedState extends State<TextExpanded> {
           text: flag?'$firstHaft ...':widget.text, style: txt16w4!.copyWith(color: Colors.black),
           children: [
             TextSpan(
-                text: flag? ' Read More' : " Hide",
+                text: (widget.text.length>150)?( flag? ' Read More' : " Hide"): '',
                 style: txt16w4!.copyWith(color: colorKmain),
                 recognizer: TapGestureRecognizer()..onTap = (){
                   setState(() {

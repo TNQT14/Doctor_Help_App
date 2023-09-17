@@ -53,16 +53,30 @@ Container containerCardDoc(
                       ],
                     ),
                     Spacer(),
-                    trailing??SizedBox()
+                    trailing ?? SizedBox()
                   ],
                 ),
               ],
             ),
           ),
-          Divider(color: Color.fromARGB(255, 0, 47, 161),),
+          Divider(
+            color: Color.fromARGB(255, 0, 47, 161),
+          ),
           InkWell(
-            onTap: ()=>Navigator.pushNamed(context, AppointmentDateTimeScreen.routeName),
-            child: Text('Date and Time', style: txt14w6!.copyWith(color: Colors.white)),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => AppointmentDateTimeScreen(
+                          doc_job: job,
+                          doc_name: name,
+                          doc_image: image,
+                        )),
+              );
+            },
+            // Navigator.pushNamed(context, AppointmentDateTimeScreen.routeName),
+            child: Text('Date and Time',
+                style: txt14w6!.copyWith(color: Colors.white)),
           )
           // Padding(
           //   padding: EdgeInsets.symmetric(horizontal: 16.0.w),

@@ -33,7 +33,7 @@ final Map<String, WidgetBuilder> route = {
   ChatScreen.routeName: (context)=> ChatScreen(imageUrl: '', name: '', receiverID: '',),
 
   //Appointment Screen
-  AppointmentDateTimeScreen.routeName: (context) => AppointmentDateTimeScreen(),
+  AppointmentDateTimeScreen.routeName: (context) => AppointmentDateTimeScreen(doc_name: '', doc_job: '', doc_image: '',),
   AppointmentSummaryScreen.routeNameSummary: (context) =>
       AppointmentSummaryScreen(
         appBarTitle: 'Summary',
@@ -50,7 +50,12 @@ final Map<String, WidgetBuilder> route = {
 
   //Favorite Screen
   FavoriteScreen.routeName: (context) => FavoriteScreen(),
-  DoctordetailScreen.routeName: (context) => DoctordetailScreen(),
+  DoctordetailScreen.routeName: (context) => DoctordetailScreen(
+    doc_detail: '',
+    doc_imageUrl: '',
+    doc_job: '',
+    doc_name: '',
+  ),
 
   //Profile Screen
   ProfileScreen.routeName: (context) => ProfileScreen(),

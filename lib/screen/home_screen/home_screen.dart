@@ -61,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
               //     );
               //   },
               // ),
-              
+
               Padding(
                 padding:
                     EdgeInsets.only(left: 15.0.w, right: 15.w, bottom: 8.h),
@@ -92,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                                       //My Appointment
+                              //My Appointment
                               Padding(
                                 padding: EdgeInsets.only(left: 15.0.w),
                                 child: textTitle('My Appointment'),
@@ -112,8 +112,20 @@ class _HomeScreenState extends State<HomeScreen> {
                                         listDoctor[index].job,
                                         trailing: GestureDetector(
                                           onTap: () {
-                                            Navigator.pushNamed(context,
-                                                DoctordetailScreen.routeName);
+                                            // Navigator.pushNamed(context,
+                                            //     DoctordetailScreen.routeName);
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      DoctordetailScreen(
+                                                        doc_detail: listDoctor[index].description,
+                                                        doc_name: listDoctor[index].name,
+                                                        doc_job: listDoctor[index].job,
+                                                        doc_imageUrl: listDoctor[index].imageUrl,
+                                                      )),
+                                            );
+                                            // print( listDoctor[index].imageUrl);
                                           },
                                           child: Container(
                                             alignment: Alignment.center,
