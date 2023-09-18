@@ -1,8 +1,13 @@
+
+import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
 late List<CameraDescription> cameras;
 late CameraController _cameraController;
+int direction = 0;
+String? _capturedImagePath;
+Image? capturedImage;
 
 class CameraScreen extends StatefulWidget {
   const CameraScreen({super.key});
@@ -18,15 +23,15 @@ class _CameraScreenState extends State<CameraScreen> {
 
   @override
   void initState(){
-    startCamera();
+    startCamera(0);
     super.initState();
   }
 
-  void startCamera() async {
+  void startCamera(int direction) async {
     cameras = await availableCameras();
 
     _cameraController = CameraController(
-        cameras[0],
+        cameras[direction],
         ResolutionPreset.max,
         enableAudio: false);
 
@@ -51,14 +56,47 @@ class _CameraScreenState extends State<CameraScreen> {
   Widget build(BuildContext context) {
     try{
       return Scaffold(
-        body: Stack(
+        body:
+        _capturedImagePath == null
+            ? Stack(
           children: [
+
             CameraPreview(_cameraController),
-            button(Icons.image_outlined, Alignment.bottomLeft),
-            button(Icons.camera_alt_outlined, Alignment.bottomCenter),
-            button(Icons.flip_camera_ios_outlined, Alignment.bottomRight),
+            GestureDetector(
+                onTap: (){
+
+                },
+                child: button(Icons.image_outlined, Alignment.bottomLeft)),
+            GestureDetector(
+                onTap: (){
+                  _cameraController.takePicture().then((XFile? file){
+                    if(mounted){
+                      if(file!=null){
+                        setState(() {
+                          _capturedImagePath = file.path; // Lưu đường dẫn ảnh đã chụp
+                        });
+                        print("Picture save to ${file.path}");
+                      }
+                    }
+                  });
+                },
+                child: button(Icons.camera_alt_outlined, Alignment.bottomCenter)),
+            GestureDetector(
+                onTap: (){
+                  setState(() {
+                    direction =direction == 0?1:0;
+                    startCamera(direction);
+                  });
+                },
+                child: button(Icons.flip_camera_ios_outlined, Alignment.bottomRight)),
           ],
-        ),
+        )
+            : Image.file(
+          File(_capturedImagePath!),
+          fit: BoxFit.cover,
+          width: double.infinity,
+          height: double.infinity,
+        )
       );
     }
     catch(e)
