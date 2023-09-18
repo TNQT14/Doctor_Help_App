@@ -33,7 +33,8 @@ class _ViewPictureState extends State<ViewPicture> {
                 onTap: (){
                   Navigator.pop(context);
                 },
-                child: button(Icons.arrow_back_ios_new_outlined, Alignment.topLeft, Colors.transparent, Colors.white)),
+                child: button(Icons.arrow_back_ios_new_outlined, Alignment.topLeft,
+                    false,  Colors.transparent, Colors.white)),
             GestureDetector(
                 onTap: (){
                   setState(() {

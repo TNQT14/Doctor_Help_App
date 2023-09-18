@@ -26,11 +26,12 @@ class _CameraScreenState extends State<CameraScreen> {
 
   @override
   void initState(){
-    startCamera(0);
+
     super.initState();
+    _initialControllerFuture = startCamera(0);
   }
 
-  void startCamera(int direction) async {
+  Future<void> startCamera(int direction) async {
     cameras = await availableCameras();
 
     _cameraController = CameraController(
@@ -41,7 +42,7 @@ class _CameraScreenState extends State<CameraScreen> {
     await _cameraController.initialize().then((value) {
       if(!mounted){
         print("Mounted");
-        return;
+        _cameraController.dispose();
       }
       setState(() {});
     }).catchError((e){
@@ -57,58 +58,72 @@ class _CameraScreenState extends State<CameraScreen> {
 
   @override
   Widget build(BuildContext context) {
-    try{
+    try {
       return Scaffold(
-        body:
-        camera(),
+        body: FutureBuilder<void>(
+          future: _initialControllerFuture,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              return camera();
+            } else {
+              return Center(child: CircularProgressIndicator());
+            }
+          },
+        ),
       );
+    } catch (e) {
+      return const SizedBox();
     }
-    catch(e)
-      {
-        return const SizedBox();
-      }
   }
 
 
   String? _capturedImagePath ="";
   Widget camera(){
-
-    return Stack(
-      children: [
-        CameraPreview(_cameraController),
-        GestureDetector(
-            onTap: (){
-
-            },
-            child: button(Icons.image_outlined, Alignment.bottomLeft, Colors.white, Colors.black54)),
-        GestureDetector(
-            onTap: (){
-              _cameraController.takePicture().then((XFile? file){
-                if(mounted){
-                  if(file!=null){
-                    setState(() {
-                      _capturedImagePath = file.path; // Lưu đường dẫn ảnh đã chụp
-                    });
-                    print("Picture save to ${file.path}");
-                    Navigator.of(context).pushNamed(
-                      ViewPicture.routeName,
-                      arguments: _capturedImagePath,
-                    );
+    if (!_cameraController.value.isInitialized) {
+      return Center(child: CircularProgressIndicator()); // Loading indicator
+    }
+    return SafeArea(
+      child: Stack(
+        children: [
+          CameraPreview(_cameraController),
+          GestureDetector(
+              onTap: (){
+                Navigator.of(context).pop();
+              },
+              child: button(Icons.arrow_back_ios_new_outlined, Alignment.topLeft, false, Colors.transparent, Colors.white)),
+          GestureDetector(
+              onTap: (){
+              },
+              child: button(Icons.image_outlined, Alignment.bottomLeft, true, Colors.white, Colors.black54)),
+          GestureDetector(
+              onTap: (){
+                _cameraController.takePicture().then((XFile? file){
+                  if(mounted){
+                    if(file!=null){
+                      setState(() {
+                        _capturedImagePath = file.path; // Lưu đường dẫn ảnh đã chụp
+                      });
+                      print("Picture save to ${file.path}");
+                      Navigator.of(context).pushNamed(
+                        ViewPicture.routeName,
+                        arguments: _capturedImagePath,
+                      );
+                    }
                   }
-                }
-              });
+                });
 
-            },
-            child: button(Icons.camera_alt_outlined, Alignment.bottomCenter, Colors.white, Colors.black54)),
-        GestureDetector(
-            onTap: (){
-              setState(() {
-                direction =direction == 0?1:0;
-                startCamera(direction);
-              });
-            },
-            child: button(Icons.flip_camera_ios_outlined, Alignment.bottomRight, Colors.white, Colors.black54)),
-      ],
+              },
+              child: button(Icons.camera_alt_outlined, Alignment.bottomCenter,true, Colors.white, Colors.black54)),
+          GestureDetector(
+              onTap: (){
+                setState(() {
+                  direction =direction == 0?1:0;
+                  startCamera(direction);
+                });
+              },
+              child: button(Icons.flip_camera_ios_outlined, Alignment.bottomRight,true, Colors.white, Colors.black54)),
+        ],
+      ),
     );
   }
 
