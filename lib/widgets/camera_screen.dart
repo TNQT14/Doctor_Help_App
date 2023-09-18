@@ -1,12 +1,15 @@
 
 import 'dart:io';
 import 'package:camera/camera.dart';
+import 'package:doctor_help_app/widgets/view_picture.dart';
 import 'package:flutter/material.dart';
+
+import 'button_Camera.dart';
 
 late List<CameraDescription> cameras;
 late CameraController _cameraController;
 int direction = 0;
-String? _capturedImagePath;
+
 Image? capturedImage;
 
 class CameraScreen extends StatefulWidget {
@@ -23,11 +26,12 @@ class _CameraScreenState extends State<CameraScreen> {
 
   @override
   void initState(){
-    startCamera(0);
+
     super.initState();
+    _initialControllerFuture = startCamera(0);
   }
 
-  void startCamera(int direction) async {
+  Future<void> startCamera(int direction) async {
     cameras = await availableCameras();
 
     _cameraController = CameraController(
@@ -38,7 +42,7 @@ class _CameraScreenState extends State<CameraScreen> {
     await _cameraController.initialize().then((value) {
       if(!mounted){
         print("Mounted");
-        return;
+        _cameraController.dispose();
       }
       setState(() {});
     }).catchError((e){
@@ -54,91 +58,75 @@ class _CameraScreenState extends State<CameraScreen> {
 
   @override
   Widget build(BuildContext context) {
-    try{
+    try {
       return Scaffold(
-        body:
-        _capturedImagePath == null
-            ? Stack(
-          children: [
-
-            CameraPreview(_cameraController),
-            GestureDetector(
-                onTap: (){
-
-                },
-                child: button(Icons.image_outlined, Alignment.bottomLeft)),
-            GestureDetector(
-                onTap: (){
-                  _cameraController.takePicture().then((XFile? file){
-                    if(mounted){
-                      if(file!=null){
-                        setState(() {
-                          _capturedImagePath = file.path; // Lưu đường dẫn ảnh đã chụp
-                        });
-                        print("Picture save to ${file.path}");
-                      }
-                    }
-                  });
-                },
-                child: button(Icons.camera_alt_outlined, Alignment.bottomCenter)),
-            GestureDetector(
-                onTap: (){
-                  setState(() {
-                    direction =direction == 0?1:0;
-                    startCamera(direction);
-                  });
-                },
-                child: button(Icons.flip_camera_ios_outlined, Alignment.bottomRight)),
-          ],
-        )
-            : Image.file(
-          File(_capturedImagePath!),
-          fit: BoxFit.cover,
-          width: double.infinity,
-          height: double.infinity,
-        )
+        body: FutureBuilder<void>(
+          future: _initialControllerFuture,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              return camera();
+            } else {
+              return Center(child: CircularProgressIndicator());
+            }
+          },
+        ),
       );
+    } catch (e) {
+      return const SizedBox();
     }
-    catch(e)
-      {
-        return const SizedBox();
-      }
   }
 
-  Widget button(
-      IconData icon,
-      Alignment alignment,
-      ){
-    return Align(
-      alignment: alignment,
-      child: Container(
-        margin: EdgeInsets.only(
-          left: 20,
-          right: 20,
-          bottom: 20,
-        ),
-        height: 75,
-        width: 75,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black26,
-              offset: Offset(2,2),
-              blurRadius: 10,
-            )
-          ],
-        ),
-        child: Center(
-          child: Icon(
-            icon,
-            color: Colors.black54,
-          ),
-        ),
+
+  String? _capturedImagePath ="";
+  Widget camera(){
+    if (!_cameraController.value.isInitialized) {
+      return Center(child: CircularProgressIndicator()); // Loading indicator
+    }
+    return SafeArea(
+      child: Stack(
+        children: [
+          CameraPreview(_cameraController),
+          GestureDetector(
+              onTap: (){
+                Navigator.of(context).pop();
+              },
+              child: button(Icons.arrow_back_ios_new_outlined, Alignment.topLeft, false, Colors.transparent, Colors.white)),
+          GestureDetector(
+              onTap: (){
+              },
+              child: button(Icons.image_outlined, Alignment.bottomLeft, true, Colors.white, Colors.black54)),
+          GestureDetector(
+              onTap: (){
+                _cameraController.takePicture().then((XFile? file){
+                  if(mounted){
+                    if(file!=null){
+                      setState(() {
+                        _capturedImagePath = file.path; // Lưu đường dẫn ảnh đã chụp
+                      });
+                      print("Picture save to ${file.path}");
+                      Navigator.of(context).pushNamed(
+                        ViewPicture.routeName,
+                        arguments: _capturedImagePath,
+                      );
+                    }
+                  }
+                });
+
+              },
+              child: button(Icons.camera_alt_outlined, Alignment.bottomCenter,true, Colors.white, Colors.black54)),
+          GestureDetector(
+              onTap: (){
+                setState(() {
+                  direction =direction == 0?1:0;
+                  startCamera(direction);
+                });
+              },
+              child: button(Icons.flip_camera_ios_outlined, Alignment.bottomRight,true, Colors.white, Colors.black54)),
+        ],
       ),
     );
   }
+
 
 
 }
