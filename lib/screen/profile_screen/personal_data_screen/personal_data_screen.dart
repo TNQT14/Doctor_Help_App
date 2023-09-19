@@ -205,8 +205,8 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
                                           text: birthday,
                                           isPrefix: true,
                                           image: iconSchedule,
-                                          validator: (value) =>
-                                              validate.vadilationBirthday(value),
+                                          // validator: (value) =>
+                                          //     validate.vadilationBirthday(value),
                                         ),
                                         text("Phone"),
                                         InputTextField(
