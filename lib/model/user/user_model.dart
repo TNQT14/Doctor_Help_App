@@ -67,12 +67,45 @@ class UserModel {
   // List<Object?> get props => [name, email, phone, address, birthday, imageUrl];
 }
 
-// class UserModel{
-//   String name;
-//   String email;
-//   String password;
-//   int phone;
-//   String address;
-//   String birthday;
-//   String imageUrl;
+
+
+class UserModelTest{
+  String? name;
+  String? email;
+  String? password;
+  String? phone;
+  String? address;
+  String? birthday;
+  String? imageUrl;
+
+  UserModelTest({
+    // required this.password,
+    this.email,
+    this.name,
+    this.imageUrl,
+    this.phone,
+    this.address,
+    this.birthday,
+  });
+
+  factory UserModelTest.fromJson(Map<String, dynamic> json) {
+    return UserModelTest(
+        email: (json['email']??'').toString(),
+        name: (json['name']??'').toString(),
+        imageUrl: (json['imageUrl']??'').toString(),
+        phone: (json['phone']??'').toString(),
+        address: (json['address']??'').toString(),
+        birthday: (json['birthday']??'').toString()
+    );
+  }
+// factory UserModelTest.fromJson(Map<String, dynamic> json) {
+//   return UserModelTest(
+//       email: json['email']??'',
+//       name: json['name']??'',
+//       imageUrl: json['imageUrl']??'',
+//       phone: json['phone']??'',
+//       address: json['address']??'',
+//       birthday: json['birthday']??''
+//   );
 // }
+}
