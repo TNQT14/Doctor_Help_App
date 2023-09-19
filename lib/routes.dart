@@ -1,3 +1,5 @@
+
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doctor_help_app/containts/add_images.dart';
 import 'package:doctor_help_app/model/user/doctor_model.dart';
@@ -18,6 +20,8 @@ import 'package:doctor_help_app/screen/screens.dart';
 import 'package:doctor_help_app/screen/user/forgot_password_screen/forgot_password_screen.dart';
 import 'package:doctor_help_app/screen/user/login_screen/login_screen.dart';
 import 'package:doctor_help_app/screen/user/register_screen/register_screen.dart';
+import 'package:doctor_help_app/widgets/camera_screen.dart';
+import 'package:doctor_help_app/widgets/view_picture.dart';
 import 'package:flutter/material.dart';
 
 // nơi chưa route (kiểu như dường dẫn đến các màn hình)
@@ -79,4 +83,11 @@ final Map<String, WidgetBuilder> route = {
   Forgotpasswordscreen.routeName: (context) => Forgotpasswordscreen(),
   NavigationMenu.routeName: (context) => NavigationMenu(),
   LanguageScreen.routeName: (context) => LanguageScreen(),
+
+  //Camera
+  CameraScreen.routeName: (context) => CameraScreen(),
+  ViewPicture.routeName: (context) {
+    final String? capturedImagePath = ModalRoute.of(context)?.settings.arguments as String?;
+    return ViewPicture(capturedImagePath: capturedImagePath);
+  },
 };

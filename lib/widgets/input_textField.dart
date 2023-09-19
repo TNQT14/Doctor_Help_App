@@ -133,7 +133,7 @@ class _InputTextFieldState extends State<InputTextField> {
                   },
                   icon: Icon(
                     obscureText?
-                    CupertinoIcons.eye : CupertinoIcons.eye_slash,
+                    CupertinoIcons.eye_slash : CupertinoIcons.eye,
                     color: Colors.grey,
                   ))
               : SizedBox(),

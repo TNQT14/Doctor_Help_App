@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doctor_help_app/bloc/fillForm/fillForm_bloc_cubit.dart';
 import 'package:doctor_help_app/bloc/user/user_bloc_cubit.dart';
+import 'package:doctor_help_app/widgets/camera_screen.dart';
 import 'package:doctor_help_app/widgets/unfocusKeyboard.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -174,7 +175,13 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: <Widget>[
                               Center(
-                                child: BackGroundEditAvatCard(context, stateUser.user.imageUrl??imagePersion, true),
+                                child: GestureDetector(
+                                  onTap:() {
+                                    print("On tap Camera Screen");
+                                    Navigator.pushNamed(context, CameraScreen.routeName);
+                                  },
+                                  child: BackGroundEditAvatCard(context, stateUser.user.imageUrl??imagePersion, true),
+                                ),
                               ),
                               Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 13.0.w),
