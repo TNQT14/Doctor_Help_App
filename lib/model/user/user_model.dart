@@ -3,23 +3,23 @@ import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 
-class UserModel extends Equatable {
-  String? name;
-  String? email;
+class UserModel {
+  String name;
+  String email;
   // String password;
-  int? phone;
-  String? address;
-  String? birthday;
-  String? imageUrl;
+  int phone;
+  String address;
+  String birthday;
+  String imageUrl;
 
   UserModel({
     // required this.password,
-    this.email ='',
-    this.name = '',
-    this.imageUrl = '',
-    this.phone = 00000000,
-    this.address = '',
-    this.birthday = '',
+    required this.email,
+    required this.name,
+    required this.imageUrl,
+    required this.phone,
+    required this.address,
+    required this.birthday,
   });
 
   UserModel copyWith({
@@ -62,9 +62,9 @@ class UserModel extends Equatable {
   //   return user;
   // }
 
-  @override
-  // TODO: implement props
-  List<Object?> get props => [name, email, phone, address, birthday, imageUrl];
+  // @override
+  // // TODO: implement props
+  // List<Object?> get props => [name, email, phone, address, birthday, imageUrl];
 }
 
 // class UserModel{
