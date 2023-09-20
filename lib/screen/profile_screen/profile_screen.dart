@@ -107,7 +107,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               child: CircularProgressIndicator(),
                             )),
                     Spacer(),
-                    IconButton(onPressed: () {}, icon: Icon(Icons.logout))
+                    IconButton(onPressed: () {showDialog(context: context, builder: (context){
+                      return alertDialog(context);
+                    });}, icon: Icon(Icons.logout))
                   ],
                 ));
 

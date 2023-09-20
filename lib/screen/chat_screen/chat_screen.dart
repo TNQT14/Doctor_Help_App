@@ -80,10 +80,10 @@ class _ChatScreenState extends State<ChatScreen> {
       onTap: () => unfocusKeyboard(),
       child: Scaffold(
         body: SafeArea(
-          child: BlocBuilder<DoctorCubit, DoctorState>(
-            builder: (context, state) {
-              if (state is DoctorSuccess) {
-                return Column(
+          // child: BlocBuilder<DoctorCubit, DoctorState>(
+          //   builder: (context, state) {
+              // if (state is DoctorSuccess) {
+                child: Column(
                   children: [
                     appBarChat(context, widget.imageUrl, widget.name),
                     // Expanded(child: _messagesList()),
@@ -134,13 +134,13 @@ class _ChatScreenState extends State<ChatScreen> {
                     //   ),
                     // )
                   ],
-                );
-              }
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            },
-          ),
+                )
+              // }
+              // return Center(
+              //   child: CircularProgressIndicator(),
+              // );
+            // },
+          // ),
         ),
       ),
     );
