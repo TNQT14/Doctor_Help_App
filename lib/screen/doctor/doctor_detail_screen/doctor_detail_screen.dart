@@ -1,5 +1,7 @@
 import 'package:date_picker_timeline/date_picker_widget.dart';
+import 'package:doctor_help_app/bloc/doctor/doctor_cubit.dart';
 import 'package:doctor_help_app/containts/containts.dart';
+import 'package:doctor_help_app/model/user/customer_of_doc_model.dart';
 import 'package:doctor_help_app/model/user/doctor_model.dart';
 import 'package:doctor_help_app/model/user/user_model.dart';
 import 'package:doctor_help_app/screen/screens.dart';
@@ -37,7 +39,7 @@ class _DoctordetailScreenState extends State<DoctordetailScreen> {
   @override
   void initState() {
     // TODO: implement initState
-    UserBlocCubit.get(context).getUserDataDetail();
+    DoctorCubit.get(context).getListCustomer();
     super.initState();
   }
   // UserModel userModel;
@@ -107,18 +109,15 @@ class _DoctordetailScreenState extends State<DoctordetailScreen> {
                               ],
                             ),
                             //reviews
-                            BlocBuilder<UserBlocCubit, UserBlocState>(
+                            BlocBuilder<DoctorCubit, DoctorState>(
                               builder: (context, state) {
-                                if (state is UserSuccess) {
-                                  UserModel user = state.user;
-                                  return backgroundDoctorCard(
-                                    context,
-                                    Padding(
-                                      padding:
-                                      EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-                                      child: reviewsCard(user.imageUrl??imagePersion, user.rating??0, user.name??'Lỗi', user.job??'Lỗi', user.review??'Chưa có review'),
-                                    ),
-                                    // height: 117.h
+                                if (state is CustomerSuccess) {
+                                  List<CustomerOfDocModel> listcustomer = state.listcustomer;
+                                  return Container(
+                                    height: 300,
+                                    child: ListView.builder(itemBuilder: (context, indext){
+                                      return Container();
+                                    }),
                                   );
                                 }
                                 return Center(
