@@ -8,6 +8,7 @@ import 'package:doctor_help_app/screen/screens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 import '../../../bloc/user/user_bloc_cubit.dart';
 import '../../../widgets/widgets.dart';
@@ -17,16 +18,15 @@ import 'components/pro5DocDetail.dart';
 import 'components/rowDocDetailIn4.dart';
 
 class DoctordetailScreen extends StatefulWidget {
-  DoctordetailScreen(
-      {Key? key,
-        required this.docDetail,
-        // required this.userModel
-      // required this.doc_detail,
-      // required this.doc_job,
-      // required this.doc_name,
-      // required this.doc_imageUrl
-      })
-      : super(key: key);
+  DoctordetailScreen({
+    Key? key,
+    required this.docDetail,
+    // required this.userModel
+    // required this.doc_detail,
+    // required this.doc_job,
+    // required this.doc_name,
+    // required this.doc_imageUrl
+  }) : super(key: key);
   static String routeName = 'DoctordetailScreen';
 
   DoctorModel docDetail;
@@ -42,6 +42,7 @@ class _DoctordetailScreenState extends State<DoctordetailScreen> {
     DoctorCubit.get(context).getListCustomer();
     super.initState();
   }
+
   // UserModel userModel;
   @override
   Widget build(BuildContext context) {
@@ -62,8 +63,7 @@ class _DoctordetailScreenState extends State<DoctordetailScreen> {
                   child: rowDocDetailIn4(
                       widget.docDetail.imageUrl ?? imagePersion,
                       widget.docDetail.name ?? 'Không có dữ liệu',
-                      widget.docDetail.job ?? 'Không có dữ liệu'
-                  ),
+                      widget.docDetail.job ?? 'Không có dữ liệu'),
                 ),
                 //body
                 Expanded(
@@ -73,7 +73,9 @@ class _DoctordetailScreenState extends State<DoctordetailScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(height: 8.h,),
+                            SizedBox(
+                              height: 8.h,
+                            ),
                             textTitle('Profile Doctor', isPadding: false),
                             Padding(
                               padding: EdgeInsets.only(bottom: 8.h),
@@ -103,28 +105,53 @@ class _DoctordetailScreenState extends State<DoctordetailScreen> {
                                   onTap: () {},
                                   child: Text(
                                     'See All',
-                                    style: TextStyle(fontSize: 17.sp, color: colorKmain),
+                                    style: TextStyle(
+                                        fontSize: 17.sp, color: colorKmain),
                                   ),
                                 ),
                               ],
                             ),
-                            //reviews
                             BlocBuilder<DoctorCubit, DoctorState>(
                               builder: (context, state) {
-                                if (state is CustomerSuccess) {
-                                  List<CustomerOfDocModel> listcustomer = state.listcustomer;
-                                  return Container(
+                                if(state is CustomerSuccess){
+                                  List<CustomerOfDocModel> listcustom = state.listcustomer;
+                                  return SizedBox(
                                     height: 300,
-                                    child: ListView.builder(itemBuilder: (context, indext){
-                                      return Container();
-                                    }),
+                                    child: ListView.builder(
+                                        itemCount: listcustom.length,
+                                        itemBuilder: (context, index) {
+                                          return Card(
+                                              child: reviewsCard(
+                                                  listcustom[index].imageUrl??imagePersion,
+                                                  double.parse(listcustom[index].rating??0.toString()),
+                                                  listcustom[index].name??"Chưa có thông tin",
+                                                  listcustom[index].job??"Chưa có thông tin",
+                                                  listcustom[index].review??"Chưa có thông tin").paddingSymmetric(
+                                                  horizontal: 16.w,
+                                                  vertical: 16.h));
+                                        }),
                                   );
                                 }
-                                return Center(
-                                  child: CircularProgressIndicator(),
-                                );
+                                return Center( child: CircularProgressIndicator(),);
                               },
-                            ),
+                            )
+                            //reviews
+                            // BlocBuilder<DoctorCubit, DoctorState>(
+                            //   builder: (context, state) {
+                            //     if (state is CustomerSuccess) {
+                            //       List<CustomerOfDocModel> listcustomer = state.listcustomer;
+                            //       return Container(
+                            //         height: 300,
+                            //         child: ListView.builder(itemBuilder: (context, indext){
+                            //           return Container();
+                            //         }),
+                            //       );
+                            //     }
+                            //     return Center(
+                            //       child: CircularProgressIndicator(),
+                            //     );
+                            //   },
+                            // ),
                             // backgroundDoctorCard(
                             //   context,
                             //   Padding(
@@ -151,15 +178,17 @@ class _DoctordetailScreenState extends State<DoctordetailScreen> {
             // Navigator.pushNamed(context, AppointmentDateTimeScreen.routeName);
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) =>  AppointmentDateTimeScreen(
-                doctorModel: widget.docDetail,
-                // doc_job: docDetail.job??'Không có dữ liệu',
-                // doc_name: docDetail.name??'Không có dữ liệu',
-                // doc_image: docDetail.imageUrl??imagePersion,
-                // doc_rate: docDetail.rating ,
-                // doc_phone: docDetail.email,
-                // doc_email: docDetail.imageUrl,
-              )),
+              MaterialPageRoute(
+                  builder: (context) =>
+                      AppointmentDateTimeScreen(
+                        doctorModel: widget.docDetail,
+                        // doc_job: docDetail.job??'Không có dữ liệu',
+                        // doc_name: docDetail.name??'Không có dữ liệu',
+                        // doc_image: docDetail.imageUrl??imagePersion,
+                        // doc_rate: docDetail.rating ,
+                        // doc_phone: docDetail.email,
+                        // doc_email: docDetail.imageUrl,
+                      )),
             );
           })
         ],
