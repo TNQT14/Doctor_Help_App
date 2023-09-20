@@ -79,36 +79,44 @@ import 'package:flutter/foundation.dart';
 //   // List<Object?> get props => [name, email, phone, address, birthday, imageUrl];
 // }
 
-
-
-class UserModel{
+class UserModel {
   String? name;
   String? email;
-  String? password;
   int? phone;
   String? address;
   String? birthday;
   String? imageUrl;
 
-  UserModel({
-    // required this.password,
-    this.email,
-    this.name,
-    this.imageUrl,
-    this.phone,
-    this.address,
-    this.birthday,
-  });
+  //review
+  double? rating;
+  String? job;
+  String? review;
+
+  UserModel(
+      {
+      // required this.password,
+      this.email,
+      this.name,
+      this.imageUrl,
+      this.phone,
+      this.address,
+      this.birthday,
+      this.rating,
+      this.job,
+      this.review});
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
-        email: (json['email']??'').toString(),
-        name: (json['name']??'').toString(),
-        imageUrl: (json['imageUrl']??'').toString(),
-        phone: int.parse(json['phone'].toString()??0.toString()),
-        // phone: json['phone'].toString(),
-        address: (json['address']??'').toString(),
-        birthday: (json['birthday']??'').toString()
+      email: (json['email'] ?? '').toString(),
+      name: (json['name'] ?? '').toString(),
+      imageUrl: (json['imageUrl'] ?? '').toString(),
+      phone: int.parse(json['phone'].toString() ?? 0.toString()),
+      // phone: json['phone'].toString(),
+      address: (json['address'] ?? '').toString(),
+      birthday: (json['birthday'] ?? '').toString(),
+      rating: double.parse(json['rating'].toString() ?? 0.toString()),
+      job: (json['job'] ?? '').toString(),
+      review: (json['review'] ?? '').toString(),
     );
   }
 // factory UserModelTest.fromJson(Map<String, dynamic> json) {
