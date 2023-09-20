@@ -44,6 +44,7 @@ class _ChatScreenState extends State<ChatScreen> {
   );
 
   void _handleSendPressed(types.PartialText message) {
+   // print('User: $_user');
     final textMessage = types.TextMessage(
       author: _user,
       createdAt: DateTime.now().millisecondsSinceEpoch,
@@ -60,17 +61,17 @@ class _ChatScreenState extends State<ChatScreen> {
     });
   }
 
-  void sendMess() async {
-    if (mess.text.isNotEmpty) {
-      await _userResponsitory.sendMess(widget.receiverID, mess.text);
-      mess.clear();
-    }
-  }
+  // void sendMess() async {
+  //   if (mess.text.isNotEmpty) {
+  //     await _userResponsitory.sendMess(widget.receiverID, mess.text);
+  //     mess.clear();
+  //   }
+  // }
 
   CollectionReference chats = FirebaseFirestore.instance.collection('chats');
   @override
   void initState() {
-    BlocProvider.of<DoctorCubit>(context).getListDataDoctor();
+ //  BlocProvider.of<DoctorCubit>(context).getListDataDoctor();
     super.initState();
   }
 
@@ -91,48 +92,10 @@ class _ChatScreenState extends State<ChatScreen> {
                         child: Chat(
                             messages: _messages,
                             onSendPressed: _handleSendPressed,
-                            onAttachmentPressed: (){},
+                            onAttachmentPressed: (){
+                              print('object');
+                            },
                             user: _user)),
-                    // Container(
-                    //   height: 90.h,
-                    //   width: MediaQuery.of(context).size.width,
-                    //   padding: EdgeInsets.only(top: 8.h),
-                    //   decoration: BoxDecoration(
-                    //       color: Colors.white,
-                    //       boxShadow: [
-                    //         BoxShadow(
-                    //             color: Colors.grey.shade300,
-                    //             blurRadius: 10,
-                    //             spreadRadius: 2)
-                    //       ]),
-                    //   alignment: Alignment.topCenter,
-                    //   child: Form(
-                    //     key: _key,
-                    //     child: Row(
-                    //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    //       children: [
-                    //         InkWell(
-                    //           onTap: () {},
-                    //           child: SvgPicture.asset(iconFile),
-                    //         ),
-                    //         SizedBox(
-                    //           width: 248.w,
-                    //           child: InputTextField(
-                    //               text: mess, hintext: 'Type Message'),
-                    //         ),
-                    //         InkWell(
-                    //           onTap: sendMess,
-                    //           // onTap: (){
-                    //           //   var test = _userResponsitory.getMessage(
-                    //           //       widget.receiverID, _auth.currentUser!.uid);
-                    //           //   print(test);
-                    //           // },
-                    //           child: SvgPicture.asset(iconMic),
-                    //         ),
-                    //       ],
-                    //     ),
-                    //   ),
-                    // )
                   ],
                 )
               // }
@@ -211,6 +174,50 @@ class _ChatScreenState extends State<ChatScreen> {
   // }
 }
 
+Container buildContainer(BuildContext context) {
+  return Container(
+    height: 90.h,
+    width: MediaQuery.of(context).size.width,
+    padding: EdgeInsets.only(top: 8.h),
+    decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+              color: Colors.grey.shade300,
+              blurRadius: 10,
+              spreadRadius: 2)
+        ]),
+    alignment: Alignment.topCenter,
+    child: Form(
+      key: _key,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          InkWell(
+            onTap: () {},
+            child: SvgPicture.asset(iconFile),
+          ),
+          SizedBox(
+            width: 248.w,
+            child: InputTextField(
+                text: TextEditingController(), hintext: 'Type Message'),
+          ),
+          InkWell(
+            onTap: (){},
+            //sendMess
+            // onTap: (){
+            //   var test = _userResponsitory.getMessage(
+            //       widget.receiverID, _auth.currentUser!.uid);
+            //   print(test);
+            // },
+            child: SvgPicture.asset(iconMic),
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
 // int sortListByDateAndPrice(
 //     DateTime timeFirst, DateTime timeSecond, int firstPrice, int secondPrice) {
 //   int result = timeFirst.compareTo(timeSecond);
@@ -250,7 +257,7 @@ formatDatetime(var time) {
 //         );
 //       });
 // }
-
+//
 // _buildItemDoc(DocumentSnapshot doc) {
 //   Map<String, dynamic> data = doc.data()! as Map<String, dynamic>;
 //   if (FirebaseAuth.instance.currentUser!.email != data['email']) {
@@ -288,7 +295,7 @@ formatDatetime(var time) {
 //   @override
 //   State<ChatScreen> createState() => _ChatScreenState();
 // }
-//
+
 // class _ChatScreenState extends State<ChatScreen> {
 //   bool _isAttachmentUploading = false;
 //
