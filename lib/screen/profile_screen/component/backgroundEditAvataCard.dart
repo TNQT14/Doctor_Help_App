@@ -9,13 +9,16 @@ Stack BackGroundEditAvatCard(
     {required BuildContext context,
     required String image,
     bool isEdit = false,
+    double? width,
+    double? height,
+    double? paddingTop,
     Function()? onTap}) {
   return Stack(
     children: [
       Container(
-          margin: EdgeInsets.only(top: 32.h),
-          height: 121,
-          width: 121,
+          margin: EdgeInsets.only(top: paddingTop?? 32.h),
+          height: height ?? 121,
+          width: width ?? 121,
           padding: EdgeInsets.all(1),
           decoration: BoxDecoration(
             shape: BoxShape.rectangle,
