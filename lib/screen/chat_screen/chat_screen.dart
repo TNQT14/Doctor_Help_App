@@ -113,7 +113,7 @@ class _ChatScreenState extends State<ChatScreen> {
         //   },
         // ),
         appBarChat(
-          top: 20.h,
+          top: 30.h,
             context: context,
             image: widget.imageUrl,
             name: widget.name,
