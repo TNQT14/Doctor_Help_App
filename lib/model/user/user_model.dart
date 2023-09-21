@@ -86,6 +86,7 @@ class UserModel {
   String? address;
   String? birthday;
   String? imageUrl;
+  String? userID;
 
   //review
   double? rating;
@@ -101,6 +102,7 @@ class UserModel {
       this.phone,
       this.address,
       this.birthday,
+      this.userID,
       this.rating,
       this.job,
       this.review});
@@ -109,6 +111,7 @@ class UserModel {
     return UserModel(
       email: (json['email'] ?? '').toString(),
       name: (json['name'] ?? '').toString(),
+      userID: (json['userID'] ?? '').toString(),
       imageUrl: (json['imageUrl'] ?? '').toString(),
       phone: int.parse(json['phone'].toString() ?? 0.toString()),
       // phone: json['phone'].toString(),
