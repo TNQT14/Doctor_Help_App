@@ -123,8 +123,8 @@ class _ChatScreenState extends State<ChatScreen> {
                   MaterialPageRoute(
                       builder: (context) => CallPage(
                           callID: '1',
-                          userName: widget.name??"Lỗi",
-                          userId: widget.receiverID??'Na6wNyUZZTRsfXmYWzB1')));
+                          userName: widget.name,
+                          userId: widget.receiverID)));
             }),
         Expanded(child: _messagesList()),
         buildContainer(context)
@@ -157,12 +157,14 @@ class _ChatScreenState extends State<ChatScreen> {
         // );
         // List<Widget> datalist = [];
         // datalist.insert(0, data);
-        return ListView(
-                // reverse: true,
-                children: snapshot.data!.docs
-                    .map((data) => _messagesItem(data))
-                    .toList(),
-              );
+        else {
+          return ListView(
+            // reverse: true,
+            children: snapshot.data!.docs
+                .map((data) => _messagesItem(data))
+                .toList() ?? [],
+          );
+        }
       },
     );
   }

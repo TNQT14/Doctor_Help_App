@@ -13,8 +13,8 @@ class CallPage extends StatelessWidget {
     return ZegoUIKitPrebuiltCall(
       appID: CallModel.appID, // Fill in the appID that you get from ZEGOCLOUD Admin Console.
       appSign: CallModel.yourAppSign, // Fill in the appSign that you get from ZEGOCLOUD Admin Console.
-      userID: userId,
-      userName: userName,
+      userID: userId??'Na6wNyUZZTRsfXmYWzB1',
+      userName: userName??"Lỗi",
       callID: callID,
       // You can also use groupVideo/groupVoice/oneOnOneVoice to make more types of calls.
       config: ZegoUIKitPrebuiltCallConfig.oneOnOneVideoCall()
