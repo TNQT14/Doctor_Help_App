@@ -54,7 +54,7 @@ class ValidatedMess{
       return 'Bạn chưa nhập SĐT';
     }
     if (!phonePattern.hasMatch(phone)) {
-      return 'Số điện thoại không hợp lệ';
+      return 'Số điện thoại phải đủ 10 chữ số';
     }
     else
       return null;
@@ -69,7 +69,7 @@ class ValidatedMess{
       final DateTime parsedDate = dateFormat.parse(birthday);
       return null;
     } catch (e) {
-      return 'Ngày sinh không hợp lệ';
+      return 'Ngày sinh phải theo cú pháp yyyy-MM-dd';
     }
   }
 

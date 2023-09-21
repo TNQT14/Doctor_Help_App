@@ -156,4 +156,4 @@ final List<DoctorModel> listdoc = [
 ];
 
 const networdImage =
-    'https://mamul.am/images/pics/221221/the-funniest-cat-mem-u104587-1.jpg';
+    'https://i.pinimg.com/736x/eb/58/cc/eb58cc5cfecde2911c1bd9bb8df69ce7.jpg';

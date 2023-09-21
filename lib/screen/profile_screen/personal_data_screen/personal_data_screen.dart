@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 import '../../../../VM/service/user_responsitory.dart';
 import '../../../../VM/service/user_responsitory.dart';
@@ -38,8 +39,8 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
   @override
   void initState() {
     UserBlocCubit.get(context).getUserDataDetail();
-    FillFormBlocCubit.get(context).filledForm(context, name.text, birthday.text,
-        phone.text,address.text);
+    FillFormBlocCubit.get(context).filledForm(
+        context, name.text, birthday.text, phone.text, address.text);
     super.initState();
   }
 
@@ -47,15 +48,16 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
   Widget build(BuildContext context) {
     ValidatedMess validate = ValidatedMess();
     // if(name.text.isNotEmpty && birthday.text.isNotEmpty && phone.text.isNotEmpty&& address.text.isNotEmpty )
-      if(name.text.isEmpty || birthday.text.isEmpty || phone.text.isEmpty|| address.text.isEmpty )
-      {
-        print('Form rỗng');
-        print("Tên ${name.text.length}");
-        print("birthday ${birthday.text.length}");
-        print("phone ${phone.text.length}");
-        print("address ${address.text.length}");
-      }
-    else {
+    if (name.text.isEmpty ||
+        birthday.text.isEmpty ||
+        phone.text.isEmpty ||
+        address.text.isEmpty) {
+      print('Form rỗng');
+      print("Tên ${name.text.length}");
+      print("birthday ${birthday.text.length}");
+      print("phone ${phone.text.length}");
+      print("address ${address.text.length}");
+    } else {
       print('Form không rỗng');
       print("Tên ${name.text}");
       print("birthday ${birthday.text}");
@@ -64,77 +66,78 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
     }
 
     return GestureDetector(
-      onTap: ()=> unfocusKeyboard(),
-      child: Scaffold(
-        backgroundColor: colorbg,
-        appBar: AppBar(
+        onTap: () => unfocusKeyboard(),
+        child: Scaffold(
           backgroundColor: colorbg,
-          centerTitle: true,
-          title: Text(
-            "Personal Data",
-            style: txt16w6,
-          ),
-          actions: [
-            BlocBuilder<FillFormBlocCubit, FillFormBlocState>(
-              builder: (context, stateFillForm) {
-                return BlocBuilder<UserBlocCubit, UserBlocState>(
-                  builder: (context, stateUser) {
-                    if (stateUser is UserSuccess) {
-                      final isFormFilled =
-                          name.text.isNotEmpty &&
-                          birthday.text.isNotEmpty &&
-                          phone.text.isNotEmpty &&
-                          address.text.isNotEmpty;
+          appBar: AppBar(
+            backgroundColor: colorbg,
+            centerTitle: true,
+            title: Text(
+              "Personal Data",
+              style: txt16w6,
+            ),
+            //action
+            actions: [
+              BlocBuilder<FillFormBlocCubit, FillFormBlocState>(
+                builder: (context, stateFillForm) {
+                  return BlocBuilder<UserBlocCubit, UserBlocState>(
+                    builder: (context, stateUser) {
+                      if (stateUser is UserSuccess) {
+                        final isFormFilled = name.text.isNotEmpty &&
+                            birthday.text.isNotEmpty &&
+                            phone.text.isNotEmpty &&
+                            address.text.isNotEmpty;
                         return SizedBox(
                           child: TextButton(
                             onPressed: isFormFilled
                                 ? () {
-                              if (_formDataKey.currentState!.validate()) {
-                                widget._userResponsitory.updateUserDetail(
-                                  name.text,
-                                  birthday.text,
-                                  phone.text,
-                                  address.text,
-                                );
-                                showDialog(
-                                    context: context,
-                                    builder: (context){
-                                     return AlertDialog(
-                                        title: Text("Thành công"),
-                                        content: Text("Thông tin của bạn đã được cập nhật trên hệ thống"),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () {
-                                              Navigator.pop(context);
-                                              Navigator.pop(context);
-                                            },
-                                            child: Text("OK"),
-                                          ),
-                                        ],
+                                    if (_formDataKey.currentState!.validate()) {
+                                      widget._userResponsitory.updateUserDetail(
+                                        name.text,
+                                        birthday.text,
+                                        phone.text,
+                                        address.text,
+                                      );
+                                      showDialog(
+                                          context: context,
+                                          builder: (context) {
+                                            return AlertDialog(
+                                              title: Text("Thành công"),
+                                              content: Text(
+                                                  "Thông tin của bạn đã được cập nhật trên hệ thống"),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () {
+                                                    Navigator.pop(context);
+                                                    Navigator.pop(context);
+                                                  },
+                                                  child: Text("OK"),
+                                                ),
+                                              ],
+                                            );
+                                          });
+                                      // Navigator.pop(context);
+                                    } else {
+                                      showDialog(
+                                        context: context,
+                                        builder: (context) {
+                                          return AlertDialog(
+                                            title: const Text("Lỗi"),
+                                            content: const Text(
+                                                "Vui lòng điền đúng thông tin"),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Text("OK"),
+                                              ),
+                                            ],
+                                          );
+                                        },
                                       );
                                     }
-                                );
-                                  // Navigator.pop(context);
-                              } else {
-                                showDialog(
-                                  context: context,
-                                  builder: (context) {
-                                    return AlertDialog(
-                                      title: const Text("Lỗi"),
-                                      content: const Text("Vui lòng điền đúng thông tin"),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () {
-                                            Navigator.pop(context);
-                                          },
-                                          child: Text("OK"),
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                );
-                              }
-                            }
+                                  }
                                 : null,
                             child: Text(
                               "Save",
@@ -144,79 +147,129 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
                             ),
                           ),
                         );
+                      }
 
-                    }
-
-
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  },
-                );
-              },
-            ),
-          ],
-        ),
-        body: LayoutBuilder(
-          builder: (BuildContext context, BoxConstraints viewportConstraints){
-            return SingleChildScrollView(
-              child: ConstrainedBox(
-                constraints: BoxConstraints(
-                  minHeight: viewportConstraints.maxHeight
-                ),
-                child:  BlocBuilder<FillFormBlocCubit, FillFormBlocState>(
-                    builder: (context, stateFillForm){
-                      return BlocBuilder<UserBlocCubit, UserBlocState>(builder: (context, stateUser) {
-                        if(stateUser is UserSuccess){
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    },
+                  );
+                },
+              ),
+            ],
+          ),
+          //body
+          body: LayoutBuilder(
+            builder:
+                (BuildContext context, BoxConstraints viewportConstraints) {
+              return SingleChildScrollView(
+                child: ConstrainedBox(
+                    constraints: BoxConstraints(
+                        minHeight: viewportConstraints.maxHeight),
+                    child: BlocBuilder<FillFormBlocCubit, FillFormBlocState>(
+                        builder: (context, stateFillForm) {
+                      return BlocBuilder<UserBlocCubit, UserBlocState>(
+                          builder: (context, stateUser) {
+                        if (stateUser is UserSuccess) {
                           // print(state.user.phone);
                           // DateTime? dateTime = state.user.birthday;
                           return Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: <Widget>[
+                              //avatar
                               Center(
-                                child: GestureDetector(
-                                  onTap:() {
-                                    print("On tap Camera Screen");
-                                    Navigator.pushNamed(context, CameraScreen.routeName);
-                                  },
-                                  child: BackGroundEditAvatCard(context, stateUser.user.imageUrl??imagePersion, true),
-                                ),
+                                child: BackGroundEditAvatCard(
+                                    context: context,
+                                    image:
+                                        stateUser.user.imageUrl ?? imagePersion,
+                                    isEdit: true,
+                                    onTap: () {
+                                      setState(() {
+                                        showModalBottomSheet(
+                                            context: context,
+                                            builder: (context) {
+                                              return Container(
+                                                padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 6.w),
+                                                child: Column(
+                                                  mainAxisSize: MainAxisSize.min,
+                                                  children: [
+                                                    InkWell(
+                                                      onTap: (){},
+                                                      borderRadius: BorderRadius.circular(20),
+                                                      child: Row(
+                                                        children: [
+                                                          CircleAvatar(
+                                                              backgroundColor: Colors.grey.shade300,
+                                                              child: Icon(Icons.image, color: Colors.grey.shade700,)),
+                                                          SizedBox(width: 10.w,),
+                                                          Text('Take a picture from Gallery', style: txt16w5,),
+                                                        ],
+                                                      ).paddingSymmetric(horizontal: 10.w, vertical: 10.h),
+                                                    ),
+                                                    Divider(height: 12.h,),
+                                                    InkWell(
+                                                      onTap: (){},
+                                                      borderRadius: BorderRadius.circular(20),
+                                                      child: Row(
+                                                        children: [
+                                                          CircleAvatar(
+                                                              backgroundColor: Colors.grey.shade300,
+                                                              child: Icon(CupertinoIcons.camera, color: Colors.grey.shade700,)),
+                                                          SizedBox(width: 10.w,),
+                                                          Text('Take a picture from Camera', style: txt16w5,),
+                                                        ],
+                                                      ).paddingSymmetric(horizontal: 10.w, vertical: 10.h),
+                                                    ),
+                                                    TextButton(onPressed: (){Navigator.pop(context);}, child: Text('Cancel', style: txt16w5!.copyWith(color: Colors.red),))
+                                                  ],
+                                                ),
+                                              );
+                                            });
+                                      });
+                                    }),
                               ),
+                              //form
                               Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 13.0.w),
+                                padding:
+                                    EdgeInsets.symmetric(horizontal: 13.0.w),
                                 child: Form(
                                     key: _formDataKey,
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         text("Name"),
                                         InputTextField(
-                                          hintext: stateUser.user.name ??"No data",
+                                          hintext:
+                                              stateUser.user.name ?? "No data",
                                           text: name,
                                           // isPrefix: true,
-                                          validator: (value)
-                                          => validate.vadilationName(value),
+                                          validator: (value) =>
+                                              validate.vadilationName(value),
                                         ),
                                         text("Date of Birth"),
                                         InputTextField(
                                           hintext:
-                                          "${stateUser.user.birthday?? Timestamp.now()}",
+                                              "${stateUser.user.birthday ?? Timestamp.now()}",
                                           text: birthday,
                                           isPrefix: true,
                                           image: iconSchedule,
-                                          validator: (value) =>
-                                              validate.vadilationBirthday(value),
+                                          // validator: (value) =>
+                                          //     validate.vadilationBirthday(value),
                                         ),
                                         text("Phone"),
                                         InputTextField(
-                                          hintext: "${"0${stateUser.user.phone}"?? 'xxx-xxxx-xxxx'}",
+                                          hintext:
+                                              "${"0${stateUser.user.phone}" ?? 'xxx-xxxx-xxxx'}",
                                           text: phone,
                                           validator: (value) =>
                                               validate.vadilationPhone(value),
                                         ),
                                         text("Address"),
-                                        InputTextField(hintext: stateUser.user.address??"No data",
+                                        InputTextField(
+                                          hintext: stateUser.user.address ??
+                                              "No data",
                                           text: address,
                                           validator: (value) =>
                                               validate.vadilationAddress(value),
@@ -224,21 +277,23 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
                                       ],
                                     )),
                               ),
-                              const SizedBox(height: 15,)
+                              const SizedBox(
+                                height: 15,
+                              )
                             ],
                           );
                         }
-                        return Center( child:  CircularProgressIndicator(),);
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
                       });
-                    }
-                )
-                ),
+                    })),
               );
-          },
-        ),
-      )
-    );
+            },
+          ),
+        ));
   }
+
   GlobalKey<FormState> formDataKey = GlobalKey<FormState>();
 }
 
@@ -248,3 +303,42 @@ Padding text(String title) {
     child: Text(title, style: txt16w4),
   );
 }
+
+// Widget buildContainer() {
+//   return Container(
+//     padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 6.w),
+//     child: Column(
+//       mainAxisSize: MainAxisSize.min,
+//       children: [
+//         InkWell(
+//           onTap: (){},
+//           borderRadius: BorderRadius.circular(20),
+//           child: Row(
+//             children: [
+//               CircleAvatar(
+//                   backgroundColor: Colors.grey.shade300,
+//                   child: Icon(Icons.image, color: Colors.grey.shade700,)),
+//               SizedBox(width: 10.w,),
+//               Text('Take a picture from Gallery', style: txt16w5,),
+//             ],
+//           ).paddingSymmetric(horizontal: 10.w, vertical: 10.h),
+//         ),
+//         Divider(height: 12.h,),
+//         InkWell(
+//           onTap: (){},
+//           borderRadius: BorderRadius.circular(20),
+//           child: Row(
+//             children: [
+//               CircleAvatar(
+//                   backgroundColor: Colors.grey.shade300,
+//                   child: Icon(CupertinoIcons.camera, color: Colors.grey.shade700,)),
+//               SizedBox(width: 10.w,),
+//               Text('Take a picture from Camera', style: txt16w5,),
+//             ],
+//           ).paddingSymmetric(horizontal: 10.w, vertical: 10.h),
+//         ),
+//         TextButton(onPressed: (){Navigator.pop(context);}, child: Text('Cancel', style: txt16w5!.copyWith(color: Colors.red),))
+//       ],
+//     ),
+//   );
+// }

@@ -28,3 +28,22 @@ class DoctorError extends DoctorState {
   List<Object?> get props => throw UnimplementedError();
 }
 
+//Customer
+class CustomerLoading extends DoctorState {
+  bool isLoading;
+  CustomerLoading({this.isLoading = true});
+  @override
+  List<Object?> get props => [isLoading];
+}
+class CustomerSuccess extends DoctorState {
+  List<CustomerOfDocModel> listcustomer;
+  CustomerSuccess({required this.listcustomer});
+  @override
+  List<Object?> get props => [listcustomer];
+}
+
+class CustomerError extends DoctorState {
+  @override
+  List<Object?> get props => throw UnimplementedError();
+}
+

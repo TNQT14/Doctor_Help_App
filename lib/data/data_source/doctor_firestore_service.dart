@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doctor_help_app/data/doctor_data_service.dart';
+import 'package:doctor_help_app/model/user/customer_of_doc_model.dart';
 import 'package:doctor_help_app/model/user/doctor_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -37,6 +38,26 @@ class DoctorFirestoreService implements DoctorDataService{
         print('Failed with error ${e.code}: ${e.message}');
       }
       return listDoctor;
+    } catch(e){
+      throw Exception(e.toString());
+    }
+  }
+
+
+  Future<List<CustomerOfDocModel>?> getListCustomerOfDoctor() async{
+    List<CustomerOfDocModel> listCustomerOfDoctor = [];
+    try{
+      final getData = await _store.collection('customer_of_doc').get();
+      getData.docs.forEach((element) {
+        return listCustomerOfDoctor.add(CustomerOfDocModel.fromJson(element.data()));
+      });
+      print(await listCustomerOfDoctor);
+      return listCustomerOfDoctor;
+    } on FirebaseAuthException catch(e){
+      if(kDebugMode){
+        print('Failed with error ${e.code}: ${e.message}');
+      }
+      return listCustomerOfDoctor;
     } catch(e){
       throw Exception(e.toString());
     }
