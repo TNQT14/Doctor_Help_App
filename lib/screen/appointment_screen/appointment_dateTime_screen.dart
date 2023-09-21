@@ -28,6 +28,8 @@ class AppointmentDateTimeScreen extends StatefulWidget {
 
 class _AppointmentDateTimeScreenState extends State<AppointmentDateTimeScreen> {
   int? isClick;
+  int? isClickMonth;
+  int? isClickday;
   //
   @override
   Widget build(BuildContext context) {
@@ -50,18 +52,59 @@ class _AppointmentDateTimeScreenState extends State<AppointmentDateTimeScreen> {
                   padding: EdgeInsets.symmetric(vertical: 8.h),
                   child: textTitle('Date & Time'),
                 ),
-                DatePicker(
-                  DateTime.now(),
-                  initialSelectedDate: DateTime.now(),
-                  selectionColor: Colors.white,
-                  selectedTextColor: colorKmain,
-                  onDateChange: (date) {
-                    // New date selected
-                    // setState(() {
-                    //   _selectedValue = date;
-                    // });
-                  },
-                  height: 90,
+                Container(
+                  height: 33,
+                  margin: EdgeInsets.only(bottom: 16.h, top: 8.h),
+                  child: ListView.separated(
+                      separatorBuilder: (context, index) => SizedBox(
+                            width: 8.w,
+                          ),
+                      scrollDirection: Axis.horizontal,
+                      itemCount: daymodel.month.length,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              isClickMonth = index;
+                            });
+                          },
+                          child: Container(
+                            alignment: Alignment.center,
+                            width: 57,
+                            height: 33,
+                            decoration: BoxDecoration(
+                              color: (isClickMonth == index)
+                                  ? Colors.white
+                                  : Colors.transparent,
+                              borderRadius: BorderRadius.circular(6),
+                              border: Border.all(
+                                  color: (isClickMonth == index)
+                                      ? colorKmain
+                                      : Colors.transparent),
+                            ),
+                            child: Text(
+                              daymodel.month[index],
+                              style: txt14w6!.copyWith(
+                                  color: (isClickMonth == index)
+                                      ? colorKmain
+                                      : Colors.grey),
+                            ),
+                          ),
+                        );
+                      }),
+                ),
+                SizedBox(
+                  // width: double.infinity,
+                  height: 75.h,
+                  child: ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: daymodel.listSchedule.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return buildContainer(index, onTap: (){setState(() {
+                          isClickday = index;
+                        });});
+                      }),
                 ),
                 Expanded(
                   child: GridView.builder(
@@ -85,11 +128,15 @@ class _AppointmentDateTimeScreenState extends State<AppointmentDateTimeScreen> {
                           height: 40.h,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6),
-                              color: (isClick ==intdex) ? colorKmain : Colors.white),
+                              color: (isClick == intdex)
+                                  ? colorKmain
+                                  : Colors.white),
                           child: Text(
                             time[intdex],
                             style: txt12w5!.copyWith(
-                                color: (isClick==intdex) ? Colors.white : Colors.grey),
+                                color: (isClick == intdex)
+                                    ? Colors.white
+                                    : Colors.grey),
                           ),
                         ),
                       );
@@ -118,6 +165,44 @@ class _AppointmentDateTimeScreenState extends State<AppointmentDateTimeScreen> {
                     )
                   })
         ],
+      ),
+    );
+  }
+
+  Widget buildContainer(int index, {required Function() onTap}) {
+    return GestureDetector(
+      onTap: (daymodel.listSchedule[index].schedule == 'yes')? onTap: (){},
+      child: Container(
+        margin: EdgeInsets.only(left: index == 0 ? 0 : 7.w),
+        alignment: Alignment.center,
+        width: 43.72.w,
+        // height: 75.h,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(6),
+          border: Border.all(
+              color: (daymodel.listSchedule[index].schedule == 'yes')
+                  ? ((isClickday == index)? colorKmain: Colors.grey.shade300)
+                  : Colors.transparent),
+          color: (daymodel.listSchedule[index].schedule == 'yes')
+              ? Colors.white
+              : Color(0xffEBF1F9),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              daymodel.week[index],
+              style: txt12w4!.copyWith(color: Colors.grey),
+            ),
+            Text(
+              daymodel.listSchedule[index].day.toString(),
+              style: txt15w6!.copyWith(
+                  color: (daymodel.listSchedule[index].schedule == 'yes')
+                      ? colorKmain
+                      : Colors.grey),
+            )
+          ],
+        ),
       ),
     );
   }
