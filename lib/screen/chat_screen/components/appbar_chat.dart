@@ -10,11 +10,13 @@ Container appBarChat({
   required String image,
   required String name,
   required Function() phone,
+  double? top,
 }) {
   String roomID = 'test';
   return Container(
     padding: EdgeInsets.only(
       bottom: 5.h,
+      top: top??0,
     ),
     alignment: Alignment.bottomCenter,
     // height: 100.h,

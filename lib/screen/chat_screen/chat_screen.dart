@@ -77,7 +77,7 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   void initState() {
     //  BlocProvider.of<DoctorCubit>(context).getListDataDoctor();
-    UserBlocCubit.get(context).getUserDataDetail();
+    DoctorCubit.get(context).getListDataDoctor();
     super.initState();
   }
 
@@ -86,37 +86,50 @@ class _ChatScreenState extends State<ChatScreen> {
     return GestureDetector(
       onTap: () => unfocusKeyboard(),
       child: Scaffold(
-        body: SafeArea(
-            child: Column(
+        body: Column(
           children: [
-            BlocBuilder<UserBlocCubit, UserBlocState>(
-              builder: (context, state) {
-               if(state is UserSuccess){
-                 return appBarChat(
-                     context: context,
-                     image: widget.imageUrl,
-                     name: widget.name,
-                     phone: () {
-                       Navigator.push(
-                           context,
-                           MaterialPageRoute(
-                               builder: (context) => CallPage(
-                                   callID: '1',
-                                   userName: state.user.name??'Chưa có thông tin',
-                                   userId: state.user.userID??'Chưa có thông tin')));
-                     });
-               }
-               return appBarChat(
-                   context: context,
-                   image: widget.imageUrl,
-                   name: widget.name,
-                   phone: () {});
-              },
-            ),
-            Expanded(child: _messagesList()),
-            buildContainer(context)
+        // BlocBuilder<UserBlocCubit, UserBlocState>(
+        //   builder: (context, state) {
+        //    if(state is UserSuccess){
+        //      return appBarChat(
+        //          context: context,
+        //          image: widget.imageUrl,
+        //          name: widget.name,
+        //          phone: () {
+        //            Navigator.push(
+        //                context,
+        //                MaterialPageRoute(
+        //                    builder: (context) => CallPage(
+        //                        callID: '1',
+        //                        userName: state.user.name??'Chưa có thông tin',
+        //                        userId: state.user.userID??'Chưa có thông tin')));
+        //          });
+        //    }
+        //    return appBarChat(
+        //        context: context,
+        //        image: widget.imageUrl,
+        //        name: widget.name,
+        //        phone: () {});
+        //   },
+        // ),
+        appBarChat(
+          top: 20.h,
+            context: context,
+            image: widget.imageUrl,
+            name: widget.name,
+            phone: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => CallPage(
+                          callID: '1',
+                          userName: widget.name??"Lỗi",
+                          userId: widget.receiverID??'Na6wNyUZZTRsfXmYWzB1')));
+            }),
+        Expanded(child: _messagesList()),
+        buildContainer(context)
           ],
-        )),
+        ),
       ),
     );
   }
@@ -144,18 +157,11 @@ class _ChatScreenState extends State<ChatScreen> {
         // );
         // List<Widget> datalist = [];
         // datalist.insert(0, data);
-        return data.isNotEmpty
-            ? ListView(
+        return ListView(
                 // reverse: true,
                 children: snapshot.data!.docs
                     .map((data) => _messagesItem(data))
                     .toList(),
-              )
-            : Center(
-                child: Text(
-                  'No message here',
-                  style: txt14w5!.copyWith(color: Colors.grey),
-                ),
               );
       },
     );
