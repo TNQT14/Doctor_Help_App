@@ -2,11 +2,14 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:doctor_help_app/screen/user/login_register_background.dart';
 import 'package:doctor_help_app/widgets/widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server/gmail.dart';
+
+import '../../screen/user/forgot_password_screen/check_your_email_screen.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -63,6 +66,7 @@ class AuthService {
       await _auth.signOut();
       showFlutterToastMessage('Đăng xuất thành công');
       Navigator.pop(context);
+      // Navigator.pushNamed(context, LoginRegisterBackground.routeName);
     } on FirebaseAuthException catch (e) {
       showFlutterToastMessage(e.toString());
       print('Error logout: $e');
@@ -71,7 +75,7 @@ class AuthService {
   }
 
   //forgot password
-  Future<UserCredential?> forgotPassword(String email) async{
+  Future<UserCredential?> forgotPassword({required String email, required BuildContext context}) async{
     try{
       // _auth.sendPasswordResetEmail(email: email);
       // final newPassword = generateRandomPassword();
@@ -83,7 +87,10 @@ class AuthService {
       // await updateUserPasswordInFirestore(email, newPassword);
       // Gửi email đặt lại mật khẩu từ Firebase
       await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      showFlutterToastMessage("Mật khẩu mới đã được gửi đến email của bạn");
       print('Email đặt lại mật khẩu đã được gửi thành công.');
+
+      // Navigator.pushNamed(context, CheckYourEmailScreen.routeName);
 
       // // Tạo mật khẩu mới ngẫu nhiên
       // final newPassword = generateRandomPassword();
@@ -91,7 +98,7 @@ class AuthService {
       // // Gửi mật khẩu mới qua email
       // await sendNewPasswordByEmail(email, newPassword);
     }on FirebaseAuthException catch(e){
-      showFlutterToastMessage(e.toString());
+      showFlutterToastMessage("Email không đúng hoặc không tồn tại");
       print('Error login: $e');
       rethrow;
     }

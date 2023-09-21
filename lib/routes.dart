@@ -17,6 +17,7 @@ import 'package:doctor_help_app/screen/profile_screen/personal_data_screen/perso
 import 'package:doctor_help_app/screen/profile_screen/profile_screen.dart';
 import 'package:doctor_help_app/screen/profile_screen/security_screen/security_screen.dart';
 import 'package:doctor_help_app/screen/screens.dart';
+import 'package:doctor_help_app/screen/user/forgot_password_screen/check_your_email_screen.dart';
 import 'package:doctor_help_app/screen/user/forgot_password_screen/forgot_password_screen.dart';
 import 'package:doctor_help_app/screen/user/login_screen/login_screen.dart';
 import 'package:doctor_help_app/screen/user/register_screen/register_screen.dart';
@@ -90,4 +91,5 @@ final Map<String, WidgetBuilder> route = {
     final String? capturedImagePath = ModalRoute.of(context)?.settings.arguments as String?;
     return ViewPicture(capturedImagePath: capturedImagePath);
   },
+  CheckYourEmailScreen.routeName: (context) => CheckYourEmailScreen(),
 };
