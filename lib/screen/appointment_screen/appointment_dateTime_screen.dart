@@ -1,3 +1,4 @@
+import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:doctor_help_app/model/user/doctor_model.dart';
 import 'package:doctor_help_app/screen/home_screen/components/doctorCard.dart';
 import 'package:doctor_help_app/screen/screens.dart';
@@ -50,8 +51,44 @@ class AppointmentDateTimeScreen extends StatelessWidget {
                   padding: EdgeInsets.symmetric(vertical: 8.h),
                   child: textTitle('Date & Time'),
                 ),
-                Center(
-                  child: Text('Appointment schedule'),
+                DatePicker(
+                  DateTime.now(),
+                  initialSelectedDate: DateTime.now(),
+                  selectionColor: Colors.white,
+                  selectedTextColor: colorKmain,
+                  onDateChange: (date) {
+                    // New date selected
+                    // setState(() {
+                    //   _selectedValue = date;
+                    // });
+                  },
+                  height: 90,
+                ),
+                Expanded(
+                  child: GridView.builder(
+                    padding: EdgeInsets.only(top: 24.h, bottom: 16.h),
+                    primary: false,
+                    itemCount: 3,
+                    // crossAxisSpacing: 10,
+                    // mainAxisSpacing: 10,
+                    // crossAxisCount: 2,
+                    itemBuilder: (context, intdex){
+                      return Container(
+                        padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.h),
+                        alignment: Alignment.center,
+                        height: 40.h,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(6),
+                          color: colorKmain
+                        ),
+                        child:  Text("set time", style: txt12w5!.copyWith(color: Colors.white),),
+                      );
+                    }, gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisSpacing: 11.w,
+                    mainAxisSpacing: 11.h,
+                      crossAxisCount:  2,
+                  childAspectRatio: (4.5)),
+                  ),
                 )
               ],
             ),
@@ -79,15 +116,15 @@ class AppointmentDateTimeScreen extends StatelessWidget {
 Padding doctorDateTimeAppointmentCard(BuildContext context,
     {required String name, required String job, required String image_doc}) {
   return Padding(
-    padding: const EdgeInsets.only(top: 8.0),
+    padding:  EdgeInsets.only(top: 8.0.h),
     child: backgroundDoctorCard(
       context,
       Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8),
+        padding:  EdgeInsets.symmetric(horizontal: 8.0.w, vertical: 8.h),
         child: Row(
           children: [
             Padding(
-              padding: const EdgeInsets.only(right: 16.0),
+              padding:  EdgeInsets.only(right: 16.0.w),
               child: clipRRectAvatar(56, 84, image_doc),
             ),
             Column(
@@ -95,12 +132,9 @@ Padding doctorDateTimeAppointmentCard(BuildContext context,
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 6.0),
-                  child: Text(
-                    name,
-                    style: txt18w7,
-                  ),
+                Text(
+                  name,
+                  style: txt18w7,
                 ),
                 Text(
                   job,

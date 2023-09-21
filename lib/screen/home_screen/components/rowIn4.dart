@@ -1,3 +1,4 @@
+import 'package:doctor_help_app/screen/profile_screen/notification_screen/notification_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -6,7 +7,7 @@ import '../../../containts/containts.dart';
 import '../../../widgets/widgets.dart';
 
 // String image = imageCale2;
-Row rowIn4(String image) {
+Row rowIn4({required BuildContext context, required String image,}) {
   return Row(
     mainAxisSize: MainAxisSize.min,
     children: [
@@ -20,7 +21,7 @@ Row rowIn4(String image) {
           ///DropDownButton
         ),
       ),
-      InkWell(onTap: (){},
+      InkWell(onTap: (){Navigator.pushNamed(context, NotificationScreen.routeName);},
         child: SvgPicture.asset(iconButtonNotification),)
     ],
   );

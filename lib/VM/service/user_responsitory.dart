@@ -46,8 +46,24 @@ class UserResponsitory {
     } catch (e) {
       throw Exception(e.toString());
     }
-
   }
+
+  // test()  {
+  //   UserModelTest userModel = UserModelTest();
+  //   try {
+  //     String uid = _auth.currentUser!.uid;
+  //     _store.collection('User').doc(uid).snapshots().listen((event) {
+  //       userModel = UserModelTest.fromJson(event.data()!);
+  //       print(userModel.email);
+  //     });
+  //     // print(userModel);
+  //     // return userModel;
+  //   } catch (e) {
+  //     throw Exception(e.toString());
+  //   }
+  // }
+
+
   Future<UserModel?> updateUserDetail(
       String name,
       String birthday,
@@ -58,6 +74,7 @@ class UserResponsitory {
       name: name,
       birthday: birthday,
       phone: int.parse(phone),
+      // phone: phone,
       address: address,
       email: '',
       imageUrl: '',

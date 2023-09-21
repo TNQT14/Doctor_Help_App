@@ -47,20 +47,20 @@ class _HomeScreenState extends State<HomeScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               //get user detail data
-              // BlocBuilder<UserBlocCubit, UserBlocState>(
-              //   builder: (context, state) {
-              //     if (state is UserSuccess) {
-              //       return Padding(
-              //         padding: EdgeInsets.only(
-              //             left: 15.w, right: 15.w, top: 20.h, bottom: 20.h),
-              //         child: rowIn4(state.user.imageUrl??imagePersion),
-              //       );
-              //     }
-              //     return Center(
-              //       child: CircularProgressIndicator(),
-              //     );
-              //   },
-              // ),
+              BlocBuilder<UserBlocCubit, UserBlocState>(
+                builder: (context, state) {
+                  if (state is UserSuccess) {
+                    return Padding(
+                      padding: EdgeInsets.only(
+                          left: 15.w, right: 15.w, top: 20.h, bottom: 20.h),
+                      child: rowIn4(image:state.user.imageUrl??imagePersion, context: context),
+                    );
+                  }
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                },
+              ),
 
               Padding(
                 padding:

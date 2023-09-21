@@ -54,7 +54,7 @@ Widget ratingReview(
   return Container(
     child: Column(
       children: [
-        Center(child: BackGroundEditAvatCard(context, user1.imageUrl, false)),
+        Center(child: BackGroundEditAvatCard(context: context, image: user1.imageUrl,)),
         const SizedBox(height: 24),
         Center(
           child: SizedBox(

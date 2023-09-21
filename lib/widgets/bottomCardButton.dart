@@ -6,7 +6,7 @@ import '../containts/containts.dart';
 
 Container bottomCardButton(String title ,Function()? tap) {
   return Container(
-    padding: EdgeInsets.only(top: 16.0.h, bottom: 50.h, left: 13.w, right: 13.w),
+    padding: EdgeInsets.only(top: 16.0.h, bottom: 16.h, left: 13.w, right: 13.w),
     decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
@@ -18,7 +18,6 @@ Container bottomCardButton(String title ,Function()? tap) {
         ]
     ),
     width: double.infinity,
-    height: 116.h,
     child: blueElevateButton(tap, title),
   );
 }

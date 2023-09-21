@@ -1,18 +1,21 @@
 import 'package:doctor_help_app/containts/containts.dart';
 import 'package:doctor_help_app/model/user/doctor_model.dart';
+import 'package:doctor_help_app/model/user/user_model.dart';
 import 'package:doctor_help_app/screen/home_screen/components/doctorCard.dart';
 import 'package:doctor_help_app/screen/screens.dart';
 import 'package:doctor_help_app/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../bloc/user/user_bloc_cubit.dart';
 import 'appointment_success_screen.dart';
 import 'components/cardDateTime.dart';
 import 'give_screen/give_screen.dart';
 
-class AppointmentSummaryScreen extends StatelessWidget {
+class AppointmentSummaryScreen extends StatefulWidget {
   AppointmentSummaryScreen(
       {Key? key, required this.appBarTitle, required this.bottomTitle,
         required this.doctorModel
@@ -28,12 +31,23 @@ class AppointmentSummaryScreen extends StatelessWidget {
   DoctorModel doctorModel;
 
   @override
+  State<AppointmentSummaryScreen> createState() => _AppointmentSummaryScreenState();
+}
+
+class _AppointmentSummaryScreenState extends State<AppointmentSummaryScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    UserBlocCubit.get(context).getUserDataDetail();
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
     String nonTitle = "Thiếu param";
     return Scaffold(
       appBar: appbarCustom(context,
           title: Text(
-            appBarTitle ?? nonTitle,
+            widget.appBarTitle ?? nonTitle,
             style: txt16w6!.copyWith(color: Colors.black),
           )),
       body: Column(
@@ -51,20 +65,37 @@ class AppointmentSummaryScreen extends StatelessWidget {
                   textTitle('Doctor Information'),
                   doctorContactCard(
                     context: context,
-                    image: doctorModel.imageUrl,
-                    name: doctorModel.name,
-                    job: doctorModel.job,
-                    phone: doctorModel.phone,
-                    email: doctorModel.email,
+                    image: widget.doctorModel.imageUrl,
+                    name: widget.doctorModel.name,
+                    job: widget.doctorModel.job,
+                    phone: widget.doctorModel.phone,
+                    email: widget.doctorModel.email,
+                    receiverID: widget.doctorModel.uidDoctor,
                     chat: true,
                   ),
                   textTitle('Patient Information'),
-                  doctorContactCard(
-                      context: context, image: user1.imageUrl,
-                      name: user1.name,
-                      job: user1.job,
-                  phone: user1.phone,
-                  email:  user1.email),
+                  BlocBuilder<UserBlocCubit, UserBlocState>(
+                    builder: (context, state) {
+                      if (state is UserSuccess) {
+                        UserModel user = state.user;
+                        return doctorContactCard(
+                            context: context, image: user.imageUrl??imagePersion,
+                            name: user.name??"Chưa có dữ lệu",
+                            job: user.job??"Chưa có dữ liệu",
+                            phone: user.phone??0,
+                            email:  user.email??"Chưa có dữa liệu");
+                      }
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    },
+                  ),
+                  // doctorContactCard(
+                  //     context: context, image: user1.imageUrl,
+                  //     name: user1.name,
+                  //     job: user1.job,
+                  // phone: user1.phone,
+                  // email:  user1.email),
                   const SizedBox(
                     height: 20,
                   )
@@ -72,20 +103,20 @@ class AppointmentSummaryScreen extends StatelessWidget {
               ),
             ),
           )),
-          bottomTitle == "Give Your Reviews"
+          widget.bottomTitle == "Give Your Reviews"
               ? bottomCardButton(
-                  bottomTitle ?? nonTitle,
+                  widget.bottomTitle ?? nonTitle,
                   () =>
                       Navigator.pushNamed(context, GiveReviewScreen.routeName),
                 )
               : bottomCardButton(
-                  bottomTitle ?? nonTitle,
+                  widget.bottomTitle ?? nonTitle,
                   () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => AppointmentSuccessScreen(
-                            doctorModel: doctorModel,                          )),
+                            doctorModel: widget.doctorModel,                          )),
                     );
                   },
                 )
@@ -102,7 +133,9 @@ Container doctorContactCard(
       required String name,
       required String job,
       required var phone,
-      required String email
+      required String email,
+      String? receiverID,
+     //  required DoctorModel doctorModel,
     }) {
   return backgroundDoctorCard(
     context,
@@ -116,7 +149,7 @@ Container doctorContactCard(
             children: [
               Row(
                 children: [
-                  clipRRectAvatar(56, 56, image),
+                  clipRRectAvatar(56, 56, image?? imagePersion),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -133,15 +166,24 @@ Container doctorContactCard(
                 ],
               ),
               chat
-                  ? Container(
-                      margin: EdgeInsets.only(right: 5.w),
-                      width: 25.w,
-                      height: 25.h,
-                      child: Image.asset(
-                        iconChat,
-                        color: colorKmain,
+                  ? GestureDetector(
+                onTap: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ChatScreen(name: name, imageUrl:image, receiverID: receiverID?? 'Lỗi')),
+                  );
+                },
+                    child: Container(
+                        margin: EdgeInsets.only(right: 5.w),
+                        width: 25.w,
+                        height: 25.h,
+                        child: Image.asset(
+                          iconChat,
+                          color: colorKmain,
+                        ),
                       ),
-                    )
+                  )
                   : SizedBox()
             ],
           ),

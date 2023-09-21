@@ -38,27 +38,30 @@ class _ChatScreenState extends State<ChatScreen> {
   final UserResponsitory _userResponsitory = UserResponsitory();
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  List<types.Message> _messages = [];
-  final _user = const types.User(
-    id: '82091008-a484-4a89-ae75-a22bf8d6f3ac',
-  );
+  // List<types.Message> _messages = [];
+  // final _user = const types.User(
+  //   id: '82091008-a484-4a89-ae75-a22bf8d6f3ac',
+  // );
+  //
+  // void _handleSendPressed(types.PartialText message) {
+  //   // print('User: $_user');
+  //   final textMessage = types.TextMessage(
+  //     author: _user,
+  //     createdAt: DateTime
+  //         .now()
+  //         .millisecondsSinceEpoch,
+  //     id: 'id',
+  //     text: message.text,
+  //   );
+  //
+  //   _addMessage(textMessage);
+  // }
 
-  void _handleSendPressed(types.PartialText message) {
-    final textMessage = types.TextMessage(
-      author: _user,
-      createdAt: DateTime.now().millisecondsSinceEpoch,
-      id: 'id',
-      text: message.text,
-    );
-
-    _addMessage(textMessage);
-  }
-
-  void _addMessage(types.Message message) {
-    setState(() {
-      _messages.insert(0, message);
-    });
-  }
+  // void _addMessage(types.Message message) {
+  //   setState(() {
+  //     _messages.insert(0, message);
+  //   });
+  // }
 
   void sendMess() async {
     if (mess.text.isNotEmpty) {
@@ -68,9 +71,10 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   CollectionReference chats = FirebaseFirestore.instance.collection('chats');
+
   @override
   void initState() {
-    BlocProvider.of<DoctorCubit>(context).getListDataDoctor();
+    //  BlocProvider.of<DoctorCubit>(context).getListDataDoctor();
     super.initState();
   }
 
@@ -80,135 +84,132 @@ class _ChatScreenState extends State<ChatScreen> {
       onTap: () => unfocusKeyboard(),
       child: Scaffold(
         body: SafeArea(
-          child: BlocBuilder<DoctorCubit, DoctorState>(
-            builder: (context, state) {
-              if (state is DoctorSuccess) {
-                return Column(
-                  children: [
-                    appBarChat(context, widget.imageUrl, widget.name),
-                    // Expanded(child: _messagesList()),
-                    Expanded(
-                        child: Chat(
-                            messages: _messages,
-                            onSendPressed: _handleSendPressed,
-                            onAttachmentPressed: (){},
-                            user: _user)),
-                    // Container(
-                    //   height: 90.h,
-                    //   width: MediaQuery.of(context).size.width,
-                    //   padding: EdgeInsets.only(top: 8.h),
-                    //   decoration: BoxDecoration(
-                    //       color: Colors.white,
-                    //       boxShadow: [
-                    //         BoxShadow(
-                    //             color: Colors.grey.shade300,
-                    //             blurRadius: 10,
-                    //             spreadRadius: 2)
-                    //       ]),
-                    //   alignment: Alignment.topCenter,
-                    //   child: Form(
-                    //     key: _key,
-                    //     child: Row(
-                    //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    //       children: [
-                    //         InkWell(
-                    //           onTap: () {},
-                    //           child: SvgPicture.asset(iconFile),
-                    //         ),
-                    //         SizedBox(
-                    //           width: 248.w,
-                    //           child: InputTextField(
-                    //               text: mess, hintext: 'Type Message'),
-                    //         ),
-                    //         InkWell(
-                    //           onTap: sendMess,
-                    //           // onTap: (){
-                    //           //   var test = _userResponsitory.getMessage(
-                    //           //       widget.receiverID, _auth.currentUser!.uid);
-                    //           //   print(test);
-                    //           // },
-                    //           child: SvgPicture.asset(iconMic),
-                    //         ),
-                    //       ],
-                    //     ),
-                    //   ),
-                    // )
-                  ],
-                );
-              }
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            },
-          ),
+            child: Column(
+              children: [
+                appBarChat(context, widget.imageUrl, widget.name),
+                Expanded(child: _messagesList()),
+                buildContainer(context)
+              ],
+            )
         ),
       ),
     );
   }
 
-  // Widget _messagesList() {
-  //   return StreamBuilder(
-  //     stream: _userResponsitory.getMessage(
-  //         widget.receiverID, _auth.currentUser!.uid),
-  //     builder: (context, snapshot) {
-  //       if (snapshot.hasError) {
-  //         return Text('Error: ${snapshot.error}');
-  //       }
-  //       if (snapshot.connectionState == ConnectionState.waiting) {
-  //         return Center(
-  //           child: CircularProgressIndicator(),
-  //         );
-  //       }
-  //       // return Container(
-  //       //   child: Column(
-  //       //     children:[
-  //       //       Text(snapshot.data!.docs.map((e) => e).toString())
-  //       //     ]
-  //       //   ),
-  //       // );
-  //       return ListView(
-  //         // reverse: true,
-  //         children: snapshot.data!.docs
-  //             .map((data) => _messagesItem(data))
-  //             .toList()
-  //            ,
-  //       );
-  //     },
-  //   );
-  // }
+  Widget _messagesList() {
+    return StreamBuilder(
+      stream: _userResponsitory.getMessage(
+          widget.receiverID, _auth.currentUser!.uid),
+      builder: (context, snapshot) {
+        var data = snapshot.data!.docs
+            .map((data) => _messagesItem(data));
+        if (snapshot.hasError) {
+          return Text('Error: ${snapshot.error}');
+        }
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+        // return Container(
+        //   child: Column(
+        //     children:[
+        //       Text(snapshot.data!.docs.map((e) => e).toString())
+        //     ]
+        //   ),
+        // );
+        // List<Widget> datalist = [];
+        // datalist.insert(0, data);
+        return data.isNotEmpty? ListView(
+          // reverse: true,
+          children:
+          snapshot.data!.docs
+              .map((data) => _messagesItem(data))
+              .toList(),
+        ): Center(child: Text('No message here', style: txt14w5!.copyWith(color: Colors.grey),),);
+      },
+    );
+  }
   //
-  // Widget _messagesItem(DocumentSnapshot snapshot) {
-  //   Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
-  //   print('test: ${_auth.currentUser!.uid}');
-  //   var alignment = (data['senderID'] == _auth.currentUser!.uid)
-  //       ? Alignment.centerRight
-  //       : Alignment.centerLeft;
-  //   // print(formatDatetime((data['timestamp'] as Timestamp)).toString());
-  //   return Container(
-  //     padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 10.w),
-  //     alignment: alignment,
-  //     child: Column(
-  //       mainAxisAlignment: MainAxisAlignment.end,
-  //       children: [
-  //         // Text('data')
-  //         Container(
-  //           child: Text(
-  //             data['message'],
-  //             style: txt16w4!.copyWith(color: Colors.white),
-  //           ),
-  //           padding: EdgeInsets.all(10),
-  //           decoration: BoxDecoration(
-  //               color: colorOnlineStatus,
-  //               borderRadius: BorderRadius.circular(12)),
-  //         ),
-  //         Text(
-  //           '${formatDatetime((data['timestamp'] as Timestamp))}',
-  //           style: txt12w4!.copyWith(color: Colors.grey),
-  //         ),
-  //       ],
-  //     ),
-  //   );
-  // }
+  Widget _messagesItem(DocumentSnapshot snapshot) {
+    Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
+    print('test: ${_auth.currentUser!.uid}');
+    var alignment = (data['senderID'] == _auth.currentUser!.uid)
+        ? Alignment.centerRight
+        : Alignment.centerLeft;
+    // print(formatDatetime((data['timestamp'] as Timestamp)).toString());
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 10.w),
+      alignment: alignment,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          // Text('data')
+          Container(
+            child: Text(
+              data['message'],
+              style: txt16w4!.copyWith(color: Colors.white),
+            ),
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+                color: colorOnlineStatus,
+                borderRadius: BorderRadius.circular(12)),
+          ),
+          Text(
+            '${formatDatetime((data['timestamp'] as Timestamp))}',
+            style: txt12w4!.copyWith(color: Colors.grey),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Container buildContainer(BuildContext context) {
+    return Container(
+      height: 90.h,
+      width: MediaQuery
+          .of(context)
+          .size
+          .width,
+      padding: EdgeInsets.only(top: 8.h),
+      decoration: BoxDecoration(
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+                color: Colors.grey.shade300,
+                blurRadius: 10,
+                spreadRadius: 2)
+          ]),
+      alignment: Alignment.topCenter,
+      child: Form(
+        key: _key,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            InkWell(
+              onTap: () {},
+              child: SvgPicture.asset(iconFile),
+            ),
+            SizedBox(
+              width: 248.w,
+              child: InputTextField(
+                  text: mess, hintext: 'Type Message'),
+            ),
+            InkWell(
+              onTap: sendMess,
+              //sendMess
+              // onTap: (){
+              //   var test = _userResponsitory.getMessage(
+              //       widget.receiverID, _auth.currentUser!.uid);
+              //   print(test);
+              // },
+              child: SvgPicture.asset(iconMic),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
 
 // int sortListByDateAndPrice(
@@ -233,33 +234,33 @@ formatDatetime(var time) {
   return d12;
 }
 
-// Widget MessageUI() {
-//   return StreamBuilder<QuerySnapshot>(
-//       stream: FirebaseFirestore.instance.collection('User').snapshots(),
-//       builder: (context, snapshot) {
-//         if (snapshot.hasError) {
-//           return Text('Error');
-//         }
-//         if (snapshot.hasError) {
-//           return Text('Loading...');
-//         }
-//         return ListView(
-//           children: snapshot.data!.docs
-//               .map<Widget>((doc) => _buildItemDoc(doc))
-//               .toList(),
-//         );
-//       });
-// }
-
-// _buildItemDoc(DocumentSnapshot doc) {
-//   Map<String, dynamic> data = doc.data()! as Map<String, dynamic>;
-//   if (FirebaseAuth.instance.currentUser!.email != data['email']) {
-//     return ListTile(
-//       title: data['email'],
-//       onTap: () {},
-//     );
-//   }
-// }
+Widget MessageUI() {
+  return StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance.collection('User').snapshots(),
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return Text('Error');
+        }
+        if (snapshot.hasError) {
+          return Text('Loading...');
+        }
+        return ListView(
+          children: snapshot.data!.docs
+              .map<Widget>((doc) => _buildItemDoc(doc))
+              .toList(),
+        );
+      });
+}
+//
+_buildItemDoc(DocumentSnapshot doc) {
+  Map<String, dynamic> data = doc.data()! as Map<String, dynamic>;
+  if (FirebaseAuth.instance.currentUser!.email != data['email']) {
+    return ListTile(
+      title: data['email'],
+      onTap: () {},
+    );
+  }
+}
 
 // import 'dart:io';
 //
@@ -288,7 +289,7 @@ formatDatetime(var time) {
 //   @override
 //   State<ChatScreen> createState() => _ChatScreenState();
 // }
-//
+
 // class _ChatScreenState extends State<ChatScreen> {
 //   bool _isAttachmentUploading = false;
 //

@@ -5,54 +5,77 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../widgets/containerCardDoc.dart';
 
-Container BackGroundEditAvatCard(BuildContext context,
-    String image,
-    bool isEdit,
-    ) {
-  return Container(
-    // margin: EdgeInsets.symmetric(horizontal: 13),
-    // height: 147,
-    // width: MediaQuery.of(context).size.width,
-    child: Stack(
-      children: [
-        Container(
-          margin: const EdgeInsets.all(10),
-          height: 121,
-          width: 121,
+Stack BackGroundEditAvatCard(
+    {required BuildContext context,
+    required String image,
+    bool isEdit = false,
+    double? width,
+    double? height,
+    double? paddingTop,
+    Function()? onTap}) {
+  return Stack(
+    children: [
+      Container(
+          margin: EdgeInsets.only(top: paddingTop?? 32.h),
+          height: height ?? 121,
+          width: width ?? 121,
+          padding: EdgeInsets.all(1),
           decoration: BoxDecoration(
             shape: BoxShape.rectangle,
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(6),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.shade200,
+                blurRadius: 20,
+              )
+            ],
             color: Colors.white,
             border: Border.all(
               width: 5.0,
               color: Colors.white,
             ),
           ),
-          child: Stack(
-            alignment: Alignment.bottomRight,
-            children: [
-              clipRRectAvatar(121, 121, image),
-              isEdit == true ?
-              Stack(
-                alignment: Alignment.bottomLeft,
-                children: [
-                  Container(
-                    margin: const EdgeInsets.all(0),
-                    height: 32,
-                    width: 32,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.rectangle,
-                      borderRadius: BorderRadius.circular(5),
-                      color: Colors.white,
-                    ),
-                    child: Icon(CupertinoIcons.pencil_slash),
-                  ),
-                ],
-              ) : SizedBox(),
-            ],
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(4),
+            child: Image.network(
+              image,
+              fit: BoxFit.fill,
+            ),
+          )
+          // Container(
+          //   width: double.infinity,
+          //   height: double.infinity,
+          //   decoration: BoxDecoration(
+          //     borderRadius: BorderRadius.circular(4),
+          //     image: DecorationImage(
+          //       image: NetworkImage(image),
+          //       fit: BoxFit.fill
+          //     )
+          //   ),
+          // ),
           ),
-        ),
-      ],
-    ),
+      isEdit
+          ? Positioned(
+              bottom: 0,
+              right: 0,
+              // alignment: Alignment.bottomLeft,
+              child: InkWell(
+                onTap: onTap,
+                child: Container(
+                  margin: const EdgeInsets.all(0),
+                  height: 32,
+                  width: 32,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.rectangle,
+                    borderRadius:
+                        BorderRadius.only(topLeft: Radius.circular(6)),
+                    color: Colors.white,
+                  ),
+                  child: Icon(CupertinoIcons.pencil_slash),
+                ),
+              ),
+            )
+          : SizedBox()
+    ],
   );
 }
