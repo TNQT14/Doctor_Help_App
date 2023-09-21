@@ -8,10 +8,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../containts/containts.dart';
 import 'appointment_summary_screen.dart';
 
-class AppointmentDateTimeScreen extends StatelessWidget {
-  AppointmentDateTimeScreen(
-      {Key? key,
-        required this.doctorModel
+class AppointmentDateTimeScreen extends StatefulWidget {
+  AppointmentDateTimeScreen({Key? key, required this.doctorModel
       // required this.doc_job,
       // required this.doc_name,
       // required this.doc_image,
@@ -22,14 +20,15 @@ class AppointmentDateTimeScreen extends StatelessWidget {
       : super(key: key);
   static String routeName = 'AppointmentDateTimeScreen';
   DoctorModel doctorModel;
-  //
-  // String doc_name;
-  // String doc_job;
-  // String doc_image;
-  // String doc_email;
-  // var doc_phone;
-  // var doc_rate;
 
+  @override
+  State<AppointmentDateTimeScreen> createState() =>
+      _AppointmentDateTimeScreenState();
+}
+
+class _AppointmentDateTimeScreenState extends State<AppointmentDateTimeScreen> {
+  int? isClick;
+  //
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,9 +43,9 @@ class AppointmentDateTimeScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 doctorDateTimeAppointmentCard(context,
-                    name: doctorModel.name ?? 'Không có dữ liệu',
-                    job: doctorModel.job ?? 'Không có dữ liệu',
-                    image_doc: doctorModel.imageUrl ?? imagePersion),
+                    name: widget.doctorModel.name ?? 'Không có dữ liệu',
+                    job: widget.doctorModel.job ?? 'Không có dữ liệu',
+                    image_doc: widget.doctorModel.imageUrl ?? imagePersion),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 8.h),
                   child: textTitle('Date & Time'),
@@ -68,26 +67,38 @@ class AppointmentDateTimeScreen extends StatelessWidget {
                   child: GridView.builder(
                     padding: EdgeInsets.only(top: 24.h, bottom: 16.h),
                     primary: false,
-                    itemCount: 3,
+                    itemCount: time.length,
                     // crossAxisSpacing: 10,
                     // mainAxisSpacing: 10,
                     // crossAxisCount: 2,
-                    itemBuilder: (context, intdex){
-                      return Container(
-                        padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.h),
-                        alignment: Alignment.center,
-                        height: 40.h,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(6),
-                          color: colorKmain
+                    itemBuilder: (context, intdex) {
+                      return InkWell(
+                        onTap: () {
+                          setState(() {
+                            isClick = intdex;
+                          });
+                        },
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 5.w, vertical: 5.h),
+                          alignment: Alignment.center,
+                          height: 40.h,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(6),
+                              color: (isClick ==intdex) ? colorKmain : Colors.white),
+                          child: Text(
+                            time[intdex],
+                            style: txt12w5!.copyWith(
+                                color: (isClick==intdex) ? Colors.white : Colors.grey),
+                          ),
                         ),
-                        child:  Text("set time", style: txt12w5!.copyWith(color: Colors.white),),
                       );
-                    }, gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisSpacing: 11.w,
-                    mainAxisSpacing: 11.h,
-                      crossAxisCount:  2,
-                  childAspectRatio: (4.5)),
+                    },
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisSpacing: 11.w,
+                        mainAxisSpacing: 11.h,
+                        crossAxisCount: 2,
+                        childAspectRatio: (4.5)),
                   ),
                 )
               ],
@@ -102,7 +113,7 @@ class AppointmentDateTimeScreen extends StatelessWidget {
                           builder: (context) => AppointmentSummaryScreen(
                                 appBarTitle: "Summary",
                                 bottomTitle: 'Make my appointment',
-                            doctorModel: doctorModel,
+                                doctorModel: widget.doctorModel,
                               )),
                     )
                   })
@@ -112,19 +123,21 @@ class AppointmentDateTimeScreen extends StatelessWidget {
   }
 }
 
+List<String> time = ['10.30 - 12.00', '15.00 - 17.00'];
+
 //card thông tin doctor
 Padding doctorDateTimeAppointmentCard(BuildContext context,
     {required String name, required String job, required String image_doc}) {
   return Padding(
-    padding:  EdgeInsets.only(top: 8.0.h),
+    padding: EdgeInsets.only(top: 8.0.h),
     child: backgroundDoctorCard(
       context,
       Padding(
-        padding:  EdgeInsets.symmetric(horizontal: 8.0.w, vertical: 8.h),
+        padding: EdgeInsets.symmetric(horizontal: 8.0.w, vertical: 8.h),
         child: Row(
           children: [
             Padding(
-              padding:  EdgeInsets.only(right: 16.0.w),
+              padding: EdgeInsets.only(right: 16.0.w),
               child: clipRRectAvatar(56, 84, image_doc),
             ),
             Column(
