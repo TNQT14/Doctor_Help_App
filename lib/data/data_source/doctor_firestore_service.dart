@@ -4,6 +4,9 @@ import 'package:doctor_help_app/model/user/customer_of_doc_model.dart';
 import 'package:doctor_help_app/model/user/doctor_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
+import '../../screen/appointment_screen/appointment_success_screen.dart';
 
 class DoctorFirestoreService implements DoctorDataService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -68,17 +71,31 @@ class DoctorFirestoreService implements DoctorDataService {
       {required String name,
       required String job,
       required String dateTime,
-      required String uidDoctor}) async {
-    await _store
-        .collection('appointment_history')
-        .doc(_auth.currentUser!.uid)
-        .set({
-      'name': name,
-      'job': job,
-      'dateTime': dateTime,
-      'uidDoctor': uidDoctor,
-      'status': 'on_going'
-    });
+      required String uidDoctor,
+      required DoctorModel doctorModel,
+      required BuildContext context}) async {
+    try{
+      await _store
+          .collection('appointment_history')
+          .doc(_auth.currentUser!.uid)
+          .set({
+        'name': name,
+        'job': job,
+        'dateTime': dateTime,
+        'uidDoctor': uidDoctor,
+        'status': 'on_going'
+      });
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => AppointmentSuccessScreen(
+                  doctorModel: doctorModel,
+                )),
+      );
+    }catch(e){
+      print(e);
+    }
     // await _store.collection('User').doc(userCredential.user!.uid).set({
     //   'userID': userCredential.user!.uid,
     //   'email': email,

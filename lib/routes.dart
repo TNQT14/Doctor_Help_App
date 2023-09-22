@@ -51,12 +51,18 @@ final Map<String, WidgetBuilder> route = {
         appBarTitle: 'Summary',
         bottomTitle: 'Make my appointment',
         doctorModel: userNull,
+        month: '',
+        day: '',
+        time: '',
       ),
   AppointmentSummaryScreen.routeNameDetail: (context) =>
       AppointmentSummaryScreen(
         appBarTitle: 'Detail',
         bottomTitle: 'Give Your Reviews',
         doctorModel: userNull,
+        month: '',
+        day: '',
+        time: '',
       ),
   AppointmentSuccessScreen.routeName: (context) => AppointmentSuccessScreen(
     doctorModel: userNull,

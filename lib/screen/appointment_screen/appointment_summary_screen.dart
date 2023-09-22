@@ -1,4 +1,5 @@
 import 'package:doctor_help_app/containts/containts.dart';
+import 'package:doctor_help_app/data/data_source/doctor_firestore_service.dart';
 import 'package:doctor_help_app/model/user/doctor_model.dart';
 import 'package:doctor_help_app/model/user/user_model.dart';
 import 'package:doctor_help_app/screen/home_screen/components/doctorCard.dart';
@@ -17,9 +18,13 @@ import 'give_screen/give_screen.dart';
 
 class AppointmentSummaryScreen extends StatefulWidget {
   AppointmentSummaryScreen(
-      {Key? key, required this.appBarTitle, required this.bottomTitle,
-        required this.doctorModel
-      })
+      {Key? key,
+      required this.appBarTitle,
+      required this.bottomTitle,
+      required this.month,
+      required this.day,
+      required this.time,
+      required this.doctorModel})
       : super(key: key) {
     // this.appBarTitle = appBarTitle;
     // this.bottomTitle = bottomTitle;
@@ -29,9 +34,13 @@ class AppointmentSummaryScreen extends StatefulWidget {
   String? appBarTitle;
   String? bottomTitle;
   DoctorModel doctorModel;
+  String month;
+  String day;
+  String time;
 
   @override
-  State<AppointmentSummaryScreen> createState() => _AppointmentSummaryScreenState();
+  State<AppointmentSummaryScreen> createState() =>
+      _AppointmentSummaryScreenState();
 }
 
 class _AppointmentSummaryScreenState extends State<AppointmentSummaryScreen> {
@@ -41,6 +50,7 @@ class _AppointmentSummaryScreenState extends State<AppointmentSummaryScreen> {
     UserBlocCubit.get(context).getUserDataDetail();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     String nonTitle = "Thiếu param";
@@ -79,11 +89,12 @@ class _AppointmentSummaryScreenState extends State<AppointmentSummaryScreen> {
                       if (state is UserSuccess) {
                         UserModel user = state.user;
                         return doctorContactCard(
-                            context: context, image: user.imageUrl??imagePersion,
-                            name: user.name??"Chưa có dữ lệu",
-                            job: user.job??"Chưa có dữ liệu",
-                            phone: user.phone??0,
-                            email:  user.email??"Chưa có dữa liệu");
+                            context: context,
+                            image: user.imageUrl ?? imagePersion,
+                            name: user.name ?? "Chưa có dữ lệu",
+                            job: user.job ?? "Chưa có dữ liệu",
+                            phone: user.phone ?? 0,
+                            email: user.email ?? "Chưa có dữa liệu");
                       }
                       return Center(
                         child: CircularProgressIndicator(),
@@ -112,12 +123,20 @@ class _AppointmentSummaryScreenState extends State<AppointmentSummaryScreen> {
               : bottomCardButton(
                   widget.bottomTitle ?? nonTitle,
                   () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => AppointmentSuccessScreen(
-                            doctorModel: widget.doctorModel,                          )),
-                    );
+                    DoctorFirestoreService().fetchAppointment(
+                        name: widget.doctorModel.name,
+                        job: widget.doctorModel.job,
+                        dateTime: widget.month + '-' + widget.day + '-' + widget.time,
+                        uidDoctor: widget.doctorModel.uidDoctor,
+                    context: context,
+                    doctorModel: widget.doctorModel);
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //       builder: (context) => AppointmentSuccessScreen(
+                    //             doctorModel: widget.doctorModel,
+                    //           )),
+                    // );
                   },
                 )
         ],
@@ -126,17 +145,17 @@ class _AppointmentSummaryScreenState extends State<AppointmentSummaryScreen> {
   }
 }
 
-Container doctorContactCard(
-    {bool chat = false,
-     required BuildContext context,
-      required String image,
-      required String name,
-      required String job,
-      required var phone,
-      required String email,
-      String? receiverID,
-     //  required DoctorModel doctorModel,
-    }) {
+Container doctorContactCard({
+  bool chat = false,
+  required BuildContext context,
+  required String image,
+  required String name,
+  required String job,
+  required var phone,
+  required String email,
+  String? receiverID,
+  //  required DoctorModel doctorModel,
+}) {
   return backgroundDoctorCard(
     context,
     Padding(
@@ -149,7 +168,7 @@ Container doctorContactCard(
             children: [
               Row(
                 children: [
-                  clipRRectAvatar(56, 56, image?? imagePersion),
+                  clipRRectAvatar(56, 56, image ?? imagePersion),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -167,14 +186,17 @@ Container doctorContactCard(
               ),
               chat
                   ? GestureDetector(
-                onTap: (){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ChatScreen(name: name, imageUrl:image, receiverID: receiverID?? 'Lỗi')),
-                  );
-                },
-                    child: Container(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ChatScreen(
+                                  name: name,
+                                  imageUrl: image,
+                                  receiverID: receiverID ?? 'Lỗi')),
+                        );
+                      },
+                      child: Container(
                         margin: EdgeInsets.only(right: 5.w),
                         width: 25.w,
                         height: 25.h,
@@ -183,7 +205,7 @@ Container doctorContactCard(
                           color: colorKmain,
                         ),
                       ),
-                  )
+                    )
                   : SizedBox()
             ],
           ),
