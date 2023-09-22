@@ -124,10 +124,10 @@ class _AppointmentSummaryScreenState extends State<AppointmentSummaryScreen> {
                   widget.bottomTitle ?? nonTitle,
                   () {
                     DoctorFirestoreService().fetchAppointment(
-                        name: widget.doctorModel.name,
-                        job: widget.doctorModel.job,
+                        // name: widget.doctorModel.name,
+                        // job: widget.doctorModel.job,
                         dateTime: widget.month + '-' + widget.day + '-' + widget.time,
-                        uidDoctor: widget.doctorModel.uidDoctor,
+                        // uidDoctor: widget.doctorModel.uidDoctor,
                     context: context,
                     doctorModel: widget.doctorModel);
                     // Navigator.push(

@@ -68,10 +68,11 @@ class DoctorFirestoreService implements DoctorDataService {
   }
 
   Future fetchAppointment(
-      {required String name,
-      required String job,
+      {
+      //   required String name,
+      // required String job,
       required String dateTime,
-      required String uidDoctor,
+      // required String uidDoctor,
       required DoctorModel doctorModel,
       required BuildContext context}) async {
     try{
@@ -79,10 +80,10 @@ class DoctorFirestoreService implements DoctorDataService {
           .collection('appointment_history')
           .doc(_auth.currentUser!.uid)
           .set({
-        'name': name,
-        'job': job,
+        'name': doctorModel.name,
+        'job': doctorModel.job,
         'dateTime': dateTime,
-        'uidDoctor': uidDoctor,
+        'uidDoctor': doctorModel.uidDoctor,
         'status': 'on_going'
       });
 
