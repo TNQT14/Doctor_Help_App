@@ -1,6 +1,7 @@
 import 'package:doctor_help_app/VM/service/user_responsitory.dart';
 import 'package:doctor_help_app/data/data_source/doctor_firestore_service.dart';
 import 'package:doctor_help_app/data/reponsitories/doctor_repository.dart';
+import 'package:doctor_help_app/model/user/doctor_model.dart';
 import 'package:doctor_help_app/screen/screens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,7 +14,8 @@ Widget doctorCard(
     String image,
     double rating,
     String name,
-    String job) {
+    String job,
+{required DoctorModel doctorModel}) {
   return backgroundDoctorCard(
       context,
       Padding(
@@ -60,7 +62,7 @@ Widget doctorCard(
                 InkWell(
                   onTap: (){
                    // UserResponsitory().getUserDetail();
-                   //  DoctorFirestoreService().fetchAppointment();
+                    DoctorFirestoreService().getdata(doctorModel);
                   },
                   child: Container(
                     alignment: Alignment.center,

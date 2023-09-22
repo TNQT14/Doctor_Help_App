@@ -53,7 +53,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     return Padding(
                       padding: EdgeInsets.only(
                           left: 15.w, right: 15.w, top: 20.h, bottom: 20.h),
-                      child: rowIn4(image:state.user.imageUrl??imagePersion, context: context),
+                      child: rowIn4(
+                          image: state.user.imageUrl ?? imagePersion,
+                          context: context),
                     );
                   }
                   return Center(
@@ -119,7 +121,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                               MaterialPageRoute(
                                                   builder: (context) =>
                                                       DoctordetailScreen(
-                                                        docDetail: listDoctor[index],
+                                                        docDetail:
+                                                            listDoctor[index],
                                                         // doc_detail: listDoctor[index].description,
                                                         // doc_name: listDoctor[index].name,
                                                         // doc_job: listDoctor[index].job,
@@ -142,7 +145,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 size: 18),
                                           ),
                                         ),
-                                    doctorModel: listDoctor[index]);
+                                        doctorModel: listDoctor[index]);
                                   },
                                   itemCount: listDoctor.length,
                                   itemWidth: double.infinity,
@@ -172,7 +175,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                         listDoctor[index].imageUrl,
                                         listDoctor[index].rating,
                                         listDoctor[index].name,
-                                        listDoctor[index].job);
+                                        listDoctor[index].job,
+                                        doctorModel: listDoctor[index]);
                                   }),
                             ),
                           SizedBox(
