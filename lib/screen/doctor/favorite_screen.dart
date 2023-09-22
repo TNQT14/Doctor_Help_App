@@ -1,5 +1,7 @@
+import 'package:doctor_help_app/bloc/doctor/doctor_cubit.dart';
 import 'package:doctor_help_app/screen/doctor/doctor_detail_screen/doctor_detail_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../containts/add_color.dart';
@@ -9,6 +11,7 @@ import 'components/status_doctor_card.dart';
 
 class FavoriteScreen extends StatefulWidget {
   const FavoriteScreen({super.key});
+
   static String routeName = 'FavoriteScreen';
 
   @override
@@ -16,44 +19,73 @@ class FavoriteScreen extends StatefulWidget {
 }
 
 class _FavoriteScreen extends State<FavoriteScreen> {
+  List<DoctorModel> listDoctor = [];
+  @override
+  void initState() {
+    // TODO: implement initState
+    DoctorCubit.get(context).getListDataDoctor();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      child: Scaffold(
-        backgroundColor: colorbg,
-        body:Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(top: 75.h, left: 24.w),
-                child: Text('My Doctor', style: txt32w7,),
-              ),
-              Expanded(
-                  child: Container(
-                    child: ListView.builder(
-                        scrollDirection: Axis.vertical,
-                        itemCount: 10,
-                        itemBuilder: (context, index){
-                          return GestureDetector(
-                            onTap: ()=> Navigator.pushNamed(context, DoctordetailScreen.routeName),
-                            child: Padding(
-                              padding: const EdgeInsets.only(bottom: 8.0),
-                              child: statusDoctorCard(context, user1.imageUrl,
-                              user1.rating, user1.name, user1.job, false),
-                            ),
-                          );
-                        }
-                    ),
-                  ),
-              ),
-            ],
+    return Scaffold(
+      backgroundColor: colorbg,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Padding(
+            padding: EdgeInsets.only(top: 75.h, left: 24.w),
+            child: Text(
+              'My Doctor',
+              style: txt32w7,
+            ),
           ),
-        ),
-        // bottomNavigationBar: BottomMenu(),
+          Expanded(
+            child: BlocConsumer<DoctorCubit, DoctorState>(
+              listener: (context, state) {
+                if (state is DoctorSuccess) {
+                  listDoctor = state.listDoctor;
+                }
+              },
+              builder: (context, state) {
+                if (state is DoctorLoading && state.isLoading) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                return Container(
+                  child: ListView.builder(
+                      scrollDirection: Axis.vertical,
+                      itemCount: listDoctor.length,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      DoctordetailScreen(
+                                          docDetail: listDoctor[index]))),
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 8.0),
+                            child: statusDoctorCard(
+                                context,
+                                listDoctor[index].imageUrl,
+                                listDoctor[index].rating,
+                                listDoctor[index].name,
+                                listDoctor[index].job,
+                                false),
+                          ),
+                        );
+                      }),
+                );
+              },
+            ),
+          ),
+        ],
       ),
+      // bottomNavigationBar: BottomMenu(),
     );
   }
 }
-

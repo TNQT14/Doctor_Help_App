@@ -4,8 +4,11 @@ import 'package:doctor_help_app/model/user/customer_of_doc_model.dart';
 import 'package:doctor_help_app/model/user/doctor_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
-class DoctorFirestoreService implements DoctorDataService{
+import '../../screen/appointment_screen/appointment_success_screen.dart';
+
+class DoctorFirestoreService implements DoctorDataService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _store = FirebaseFirestore.instance;
 
@@ -14,9 +17,10 @@ class DoctorFirestoreService implements DoctorDataService{
   @override
   Future<List<DoctorModel>> getDoctor() async {
     List<DoctorModel> doctorList = [];
-    await doctors.get().then((QuerySnapshot querySnapshot){
+    await doctors.get().then((QuerySnapshot querySnapshot) {
       querySnapshot.docs.forEach((doc) {
-        doctorList.add(DoctorModel.fromJson(doc.data() as Map<String, dynamic>));
+        doctorList
+            .add(DoctorModel.fromJson(doc.data() as Map<String, dynamic>));
         print(doctorList);
       });
     });
@@ -24,43 +28,78 @@ class DoctorFirestoreService implements DoctorDataService{
   }
 
   //goi tam de get list data doctor
-  Future<List<DoctorModel>?> getListDoctor() async{
+  Future<List<DoctorModel>?> getListDoctor() async {
     List<DoctorModel> listDoctor = [];
-    try{
+    try {
       final getData = await _store.collection('Doctor').get();
       getData.docs.forEach((element) {
         return listDoctor.add(DoctorModel.fromJson(element.data()));
       });
       print(await listDoctor);
       return listDoctor;
-    } on FirebaseAuthException catch(e){
-      if(kDebugMode){
+    } on FirebaseAuthException catch (e) {
+      if (kDebugMode) {
         print('Failed with error ${e.code}: ${e.message}');
       }
       return listDoctor;
-    } catch(e){
+    } catch (e) {
       throw Exception(e.toString());
     }
   }
 
-
-  Future<List<CustomerOfDocModel>?> getListCustomerOfDoctor() async{
+  Future<List<CustomerOfDocModel>?> getListCustomerOfDoctor() async {
     List<CustomerOfDocModel> listCustomerOfDoctor = [];
-    try{
+    try {
       final getData = await _store.collection('customer_of_doc').get();
       getData.docs.forEach((element) {
-        return listCustomerOfDoctor.add(CustomerOfDocModel.fromJson(element.data()));
+        return listCustomerOfDoctor
+            .add(CustomerOfDocModel.fromJson(element.data()));
       });
       print(await listCustomerOfDoctor);
       return listCustomerOfDoctor;
-    } on FirebaseAuthException catch(e){
-      if(kDebugMode){
+    } on FirebaseAuthException catch (e) {
+      if (kDebugMode) {
         print('Failed with error ${e.code}: ${e.message}');
       }
       return listCustomerOfDoctor;
-    } catch(e){
+    } catch (e) {
       throw Exception(e.toString());
     }
   }
 
+  Future fetchAppointment(
+      {
+      //   required String name,
+      // required String job,
+      required String dateTime,
+      // required String uidDoctor,
+      required DoctorModel doctorModel,
+      required BuildContext context}) async {
+    try{
+      await _store
+          .collection('appointment_history')
+          .doc(_auth.currentUser!.uid)
+          .set({
+        'name': doctorModel.name,
+        'job': doctorModel.job,
+        'dateTime': dateTime,
+        'uidDoctor': doctorModel.uidDoctor,
+        'status': 'on_going'
+      });
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => AppointmentSuccessScreen(
+                  doctorModel: doctorModel,
+                )),
+      );
+    }catch(e){
+      print(e);
+    }
+    // await _store.collection('User').doc(userCredential.user!.uid).set({
+    //   'userID': userCredential.user!.uid,
+    //   'email': email,
+    // });
+  }
 }
