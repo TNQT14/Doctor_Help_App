@@ -75,16 +75,35 @@ class DoctorFirestoreService implements DoctorDataService {
       // required String uidDoctor,
       required DoctorModel doctorModel,
       required BuildContext context}) async {
-    try{
+    try {
       await _store
           .collection('appointment_history')
           .doc(_auth.currentUser!.uid)
-          .set({
-        'name': doctorModel.name,
-        'job': doctorModel.job,
-        'dateTime': dateTime,
-        'uidDoctor': doctorModel.uidDoctor,
-        'status': 'on_going'
+      //     .set({
+      //   'dateTime': dateTime,
+      //   'name': doctorModel.name,
+      //   'job': doctorModel.job,
+      //   'status': 'on_going',
+      //   'uidDoctor': doctorModel.uidDoctor,
+      //   'imageUrl': doctorModel.imageUrl
+      // });
+      //     .set({
+      //   // 'name': doctorModel.name,
+      //   // 'job': doctorModel.job,
+      //   'dateTime': dateTime,
+      //   'doctor': doctorModel.toJson(),
+      //   // 'uidDoctor': doctorModel.uidDoctor,
+      //   'status': 'on_going'
+      // });
+          .collection(doctorModel.uidDoctor).add({
+        // 'doctorin4': doctorModel.toJson(),
+        // 'dateTime': dateTime
+        //   'dateTime': dateTime,
+          'name': doctorModel.name,
+          'job': doctorModel.job,
+          'status': 'on_going',
+          'uidDoctor': doctorModel.uidDoctor,
+          'imageUrl': doctorModel.imageUrl
       });
 
       Navigator.push(
@@ -94,12 +113,51 @@ class DoctorFirestoreService implements DoctorDataService {
                   doctorModel: doctorModel,
                 )),
       );
-    }catch(e){
+    } catch (e) {
       print(e);
     }
     // await _store.collection('User').doc(userCredential.user!.uid).set({
     //   'userID': userCredential.user!.uid,
     //   'email': email,
     // });
+  }
+
+  Future getdata(DoctorModel doctorModel) async{
+    List<AppointmentModel> listAppointment = [];
+    try{
+       final gets = await _store.collection('appointment_history').doc(doctorModel.uidDoctor).get();
+       gets.data();
+       print(gets.data());
+    } catch(e){
+      print(e);
+    }
+  }
+}
+
+class AppointmentModel {
+  String status;
+  String dateTime;
+  String name;
+  String job;
+  String uidDoctor;
+  String imageUrl;
+  AppointmentModel(
+      {required this.uidDoctor,
+      required this.dateTime,
+      required this.job,
+      required this.name,
+      required this.status,
+      required this.imageUrl});
+
+  factory AppointmentModel.fromJson(Map<String, dynamic> json) {
+    return AppointmentModel(
+      name: json['name'].toString() ?? 'Chưa có duex liệu',
+      imageUrl: json['imageUrl'].toString() ?? 'Chưa có duex liệu',
+      // birthDay: json['birthDay'] as DateTime,
+      job: json['job'].toString() ?? 'Chưa có duex liệu',
+      uidDoctor: json['uidDoctor'].toString() ?? 'Chưa có duex liệu',
+      status: json['status'].toString() ?? 'Chưa có duex liệu',
+      dateTime: json['dateTime'].toString() ?? 'Chưa có duex liệu',
+    );
   }
 }
