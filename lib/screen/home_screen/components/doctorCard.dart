@@ -59,7 +59,7 @@ Widget doctorCard(
                 const Spacer(),
                 InkWell(
                   onTap: (){
-                    DoctorFirestoreService().getListCustomerOfDoctor();
+                   UserResponsitory().getUserDetail();
                   },
                   child: Container(
                     alignment: Alignment.center,

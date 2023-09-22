@@ -10,6 +10,8 @@ final TextStyle txt14w4 = TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w400
 final TextStyle txt14w5 = TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w500);
 final TextStyle txt14w6 = TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w600);
 
+final TextStyle txt15w6 = TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w600);
+
 //16
 final TextStyle txt16w4 = TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400);
 final TextStyle txt16w5 = TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500);

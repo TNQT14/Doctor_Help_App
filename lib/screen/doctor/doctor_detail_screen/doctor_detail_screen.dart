@@ -69,101 +69,112 @@ class _DoctordetailScreenState extends State<DoctordetailScreen> {
                 Expanded(
                   child: SingleChildScrollView(
                       child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 13.0.w),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                    padding: EdgeInsets.symmetric(horizontal: 13.0.w),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: 8.h,
+                        ),
+                        textTitle('Profile Doctor', isPadding: false),
+                        Padding(
+                          padding: EdgeInsets.only(bottom: 8.h),
+                          child: TextExpanded(
+                            text: widget.docDetail.description,
+                          ),
+                        ),
+                        textTitle('Schedule'),
+                        scheduleList(),
+                        // DatePicker(
+                        //   DateTime.now(),
+                        //   initialSelectedDate: DateTime.now(),
+                        //   selectionColor: Colors.white,
+                        //   selectedTextColor: colorKmain,
+                        //   onDateChange: (date) {
+                        //     // New date selected
+                        //     // setState(() {
+                        //     //   _selectedValue = date;
+                        //     // });
+                        //   },
+                        //   height: 90,
+                        // ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            SizedBox(
-                              height: 8.h,
-                            ),
-                            textTitle('Profile Doctor', isPadding: false),
-                            Padding(
-                              padding: EdgeInsets.only(bottom: 8.h),
-                              child: TextExpanded(
-                                text: widget.docDetail.description,
+                            textTitle('Reviews'),
+                            GestureDetector(
+                              onTap: () {},
+                              child: Text(
+                                'See All',
+                                style: TextStyle(
+                                    fontSize: 17.sp, color: colorKmain),
                               ),
                             ),
-                            textTitle('Schedule'),
-                            DatePicker(
-                              DateTime.now(),
-                              initialSelectedDate: DateTime.now(),
-                              selectionColor: Colors.white,
-                              selectedTextColor: colorKmain,
-                              onDateChange: (date) {
-                                // New date selected
-                                // setState(() {
-                                //   _selectedValue = date;
-                                // });
-                              },
-                              height: 90,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                textTitle('Reviews'),
-                                GestureDetector(
-                                  onTap: () {},
-                                  child: Text(
-                                    'See All',
-                                    style: TextStyle(
-                                        fontSize: 17.sp, color: colorKmain),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            BlocBuilder<DoctorCubit, DoctorState>(
-                              builder: (context, state) {
-                                if(state is CustomerSuccess){
-                                  List<CustomerOfDocModel> listcustom = state.listcustomer;
-                                  return SizedBox(
-                                    height: 300,
-                                    child: ListView.builder(
-                                        itemCount: listcustom.length,
-                                        itemBuilder: (context, index) {
-                                          return Card(
-                                              child: reviewsCard(
-                                                  listcustom[index].imageUrl??imagePersion,
-                                                  double.parse(listcustom[index].rating??0.toString()),
-                                                  listcustom[index].name??"Chưa có thông tin",
-                                                  listcustom[index].job??"Chưa có thông tin",
-                                                  listcustom[index].review??"Chưa có thông tin").paddingSymmetric(
-                                                  horizontal: 16.w,
-                                                  vertical: 16.h));
-                                        }),
-                                  );
-                                }
-                                return Center( child: CircularProgressIndicator(),);
-                              },
-                            )
-                            //reviews
-                            // BlocBuilder<DoctorCubit, DoctorState>(
-                            //   builder: (context, state) {
-                            //     if (state is CustomerSuccess) {
-                            //       List<CustomerOfDocModel> listcustomer = state.listcustomer;
-                            //       return Container(
-                            //         height: 300,
-                            //         child: ListView.builder(itemBuilder: (context, indext){
-                            //           return Container();
-                            //         }),
-                            //       );
-                            //     }
-                            //     return Center(
-                            //       child: CircularProgressIndicator(),
-                            //     );
-                            //   },
-                            // ),
-                            // backgroundDoctorCard(
-                            //   context,
-                            //   Padding(
-                            //     padding:
-                            //     EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-                            //     child: reviewsCard(user1.imageUrl, user1.rating, user1.name, user1.job, user1.review),
-                            //   ),
-                            //   // height: 117.h
-                            // ),
                           ],
                         ),
-                      )),
+                        BlocBuilder<DoctorCubit, DoctorState>(
+                          builder: (context, state) {
+                            if (state is CustomerSuccess) {
+                              List<CustomerOfDocModel> listcustom =
+                                  state.listcustomer;
+                              return SizedBox(
+                                height: 300,
+                                child: ListView.builder(
+                                    itemCount: listcustom.length,
+                                    itemBuilder: (context, index) {
+                                      return Card(
+                                          child: reviewsCard(
+                                                  listcustom[index].imageUrl ??
+                                                      imagePersion,
+                                                  double.parse(listcustom[index]
+                                                          .rating ??
+                                                      0.toString()),
+                                                  listcustom[index].name ??
+                                                      "Chưa có thông tin",
+                                                  listcustom[index].job ??
+                                                      "Chưa có thông tin",
+                                                  listcustom[index].review ??
+                                                      "Chưa có thông tin")
+                                              .paddingSymmetric(
+                                                  horizontal: 16.w,
+                                                  vertical: 16.h));
+                                    }),
+                              );
+                            }
+                            return Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          },
+                        )
+                        //reviews
+                        // BlocBuilder<DoctorCubit, DoctorState>(
+                        //   builder: (context, state) {
+                        //     if (state is CustomerSuccess) {
+                        //       List<CustomerOfDocModel> listcustomer = state.listcustomer;
+                        //       return Container(
+                        //         height: 300,
+                        //         child: ListView.builder(itemBuilder: (context, indext){
+                        //           return Container();
+                        //         }),
+                        //       );
+                        //     }
+                        //     return Center(
+                        //       child: CircularProgressIndicator(),
+                        //     );
+                        //   },
+                        // ),
+                        // backgroundDoctorCard(
+                        //   context,
+                        //   Padding(
+                        //     padding:
+                        //     EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+                        //     child: reviewsCard(user1.imageUrl, user1.rating, user1.name, user1.job, user1.review),
+                        //   ),
+                        //   // height: 117.h
+                        // ),
+                      ],
+                    ),
+                  )),
                 ),
                 // pro5DocDetail(context, user1.imageUrl, user1.rating,
                 //     docDetail.description??'Không có dữ liệu', user1.name, user1.job, user1.review),
@@ -179,8 +190,7 @@ class _DoctordetailScreenState extends State<DoctordetailScreen> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) =>
-                      AppointmentDateTimeScreen(
+                  builder: (context) => AppointmentDateTimeScreen(
                         doctorModel: widget.docDetail,
                         // doc_job: docDetail.job??'Không có dữ liệu',
                         // doc_name: docDetail.name??'Không có dữ liệu',

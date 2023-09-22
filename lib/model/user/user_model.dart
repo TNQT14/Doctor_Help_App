@@ -86,11 +86,12 @@ class UserModel {
   String? address;
   String? birthday;
   String? imageUrl;
+  String? userID;
 
   //review
-  double? rating;
+  // double? rating;
   String? job;
-  String? review;
+  // String? review;
 
   UserModel(
       {
@@ -101,22 +102,25 @@ class UserModel {
       this.phone,
       this.address,
       this.birthday,
-      this.rating,
+      this.userID,
+      // this.rating,
       this.job,
-      this.review});
+      // this.review
+      });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
       email: (json['email'] ?? '').toString(),
       name: (json['name'] ?? '').toString(),
+      userID: (json['userID'] ?? '').toString(),
       imageUrl: (json['imageUrl'] ?? '').toString(),
       phone: int.parse(json['phone'].toString() ?? 0.toString()),
       // phone: json['phone'].toString(),
       address: (json['address'] ?? '').toString(),
       birthday: (json['birthday'] ?? '').toString(),
-      rating: double.parse(json['rating'].toString() ?? 0.toString()),
+      // rating: double.parse(json['rating'].toString() ?? 0.toString()),
       job: (json['job'] ?? '').toString(),
-      review: (json['review'] ?? '').toString(),
+      // review: (json['review'] ?? '').toString(),
     );
   }
 // factory UserModelTest.fromJson(Map<String, dynamic> json) {

@@ -78,84 +78,7 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
             ),
             //action
             actions: [
-              BlocBuilder<FillFormBlocCubit, FillFormBlocState>(
-                builder: (context, stateFillForm) {
-                  return BlocBuilder<UserBlocCubit, UserBlocState>(
-                    builder: (context, stateUser) {
-                      if (stateUser is UserSuccess) {
-                        final isFormFilled = name.text.isNotEmpty &&
-                            birthday.text.isNotEmpty &&
-                            phone.text.isNotEmpty &&
-                            address.text.isNotEmpty;
-                        return SizedBox(
-                          child: TextButton(
-                            onPressed: isFormFilled
-                                ? () {
-                                    if (_formDataKey.currentState!.validate()) {
-                                      widget._userResponsitory.updateUserDetail(
-                                        name.text,
-                                        birthday.text,
-                                        phone.text,
-                                        address.text,
-                                      );
-                                      showDialog(
-                                          context: context,
-                                          builder: (context) {
-                                            return AlertDialog(
-                                              title: Text("Thành công"),
-                                              content: Text(
-                                                  "Thông tin của bạn đã được cập nhật trên hệ thống"),
-                                              actions: [
-                                                TextButton(
-                                                  onPressed: () {
-                                                    Navigator.pop(context);
-                                                    Navigator.pop(context);
-                                                  },
-                                                  child: Text("OK"),
-                                                ),
-                                              ],
-                                            );
-                                          });
-                                      // Navigator.pop(context);
-                                    } else {
-                                      showDialog(
-                                        context: context,
-                                        builder: (context) {
-                                          return AlertDialog(
-                                            title: const Text("Lỗi"),
-                                            content: const Text(
-                                                "Vui lòng điền đúng thông tin"),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () {
-                                                  Navigator.pop(context);
-                                                },
-                                                child: Text("OK"),
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      );
-                                    }
-                                  }
-                                : null,
-                            child: Text(
-                              "Save",
-                              style: TextStyle(
-                                color: isFormFilled ? Colors.blue : Colors.grey,
-                              ),
-                            ),
-                          ),
-                        );
-                      }
-
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    },
-                  );
-                },
-              ),
+              saveButton(name),
             ],
           ),
           //body
@@ -171,6 +94,10 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
                       return BlocBuilder<UserBlocCubit, UserBlocState>(
                           builder: (context, stateUser) {
                         if (stateUser is UserSuccess) {
+                          name.text = stateUser.user.name??"Chưa có dữ liệu";
+                          address.text = stateUser.user.address??"Chưa có dữ liệu";
+                          phone.text = stateUser.user.phone.toString()??"Chưa có dữ liệu";
+                          birthday.text = stateUser.user.birthday.toString()??"Chưa có dữ liệu";
                           // print(state.user.phone);
                           // DateTime? dateTime = state.user.birthday;
                           return Column(
@@ -292,6 +219,87 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
             },
           ),
         ));
+  }
+
+  BlocBuilder<FillFormBlocCubit, FillFormBlocState> saveButton(TextEditingController name) {
+    return BlocBuilder<FillFormBlocCubit, FillFormBlocState>(
+              builder: (context, stateFillForm) {
+                return BlocBuilder<UserBlocCubit, UserBlocState>(
+                  builder: (context, stateUser) {
+                    if (stateUser is UserSuccess) {
+                      final isFormFilled = name.text.isNotEmpty &&
+                          birthday.text.isNotEmpty &&
+                          phone.text.isNotEmpty &&
+                          address.text.isNotEmpty;
+                      return SizedBox(
+                        child: TextButton(
+                          onPressed: isFormFilled
+                              ? () {
+                                  if (_formDataKey.currentState!.validate()) {
+                                    widget._userResponsitory.updateUserDetail(
+                                      name.text,
+                                      birthday.text,
+                                      phone.text,
+                                      address.text,
+                                    );
+                                    showDialog(
+                                        context: context,
+                                        builder: (context) {
+                                          return AlertDialog(
+                                            title: Text("Thành công"),
+                                            content: Text(
+                                                "Thông tin của bạn đã được cập nhật trên hệ thống"),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Text("OK"),
+                                              ),
+                                            ],
+                                          );
+                                        });
+                                    // Navigator.pop(context);
+                                  } else {
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return AlertDialog(
+                                          title: const Text("Lỗi"),
+                                          content: const Text(
+                                              "Vui lòng điền đúng thông tin"),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                              child: Text("OK"),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
+                                  }
+                                }
+                              : null,
+                          child: Text(
+                            "Save",
+                            style: TextStyle(
+                              color: isFormFilled ? Colors.blue : Colors.grey,
+                            ),
+                          ),
+                        ),
+                      );
+                    }
+
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  },
+                );
+              },
+            );
   }
 
   GlobalKey<FormState> formDataKey = GlobalKey<FormState>();

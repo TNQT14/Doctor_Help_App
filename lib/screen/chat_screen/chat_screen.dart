@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doctor_help_app/VM/service/user_responsitory.dart';
 import 'package:doctor_help_app/bloc/doctor/doctor_cubit.dart';
+import 'package:doctor_help_app/bloc/user/user_bloc_cubit.dart';
 import 'package:doctor_help_app/containts/containts.dart';
+import 'package:doctor_help_app/screen/chat_screen/call.dart';
 import 'package:doctor_help_app/widgets/widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -75,6 +77,7 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   void initState() {
     //  BlocProvider.of<DoctorCubit>(context).getListDataDoctor();
+    DoctorCubit.get(context).getListDataDoctor();
     super.initState();
   }
 
@@ -83,14 +86,49 @@ class _ChatScreenState extends State<ChatScreen> {
     return GestureDetector(
       onTap: () => unfocusKeyboard(),
       child: Scaffold(
-        body: SafeArea(
-            child: Column(
-              children: [
-                appBarChat(context, widget.imageUrl, widget.name),
-                Expanded(child: _messagesList()),
-                buildContainer(context)
-              ],
-            )
+        body: Column(
+          children: [
+        // BlocBuilder<UserBlocCubit, UserBlocState>(
+        //   builder: (context, state) {
+        //    if(state is UserSuccess){
+        //      return appBarChat(
+        //          context: context,
+        //          image: widget.imageUrl,
+        //          name: widget.name,
+        //          phone: () {
+        //            Navigator.push(
+        //                context,
+        //                MaterialPageRoute(
+        //                    builder: (context) => CallPage(
+        //                        callID: '1',
+        //                        userName: state.user.name??'Chưa có thông tin',
+        //                        userId: state.user.userID??'Chưa có thông tin')));
+        //          });
+        //    }
+        //    return appBarChat(
+        //        context: context,
+        //        image: widget.imageUrl,
+        //        name: widget.name,
+        //        phone: () {});
+        //   },
+        // ),
+        appBarChat(
+          top: 30.h,
+            context: context,
+            image: widget.imageUrl,
+            name: widget.name,
+            phone: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => CallPage(
+                          callID: '1',
+                          userName: widget.name,
+                          userId: widget.receiverID)));
+            }),
+        Expanded(child: _messagesList()),
+        buildContainer(context)
+          ],
         ),
       ),
     );
@@ -101,8 +139,7 @@ class _ChatScreenState extends State<ChatScreen> {
       stream: _userResponsitory.getMessage(
           widget.receiverID, _auth.currentUser!.uid),
       builder: (context, snapshot) {
-        var data = snapshot.data!.docs
-            .map((data) => _messagesItem(data));
+        var data = snapshot.data!.docs.map((data) => _messagesItem(data));
         if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         }
@@ -120,16 +157,18 @@ class _ChatScreenState extends State<ChatScreen> {
         // );
         // List<Widget> datalist = [];
         // datalist.insert(0, data);
-        return data.isNotEmpty? ListView(
-          // reverse: true,
-          children:
-          snapshot.data!.docs
-              .map((data) => _messagesItem(data))
-              .toList(),
-        ): Center(child: Text('No message here', style: txt14w5!.copyWith(color: Colors.grey),),);
+        else {
+          return ListView(
+            // reverse: true,
+            children: snapshot.data!.docs
+                .map((data) => _messagesItem(data))
+                .toList() ?? [],
+          );
+        }
       },
     );
   }
+
   //
   Widget _messagesItem(DocumentSnapshot snapshot) {
     Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
@@ -167,19 +206,11 @@ class _ChatScreenState extends State<ChatScreen> {
   Container buildContainer(BuildContext context) {
     return Container(
       height: 90.h,
-      width: MediaQuery
-          .of(context)
-          .size
-          .width,
+      width: MediaQuery.of(context).size.width,
       padding: EdgeInsets.only(top: 8.h),
-      decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-                color: Colors.grey.shade300,
-                blurRadius: 10,
-                spreadRadius: 2)
-          ]),
+      decoration: BoxDecoration(color: Colors.white, boxShadow: [
+        BoxShadow(color: Colors.grey.shade300, blurRadius: 10, spreadRadius: 2)
+      ]),
       alignment: Alignment.topCenter,
       child: Form(
         key: _key,
@@ -192,8 +223,7 @@ class _ChatScreenState extends State<ChatScreen> {
             ),
             SizedBox(
               width: 248.w,
-              child: InputTextField(
-                  text: mess, hintext: 'Type Message'),
+              child: InputTextField(text: mess, hintext: 'Type Message'),
             ),
             InkWell(
               onTap: sendMess,
@@ -251,6 +281,7 @@ Widget MessageUI() {
         );
       });
 }
+
 //
 _buildItemDoc(DocumentSnapshot doc) {
   Map<String, dynamic> data = doc.data()! as Map<String, dynamic>;
