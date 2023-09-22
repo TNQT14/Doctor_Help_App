@@ -80,7 +80,6 @@ class _FavoriteScreen extends State<FavoriteScreen> {
                         );
                       }),
                 );
-
               },
             ),
           ),
