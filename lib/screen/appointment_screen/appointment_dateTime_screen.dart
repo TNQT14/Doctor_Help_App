@@ -5,8 +5,10 @@ import 'package:doctor_help_app/screen/screens.dart';
 import 'package:doctor_help_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import '../../../containts/containts.dart';
 import 'appointment_summary_screen.dart';
+import 'package:flutter/widgets.dart';
 
 class AppointmentDateTimeScreen extends StatefulWidget {
   AppointmentDateTimeScreen({Key? key, required this.doctorModel
@@ -30,6 +32,10 @@ class _AppointmentDateTimeScreenState extends State<AppointmentDateTimeScreen> {
   int? isClick;
   int? isClickMonth;
   int? isClickday;
+  String month = '';
+  String day = '';
+  String time = '';
+
   //
   @override
   Widget build(BuildContext context) {
@@ -52,6 +58,8 @@ class _AppointmentDateTimeScreenState extends State<AppointmentDateTimeScreen> {
                   padding: EdgeInsets.symmetric(vertical: 8.h),
                   child: textTitle('Date & Time'),
                 ),
+
+                //month
                 Container(
                   height: 33,
                   margin: EdgeInsets.only(bottom: 16.h, top: 8.h),
@@ -66,6 +74,7 @@ class _AppointmentDateTimeScreenState extends State<AppointmentDateTimeScreen> {
                           onTap: () {
                             setState(() {
                               isClickMonth = index;
+                              month = daymodel.month[index];
                             });
                           },
                           child: Container(
@@ -93,6 +102,8 @@ class _AppointmentDateTimeScreenState extends State<AppointmentDateTimeScreen> {
                         );
                       }),
                 ),
+
+                //day
                 SizedBox(
                   // width: double.infinity,
                   height: 75.h,
@@ -101,16 +112,21 @@ class _AppointmentDateTimeScreenState extends State<AppointmentDateTimeScreen> {
                       itemCount: daymodel.listSchedule.length,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
-                        return buildContainer(index, onTap: (){setState(() {
-                          isClickday = index;
-                        });});
+                        return buildContainer(index, onTap: () {
+                          setState(() {
+                            isClickday = index;
+                            day = daymodel.listSchedule[index].day.toString();
+                          });
+                        });
                       }),
                 ),
+
+                //time
                 Expanded(
                   child: GridView.builder(
                     padding: EdgeInsets.only(top: 24.h, bottom: 16.h),
                     primary: false,
-                    itemCount: time.length,
+                    itemCount: timelist.length,
                     // crossAxisSpacing: 10,
                     // mainAxisSpacing: 10,
                     // crossAxisCount: 2,
@@ -119,6 +135,7 @@ class _AppointmentDateTimeScreenState extends State<AppointmentDateTimeScreen> {
                         onTap: () {
                           setState(() {
                             isClick = intdex;
+                            time = timelist[intdex];
                           });
                         },
                         child: Container(
@@ -132,7 +149,7 @@ class _AppointmentDateTimeScreenState extends State<AppointmentDateTimeScreen> {
                                   ? colorKmain
                                   : Colors.white),
                           child: Text(
-                            time[intdex],
+                            timelist[intdex],
                             style: txt12w5!.copyWith(
                                 color: (isClick == intdex)
                                     ? Colors.white
@@ -153,16 +170,24 @@ class _AppointmentDateTimeScreenState extends State<AppointmentDateTimeScreen> {
           )),
           bottomCardButton(
               'Next',
-              () => {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => AppointmentSummaryScreen(
-                                appBarTitle: "Summary",
-                                bottomTitle: 'Make my appointment',
-                                doctorModel: widget.doctorModel,
-                              )),
-                    )
+              () {
+                    if(day!=''&&month!=''&&time!=''){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => AppointmentSummaryScreen(
+                              appBarTitle: "Summary",
+                              bottomTitle: 'Make my appointment',
+                              doctorModel: widget.doctorModel,
+                              month: month,
+                              day: day,
+                              time: time,
+                            )),
+                      );
+                    }
+                    else{
+                      showFlutterToastMessage('Vui lòng chọn thời gian đặt lịch hẹn');
+                    }
                   })
         ],
       ),
@@ -171,7 +196,7 @@ class _AppointmentDateTimeScreenState extends State<AppointmentDateTimeScreen> {
 
   Widget buildContainer(int index, {required Function() onTap}) {
     return GestureDetector(
-      onTap: (daymodel.listSchedule[index].schedule == 'yes')? onTap: (){},
+      onTap: (daymodel.listSchedule[index].schedule == 'yes') ? onTap : () {},
       child: Container(
         margin: EdgeInsets.only(left: index == 0 ? 0 : 7.w),
         alignment: Alignment.center,
@@ -181,7 +206,7 @@ class _AppointmentDateTimeScreenState extends State<AppointmentDateTimeScreen> {
           borderRadius: BorderRadius.circular(6),
           border: Border.all(
               color: (daymodel.listSchedule[index].schedule == 'yes')
-                  ? ((isClickday == index)? colorKmain: Colors.grey.shade300)
+                  ? ((isClickday == index) ? colorKmain : Colors.grey.shade300)
                   : Colors.transparent),
           color: (daymodel.listSchedule[index].schedule == 'yes')
               ? Colors.white
@@ -208,7 +233,7 @@ class _AppointmentDateTimeScreenState extends State<AppointmentDateTimeScreen> {
   }
 }
 
-List<String> time = ['10.30 - 12.00', '15.00 - 17.00'];
+List<String> timelist = ['10.30 - 12.00', '15.00 - 17.00'];
 
 //card thông tin doctor
 Padding doctorDateTimeAppointmentCard(BuildContext context,
