@@ -29,67 +29,64 @@ class _FavoriteScreen extends State<FavoriteScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      child: Scaffold(
-        backgroundColor: colorbg,
-        body: Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(top: 75.h, left: 24.w),
-                child: Text(
-                  'My Doctor',
-                  style: txt32w7,
-                ),
-              ),
-              Expanded(
-                child: BlocConsumer<DoctorCubit, DoctorState>(
-                  listener: (context, state) {
-                    if (state is DoctorSuccess) {
-                      listDoctor = state.listDoctor;
-                    }
-                  },
-                  builder: (context, state) {
-                    if (state is DoctorSuccess) {
-                      return Container(
-                        child: ListView.builder(
-                            scrollDirection: Axis.vertical,
-                            itemCount: listDoctor.length,
-                            itemBuilder: (context, index) {
-                              return GestureDetector(
-                                onTap: () => Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            DoctordetailScreen(
-                                                docDetail: listDoctor[index]))),
-                                child: Padding(
-                                  padding: const EdgeInsets.only(bottom: 8.0),
-                                  child: statusDoctorCard(
-                                      context,
-                                      listDoctor[index].imageUrl,
-                                      listDoctor[index].rating,
-                                      listDoctor[index].name,
-                                      listDoctor[index].job,
-                                      false),
-                                ),
-                              );
-                            }),
-                      );
-                    }
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  },
-                ),
-              ),
-            ],
+    return Scaffold(
+      backgroundColor: colorbg,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Padding(
+            padding: EdgeInsets.only(top: 75.h, left: 24.w),
+            child: Text(
+              'My Doctor',
+              style: txt32w7,
+            ),
           ),
-        ),
-        // bottomNavigationBar: BottomMenu(),
+          Expanded(
+            child: BlocConsumer<DoctorCubit, DoctorState>(
+              listener: (context, state) {
+                if (state is DoctorSuccess) {
+                  listDoctor = state.listDoctor;
+                }
+              },
+              builder: (context, state) {
+                if (state is DoctorLoading && state.isLoading) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                return Container(
+                  child: ListView.builder(
+                      scrollDirection: Axis.vertical,
+                      itemCount: listDoctor.length,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      DoctordetailScreen(
+                                          docDetail: listDoctor[index]))),
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 8.0),
+                            child: statusDoctorCard(
+                                context,
+                                listDoctor[index].imageUrl,
+                                listDoctor[index].rating,
+                                listDoctor[index].name,
+                                listDoctor[index].job,
+                                false),
+                          ),
+                        );
+                      }),
+                );
+
+              },
+            ),
+          ),
+        ],
       ),
+      // bottomNavigationBar: BottomMenu(),
     );
   }
 }
