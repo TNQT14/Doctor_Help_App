@@ -136,7 +136,10 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
                                                     ),
                                                     Divider(height: 12.h,),
                                                     InkWell(
-                                                      onTap: (){Navigator.pushNamed(context, CameraScreen.routeName);},
+
+                                                      onTap: (){
+                                                        Navigator.pushNamed(context, CameraScreen.routeName);
+                                                      },
                                                       borderRadius: BorderRadius.circular(20),
                                                       child: Row(
                                                         children: [
