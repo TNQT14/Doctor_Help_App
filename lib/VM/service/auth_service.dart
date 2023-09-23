@@ -65,8 +65,8 @@ class AuthService {
     try {
       await _auth.signOut();
       showFlutterToastMessage('Đăng xuất thành công');
-      Navigator.pop(context);
-      // Navigator.pushNamed(context, LoginRegisterBackground.routeName);
+      // Navigator.pop(context);
+      Navigator.pushNamed(context, LoginRegisterBackground.routeName);
     } on FirebaseAuthException catch (e) {
       showFlutterToastMessage(e.toString());
       print('Error logout: $e');

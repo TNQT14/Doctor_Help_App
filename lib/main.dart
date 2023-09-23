@@ -3,6 +3,7 @@ import 'package:doctor_help_app/bloc/user/user_bloc_cubit.dart';
 import 'package:doctor_help_app/bloc/wrap_provider.dart';
 import 'package:doctor_help_app/firebase_options.dart';
 import 'package:doctor_help_app/routes.dart';
+import 'package:doctor_help_app/screen/onboarding_screen/onboarding_screen.dart';
 import 'package:doctor_help_app/screen/user/auth_gate.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
           home: child,
         );
       },
-      child:  AuthGate(),
+      child:  OnboardingScreens(),
       designSize: Size(375, 812),
     );
   }
