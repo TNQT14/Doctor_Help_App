@@ -116,19 +116,21 @@ class _HomeScreenState extends State<HomeScreen> {
                                           onTap: () {
                                             // Navigator.pushNamed(context,
                                             //     DoctordetailScreen.routeName);
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      DoctordetailScreen(
-                                                        docDetail:
-                                                            listDoctor[index],
-                                                        // doc_detail: listDoctor[index].description,
-                                                        // doc_name: listDoctor[index].name,
-                                                        // doc_job: listDoctor[index].job,
-                                                        // doc_imageUrl: listDoctor[index].imageUrl,
-                                                      )),
-                                            );
+                                            // Navigator.push(
+                                            //   context,
+                                            //   MaterialPageRoute(
+                                            //       builder: (context) =>
+                                            //           DoctordetailScreen(
+                                            //             docDetail:
+                                            //                 listDoctor[index],
+                                            //             // doc_detail: listDoctor[index].description,
+                                            //             // doc_name: listDoctor[index].name,
+                                            //             // doc_job: listDoctor[index].job,
+                                            //             // doc_imageUrl: listDoctor[index].imageUrl,
+                                            //           )),
+                                            // );
+
+
                                             // print( listDoctor[index].imageUrl);
                                           },
                                           child: Container(
@@ -170,13 +172,30 @@ class _HomeScreenState extends State<HomeScreen> {
                                   scrollDirection: Axis.horizontal,
                                   itemCount: listDoctor.length,
                                   itemBuilder: (context, index) {
-                                    return doctorCard(
-                                        context,
-                                        listDoctor[index].imageUrl,
-                                        listDoctor[index].rating,
-                                        listDoctor[index].name,
-                                        listDoctor[index].job,
-                                        doctorModel: listDoctor[index]);
+                                    return GestureDetector(
+                                      onTap: (){
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  DoctordetailScreen(
+                                                    docDetail:
+                                                    listDoctor[index],
+                                                    // doc_detail: listDoctor[index].description,
+                                                    // doc_name: listDoctor[index].name,
+                                                    // doc_job: listDoctor[index].job,
+                                                    // doc_imageUrl: listDoctor[index].imageUrl,
+                                                  )),
+                                        );
+                                      },
+                                      child: doctorCard(
+                                          context,
+                                          listDoctor[index].imageUrl,
+                                          listDoctor[index].rating,
+                                          listDoctor[index].name,
+                                          listDoctor[index].job,
+                                          doctorModel: listDoctor[index]),
+                                    );
                                   }),
                             ),
                           SizedBox(
